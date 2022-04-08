@@ -3,32 +3,32 @@ home: true
 heroImage: /images/bg.png
 heroAlt: Logo image
 heroText: JavaScript Guide
-tagline: javascript
+tagline: 我本来可以很快乐，是前端害了我
 actionText: 开始
 actionLink: /javascript/
 features:
     - title: HTML
-      details: 超文本标记语言(HyperText Markup Language)
+      details: 超文本标记语言、语义化标签、行内元素、块级元素
     - title: JavaScript
-      details: Enjoy the dev experience of Vue + webpack, use Vue components in markdown, and develop custom themes with Vue.
+      details: 原型、原型链、闭包、继承、异步编程、ES6+
     - title: CSS
-      details: CSS3
+      details: CSS3、布局、定位、居中
     - title: 计算机网络
-      details: TCP/IP
+      details: TCP/IP、HTTP、三次握手、四次挥手、流量控制
     - title: 浏览器
-      details: 浏览器渲染
+      details: 浏览器渲染、浏览器缓存、浏览器安全、事件
     - title: Vue
-      details: 渐进式框架
+      details: 用于构建用户界面的渐进式框架
     - title: React
-      details: React
+      details: 构建用户界面的JavaScript库
     - title: 前端工程化
-      details: 前端工程化是使用软件工程的技术和方法来进行前端的开发流程、技术、工具、经验等规范化、标准化
+      details: 进行前端的开发流程、技术、工具、经验等规范化、标准化
     - title: 项目优化
-      details:
+      details: 前端项目优化的常见方法
     - title: 手写代码
-      details:
+      details: 常见的JS手写函数。深浅拷贝、设计模式、bind、apply、call
     - title: 代码输出
-      details:
+      details: 异步编程、事件循环、this指向、作用域、变量提升、闭包、原型、继承
 
 footer: Copyright © 2022 by godwei
 ---

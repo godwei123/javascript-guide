@@ -23,6 +23,22 @@
         url('../font/NotoSansSC-Regular.otf') format('otf');
 }
 
+@font-face {
+    font-family: 'JetBrainsMono';
+    font-style: bold;
+    font-weight: bold;
+    src: local('JetBrainsMono'), local('JetBrainsMono'),
+        url('../font/JetBrainsMono-Bold.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'NotoSansSC';
+    font-style: bold;
+    font-weight: bold;
+    src: local('NotoSansSC'), local('NotoSansSC'),
+        url('../font/NotoSansSC-Bold.otf') format('otf');
+}
+
+
 html {
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
@@ -44,7 +60,6 @@ h6 {
     padding: 15px 0;
     margin: 0;
     font-size: 1rem;
-    color: #135ce0;
 }
 h1:hover a.anchor,
 h2:hover a.anchor,
@@ -127,4 +142,8 @@ code {
     overflow-x: auto;
     background-color: #fff5f5;
     color: #ff502c;
+}
+
+.nav-bar-title{
+    font-weight: bold;
 }
