@@ -1,0 +1,130 @@
+:root{
+    --font-family-base: NotoSansSC, JetBrainsMono, -apple-system, system-ui, BlinkMacSystemFont,
+    Helvetica Neue, PingFang SC, Hiragino Sans GB, Arial, sans-serif,-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  --font-family-mono: JetBrainsMono,source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+
+}
+
+@font-face {
+    font-family: 'JetBrainsMono';
+    font-style: normal;
+    font-weight: normal;
+    src: local('JetBrainsMono'), local('JetBrainsMono'),
+        url('../font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'NotoSansSC';
+    font-style: normal;
+    font-weight: normal;
+    src: local('NotoSansSC'), local('NotoSansSC'),
+        url('../font/NotoSansSC-Regular.otf') format('otf');
+}
+
+html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.5;
+    cursor: text;
+    padding: 15px 0;
+    margin: 0;
+    font-size: 1rem;
+    color: #135ce0;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+
+h1 code {
+    font-size: inherit;
+}
+
+h2 code {
+    font-size: inherit;
+}
+
+h3 code {
+    font-size: inherit;
+}
+
+h4 code {
+    font-size: inherit;
+}
+
+h5 code {
+    font-size: inherit;
+}
+
+h6 code {
+    font-size: inherit;
+}
+
+h1 {
+    font-size: 2.25rem;
+    line-height: 1;
+}
+h2 {
+    font-size: 1.75rem;
+    line-height: 1.2;
+    border-bottom: none;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+h4 {
+    font-size: 1.25rem;
+}
+
+h2 + h3{
+    margin: 0;
+}
+blockquote {
+    background: #fff9f9;
+    margin: 2em 0;
+    padding: 2px 20px;
+    border-left: 4px solid #b2aec5;
+}
+blockquote p {
+    color: #666;
+    line-height: 2;
+}
+
+.sidebar > .sidebar-links > .sidebar-link + .sidebar-link {
+    padding-top: 0;
+}
+
+table{
+    width: 100%;
+    overflow: auto;
+    padding: 0;
+    word-break: initial;
+    display: table;
+    margin: 2rem 0;
+}
+code {
+    word-break: break-word;
+    overflow-x: auto;
+    background-color: #fff5f5;
+    color: #ff502c;
+}
