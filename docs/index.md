@@ -29,6 +29,8 @@ features:
       details: 常见的JS手写函数。深浅拷贝、设计模式、bind、apply、call
     - title: 代码输出
       details: 异步编程、事件循环、this指向、作用域、变量提升、闭包、原型、继承
+    - title: 场景
+      details: 具体业务/场景下功能分析实现和知识灵活应用
 
 footer: Copyright © 2022 by godwei
 ---

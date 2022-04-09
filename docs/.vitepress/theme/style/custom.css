@@ -1,5 +1,5 @@
 :root{
-    --font-family-base: NotoSansSC, JetBrainsMono, -apple-system, system-ui, BlinkMacSystemFont,
+    --font-family-base:  JetBrainsMono,NotoSansSC, -apple-system, system-ui, BlinkMacSystemFont,
     Helvetica Neue, PingFang SC, Hiragino Sans GB, Arial, sans-serif,-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -7,7 +7,7 @@
     monospace;
 
 }
-
+/* 
 @font-face {
     font-family: 'JetBrainsMono';
     font-style: normal;
@@ -15,13 +15,7 @@
     src: local('JetBrainsMono'), local('JetBrainsMono'),
         url('../font/JetBrainsMono-Regular.woff2') format('woff2');
 }
-@font-face {
-    font-family: 'NotoSansSC';
-    font-style: normal;
-    font-weight: normal;
-    src: local('NotoSansSC'), local('NotoSansSC'),
-        url('../font/NotoSansSC-Regular.otf') format('otf');
-}
+
 
 @font-face {
     font-family: 'JetBrainsMono';
@@ -29,6 +23,31 @@
     font-weight: bold;
     src: local('JetBrainsMono'), local('JetBrainsMono'),
         url('../font/JetBrainsMono-Bold.woff2') format('woff2');
+} */
+
+@font-face {
+    font-family: 'JetBrainsMono';
+    font-style: normal;
+    font-weight: normal;
+    src: local('JetBrainsMono'), local('JetBrainsMono'),
+        url('../font/JetBrainsMonoNL-Regular.ttf');
+}
+
+
+@font-face {
+    font-family: 'JetBrainsMono';
+    font-style: bold;
+    font-weight: bold;
+    src: local('JetBrainsMono'), local('JetBrainsMono'),
+    url('../font/JetBrainsMonoNL-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'NotoSansSC';
+    font-style: normal;
+    font-weight: normal;
+    src: local('NotoSansSC'), local('NotoSansSC'),
+        url('../font/NotoSansSC-Regular.otf') format('otf');
 }
 @font-face {
     font-family: 'NotoSansSC';
@@ -61,14 +80,7 @@ h6 {
     margin: 0;
     font-size: 1rem;
 }
-h1:hover a.anchor,
-h2:hover a.anchor,
-h3:hover a.anchor,
-h4:hover a.anchor,
-h5:hover a.anchor,
-h6:hover a.anchor {
-    text-decoration: none;
-}
+
 
 h1 code {
     font-size: inherit;
