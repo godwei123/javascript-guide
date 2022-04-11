@@ -8,7 +8,7 @@
 此处为题目，具体知识点见相应文档
 :::
 
-## 异步编程
+## 异步编程、事件循环
 
 ### 1、代码输出结果
 
@@ -134,6 +134,44 @@ node>=11
 
 ### 4、代码输出结果
 
+```js
+async function async1() {
+    console.log('async1 start');
+    await async2();
+    console.log('async1 end');
+}
+async function async2() {
+    console.log('async2');
+}
+console.log('script start');
+setTimeout(function () {
+    console.log('setTimeout');
+}, 0);
+async1();
+new Promise(function (resolve) {
+    console.log('promise1');
+    resolve();
+}).then(function () {
+    console.log('promise2');
+});
+console.log('script end');
+```
+
+::: details 答案
+
+```text
+script start
+async1 start
+async2
+promise1
+script end
+async1 end
+promise2
+setTimeout
+```
+
+:::
+
 ### 5、代码输出结果
 
 ### 6、代码输出结果
@@ -145,8 +183,6 @@ node>=11
 ### 9、代码输出结果
 
 ### 10、代码输出结果
-
-## 事件循环
 
 ## this 指向
 
@@ -184,7 +220,159 @@ a
 
 :::
 
-## 变量提升
+### 2、代码输出结果
+
+```js
+var foo = {
+    bar: function () {
+        return this.baz;
+    },
+    baz: 1,
+};
+console.log(typeof (f = foo.bar)());
+```
+
+::: details 答案
+
+```text
+"undefined"
+```
+
+这里并不是因为赋值给 f ，相当于 f()，所以 this 指向 window 的。
+不然试试下面代码也会打印 undefined
+
+```js
+var foo = {
+    bar: function () {
+        return this.baz;
+    },
+    baz: 1,
+};
+console.log(typeof (foo.bar = foo.bar)());
+```
+
+下面简单从规范的角度判断这个 this 指向，可以分以下几个步骤：
+
+1.计算 MemberExpression 的结果赋值给 ref
+
+2.判断 ref 是不是一个 Reference 类型
+
+2.1 如果 ref 是 Reference，并且 IsPropertyReference(ref) 是 true, 那么 this 的值为 GetBase(ref)
+
+2.2 如果 ref 是 Reference，并且 base value 值是 Environment Record, 那么 this 的值为 ImplicitThisValue(ref)
+
+2.3 如果 ref 不是 Reference，那么 this 的值为 undefined
+
+解释下这两个步骤：
+1、MemberExpression 我们可以简单理解为括号前的部分，针对这题就是 (f=foo.bar) 这部分。
+
+2、Reference 是规范类型的一种。如果通过 GetValue 方法从 Reference 类型中获取值，则该 MemberExpression 返回结果不再是 Reference 类型。
+这里的关键就是判断 MemberExpression 的返回结果是不是 Reference 类型。
+由于 f=foo.bar 存在赋值操作符，根据规范 11.13.1 Simple Assignment ( = ) 规定，其第三步使用了 GetValue(ref)，故返回值不是 Reference 类型。
+对照上述 2.3 的规范，如果表达式返回值不是 Reference 类型，那么 this 的值为 undefined，在非严格模式下，被隐式转换为全局对象 window。
+:::
+
+### 3、代码输出结果
+
+```js
+const num = {
+  a: 10,
+  add() {
+    return this.a + 2;
+  },
+  reduce: () => this.a - 2;
+}
+console.log(num.add());
+console.log(num.reduce());
+```
+
+::: details 答案
+
+```text
+12
+NaN
+```
+
+注意，add 是普通函数，而 reduce 是箭头函数。对于箭头函数，this 关键字指向是它所在上下文（定义时的位置）的环境，与普通函数不同！ 这意味着当我们调用 reduce 时，它不是指向 num 对象，而是指其定义时的环境（window）。没有值 a 属性，返回 undefined。
+
+:::
+
+### 4、代码输出结果
+
+```js
+const person = { name: 'yideng' };
+
+function sayHi(age) {
+    return `${this.name} is ${age}`;
+}
+console.log(sayHi.call(person, 21));
+console.log(sayHi.bind(person, 21));
+```
+
+::: details 答案
+
+```text
+yideng is 21
+ƒ sayHi(age) {return ${this.name} is ${age};}
+```
+
+使用两者，我们可以传递我们想要 this 关键字引用的对象。
+
+.call 方法会立即执行！
+
+.bind 方法会返回函数的拷贝值，但带有绑定的上下文！它不会立即执行。
+
+:::
+
+## 变量提升、作用域
+
+### 1、代码输出结果
+
+```js
+for (let i = 0; i < 3; i++) {
+    setTimeout(() => console.log(i), 1);
+}
+for (var i = 0; i < 3; i++) {
+    setTimeout(() => console.log(i), 1);
+}
+```
+
+::: details 答案
+
+```text
+0 1 2
+3 3 3
+```
+
+:::
+
+## 原型链,继承
+
+### 1、代码输出结果
+
+```js
+function f() {
+    return f;
+}
+console.log(new f() instanceof f);
+```
+
+::: details 答案
+
+```text
+false
+```
+
+解析
+a instanceof b 用于检测 a 是不是 b 的实例。如果题目 f 中没有 return f,则答案明显为 true;而在本题中 new f()其返回的结果为 f 的函数对象，其并不是 f 的一个实例。
+
+```js
+function f() {}
+console.log(new f() instanceof f);
+// 答案：true
+```
+
+:::
 
 ## 类型隐式转换
 
@@ -239,6 +427,23 @@ Number(['1']); //1
 ② 对象与原始类型值比较，对象会转换成原始类型的值再进行比较。
 
 ③undefined 和 null 与其它类型进行比较时，结果都为 false，他们相互比较时结果为 true。
+:::
+
+### 2、代码输出结果
+
+```js
+const value = 'Value is' + !!Number(['0']) ? 'yideng' : 'undefined';
+console.log(value);
+```
+
+::: details 答案
+
+```text
+yideng
+```
+
++优先级大于？
+
 :::
 
 ## 其他
@@ -377,6 +582,345 @@ console.log(b); //Uncaught ReferenceError: b is not defined
 })();
 
 console.log(b); // 5
+```
+
+:::
+
+### 5、代码输出结果
+
+```js
+var company = {
+    address: 'beijing',
+};
+var yideng = Object.create(company);
+delete yideng.address;
+console.log(yideng.address);
+// 写出执行结果，并解释原因
+```
+
+::: details 答案
+
+```text
+beijing
+```
+
+解析
+这里的 yideng 通过 prototype 继承了 company 的 address。yideng 自己并没有 address 属性。所以 delete 操作符的作用是无效的。
+
+知识点
+1.delete 使用原则：delete 操作符用来删除一个对象的属性。
+2.delete 在删除一个不可配置的属性时在严格模式和非严格模式下的区别:
+（1）在严格模式中，如果属性是一个不可配置（non-configurable）属性，删除时会抛出异常;
+（2）非严格模式下返回 false。
+3.delete 能删除隐式声明的全局变量：这个全局变量其实是 global 对象(window)的属性
+4.delete 能删除的：
+（1）可配置对象的属性（2）隐式声明的全局变量 （3）用户定义的属性 （4）在 ECMAScript 6 中，通过 const 或 let 声明指定的 "temporal dead zone" (TDZ) 对 delete 操作符也会起作用
+delete 不能删除的：
+（1）显式声明的全局变量 （2）内置对象的内置属性 （3）一个对象从原型继承而来的属性
+5.delete 删除数组元素：
+（1）当你删除一个数组元素时，数组的 length 属性并不会变小，数组元素变成 undefined
+（2）当用 delete 操作符删除一个数组元素时，被删除的元素已经完全不属于该数组。
+（3）如果你想让一个数组元素的值变为 undefined 而不是删除它，可以使用 undefined 给其赋值而不是使用 delete 操作符。此时数组元素是在数组中的
+6.delete 操作符与直接释放内存（只能通过解除引用来间接释放）没有关系。
+
+7.其它例子
+（1）下面代码输出什么？
+
+```js
+var output = (function (x) {
+    delete x;
+    return x;
+})(0);
+console.log(output);
+```
+
+答案：0，delete 操作符是将 object 的属性删去的操作。但是这里的 x 是并不是对象的属性， delete 操作符并不能作用。
+
+（2）下面代码输出什么？
+
+```js
+var x = 1;
+var output = (function () {
+    delete x;
+    return x;
+})();
+console.log(output);
+```
+
+答案：输出是 1。delete 操作符是将 object 的属性删去的操作。但是这里的 x 是并不是对象的属性， delete 操作符并不能作用。
+
+（3）下面代码输出什么?
+
+```js
+x = 1;
+var output = (function () {
+    delete x;
+    return x;
+})();
+console.log(output);
+```
+
+答案：报错 VM548:1 Uncaught ReferenceError: x is not defined,
+
+（4）下面代码输出什么？
+
+```js
+var x = { foo: 1 };
+var output = (function () {
+    delete x.foo;
+    return x.foo;
+})();
+console.log(output);
+```
+
+答案：输出是 undefined。x 虽然是全局变量，但是它是一个 object。delete 作用在 x.foo 上，成功的将 x.foo 删去。所以返回 undefined
+:::
+
+### 6、代码输出结果
+
+```js
+var foo = function bar() {
+    return 12;
+};
+console.log(typeof bar());
+// 写出执行结果，并解释原因
+```
+
+::: details 答案
+
+```text
+输出是抛出异常，bar is not defined。
+```
+
+解析
+这种命名函数表达式函数只能在函数体内有效
+
+```js
+typeof(bar). // "undefined"
+typeof(foo()). // "number"
+typeof(foo).   // "function"
+typeof(bar()). // Uncaught ReferenceError: bar is not defined
+```
+
+:::
+
+### 7、代码输出结果
+
+```js
+var x = 1;
+if (function f() {}) {
+    x += typeof f;
+}
+console.log(x);
+// 写出执行结果，并解释原因
+```
+
+::: details 答案
+
+```text
+1undefined
+```
+
+解析
+条件判断为假的情况有：0，false，''，null，undefined，未定义对象。函数声明写在运算符中，其为 true，**但放在运算符中的函数声明在执行阶段是找不到的。**另外，对未声明的变量执行 typeOf 不会报错，会返回 undefined
+:::
+
+### 8、代码输出结果
+
+```js
+['1', '2', '3'].map(parseInt);
+```
+
+::: details 答案
+
+```text
+[1,NaN,NaN]
+```
+
+解析
+
+1）Array.prototype.map()
+
+array.map(callback[, thisArg])
+
+callback 函数的执行规则
+
+参数：自动传入三个参数
+
+-   currentValue（当前被传递的元素）；
+
+-   index（当前被传递的元素的索引）；
+
+-   array（调用 map 方法的数组）
+
+2）parseInt 方法接收两个参数
+
+第三个参数["1", "2", "3"]将被忽略。parseInt 方法将会通过以下方式被调用
+
+parseInt("1", 0)
+
+parseInt("2", 1)
+
+parseInt("3", 2)
+
+3）parseInt 的第二个参数 radix 为 0 时，ECMAScript5 将 string 作为十进制数字的字符串解析；
+
+parseInt 的第二个参数 radix 为 1 时，解析结果为 NaN；
+
+parseInt 的第二个参数 radix 在 2—36 之间时，如果 string 参数的第一个字符（除空白以外），不属于 radix 指定进制下的字符，解析结果为 NaN。
+
+parseInt("3", 2)执行时，由于"3"不属于二进制字符，解析结果为 NaN。
+
+:::
+
+### 9、代码输出结果
+
+```js
+[typeof null, null instanceof Object];
+```
+
+::: details 答案
+
+```text
+[object, false]
+```
+
+:::
+
+### 10、代码输出结果
+
+```js
+function f() {}
+const a = f.prototype,
+    b = Object.getPrototypeOf(f);
+console.log(a === b);
+```
+
+::: details 答案
+
+```text
+false
+```
+
+f.prototype 是使用使用 new 创建的 f 实例的原型. 而 Object.getPrototypeOf 是 f 函数的原型.
+
+a === Object.getPrototypeOf(new f()) // true
+
+b === Function.prototype // true
+:::
+
+### 11、代码输出结果
+
+```js
+function showCase(value) {
+    switch (value) {
+        case 'A':
+            console.log('Case A');
+            break;
+        case 'B':
+            console.log('Case B');
+            break;
+        case undefined:
+            console.log('undefined');
+            break;
+        default:
+            console.log('Do not know!');
+    }
+}
+showCase(new String('A'));
+```
+
+::: details 答案
+
+```text
+Do not know!
+```
+
+switch 是严格比较, String 实例和 字符串不一样.
+
+```js
+var str1 = 'str';
+var str2 = new String('str');
+console.log(typeof str1); // "string"
+console.log(typeof str2); //"object"
+```
+
+:::
+
+### 12、代码输出结果
+
+```js
+console.log([2, 1, 0].reduce(Math.pow));
+console.log([].reduce(Math.pow));
+```
+
+::: details 答案
+
+```text
+1
+在没有初始值的空数组上调用 reduce 将报错。
+```
+
+:::
+
+### 13、代码输出结果
+
+```js
+var arr = [0, 1];
+arr[5] = 5;
+newArr = arr.filter(function (x) {
+    return x === undefined;
+});
+console.log(newArr.length);
+```
+
+::: details 答案
+
+```text
+0
+```
+
+filter 为数组中的每个元素调用一次 callback 函数，并利用所有使得 callback 返回 true 或等价于 true 的值的元素创建一个新数组。callback 只会在已经赋值的索引上被调用，对于那些已经被删除或者从未被赋值的索引不会被调用。那些没有通过 callback 测试的元素会被跳过，不会被包含在新数组中。
+:::
+
+### 14、代码输出结果
+
+```js
+
+```
+
+::: details 答案
+
+```text
+
+```
+
+:::
+
+### 15、代码输出结果
+
+```js
+
+```
+
+::: details 答案
+
+```text
+
+```
+
+:::
+
+### 16、代码输出结果
+
+```js
+
+```
+
+::: details 答案
+
+```text
+
 ```
 
 :::

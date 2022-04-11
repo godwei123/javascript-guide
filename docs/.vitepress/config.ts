@@ -4,7 +4,6 @@ import nav from './config/nav';
 import sidebar from './config/sidebar';
 
 export default defineConfigWithTheme<ThemeConfig>({
-    // extends: baseConfig,
     title: 'JavaScriptGuide',
     description: 'Just playing around.',
     lang: 'zh-CN',
