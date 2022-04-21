@@ -402,7 +402,7 @@ function sendRequest(apiList, limit) {
     let map = new Map();
     // 递归调用
     const run = () => {
-        if (list.length) {
+        if (list.length > 0) {
             const api = list.shift();
             return request(api).then(res => {
                 map.set(api, res);
