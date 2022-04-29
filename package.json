@@ -11,7 +11,5 @@
   "devDependencies": {
     "vitepress": "^0.22.3"
   },
-  "dependencies": {
-    "@vue/theme": "^1.0.1"
-  }
+  "dependencies": {}
 }
