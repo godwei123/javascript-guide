@@ -7,12 +7,26 @@
         <title>Document</title>
     </head>
     <body>
-        <input type="button" value="按钮" onclick="clickFun(this)" />
+        <div id="text"></div>
+        <input type="button" value="按钮 +1" onclick="clickFun()" />
     </body>
     <script>
-        function clickFun(e) {
-            console.log(e);
-            console.log(this);
+        const text = document.getElementById('text');
+        let num = 0;
+        text.innerText = num;
+        let timer = null;
+        let val = 0;
+        function clickFun() {
+            val++;
+            if (timer) {
+                clearTimeout(timer);
+                timer = null;
+            }
+            timer = setTimeout(() => {
+                num = num + val;
+                val = 0;
+                text.innerText = num;
+            }, 1000);
         }
     </script>
 </html>

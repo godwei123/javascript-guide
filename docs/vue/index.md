@@ -147,10 +147,6 @@ keep-alive 的中还运用了 LRU(Least Recently Used)算法。
 
 父 beforeUpdate->子 beforeUpdate->子 updated->父 updated
 
-父组件更新过程
-
-父 beforeUpdate -> 父 updated
-
 销毁过程
 
 父 beforeDestroy->子 beforeDestroy->子 destroyed->父 destroyed
@@ -167,7 +163,6 @@ keep-alive 的中还运用了 LRU(Least Recently Used)算法。
 兄弟组件通信
 
 -   Event Bus 实现跨组件通信 Vue.prototype.$bus = new Vue
-
 -   Vuex
 
 跨级组件通信
