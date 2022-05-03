@@ -174,15 +174,75 @@ setTimeout
 
 ### 5、代码输出结果
 
+```js
+function getName() {
+    for (let i = 0; i < 5; i++) {
+        setTimeout(function () {
+            console.log(i);
+        }, i * 1000);
+    }
+    return;
+    {
+        name: '京程一灯';
+    }
+}
+console.log(getName());
+```
+
+::: details 答案
+
+```text
+undefined
+0
+1
+2
+3
+4
+```
+
+:::
+
 ### 6、代码输出结果
 
-### 7、代码输出结果
+```js
+function yideng(n, o) {
+    console.log(o); // ？
+    return {
+        yideng: function (m) {
+            return yideng(m, n);
+        },
+    };
+}
+const a = yideng(0);
+a.yideng(1);
+a.yideng(2);
+a.yideng(3);
+const b = yideng(0).yideng(1).yideng(2).yideng(3);
+const c = yideng(0).yideng(1);
+c.yideng(2);
+c.yideng(3);
+```
 
-### 8、代码输出结果
+::: details 答案
 
-### 9、代码输出结果
+```text
+undefined
+0
+0
+0
+undefined
+0
+1
+2
+undefined
+0
+1
+1
+```
 
-### 10、代码输出结果
+闭包
+
+:::
 
 ## this 指向
 
@@ -324,6 +384,77 @@ yideng is 21
 
 :::
 
+### 5、代码输出结果
+
+```js
+let length = 10;
+function fn() {
+    console.log(this.length);
+}
+var obj = {
+    length: 5,
+    method: function (fn) {
+        fn();
+        arguments[0]();
+    },
+};
+obj.method(fn, 1);
+```
+
+::: details 答案
+
+```text
+0
+2
+```
+
+1）fn()知识点
+①fn()知识点，任意函数里如果嵌套了 非箭头函数，那这个时候 嵌套函数里的 this 在未指定的情况下，应该指向的是 window 对象，所以这里执行 fn 会打印 window.length,但是 let 声明的变量会形成块级作用域，且不存在声明提升，而 var 存在声明提升。所以当使用 let 声明变量时，不存在声明提升，length 属性实际上并没有添加到 window 对象中。
+// 例如在浏览器控制台
+let a = 1;
+window.a // undefined
+var b = 1;
+window.b // 1
+但是这里为什么输出 0 呢，因为 window 对象原先上有 length 属性，所以输出的是原先的值 0
+
+②arguments 知识点
+在方法调用（如果某个对象的属性是函数，这个属性就叫方法，调用这个属性，就叫方法调用）中，执行函数体的时候，作为属性访问主体的对象和数组便是其调用方法内 this 的指向。（通俗的说，调用谁的方法 this 就指向谁；
+arguments\[0]指向 fn,所以 arguments\[0]() 是作为 arguments 对象的属性\[0]来调用 fn 的，所以 fn 中的 this 指向属性访问主体的对象 arguments；这里 this 指向 arguments。
+因为 fn 作为一个参数存储在 arg 对象里，argumengts 的长度为 2，所以输出 2
+// 例如
+\[function fn(){console.log(this.length)}]\[0]; // 1
+// 数组也是对象，只不过数组对象的整型属性会计入 length 属性中，并被区别对待，这里就是调用数组对象的 0 属性，函数作为数组对象的属性调用，函数中的 this 当然指向这个数组，所以返回数组的 length
+
+:::
+
+### 6、代码输出结果
+
+```t
+var a = 10;
+var foo = {
+    a: 20,
+    bar: function () {
+        var a = 30;
+        return this.a;
+    },
+};
+console.log(foo.bar());
+console.log((foo.bar)());
+console.log((foo.bar = foo.bar)());
+console.log((foo.bar, foo.bar)());
+```
+
+::: details 答案
+
+```text
+20
+20
+10
+10
+```
+
+:::
+
 ## 变量提升、作用域
 
 ### 1、代码输出结果
@@ -344,6 +475,140 @@ for (var i = 0; i < 3; i++) {
 3 3 3
 ```
 
+:::
+
+### 2、代码输出结果
+
+```js
+let a = { n: 1 };
+let b = a;
+a.x = a = { n: 2 };
+console.log(a.x);
+console.log(b.x);
+```
+
+::: details 答案
+
+```text
+undefined
+{n:2}
+
+```
+
+点号的运算优先级大于等于号
+赋值操作从右向左
+所以, a.x=a={n:2} 可以表示为 a.x=(a={n:2}). a.x 的值是先计算的,此时 a 的指向依然是对象{n:1}. a.x 的值是括号里的返回值, 所以是在对象{n:1}上添加了 x 这个属性,属性值为{n:2}. 然后是变量 a 被重新赋值,指向了对象{n:2}. 但变量 b 的指向依然是原先的对象.
+所以, a.x 的值是 undefined, b.x 的值是{n:2}.
+:::
+
+### 3、代码输出结果
+
+```js
+var a1 = {},
+    b1 = '123',
+    c1 = 123;
+a1[b1] = 'b';
+a1[c1] = 'c';
+console.log(a1[b1]); // c
+var a2 = {},
+    b2 = Symbol('123'),
+    c2 = Symbol('123');
+a2[b2] = 'b';
+a2[c2] = 'c';
+console.log(a2[b2]); // b
+var a3 = {},
+    b3 = { key: '123' },
+    c3 = { key: '456' };
+a3[b3] = 'b';
+a3[c3] = 'c';
+console.log(a3[b3]); // c
+```
+
+::: details 答案
+
+```text
+c
+b
+c
+
+```
+
+数字做对象的 key 会转成字符串, 所以 a1 = { '123': 'c' }
+a2 = { Symbol(123): 'b', Symbol(123): 'c' }, Symbol 是唯一的, 所以 a2[b2] = b
+a3 = { [object Object]: 'c' } obj 做 key 会调用 toString 方法
+:::
+
+### 4、代码输出结果
+
+```js
+let x, y;
+try {
+    throw new Error();
+} catch (x) {
+    x = 1;
+    y = 2;
+    console.log(x);
+}
+console.log(x);
+console.log(y);
+```
+
+::: details 答案
+
+```text
+1
+undefined
+2
+```
+
+需要注意的是 catch 的作用域，其实并不是常见的块作用域，并不能绑定自己的内部声明的变量。catch 创建的块作用域，只对 catch 的参数有效。对于在内部声明的变量，catch 并没有创建一个新的作用域，只是一个普通的代码块。
+:::
+
+### 5、代码输出结果 ✨
+
+```js
+var a = 0;
+if (true) {
+    a = 10;
+    console.log(a, window.a);
+    function a() {}
+    console.log(a, window.a);
+    a = 20;
+    console.log(a, window.a);
+}
+console.log(a);
+```
+
+::: details 答案
+
+```text
+10 0
+10 10
+20 10
+10
+
+```
+
+:::
+
+### 6、代码输出结果
+
+```js
+const lowerCaseOnly = /^[a-z]+$/;
+console.log(lowerCaseOnly.test('yideng'));
+console.log(lowerCaseOnly.test(null));
+console.log(lowerCaseOnly.test());
+```
+
+::: details 答案
+
+```text
+true
+true
+true
+```
+
+test 方法的参数会被调用 toString 强制转换成字符串
 :::
 
 ## 原型链,继承
@@ -372,6 +637,260 @@ console.log(new f() instanceof f);
 // 答案：true
 ```
 
+:::
+
+### 2、代码输出结果
+
+```js
+function Foo() {
+    Foo.a = function () {
+        console.log(1);
+    };
+    this.a = function () {
+        console.log(2);
+    };
+}
+Foo.prototype.a = function () {
+    console.log(3);
+};
+Foo.a = function () {
+    console.log(4);
+};
+Foo.a();
+let obj = new Foo();
+obj.a();
+Foo.a();
+```
+
+::: details 答案
+
+```text
+4
+2
+1
+```
+
+首先，
+
+function Foo() {
+Foo.a = function() {console.log(1)}
+this.a = function() {console.log(2)}
+}
+上面这段代码执行完之后，我们有了一个名为 Foo 的函数，虽然函数里面也有一些代码，但此时它们还不会被执行，接下来
+
+Foo.prototype.a = function() {console.log(3)}
+
+到这里，我们知道了这个函数所有的实例都会有一个叫做 a 的方法，执行这个方法之后会输出 3，再往下看
+
+Foo.a = function() {console.log(4)}
+
+我们又给 Foo 函数添加了一个静态方法，也叫做 a，执行这个方法时会输出 4，继续看接下来的代码
+
+Foo.a();
+毫无疑问，调用了 Foo 函数的静态方法 a，刚才也说了会输出 4，所以这里会输出一个 4
+
+let obj = new Foo();
+然后我们使用 new 操作符以 Foo 构造函数创建了一个实例叫做 obj，创建实例时会执行构造函数的代码，也就是 Foo 里面的代码被执行了。首先，
+
+Foo.a = function() {console.log(1)}
+
+Foo 函数的静态方法 a 被修改了，原来是输出 4，修改之后会输出 1。接着
+
+this.a = function() {console.log(2)}
+
+使用 new 操作符创建实例时，构造函数中的 this 会指向新创建的实例，在这里新创建的实例就是 obj，因此 obj 有了一个方法叫做 a，执行这个方法会输出 2。同时，在 obj 的原型链上存在一个同样叫做 a 的方法，那个方法执行时会输出 3，也就是上面通过
+
+Foo.prototype.a = function() {console.log(3)}
+
+声明的方法，显而易见，对于 obj 来说，自身的方法 a 会覆盖原型链上的同名方法，因此，在下面的代码中调用 obj.a();时会输出 2。
+最后，再次调用 Foo.a();时，由于刚在在创建 obj 实例时，Foo 函数的静态方法 a 已经被修改了，因此这里执行的是修改后的函数，所以会输出 1。
+综上所述，最终的输出结果为
+:::
+
+### 3、代码输出结果
+
+```js
+function user(obj) {
+    obj.name = 'aaa';
+    obj = new Object();
+    obj.name = 'bbb';
+}
+let person = new Object();
+user(person);
+console.log(person.name);
+```
+
+::: details 答案
+
+```text
+aaa
+```
+
+```js
+function user(obj) {
+    // obj传入的是引用
+    obj.name = 'aaa'; // 修改引用的值
+    obj = new Object(); // obj 指向了一个新地址
+    obj.name = 'bbb'; //  修改的是新对象，没法改变传入的对象
+}
+```
+
+:::
+
+### 4、代码输出结果
+
+```js
+function fn() {
+    getValue = function () {
+        console.log(1);
+    };
+    return this;
+}
+fn.getValue = function () {
+    console.log(2);
+};
+fn.prototype.getValue = function () {
+    console.log(3);
+};
+var getValue = function () {
+    console.log(4);
+};
+function getValue() {
+    console.log(5);
+}
+
+//请写出以下输出结果：
+getValue();
+fn().getValue();
+getValue();
+new fn.getValue();
+new fn().getValue();
+```
+
+::: details 答案
+
+```text
+4
+1
+1
+2
+3
+```
+
+1. 变量提升
+
+```js
+var getValue = function () {
+    console.log(4);
+};
+function getValue() {
+    console.log(5);
+}
+
+//  相当于下面代码，所以第一个输出 4
+function getValue() {
+    console.log(5);
+}
+var getValue;
+getValue = function () {
+    console.log(4);
+};
+
+// ======
+function fn() {
+    getValue = function () {
+        console.log(1);
+    };
+    return this;
+}
+fn().getValue();
+//执行fn()函数，将getValue重新赋值，返回this,this 指向 window，
+// 执行window.getValue() 如下代码，输出 1
+getValue = function () {
+    console.log(1);
+};
+// ====
+
+getValue(); // 输出 1
+
+// ====
+fn.getValue = function () {
+    console.log(2);
+};
+
+new fn.getValue(); // 输出 2
+
+// ====
+fn.prototype.getValue = function () {
+    console.log(3);
+};
+new fn().getValue(); //创建一个实例，调用getValue方法，输出 3
+```
+
+:::
+
+### 5、代码输出结果
+
+```js
+function test() {}
+const a = {},
+    b = Object.prototype;
+console.log(a.prototype === b);
+console.log(Object.getPrototypeOf(a) === b);
+console.log(test.prototype === Object.getPrototypeOf(test));
+```
+
+::: details 答案
+
+```text
+false
+true
+false
+```
+
+prototype 属性是只有函数才特有的属性，当你创建一个函数时，js 会自动为这个函数加上 prototype 属性，值是一个空对象。而实例对象是没有 prototype 属性的。所以 a.prototype 是 undefined
+
+Object 实际上是一个构造函数（typeof Object 的结果为"function"）,使用字面量创建对象和 new Object 创建对象是一样的，所以 a.\_\_proto\_\_也就是 Object.prototype，所以 Object.getPrototypeOf(a)与 a.\_\_proto\_\_是一样的，第二个结果为 true
+
+f.prototype 是使用使用 new 创建的 f 实例的原型:
+f.prototype === Object.getPrototypeOf(new f()); // true
+
+Object.getPrototypeOf(f)是 f 函数的原型:
+Object.getPrototypeOf(f) === Function.prototype; //true
+:::
+
+### 6、代码输出结果
+
+```js
+var F = function () {};
+Object.prototype.a = function () {
+    console.log('a');
+};
+Function.prototype.b = function () {
+    console.log('b');
+};
+var f = new F();
+F.a();
+F.b();
+f.a();
+f.b();
+```
+
+::: details 答案
+
+```text
+a
+b
+a
+f.b is not a function
+```
+
+F instanceof Object == true
+F instanceof Function == true
+
+f instanceof F // true
+f instanceof Function // false
+f instanceof Object // true
 :::
 
 ## 类型隐式转换
@@ -442,8 +961,110 @@ console.log(value);
 yideng
 ```
 
-+优先级大于？
+\- 优先级大于 ？
 
+:::
+
+### 3、代码输出结果
+
+```js
+const a = [1, 2, 3],
+    b = [1, 2, 3],
+    c = [1, 2, 4],
+    d = '2',
+    e = '11';
+console.log([a == b, a === b, a > c, a < c, d > e]);
+```
+
+::: details 答案
+
+```text
+[false, false, false, true, true]
+```
+
+:::
+
+### 4、代码输出结果
+
+```js
+console.log(null == 0);
+console.log(null <= 0);
+console.log(null < 0);
+```
+
+::: details 答案
+
+```text
+false
+true
+false
+
+```
+
+null>0 //null 转化为 number，为 0，所以 0>0 结果为 false。
+
+null>=0 //null 转化为 number，为 0>=0，所以结果为 true。
+
+null==0// null 在做相等判断时，不进行转型，所以 null 和 0 为不同类型数据，结果为 false
+:::
+
+### 5、代码输出结果
+
+```js
+let a = [];
+let b = '0';
+console.log(a == 0);
+console.log(a == !a);
+console.log(b == 0);
+console.log(a == b);
+```
+
+::: details 答案
+
+```text
+true
+true
+true
+false
+```
+
+```js
+/**
+对象到数字的转换过程：
+1.如果对象具有valueof（）方法，后者返回一个原始值，则JavaScript将这个原始值转换为数字并返回；
+2.否则，如果对象具有toString（）方法，后者返回一个原始值，JavaScript将这个字符串转换为数字并返回；
+3.否则，报错。
+4.数组继承了默认的valueOf()方法，但是数组、函数和正则表达式调用此方法后，只返回对象本身，因此转换为数字，还会继续调用toString（）方法，空数组调用toString（）返回空字符串，转换为数字为0，
+*/
+let a = [];
+let b = '0';
+console.log(a == 0);
+// == 运算符，一边为对象，一边数字，对象到数字的转换过程，0==0 返回true
+console.log(a == !a);
+// 逻辑非，如果为对象，返回false，布尔值转换为数字 0，对象到数字的转换过程，0==0 返回true
+console.log(b == 0);
+// 字符串转换为数字 ，返回true
+console.log(a == b);
+// 对象到数字的转换过程1、2 返回 ‘’ ，‘’==‘0’ false
+```
+
+:::
+
+### 6、代码输出结果
+
+```js
+var obj = {};
+var x = +obj.yideng?.name ?? '京程一灯';
+console.log(x);
+```
+
+::: details 答案
+
+```text
+NaN
+```
+
++undefined -> NaN
 :::
 
 ## 其他
@@ -852,6 +1473,9 @@ console.log(typeof str2); //"object"
 ```js
 console.log([2, 1, 0].reduce(Math.pow));
 console.log([].reduce(Math.pow));
+console.log([1, 0].reduce(Math.pow));
+console.log([3].reduce(Math.pow));
+console.log([].reduce(Math.pow, 3));
 ```
 
 ::: details 答案
@@ -859,6 +1483,9 @@ console.log([].reduce(Math.pow));
 ```text
 1
 在没有初始值的空数组上调用 reduce 将报错。
+1
+3
+3
 ```
 
 :::
@@ -886,13 +1513,30 @@ filter 为数组中的每个元素调用一次 callback 函数，并利用所有
 ### 14、代码输出结果
 
 ```js
-
+// a 在什么情况下会打印 1
+var a = ?;
+if(a == 1 && a== 2 && a== 3){
+ 	console.log(1);
+}
 ```
 
 ::: details 答案
 
 ```text
-
+//  方法1 -------------
+var a = {
+  i: 1,
+  toString: function () {
+    return a.i++;
+  }
+  // or
+  valueOf() {
+    return this.i++;
+  }
+}
+//  方法2 -------------
+var a = [1,2,3];
+a.join = a.shift;
 ```
 
 :::
@@ -900,13 +1544,22 @@ filter 为数组中的每个元素调用一次 callback 函数，并利用所有
 ### 15、代码输出结果
 
 ```js
-
+const obj = {
+    2: 3,
+    3: 4,
+    length: 2,
+    splice: Array.prototype.splice,
+    push: Array.prototype.push,
+};
+obj.push(1);
+obj.push(2);
+console.log(obj);
 ```
 
 ::: details 答案
 
 ```text
-
+Object(4) [empty × 2, 1, 2, splice: ƒ, push: ƒ]
 ```
 
 :::
@@ -914,13 +1567,266 @@ filter 为数组中的每个元素调用一次 callback 函数，并利用所有
 ### 16、代码输出结果
 
 ```js
-
+const num = parseInt('2*4', 10);
+console.log(num);
 ```
 
 ::: details 答案
 
 ```text
+2
+```
 
+只返回了字符串中第一个字母. 设定了 进制 后 (也就是第二个参数，指定需要解析的数字是什么进制: 十进制、十六机制、八进制、二进制等等), parseInt 检查字符串中的字符是否合法. 一旦遇到一个在指定进制中不合法的字符后，立即停止解析并且忽略后面所有的字符。 \*就是不合法的数字字符。所以只解析到 2，并将其解析为十进制的 2. num 的值即为 2
+:::
+
+### 17、代码输出结果
+
+```js
+const company = { name: 'tom' };
+Object.defineProperty(company, 'address', { value: '北京' });
+console.log(company);
+console.log(Object.keys(company));
+```
+
+::: details 答案
+
+```text
+{name: 'tom', address: '北京'}
+['name']
+```
+
+通过 defineProperty 方法，我们可以给对象添加一个新属性，或者修改已经存在的属性。而我们使用 defineProperty 方法给对象添加了一个属性之后，属性默认为 不可枚举(not enumerable).
+
+Object.keys 方法仅返回对象中 可枚举(enumerable) 的属性，因此只剩下了 name
+
+用 defineProperty 方法添加的属性默认不可变。你可以通过 writable, configurable 和 enumerable 属性来改变这一行为。这样的话， 相比于自己添加的属性， defineProperty 方法添加的属性有了更多的控制权。
+:::
+
+### 18、代码输出结果
+
+```js
+let num = 10;
+const increaseNumber = () => num++;
+const increasePassedNumber = number => number++;
+const num1 = increaseNumber();
+const num2 = increasePassedNumber(num1);
+console.log(num1);
+console.log(num2);
+console.log(num);
+```
+
+::: details 答案
+
+```text
+10
+10
+11
+```
+
+a++ 与 ++a 的区别
+:::
+
+### 19、代码输出结果
+
+```js
+const value = { number: 10 };
+const multiply = (x = { ...value }) => {
+    console.log((x.number *= 2));
+};
+multiply();
+multiply();
+multiply(value);
+multiply(value);
+```
+
+::: details 答案
+
+```text
+20
+20
+20
+40
+
+/*
+在ES6中，我们可以使用默认值初始化参数。如果没有给函数传参，或者传的参值为 "undefined" ，那么参数的值将是默认值。上述例子中，我们将 value 对象进行了解构并传到一个新对象中，因此 x 的默认值为 {number：10} 。
+
+默认参数在调用时才会进行计算，每次调用函数时，都会创建一个新的对象。我们前两次调用 multiply 函数且不传递值，那么每一次 x 的默认值都为 {number：10} ，因此打印出该数字的乘积值为 20。
+
+第三次调用 multiply 时，我们传递了一个参数，即对象 value。*=运算符实际上是 x.number=x.number*2的简写，我们修改了 x.number的值，并打印出值 20。
+
+第四次，我们再次传递 value对象。x.number之前被修改为 20，所以 x.number*=2打印为 40。
+*/
+```
+
+:::
+
+### 20、代码输出结果
+
+```js
+[1, 2, 3, 4].reduce((x, y) => console.log(x, y));
+```
+
+::: details 答案
+
+```text
+1 2
+undefined 3
+undefined 4
+```
+
+:::
+
+### 21、代码输出结果
+
+```js
+// index.js
+console.log('running index.js');
+import { sum } from './sum.js';
+console.log(sum(1, 2));
+
+// sum.js
+console.log('running sum.js');
+export const sum = (a, b) => a + b;
+```
+
+::: details 答案
+
+```text
+running sum.js
+running index.js
+3
+```
+
+import 命令是编译阶段执行的，在代码运行之前。因此这意味着被导入的模块会先运行，而导入模块的文件会后执行。
+这是 CommonJS 中 require（）和 import 之间的区别。使用 require()，可以在运行代码时根据需要加载依赖项。
+
+如果我们使用 require 而不是 import，则 running index.js、running sum.js、 3 会被依次打印。
+:::
+
+### 22、代码输出结果
+
+```js
+function addToList(item, list) {
+    return list.push(item);
+}
+const result = addToList('company', ['yideng']);
+console.log(result);
+```
+
+::: details 答案
+
+```text
+2
+```
+
+push()方法返回新数组的长度。一开始，数组包含一个元素（字符串 "yideng"），长度为 1。 在数组中添加字符串 "company"后，长度变为 2，并将从 addToList 函数返回。
+
+push 方法修改原始数组，如果你想从函数返回数组而不是数组长度，那么应该在 push item 之后返回 list。
+开发中一不小心会导致错误的地方
+:::
+
+### 23、写出解决方式
+
+```js
+var obj = { x: 1, y: 2, z: 3 };
+[...obj]; // TypeError
+// 能否以某种方式为上面的语句使用展开运算而不导致类型错误
+// 如果可以，写出解决方式
+```
+
+::: details 答案
+
+展开语法和 for-of 语句遍历 iterabl 对象定义要遍历的数据。Arrary 和 Map 是具有默认迭代行为的内置迭代器。对象不是可迭代的，但是可以通过使用 iterable 和 iterator 协议使它们可迭代。
+
+在 Mozilla 文档中，如果一个对象实现了@iterator 方法，那么它就是可迭代的，这意味着这个对象(或者它原型链上的一个对象)必须有一个带有@iterator 键的属性，这个键可以通过常量 Symbol.iterator 获得。
+
+```js
+obj[Symbol.iterator] = function () {
+    const _this = this;
+    //也可使用: keys = Object.getOwnPropertyNames(this)
+    const keys = Object.keys(this);
+    let index = 0;
+    return {
+        next() {
+            return {
+                value: _this[keys[index++]],
+                done: index > keys.length,
+            };
+        },
+    };
+};
+
+obj[Symbol.iterator] = function* () {
+    const values = Object.values(this);
+    for (const value of values) {
+        yield value;
+    }
+};
+```
+
+:::
+
+### 24、代码输出结果
+
+```js
+function foo() {
+    console.log(length);
+}
+function bar() {
+    var length = '京程一灯';
+    foo();
+}
+bar();
+```
+
+::: details 答案
+
+```text
+0
+```
+
+输出结果是 0，因为 foo 函数是由 window 对象调用，打印的 length 是 window 对象下的 length 属性 0。foo 只是在 bar 函数内部调用，并不是在 bar 函数内部声明，所以无法获取到 bar 函数声明的 length 变量
+:::
+
+### 25、代码输出结果
+
+```js
+let ydObject = { ...null, ...undefined };
+console.log(ydObject);
+let ydArray = [...null, ...undefined];
+console.log(ydArray);
+```
+
+::: details 答案
+
+```text
+第一个打印一个空对象
+第二个打印报错，是因为在数组和函数中使用展开语法时，只能用于可迭代对象
+```
+
+:::
+
+### 26、代码输出结果
+
+```js
+const arrLike = {
+    length: 4,
+    0: 0,
+    1: 1,
+    '-1': 2,
+    3: 3,
+    4: 4,
+};
+console.log(Array.from(arrLike));
+console.log(Array.prototype.slice.call(arrLike));
+```
+
+::: details 答案
+
+```text
+[0, 1, undefined, 3]
+[0, 1, 空白, 3]
 ```
 
 :::

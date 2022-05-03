@@ -212,3 +212,103 @@ keep-alive 的中还运用了 LRU(Least Recently Used)算法。
 location.hash 的值实际就是 URL 中#后面的东西。
 
 history 实际采用了 HTML5 中提供的 API 来实现，主要有 history.pushState()和 history.replaceState()。
+
+vue 或 react 框架相关
+
+vue 响应式原理以及双向绑定实现代码 ?
+
+vue3 响应式原理，有什么不同？
+
+vue 的 diff 算法思路，怎么对比节点？
+
+vue 的 compile 实现？
+
+vue 如何自定义指令？具体的 api 写法？
+
+vue3 对于 vue2 在性能上的优化（从 compile 和 runtime 两方面）？
+
+## Vue 父组件可以监听到子组件的生命周期吗?
+
+1）实现方式一
+
+比如有父组件 Parent 和子组件 Child，如果父组件监听到子组件挂载 mounted 就做一些逻辑处理，可以通过以下写法实现：
+
+```jsx
+// Parent.vue
+<Child @mounted="doSomething"/>
+
+// Child.vue
+mounted() {
+  this.$emit("mounted");
+}
+```
+
+2）实现方式二
+
+以上需要手动通过 $emit 触发父组件的事件，更简单的方式可以在父组件引用子组件时通过 @hook 来监听即可，如下所示：
+
+```jsx
+//  Parent.vue
+<Child @hook:mounted="doSomething" ></Child>
+
+doSomething() {
+   console.log('父组件监听到 mounted 钩子函数 ...');
+},
+
+//  Child.vue
+mounted(){
+   console.log('子组件触发 mounted 钩子函数 ...');
+},
+
+// 以上输出顺序为：
+// 子组件触发 mounted 钩子函数 ...
+// 父组件监听到 mounted 钩子函数 ...
+```
+
+当然 @hook 方法不仅仅是可以监听 mounted，其它的生命周期事件，例如：created，updated 等都可以监听。
+
+## Vue 为什么要用 vm.$set() 解决对象新增属性不能响应的问题 ？你能说说如下代码的实现原理么
+
+Vue.set (object, propertyName, value)
+
+vm.$set (object, propertyName, value)
+
+1）Vue 为什么要用 vm.$set() 解决对象新增属性不能响应的问题
+
+Vue 使用了 Object.defineProperty 实现双向数据绑定,在初始化实例时对属性执行 getter/setter 转化,属性必须在 data 对象上存在才能让 Vue 将它转换为响应式的（这也就造成了 Vue 无法检测到对象属性的添加或删除）
+
+所以 Vue 提供了 Vue.set (object, propertyName, value) / vm.\$set (object, propertyName, value)
+
+```js
+export function set(target: Array<any> | Object, key: any, val: any): any {
+    // target 为数组
+    if (Array.isArray(target) && isValidArrayIndex(key)) {
+        // 修改数组的长度, 避免索引>数组长度导致splcie()执行有误
+        target.length = Math.max(target.length, key);
+        // 利用数组的splice变异方法触发响应式
+        target.splice(key, 1, val);
+        return val;
+    }
+    // key 已经存在，直接修改属性值
+    if (key in target && !(key in Object.prototype)) {
+        target[key] = val;
+        return val;
+    }
+    const ob = (target: any).__ob__;
+    // target 本身就不是响应式数据, 直接赋值
+    if (!ob) {
+        target[key] = val;
+        return val;
+    }
+    // 对属性进行响应式处理
+    defineReactive(ob.value, key, val);
+    ob.dep.notify();
+    return val;
+}
+```
+
+1.如果目标是数组，直接使用数组的 splice 方法触发相应式；
+
+2.如果目标是对象，会先判读属性是否存在、对象是否是响应式，
+
+3.最终如果要对属性进行响应式处理，则是通过调用 defineReactive 方法进行响应式处理

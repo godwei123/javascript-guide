@@ -71,6 +71,9 @@ p{
     text-align: justify;
 }
 
+.home-hero p{
+    text-align: center;
+}
 
 h1,
 h2,

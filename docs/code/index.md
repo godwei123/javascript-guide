@@ -499,3 +499,78 @@ class EventEmitter {
     }
 }
 ```
+
+## 实现一个 compose 函数，进行函数合成
+
+```js
+const add10 = x => x + 10;
+const mul10 = x => x * 10;
+const add100 = x => x + 100;
+
+// (10 + 100) * 10 + 10 = 1110
+compose(add10, mul10, add100)(10);
+
+function compose(...fns) {
+    fns.reduce((a, b) => {
+        (...args) => {
+            return a(b(...args));
+        };
+    });
+}
+```
+
+## 实现类似 lodash.get 函数
+
+```js
+const object = { a: [{ b: { c: 3 } }] };
+
+//=> 3
+get(object, 'a[0].b.c');
+//=> 3
+get(object, 'a[0]["b"]["c"]');
+//=> 10086
+get(object, 'a[100].b.c', 10086);
+
+function get(source, path, defaultValue = undefined) {
+    // a[3].b -> a.3.b -> [a, 3, b]
+    const paths = path
+        .replace(/\[(\w+)\]/g, '.$1')
+        .replace(/\["(\w+)"\]/g, '.$1')
+        .replace(/\['(\w+)'\]/g, '.$1')
+        .split('.');
+    let result = source;
+    for (const p of paths) {
+        result = result?.[p];
+    }
+    return result === undefined ? defaultValue : result;
+}
+
+function get(arm, params = '', defaultVal) {
+    if (typeof params !== 'string' && !Array.isArray(params)) {
+        throw new Error(`${params} is not string or array`);
+    }
+    if (!Array.isArray(params)) {
+        params = params.split(/\].|[\[.]/);
+    }
+    for (let i = 0; i < params.length; i++) {
+        if (Object.prototype.hasOwnProperty.call(arm, params[i])) {
+            arm = arm[params[i]];
+        } else {
+            return defaultVal;
+        }
+    }
+    return arm;
+}
+```
+
+## (5).add(3).minus(2) = 6
+
+```js
+Number.prototype.add = function (x) {
+    return this + x;
+};
+Number.prototype.minus = function (x) {
+    return this - x;
+};
+console.log((5).add(3).minus(2)); // 6
+```
