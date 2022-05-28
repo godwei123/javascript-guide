@@ -620,6 +620,8 @@ box1 和 box2 都有上边距 100px,相对位置没有变化.和预期效果（�
 
 ## 11、BFC 块级格式化上下文
 
+https://juejin.cn/post/6844904169875177479
+
 BFC 是一个独立的区域,它内部的元素都依照它的规则渲染,并且不会与 BFC 外部打交道.
 
 **以下方式会创建 BFC:**
@@ -649,6 +651,20 @@ BFC 是一个独立的区域,它内部的元素都依照它的规则渲染,并�
 -   BFC 的区域不会与 float 重叠;
 -   BFC 就是页面上的一个隔离的独立容器,容器里面的子元素不会影响到外面的元素.反之也如此;
 -   计算 BFC 的高度时,浮动元素也參与计算.
+
+**应用场景**
+
+**1.防止浮动元素高度塌陷**
+
+不适用BFC情况下，子元素使用浮动，父元素高度会塌陷
+
+**2.避免外边距折叠**
+
+当2个box在同一个BFC容器内，同时使用margin会引起外边距重合
+
+**3.自适应两栏布局**
+
+根据规则BFC的区域不会与浮动元素的box重叠，可以实现自适应两栏布局
 
 ## 12、脱离文档流
 
@@ -848,6 +864,388 @@ lineHeight = 1.5 _ 32 = 48px
 
 ### 三栏布局
 
+::: warning
+
+见场景题部分
+
+:::
+
 ### 九宫格布局
 
 ## CSS 实现简单图形
+
+### 绘制一个三角形
+
+```css
+.box{
+  width:0;
+  height:0;
+  border-top:10px solid #ccc;
+  border-left:10px solid transparent;
+  border-right:10px solid transparent; 
+}
+```
+
+
+
+
+
+
+
+## CSS3的更新
+
+### 选择器
+
+css3中新增了一些选择器，主要为如下图所示：
+
+![](../public/fe90770f9aca04a184911154.png)
+
+
+
+### 边框
+
+css3新增了三个边框属性，分别是：
+
+border-radius：创建圆角边框
+
+box-shadow：为元素添加阴影
+
+border-image：使用图片来绘制边框
+
+#### box-shadow
+
+设置元素阴影，设置属性如下：
+
+水平阴影,垂直阴影,模糊距离(虚实),阴影尺寸(影子大小),阴影颜色,内/外阴影
+
+其中水平阴影和垂直阴影是必须设置的
+
+### 背景
+
+新增了几个关于背景的属性，分别是background-clip、background-origin、background-size和background-break
+
+#### background-clip
+
+用于确定背景画区，有以下几种可能的属性：
+
+background-clip: border-box; 背景从border开始显示
+
+background-clip: padding-box; 背景从padding开始显示
+
+background-clip: content-box; 背景显content区域开始显示
+
+background-clip: no-clip; 默认属性，等同于border-box
+
+通常情况，背景都是覆盖整个元素的，利用这个属性可以设定背景颜色或图片的覆盖范围
+
+#### background-origin
+
+当我们设置背景图片时，图片是会以左上角对齐，但是是以border的左上角对齐还是以padding的左上角或者content的左上角对齐? border-origin正是用来设置这个的
+
+background-origin: border-box; 从border开始计算background-position
+
+background-origin: padding-box; 从padding开始计算background-position
+
+background-origin: content-box; 从content开始计算background-position
+
+默认情况是padding-box，即以padding的左上角为原点
+
+#### background-size
+
+background-size属性常用来调整背景图片的大小，主要用于设定图片本身。有以下可能的属性：
+
+background-size: contain; 缩小图片以适合元素（维持像素长宽比）
+
+background-size: cover; 扩展元素以填补元素（维持像素长宽比）
+
+background-size: 100px 100px; 缩小图片至指定的大小
+
+background-size: 50% 100%; 缩小图片至指定的大小，百分比是相对包 含元素的尺寸
+
+#### background-break
+
+元素可以被分成几个独立的盒子（如使内联元素span跨越多行），background-break 属性用来控制背景怎样在这些不同的盒子中显示
+
+background-break: continuous; 默认值。忽略盒之间的距离（也就是像元素没有分成多个盒子，依然是一个整体一样）
+
+background-break: bounding-box; 把盒之间的距离计算在内；
+
+background-break: each-box; 为每个盒子单独重绘背景
+
+### 文字
+
+#### word-wrap
+
+语法：word-wrap: normal|break-word
+
+normal：使用浏览器默认的换行
+
+break-all：允许在单词内换行
+
+#### text-overflow
+
+text-overflow设置或检索当当前行超过指定容器的边界时如何显示，属性有两个值选择：
+
+clip：修剪文本
+
+ellipsis：显示省略符号来代表被修剪的文本
+
+#### text-shadow
+
+text-shadow可向文本应用阴影。能够规定水平阴影、垂直阴影、模糊距离，以及阴影的颜色
+
+#### text-decoration
+
+CSS3里面开始支持对文字的更深层次的渲染，具体有三个属性可供设置：
+
+text-fill-color: 设置文字内部填充颜色
+
+text-stroke-color: 设置文字边界填充颜色
+
+text-stroke-width: 设置文字边界宽度
+
+### 颜色
+
+css3新增了新的颜色表示方式rgba与hsla
+
+rgba分为两部分，rgb为颜色值，a为透明度
+
+hala分为四部分，h为色相，s为饱和度，l为亮度，a为透明度
+
+### transition 过渡
+
+transition 属性可以被指定为一个或多个CSS属性的过渡效果，多个属性之间用逗号进行分隔，必须规定两项内容：过度效果,持续时间
+
+语法如下：
+
+transition： CSS属性，花费时间，效果曲线(默认ease)，延迟时间(默认0)
+上面为简写模式，也可以分开写各个属性
+
+transition-property: width; 
+transition-duration: 1s;
+transition-timing-function: linear;
+transition-delay: 2s;
+
+### transform 转换
+
+transform属性允许你旋转，缩放，倾斜或平移给定元素
+
+transform-origin：转换元素的位置（围绕那个点进行转换），默认值为(x,y,z):(50%,50%,0)
+
+使用方式：
+
+transform: translate(120px, 50%)：位移
+
+transform: scale(2, 0.5)：缩放
+
+transform: rotate(0.5turn)：旋转
+
+transform: skew(30deg, 20deg)：倾斜
+
+### animation 动画
+
+动画这个平常用的也很多，主要是做一个预设的动画。和一些页面交互的动画效果，结果和过渡应该一样，让页面不会那么生硬
+
+animation也有很多的属性
+
+animation-name：动画名称
+
+animation-duration：动画持续时间
+
+animation-timing-function：动画时间函数
+
+animation-delay：动画延迟时间
+
+animation-iteration-count：动画执行次数，可以设置为一个整数，也可以设置为infinite，意思是无限循环
+
+animation-direction：动画执行方向
+
+animation-paly-state：动画播放状态
+
+animation-fill-mode：动画填充模式
+
+### 渐变
+
+颜色渐变是指在两个颜色之间平稳的过渡，css3渐变包括
+
+#### linear-gradient：线性渐变
+
+background-image: linear-gradient(direction, color-stop1, color-stop2, ...);
+
+#### radial-gradient：径向渐变
+
+linear-gradient(0deg, red, green);
+
+### 其他
+
+关于css3其他的新特性还包括flex弹性布局、Grid栅格布局
+
+除此之外，还包括多列布局、媒体查询、混合模式等等......
+
+## 谷歌浏览器怎么设置小于12px的字体
+
+- 使用Webkit的内核的-webkit-text-size-adjust的私有CSS属性来解决，只要加了`-webkit-text-size-adjust:none`;字体大小就不受限制了。但是chrome更新到27版本之后就不可以用了。所以高版本chrome谷歌浏览器已经不再支持-webkit-text-size-adjust样式，所以要使用时候慎用。
+- 使用css3的transform缩放属性-webkit-transform:scale(0.5); 注意-webkit-transform:scale(0.75);收缩的是整个元素的大小，这时候，如果是内联元素，必须要将内联元素转换成块元素，可以使用display：block/inline-block/...；
+- 使用图片：如果是内容固定不变情况下，使用将小于12px文字内容切出做图片，这样不影响兼容也不影响美观。
+
+
+
+### 1px 问题
+
+> 设备像素(物理像素)、设备独立像素(逻辑像素)、CSS 像素
+
+设备像素比的概念（ `devicePixelRatio` 简称 dpr）。它用来描述屏幕物理像素与逻辑像素的比值。
+
+**CSS 中的 1px 并不等于设备的 1px**
+
+对于前端来说，在高清屏出现之前，前端代码的 `1px` 即等于手机物理像素点的 `1px`。但有了 dpr 的概念之后，由于前端代码中的使用的是 CSS 像素，手机会根据 dpr 换算成实际的物理像素大小来渲染页面。比如 iPhone6 的设备像素比 `dpr = 2` ，相当于一个 CSS 像素等于两个物理像素，即 `1px` 由 2个物理像素点组成。
+
+那么问题来了，以 iPhone6 为例，其 `dpr = 2`、屏幕尺寸(CSS 像素) 为 `375x667`，一般设计稿提供 2 倍图尺寸为 `750x1334` 。那么设计稿中的 `1px`，对应屏幕尺寸其实应该写成 `0.5px`。再由 dpr 计算公式可知，`0.5 * 2 = 1px` 物理像素。
+
+**其实设计稿本质上要实现的是 CSS 像素的 ！**
+
+小数点像素 0.5px 的兼容性问题
+
+PC 端浏览器的最小识别像素为 `1px`。
+
+> 简单来说，rem 布局实现移动端适配的思想是，由于 rem 单位是根据页面根元素的 `fontSize` 来计算的，那么将 `fontSize` 设置成屏幕宽度 `clientWidth` 与设计稿宽度 `750` 的比值，那么我们按照设计稿的尺寸来重构页面的时候，使用 rem 单位即自动乘以 `fontSize` 计算出了适配不同屏幕的尺寸。
+
+```javascript
+// 以750设计稿为例，计算rem font-size
+let clientWidth = document.documentElement.clientWidth || document.body.clientWidth;
+let ft = (clientWidth / 7.5).toFixed(2);
+// 设置页面根字号大小
+document.documentElement.style.fontSize = ft + "px";
+```
+
+#### 如何实现 1px 的效果？
+
+1px 问题指的是：在一些 `Retina屏幕` 的机型上，移动端页面的 1px 会变得很粗，呈现出不止 1px 的效果。原因很简单——CSS 中的 1px 并不能和移动设备上的 1px 划等号。它们之间的比例关系有一个专门的属性来描述：
+
+```html
+window.devicePixelRatio = 设备的物理像素 / CSS像素。
+```
+
+打开 Chrome 浏览器，启动移动端调试模式，在控制台去输出这个 `devicePixelRatio` 的值。这里选中 iPhone6/7/8 这系列的机型，输出的结果就是2
+
+这就意味着设置的 1px CSS 像素，在这个设备上实际会用 2 个物理像素单元来进行渲染，所以实际看到的一定会比 1px 粗一些。
+
+#### 思路一：直接写 0.5px
+
+如果之前 1px 的样式这样写：
+
+```css
+border:1px solid #333
+```
+
+可以先在 JS 中拿到 window.devicePixelRatio 的值，然后把这个值通过 JSX 或者模板语法给到 CSS 的 data 里，达到这样的效果（这里用 JSX 语法做示范）：
+
+```javascript
+<div id="container" data-device={{window.devicePixelRatio}}></div>
+```
+
+然后就可以在 CSS 中用属性选择器来命中 devicePixelRatio 为某一值的情况，比如说这里尝试命中 devicePixelRatio 为2的情况：
+
+```css
+#container[data-device="2"] {
+  border:0.5px solid #333
+}
+```
+
+直接把 1px 改成 1/devicePixelRatio 后的值，这是目前为止最简单的一种方法。这种方法的缺陷在于兼容性不行，IOS 系统需要8及以上的版本，安卓系统则直接不兼容。
+
+#### 思路二：伪元素先放大后缩小
+
+这个方法的可行性会更高，兼容性也更好。唯一的缺点是代码会变多。
+
+思路是**先放大、后缩小：****在目标元素的后面追加一个 ::after 伪元素，让这个元素布局为 absolute 之后、整个伸展开铺在目标元素上，然后把它的宽和高都设置为目标元素的两倍，border值设为 1px。接着借助 CSS 动画特效中的放缩能力，把整个伪元素缩小为原来的 50%。此时，伪元素的宽高刚好可以和原有的目标元素对齐，而 border 也缩小为了 1px 的二分之一，间接地实现了 0.5px 的效果。
+
+
+
+代码如下：
+
+```css
+#container[data-device="2"] {
+    position: relative;
+}
+#container[data-device="2"]::after{
+      position:absolute;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 200%;
+      content:"";
+      transform: scale(0.5);
+      transform-origin: left top;
+      box-sizing: border-box;
+      border: 1px solid #333;
+    }
+}
+
+
+// 通过伪元素实现 0.5px border
+.border::after {
+    content: "";
+    box-sizing: border-box; // 为了与原元素等大
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 200%; 
+    height: 200%; 
+    border: 1px solid gray;
+    transform: scale(0.5); 
+    transform-origin: 0 0;
+}
+
+// 通过伪元素实现 0.5px 细线
+.line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 1px;
+    background: #b3b4b8;
+    transform: scale(0.5);
+    transform-origin: 0 0;
+}
+
+// dpr适配可以这样写
+@media (-webkit-min-device-pixel-ratio: 2)  {
+    .line::after {
+    	...
+     	height: 1px;
+        transform: scale(0.5);
+        transform-origin: 0 0;
+    }
+}
+
+@media (-webkit-min-device-pixel-ratio: 3)  {
+    .line::after {
+        ...
+     	height: 1px;
+        transform: scale(0.333);
+        transform-origin: 0 0;
+    }
+}
+
+```
+
+#### 思路三：viewport 缩放来解决
+
+这个思路就是对 meta 标签里几个关键属性下手：
+
+```html
+<meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no">
+```
+
+这里针对像素比为2的页面，把整个页面缩放为了原来的1/2大小。这样，本来占用2个物理像素的 1px 样式，现在占用的就是标准的一个物理像素。根据像素比的不同，这个缩放比例可以被计算为不同的值，用 js 代码实现如下：
+
+```javascript
+const scale = 1 / window.devicePixelRatio;
+// 这里 metaEl 指的是 meta 标签对应的 Dom
+metaEl.setAttribute('content', `width=device-width,user-scalable=no,initial-scale=${scale},maximum-scale=${scale},minimum-scale=${scale}`);
+```
+
+这样解决了，但这样做的副作用也很大，整个页面被缩放了。这时 1px 已经被处理成物理像素大小，这样的大小在手机上显示边框很合适。但是，一些原本不需要被缩小的内容，比如文字、图片等，也被无差别缩小掉了。
+

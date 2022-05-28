@@ -1,11 +1,13 @@
+import nav from './nav';
+import sidebar from './sidebar';
+
 import { defineConfig } from 'vitepress';
-import nav from './config/nav';
-import sidebar from './config/sidebar';
 
 export default defineConfig({
     title: 'JavaScriptGuide',
     description: 'Just playing around.',
     lang: 'zh-CN',
+    head: [['link', { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' }]],
     themeConfig: {
         nav,
         sidebar,

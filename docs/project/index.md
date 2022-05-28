@@ -139,3 +139,251 @@ Babel 大概分为三大部分：
     -   语法分析：分析 token 流(上面生成的数组)并生成 AST
 -   转换：访问 AST 的节点进行变换操作生产新的 AST，Taro 就是利用 babel 完成的小程序语法转换
 -   生成：以新的 AST 为基础生成代码
+
+## Webpack 里面的插件是怎么实现的
+
+## Webpack 为什么慢，如何进行优化
+
+https://github.com/lgwebdream/FE-Interview/issues/921
+
+## Webpack 热更新的原理
+
+### 一、基础概念
+
+-   Webpack Compiler: 将 JS 编译成 Bundle
+-   Bundle Server: 提供文件在浏览器的访问，实际上就是一个服务器
+-   HMR Server: 将热更新的文件输出给 HMR Runtime
+-   HMR Runtime: 会被注入到 bundle.js 中，与 HRM Server 通过 WebSocket 链接，接收文件变化，并更新对应文件
+    bundle.js: 构建输出的文件
+
+### 二、原理
+
+1.启动阶段
+
+Webpack Compiler 将对应文件打包成 bundle.js(包含注入的 HMR Server)，发送给 Bundler Server
+
+浏览器即可以访问服务器的方式获取 bundle.js
+
+2.更新阶段(即文件发生了变化)
+
+Webpack Compiler 重新编译，发送给 HMR Server
+
+HMR Server 可以知道有哪些资源、哪些模块发生了变化，通知 HRM Runtime
+
+HRM Runtime 更新代码
+
+### 三、HMR 原理详解
+
+![hmr](../public/687474703a2f2f696d672d73746.png)
+
+使用 webpack-dev-server 去启动本地服务，内部实现主要使用了 webpack、express、websocket。
+
+-   使用 express 启动本地服务，当浏览器访问资源时对此做响应。
+-   服务端和客户端使用 websocket 实现长连接
+-   webpack 监听源文件的变化，即当开发者保存文件时触发 webpack 的重新编译。
+
+    -   每次编译都会生成 hash 值、已改动模块的 json 文件、已改动模块代码的 js 文件
+    -   编译完成后通过 socket 向客户端推送当前编译的 hash 戳
+
+-   客户端的 websocket 监听到有文件改动推送过来的 hash 戳，会和上一次对比
+
+    一致则走缓存,不一致则通过 ajax 和 jsonp 向服务端获取最新资源
+
+-   使用内存文件系统去替换有修改的内容实现局部刷新
+
+1.server 端
+
+-   启动 webpack-dev-server 服务器
+-   创建 webpack 实例
+-   创建 Server 服务器
+-   添加 webpack 的 done 事件回调
+-   编译完成向客户端发送消息
+-   创建 express 应用 app
+-   设置文件系统为内存文件系统
+-   添加 webpack-dev-middleware 中间件
+-   中间件负责返回生成的文件
+-   启动 webpack 编译
+-   创建 http 服务器并启动服务
+-   使用 sockjs 在浏览器端和服务端之间建立一个 websocket 长连接
+-   创建 socket 服务器
+
+2.client 端
+
+-   webpack-dev-server/client 端会监听到此 hash 消息
+-   客户端收到 ok 的消息后会执行 reloadApp 方法进行更新
+-   在 reloadApp 中会进行判断，是否支持热更新，如果支持的话发射 webpackHotUpdate 事件，如果不支持则直接刷新浏览器
+-   在 webpack/hot/dev-server.js 会监听 webpackHotUpdate 事件
+-   在 check 方法里会调用 module.hot.check 方法
+-   HotModuleReplacement.runtime 请求 Manifest
+-   它通过调用 JsonpMainTemplate.runtime 的 hotDownloadManifest 方法
+-   调用 JsonpMainTemplate.runtime 的 hotDownloadUpdateChunk 方法通过 JSONP 请求获取到最新的模块代码
+-   补丁 JS 取回来后会调用 JsonpMainTemplate.runtime.js 的 webpackHotUpdate 方法
+-   然后会调用 HotModuleReplacement.runtime.js 的 hotAddUpdateChunk 方法动态更新模块代码
+-   然后调用 hotApply 方法进行热更新
+
+
+
+
+
+##  Webpack 的构建流程
+
+
+
+### tree-shaking 的原理
+
+
+
+
+
+## JavaScript 模块化实现的技术
+
+CommonJS、AMD、CMD、以及ES的模块系统
+
+### 一、CommonJS
+
+commonJS的出发点：js没有完善的模块系统，但是随着NodeJS的出现，让js可以在任意地方运行，因此具备了大型项目的开发能力，CommonJS也在此时应运而生。
+NodeJS是commonJS的主要实践者，有四个环境变量Module，exports，require，global为它提供支持，实际使用时，用module.exports导出模块（定义当前模块对外输出的接口），require加载模块。
+
+commonJS使用同步的方式加载模块，在本地时，因为模块文件储存在磁盘中，读取速度很快，所以没有问题，但是在浏览器中，因为网络的问题，所以更合理的方法是采用异步的方法。
+-暴露方法>module.exports = value或exports.xxx = value
+-引入模块>const xxx = require(xxx)
+
+commonJS规范
+1.一个文件就是一个模块，具有单独的作用域。
+2.普通方式定义的变量、函数、对象都属于该作用域中。
+3.通过require加载模块。
+4.通过exports和module.exports来暴露模块中的内容。
+注意：
+1.exports是module.exports的子集
+2.所有代码运行在指定的模块中，不会污染全局作用域
+3.模块可以被多次加载，但是只会在第一次加载时执行，之后就会讲运行结果缓存进行下一次使用。
+4.模块加载顺序，按照模块出现的顺序进行加载。
+5._dirname代表当前文件所在的文件夹路径
+6._filename代表当前模块文件所在的文件夹路径+文件名
+7.当exports和module.exports同时存在，module.exports会覆盖exports。
+8.当模块内全是exports时，就相当于module.exports
+
+### 二、ES6模块化
+
+es6模块化语言旨在成为浏览器和服务器的通用模块解决方案，通过export导出模块，通过import引入模块，es6还提供了默认导出的exports default命令，为模块增加指定输出，对应的import不需要大括号。
+es6模块不是对象，import命令会被js引擎静态分析（安全的编译，优化性能，静态的将代码加载到引用了的文件？具体不太懂，了解清楚后会发文），编译时就会引入模块的代码，而不是在代码运行的时候去加载，所以无法实现按条件加载。也正是因为这个，使静态加载成为可能。
+1.export 将模块中的代码对外暴露，可以导出的是一个对象包含的多个属性方法，export.default只能导出一个可以不具名的函数，我没可以通过import引用，同时我没也可以用require引入，因为webpack引起了server相关。
+2.import 引入需要用到的模块，在编译时就会引入，所以不存在按需引入。
+
+```
+import {fn} from './xxx/xxx'(export的导出方式的引用方式)
+import fn from './xxx/xxx1'(export.default的到处方式的引用方式)
+```
+
+### 三、AMD
+
+Asynchronous Module Definition，异步加载模块。它是一个在浏览器端模块化开发的规范，不是原生js的规范，使用AMD进行模块开发需要使用到RequireJS函数库。
+AMD规范采用异步方式加载模块，模块的加载不影响后续代码的执行，所有依赖这个模块的语句都会定义一个回调函数，当模块加载完成后会执行这个回调函数。
+使用require.js实现AMD规范的模块化：用require.config()指定引用路径等，用defined()定义模块，用require()引入模块。
+
+```
+//定义模块
+defined('moduleName',['a','b'],function(ma,mb){
+  return someExportValue
+})  
+//引入模块
+require(['a','b'],function(ma,mb)){
+  //*code*
+}
+```
+
+1.函数库requireJS主要解决的问题
+-文件可能存在依赖关系，被依赖的文件需要早于依赖它的文件加载到浏览器中。
+-js在加载的时候浏览器会停止页面渲染，加载文件越多，页面的响应时间就会越长。
+-异步加载前置
+2.语法
+define(id,dependencies,factory)
+-id 可选参数，用来定义模块的标识，如果没有提供该参数，将使用脚本文件名（去掉拓展名）
+-dependencies是一个当前模块用来的模块名称数组。
+-factory，工厂方法，模块初始化要执行的函数或是对象，如果是函数，他应该制备执行一次，如果是对象，此对象应该为模块的输出值。
+
+### 四、CMD
+
+CMD是另一种js模块化方案，它与AMD很类似，不同点在于：AMD推崇依赖前置、提前执行，CMD推崇依赖就近、延迟执行。此规范其实是在sea.js推广过程中产生的。
+因为CMD推从一个文件一个模块，所以经常就用文件名作为模块id；CMD推推崇依赖就近，所以一般不再define的参数中写依赖，而是在factory中写
+define(id,deps,factory)
+factory有三个参数：function(require,exports,module){}
+1.require参数是第一个参数，是一个方法，接收模块标识作为唯一参数，用来获取其它模块提供的接口；
+2.exports，是一个对象，用来向外提供模块接口；
+3.module，是一个对象，上面存储了与当前模块相关联的一些属性和方法。
+
+```
+//定义没有依赖的模块
+define(function(require,exports,module){
+  exports.xxx = value
+module.exports = value
+})
+//定义有依赖的模块
+define(function(require,exports,module){
+  //同步引入模块
+  var module1 = require('./module1.js')
+  //异步引入模块
+  require.async('./module2.js',function(m2){
+  /***/
+})
+exports.xxx = value
+}
+//引入模块
+define(function(require){
+  const m1 = require('./module1.js');
+m1.show()
+})
+```
+
+### 五、UMD通用模块规范
+
+一种整合了CommonJS和AMD规范的方法，希望能解决跨平台模块方案。
+运行原理
+
+- UMD先判断是否支持Node.js模块（exports是否存在），存在则用Node.js模块模式。
+- 在判断是否支持AMD（define是否存在）存在则使用AMD加载模块。
+
+```
+(function (window, factory) {
+    if (typeof exports === 'object') {  
+        module.exports = factory();
+    } else if (typeof define === 'function' && define.amd) {
+        define(factory);
+    } else {    
+        window.eventUtil = factory();
+    }
+})(this, function () {
+    //module ...
+});
+```
+
+### 六、总结
+
+commonjs是同步加载的，主要是在nodejs也就是服务端应用的模块化机制，通过Module.export导出声明。通过require('')加载。每个文件都是一个模块。他有自己的作用域，文件内的变量，属性函数等不能被外界访问。node会将模块缓存，第二次加载会直接在缓存中获取。
+AMD是异步加载的。主要应用在浏览器环境下，requireJS是遵循AMD规范的模块化工具，他是通过define()定义声明，通过require('',function(){})加载。
+
+es6的模块化加载时通过export default导出，用import带入，可通过{}对导出的内容进行解构。
+
+es6的模块的运行机制与common不一样，js引擎对脚本静态分析的时候，遇到模块加载指令后会生成一个只读引用，等到脚本真正执行的时候才会通过引用去模块中获取值，在引用到执行的过程中，模块中的值发生了变化，导入的这里也会跟着变，es6
+模块是动态引用，并不会缓存值。模块里总是绑定其所在的模块。
+
+关于模块化，我认为是构建大型项目所必须的，让代码结构更加清晰，让模块之间的引用关系，以及具体作用功能更加清晰，方便了团队联合开发。
+
+
+
+## CommonJS 和 ES6 Module的区别
+
+CommonJS
+
+- Node规范
+- require 和 exports/module.exports
+- 动态加载，运行时加载
+- 值拷贝
+
+ES6 Module
+
+- ES规范
+- import export
+- 静态导入，编译时加载（可以进行Tree shaking）
+- 动态API：import(module)
+- 值引用

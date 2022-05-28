@@ -5,11 +5,6 @@ const nav = [
             { text: 'html', link: '/html/' },
             { text: 'css', link: '/css/' },
             { text: 'JavaScript', link: '/javascript/' },
-        ],
-    },
-    {
-        text: '浏览器与网络',
-        items: [
             { text: '计算机网络', link: '/network/' },
             { text: '浏览器', link: '/browser/' },
         ],
@@ -19,6 +14,7 @@ const nav = [
         items: [
             { text: '前端工程化', link: '/project/' },
             { text: '项目优化', link: '/optimization/' },
+            { text: '场景', link: '/scene/' },
         ],
     },
 
@@ -34,6 +30,13 @@ const nav = [
         items: [
             { text: 'vue', link: '/vue/' },
             { text: 'react', link: '/react/' },
+        ],
+    },
+    {
+        text: 'Links',
+        items: [
+            { text: 'gitee', link: 'https://gitee.com' },
+            { text: 'github', link: 'https://github.com' },
         ],
     },
 ];

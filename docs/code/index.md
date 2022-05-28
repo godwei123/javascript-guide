@@ -82,6 +82,26 @@ function debounce(fn, wait) {
         }, wait);
     };
 }
+
+// 立即执行版本
+function debounce(fn, wait) {
+    var timer = null;
+    return function () {
+        var context = this,
+            args = [...arguments];
+        // 如果此时存在定时器的话，则取消之前的定时器重新记时
+        if (timer) clearTimeout(timer);
+        
+        //定义wait时间后把timer变为null
+        //即在wait时间之后事件才会有效
+        // timer为null,那么执行func函数
+        if (!timer) fn.apply(context, args)
+        timer = setTimeout(() => {
+            timer = null;
+        }, wait)
+        
+    };
+}
 ```
 
 ## 4、手写 节流
@@ -121,7 +141,73 @@ function throttle(fun, wait) {
 ## 5、手写 Promise
 
 ```js
-class EmitEvent {}
+
+class MyPromise {
+    static PENDING = "pending"
+    static FULFILLED = "fulfilled"
+    static REJECTED = "rejected"
+
+    constructor(executor) {
+        this.state = MyPromise.PENDING;
+        this.value = null
+        this.reason = null;
+        this.resolvedCallback = []
+        this.rejectedCallback = []
+        try {
+            executor(this.resolve.bind(this), this.reject.bind(this))
+        } catch (e) {
+            this.reject(e)
+        }
+    }
+
+    resolve(value) {
+        setTimeout(()=>{
+            if (this.state === MyPromise.PENDING) {
+                this.state = MyPromise.FULFILLED
+                this.value = value
+                this.resolvedCallback.forEach(callback => {
+                    callback(value)
+                })
+            }
+        })
+    }
+
+    reject(reason) {
+        setTimeout(()=>{
+            if (this.state === MyPromise.PENDING) {
+                this.state = MyPromise.REJECTED
+                this.reason = reason
+                this.resolvedCallback.forEach(callback => {
+                    callback(reason)
+                })
+            }
+        })
+    }
+
+    then(onfulfilled, onrejected) {
+        return new MyPromise((resolve,reject)=>{
+            onfulfilled = typeof onfulfilled === "function" ?onfulfilled:()=>{}
+            onrejected = typeof onrejected === "function" ?onrejected:()=>{}
+            if (this.state === MyPromise.PENDING) {
+                this.resolvedCallback.push(onfulfilled)
+                this.rejectedCallback.push(onrejected)
+            }
+            if (this.state === MyPromise.FULFILLED) {
+                setTimeout(()=>{
+                    onfulfilled(this.value)
+                })
+            }
+            if (this.state === MyPromise.REJECTED) {
+                setTimeout(()=>{
+                    onrejected(this.reason)
+                })
+            }
+        })
+    }
+
+
+}
+
 ```
 
 ## 6、手写 Promise.all
@@ -145,6 +231,39 @@ function promiseAll(promises) {
                 });
         }
     });
+}
+
+
+// 手写一个Promise.all方法，但是存在最大并发数量限制
+const promiseAll = (promiseLists = [], limit = Infinity) => {
+    return new Promise((resolve, reject) => {
+        let n = promiseLists.length;
+        let result = []
+        let count = 0;
+        let queue = [...promiseLists]
+
+        function run() {
+            if (queue.length > 0) {
+                let time = queue.shift()
+                return time()
+                    .then((res) => {
+                    result.push(res)
+                    count++
+                    return run()
+                })
+                    .catch(err => reject(err))
+                    .finally(() => {
+                        if (count === n) {
+                            resolve(result)
+                        }
+                    })
+            }
+        }
+
+        for (let i = 0; i < Math.min(limit, n); i++) {
+            Promise.resolve().then(run())
+        }
+    })
 }
 ```
 
@@ -402,6 +521,13 @@ Array.prototype.myFlat = arr => {
         return a.concat(Array.isArray(b) ? myFlat(b) : b);
     }, []);
 };
+
+
+function getFlatArr (list, deepNum = 1) {
+  return deepNum > 0? list.reduce((pre, item) => {
+    return pre.concat(Array.isArray(item)? getFlatArr(item, deepNum - 1): item)
+  }, []): list.slice()
+}
 ```
 
 ## 22、sleep()
@@ -511,12 +637,25 @@ const add100 = x => x + 100;
 compose(add10, mul10, add100)(10);
 
 function compose(...fns) {
-    fns.reduce((a, b) => {
+    return fns.reduce((a, b) =>
         (...args) => {
             return a(b(...args));
-        };
-    });
+        }
+    );
 }
+
+const composeAsync = (...fns) => {
+    return (x)=>{
+        return fns.reduceRight((prev,cur)=> {
+            return prev.then(cur)
+        },Promise.resolve(x))
+    }
+}
+
+
+composeAsync(add10, mul10, add100)(10).then(res=>{
+    console.log(res)
+})
 ```
 
 ## 实现类似 lodash.get 函数
@@ -574,3 +713,217 @@ Number.prototype.minus = function (x) {
 };
 console.log((5).add(3).minus(2)); // 6
 ```
+
+## 手写 EventBus
+
+```js
+class EventBus {
+    events = new Map();
+    constructor() {}
+    on(type, fn) {
+        const callbacks = this.events.get(type);
+        if (callbacks) {
+            callbacks.push(fn);
+        } else {
+            this.events.set(type, [fn]);
+        }
+    }
+    emit(type, ...args) {
+        const context = this;
+        const callbacks = this.events.get(type);
+        if (!callbacks) return;
+        callbacks.forEach(fn => {
+            fn.apply(context, [...args]);
+        });
+    }
+}
+```
+
+
+
+
+
+## mergePromise
+
+```js
+const timeout = (ms) =>
+new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve();
+  }, ms);
+});
+const ajax1 = () =>
+timeout(2000).then(() => {
+  console.log("1");
+  return 1;
+});
+const ajax2 = () =>
+timeout(1000).then(() => {
+  console.log("2");
+  return 2;
+});
+const ajax3 = () =>
+timeout(2000).then(() => {
+  console.log("3");
+  return 3;
+});
+// --------- 1 --------
+const mergePromise = (ajaxArray) => {
+  // 1,2,3 done [1,2,3] 此处写代码 请写出ES6、ES3 2中解法
+  var data = [];
+  var sequence = Promise.resolve();
+  ajaxArray.forEach(item => {
+    sequence = sequence.then(item).then(res => {
+      data.push(res);
+      return data;
+    });
+  });
+  return sequence;
+};
+// ---------- 2 -------
+const mergePromise = ajaxArray => {
+    let data = [];
+    return ajaxArray.reduce((prev, curr) => {
+        return prev.then(curr).then(res => {
+            data.push(res);
+            return data;
+        });
+    }, Promise.resolve());
+};
+
+mergePromise([ajax1, ajax2, ajax3]).then((data) => {
+  console.log("done");
+  console.log(data); // data 为[1,2,3]
+});
+// 执行结果为：1 2 3 done [1,2,3]
+```
+
+
+
+## 控制并发数
+
+```javascript
+function imageLoad(urls,fetchImage,limit) {
+  //先创建长度为limit的池子
+  let pool = urls.splice(0,limit).map((item,index)=>{
+    return fetchImage(item).then(res=>{
+      return index //将当前加载完图片的 index返回
+    })
+  });
+  let p = Promise.race(pool) //将第一个执行成功的 先返回
+  for (let i = 0; i < urls.length; i++) {
+    p = p.then(index=>{  //形成链式调用.then .then
+      pool[index] = fetchImage(urls[i]).then(()=>{
+      //将已经加载完成的图片重新替换成新的 未加载的图片
+        return index
+      })
+      return Promise.race(pool)
+    })
+  }
+}
+执行 imageLoad(imageUrls,fetchImage,3)
+
+
+```
+
+
+
+
+
+```
+function imageLoad1(urls, limit) {
+  function run() {
+    if(urls.length > 0) {
+      const url = urls.shift()
+      return fetchImage(url).then(res => {
+        return run() //当图片请求成功之后继续递归调用run
+      })
+    }
+  }
+  // 当imageUrls.length < limit的时候，我们也没有必要去创建多余的Promise
+  const promiseList = Array(Math.min(limit, urls.length))
+    .fill(Promise.resolve())
+    .map(promise => promise.then(run))
+
+  Promise.all(promiseList).then(()=>{
+    //全部加载完成后的操作
+  })
+}
+imageLoad1(imageUrls,3)
+
+
+```
+
+
+
+## 实现函数功能
+
+```
+function sortArr(arr1,arr2){
+    let arr = arr1.flat(Infinity)
+    arr = arr.concat(arr2.flat(Infinity))
+    arr = [...new Set(arr)].sort((a,b)=>a-b)
+    let ans=[]
+    let k=-1
+    let index=-1
+    for(let i=0;i<arr.length;i++){
+        let t = Math.floor(arr[i]/10);
+        if(t!==k){
+            index++;
+            k=t
+            ans[index] = []
+            ans[index].push(arr[i])
+        }else {
+            ans[index].push(arr[i])
+        }
+    }
+    return ans
+}
+
+let arr1 = [ 1, [2,4], [44], [22,21] ],arr2 = [ 2, [6], [55], [ 33, [32,31] ] ]
+
+// console.log(sortArr(arr1, arr2));
+
+
+```
+
+
+
+## 实现函数功能
+
+```
+const data = [{
+    id:1,
+    name:'xx',
+    children:[
+        {id:11,name:'1xx',children:[ {id:111,name:'xx'} ]},
+        {id:12,name:'12x'} ]
+}]
+
+function data2Tree(data){
+    let ans={}
+    const dfs = (target,id)=>{
+        ans[target.id] = {
+            name:target.name
+        }
+        if(id){
+            ans[target.id].parent = id
+        }
+        if(target.children){
+            ans[target.id].children = []
+            for (let child of target.children) {
+                ans[target.id].children.push(child.id)
+                dfs(child,target.id)
+            }
+        }
+
+    }
+    for (let datum of data) {
+        dfs(datum)
+    }
+    return ans
+}
+
+console.log(data2Tree(data))
+```
+
