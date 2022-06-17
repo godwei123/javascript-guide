@@ -314,13 +314,21 @@ importScripts('script1.js', 'script2.js') // 加载多个脚本
 
 ## 12、HTML5 drag API
 
--   dragstart：事件主体是*被拖放元素*，在开始拖放被拖放元素时触发。
--   drag：事件主体是*被拖放元素*，在正在拖放被拖放元素时触发。
+Drag Source 被拖放元素 / Drag Target 目标元素
+
+-   dragstart：事件主体是***被拖放元素***，在开始拖放被拖放元素时触发。🤔
+-   drag：事件主体是***被拖放元素***，在正在拖放被拖放元素时触发。
 -   dragenter：事件主体是目标元素，在被拖放元素进入某元素时触发。
--   dragover：事件主体是目标元素，在被拖放在某元素内移动时触发。
+-   dragover：事件主体是目标元素，在被拖放在某元素内移动时触发。🤔
 -   dragleave：事件主体是目标元素，在被拖放元素移出目标元素是触发。
--   drop：事件主体是目标元素，在目标元素完全接受被拖放元素时触发。
--   dragend：事件主体是*被拖放元素*，在整个拖放操作结束时触发。
+-   drop：事件主体是目标元素，在目标元素完全接受被拖放元素时触发。🤔
+-   dragend：事件主体是***被拖放元素***，在整个拖放操作结束时触发。
+
+> 記得要針對 `dragover` 取消预设行为（preventDefault），否則可能無法正確觸發 drop 事件。
+
+给需要拖拽的对象设置属性 draggable=“true”
+
+
 
 ```html
 <!DOCTYPE html>
@@ -418,3 +426,22 @@ importScripts('script1.js', 'script2.js') // 加载多个脚本
     </script>
 </html>
 ```
+
+
+
+
+
+## 13、可替换元素/空（void）元素
+
+可替换元素 : 可替换元素是指元素内容的展现不是由 CSS 来控制的，而是外观渲染独立于 CSS 的外部对象。
+
+**典型的可替换元素有**:  `<img>、<iframe>、<video>、<embed>`
+
+
+
+空元素：没有内容的HTML元素
+
+常见的有：br、meta、hr、link、input、img
+
+
+

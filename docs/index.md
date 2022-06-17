@@ -1,11 +1,18 @@
 ---
-home: true
-heroImage: /images/bg.png
-heroAlt: Logo image
-heroText: JavaScript Guide
-tagline: 我本来可以很快乐，是前端害了我
-actionText: 开始
-actionLink: /javascript/
+layout: home
+
+hero:
+    name: JavaScript Guide
+    text: ""
+    tagline: 我本来可以很快乐，是前端害了我
+    actions:
+    - theme: brand 
+      text: 开始
+      link: /javascript/
+    - theme: alt
+      text: View on GitHub
+      link: https://github.com/vuejs/vitepress
+
 features:
     - title: HTML
       details: 超文本标记语言、语义化标签、行内元素、块级元素

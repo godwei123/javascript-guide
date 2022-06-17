@@ -898,7 +898,7 @@ lineHeight = 1.5 _ 32 = 48px
 
 css3中新增了一些选择器，主要为如下图所示：
 
-![](../public/fe90770f9aca04a184911154.png)
+![](../../public/fe90770f9aca04a184911154.png)
 
 
 

@@ -8,6 +8,14 @@ MVVM 是 Model-View-ViewModel 缩写，也就是把 MVC 中的 Controller 演变
 
 Vue 在初始化数据时，会使用 Object.defineProperty 重新定义 data 中的所有属性，当页面使用对应属性时，首先会进行依赖收集(收集当前组件的 watcher)如果属性发生变化会通知相关依赖进行更新操作(发布订阅)。
 
+众所周知 `Vue2` 数据响应式是通过 `Object.defineProperty()` 劫持各个属性 getter 和 setter，在数据变化时发布消息给订阅者，触发相应的监听回调，而这之间存在几个问题
+
+- 初始化时需要遍历对象所有 key，如果对象层次较深，性能不好
+- 通知更新过程需要维护大量 dep 实例和 watcher 实例，额外占用内存较多
+- Object.defineProperty 无法监听到数组元素的变化，只能通过劫持重写数方法
+- 动态新增，删除对象属性无法拦截，只能用特定 set/delete API 代替
+- 不支持 Map、Set 等数据结构
+
 ## Vue3.x 响应式数据原理
 
 Vue3.x 改用 Proxy 替代 Object.defineProperty。因为 Proxy 可以直接监听对象和数组的变化，并且有多达 13 种拦截方法。并且作为新标准将受到浏览器厂商重点持续的性能优化。
@@ -23,6 +31,40 @@ Proxy 只会代理对象的第一层，那么 Vue3 又是怎样处理这个问�
 ## vue2.x 中如何监测数组变化
 
 使用了函数劫持的方式，重写了数组的方法，Vue 将 data 中的数组进行了原型链重写，指向了自己定义的数组原型方法。这样当调用数组 api 时，可以通知依赖更新。如果数组中包含着引用类型，会对数组中的引用类型再次递归遍历进行监控。这样就实现了监测数组变化。
+
+
+
+## defineProperty 和 Proxy 的区别
+
+为什么要用 Proxy 代替 defineProperty ？好在哪里？
+
+- Object.defineProperty 是 Es5 的方法，Proxy 是 Es6 的方法
+- defineProperty 不能监听到数组下标变化和对象新增属性，Proxy 可以
+- defineProperty 是劫持对象属性，Proxy 是代理整个对象
+- defineProperty 局限性大，只能针对单属性监听，所以在一开始就要全部递归监听。Proxy 对象嵌套属性运行时递归，用到才代理，也不需要维护特别多的依赖关系，性能提升很大，且首次渲染更快
+- defineProperty 会污染原对象，修改时是修改原对象，Proxy 是对原对象进行代理并会返回一个新的代理对象，修改的是代理对象
+- defineProperty 不兼容 IE8，Proxy 不兼容 IE11
+
+
+
+## Vue3 Diff算法和 Vue2 的区别
+
+
+
+我们知道在数据变更触发页面重新渲染，会生成虚拟 DOM 并进行 patch 过程，这一过程在 Vue3 中的优化有如下
+
+编译阶段的优化：
+
+- 事件缓存：将事件缓存(如: @click)，可以理解为变成静态的了
+- 静态提升：第一次创建静态节点时保存，后续直接复用
+- 添加静态标记：给节点添加静态标记，以优化 Diff 过程
+
+由于编译阶段的优化，除了能更快的生成虚拟 DOM 以外，还使得 Diff 时可以跳过"永远不会变化的节点"，Diff 优化如下
+
+- Vue2 是全量 Diff，Vue3 是静态标记 + 非全量 Diff
+- 使用最长递增子序列优化了对比流程
+
+
 
 ## nextTick 知道吗，实现原理是什么？
 
@@ -153,25 +195,56 @@ keep-alive 的中还运用了 LRU(Least Recently Used)算法。
 
 父 beforeDestroy->子 beforeDestroy->子 destroyed->父 destroyed
 
+
+
+## Vue3.x 组件通信有哪些方式？
+
+- props, defineProps
+- $emit, defineEmits
+- expose / ref,  defineExpose(暴露子组件的属性和方法，父组件中可以通过ref获取)
+- $attrs, useAttrs() 包含父作用域里除 class 和 style 除外的非 props **属性集合**
+- v-model, 可以支持多个数据双向绑定
+- provide / inject, 依赖注入
+- Vuex/Pina,，状态管理
+- mitt,  EventBus 跨组件通信
+
 ## Vue2.x 组件通信有哪些方式？
 
-父子组件通信
+- props
 
--   父->子 props，子->父 $on、$emit
--   获取父子组件实例 $parent、$children
--   Ref 获取实例的方式调用组件的属性或者方法
--   Provide、inject 官方不推荐使用，但是写组件库时很常用
+- $emit / v-on,子组件通过派发事件的方式给父组件数据，或者触发父组件更新等操作,this.emit(“update:xxx”)
 
-兄弟组件通信
+- .sync, 可以帮我们实现父组件向子组件传递的数据 的双向绑定，所以子组件接收到数据后**可以直接修改**，并且会同时修改父组件的数据(已废弃)
 
--   Event Bus 实现跨组件通信 Vue.prototype.$bus = new Vue
--   Vuex
+- v-model, 和 .sync 类似，可以实现将父组件传给子组件的数据为双向绑定，子组件通过 $emit 修改父组件的数据
 
-跨级组件通信
+- ref, ref 如果在普通的DOM元素上，引用指向的就是该DOM元素;如果在子组件上，引用的指向就是子组件实例，然后父组件就可以通过 ref 主动获取子组件的属性或者调用子组件的方法
 
--   Vuex
--   $attrs、$listeners
--   Provide、inject
+- \$children / $parent,
+
+  `$children`：获取到一个包含所有子组件(不包含孙子组件)的 VueComponent 对象数组，可以直接拿到子组件中所有数据和方法等
+
+  `$parent`：获取到一个父节点的 VueComponent 对象，同样包含父节点中所有数据和方法等
+
+- \$attrs / $listeners,多层嵌套组件传递数据时，如果只是传递数据，而不做中间处理的话就可以用这个.
+
+  `$attrs`：包含父作用域里除 class 和 style 除外的非 props **属性集合**。通过 this.\$attrs 获取父作用域中所有符合条件的属性集合，然后还要继续传给子组件内部的其他组件，就可以通过 v-bind="$attrs"
+
+  `$listeners`：包含父作用域里 .native 除外的监听**事件集合**。如果还要继续传给子组件内部的其他组件，就可以通过 v-on="$linteners"
+
+- provide / inject
+
+- EventBus
+
+- Vuex
+
+- $root, `$root` 可以拿到 App.vue 里的数据和方法
+
+- slot
+
+
+
+
 
 ## Vue 的性能优化（概述）
 

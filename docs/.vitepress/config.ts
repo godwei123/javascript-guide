@@ -11,6 +11,13 @@ export default defineConfig({
     themeConfig: {
         nav,
         sidebar,
+        socialLinks: [
+            { icon: 'github', link: 'https://github.com/vuejs/vitepress' },
+        ],
+        footer: {
+            message: 'Released under the MIT License.',
+            copyright: 'Copyright © 2019-present Evan You'
+        },
     },
     markdown: {
         lineNumbers: false,
