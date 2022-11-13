@@ -11,61 +11,58 @@
 
 依题意，有两个关键点要注意：
 
--   传入参数时，代码不执行输出结果，而是先记忆起来
--   当传入空的参数时，代表可以进行真正的运算
+- 传入参数时，代码不执行输出结果，而是先记忆起来
+- 当传入空的参数时，代表可以进行真正的运算
 
 ```js
 function currying(fn) {
-    let args = []; // 用来接收参数
-    return function next() {
-        let params = [...arguments];
-        // 判断是否执行计算
-        if (params.length > 0) {
-            args = args.concat(params); // 收集传入的参数，进行缓存
-            return next;
-        } else {
-            return fn.apply(null, args); // 符合执行条件，执行计算
-        }
-    };
+  let args = []; // 用来接收参数
+  return function next() {
+    let params = [...arguments];
+    // 判断是否执行计算
+    if (params.length > 0) {
+      args = args.concat(params); // 收集传入的参数，进行缓存
+      return next;
+    } else {
+      return fn.apply(null, args); // 符合执行条件，执行计算
+    }
+  };
 }
 let add = currying(function () {
-    let sum = 0;
-    for (let i = 0; i < arguments.length; i++) {
-        sum += arguments[i];
-    }
-    return sum;
+  let sum = 0;
+  for (let i = 0; i < arguments.length; i++) {
+    sum += arguments[i];
+  }
+  return sum;
 });
 
-
 // 已经知道函数参数个数情况
-const curry = (fn,...args)=>{
-    if(args.length===fn.length){
-        return fn.call(null,...args)
-    }
-    return (...rest)=> curry(fn,...args,...rest)
-}
-
-
+const curry = (fn, ...args) => {
+  if (args.length === fn.length) {
+    return fn.call(null, ...args);
+  }
+  return (...rest) => curry(fn, ...args, ...rest);
+};
 ```
 
 2、实现`add(1)(2,3)(4)(5)=15`的效果
 
 ```js
 function add() {
-    let args = [...arguments];
-    let next = function () {
-        let t = [...arguments];
-        args = args.concat(t);
-        return next;
-    };
-
-    next.toString = function () {
-        return args.reduce((prev, cur) => prev + cur);
-    };
-    next.valueOf = function () {
-        return args.reduce((prev, cur) => prev + cur);
-    };
+  let args = [...arguments];
+  let next = function () {
+    let t = [...arguments];
+    args = args.concat(t);
     return next;
+  };
+
+  next.toString = function () {
+    return args.reduce((prev, cur) => prev + cur);
+  };
+  next.valueOf = function () {
+    return args.reduce((prev, cur) => prev + cur);
+  };
+  return next;
 }
 ```
 
@@ -73,20 +70,20 @@ function add() {
 
 ```js
 function unCurrying(fn) {
-    return function () {
-        var args = [].slice.call(arguments);
-        var that = args.shift();
-        return fn.apply(that, args);
-    };
+  return function () {
+    var args = [].slice.call(arguments);
+    var that = args.shift();
+    return fn.apply(that, args);
+  };
 }
 
 //============
 
 Function.prototype.unCurrying = function () {
-    var self = this;
-    return function () {
-        return Function.prototype.call.apply(self, arguments);
-    };
+  var self = this;
+  return function () {
+    return Function.prototype.call.apply(self, arguments);
+  };
 };
 ```
 
@@ -96,23 +93,23 @@ Function.prototype.unCurrying = function () {
 
 ```js
 const obj = {
-    a: 3,
-    b: 4,
-    c: null,
-    d: undefined,
-    get e() {},
+  a: 3,
+  b: 4,
+  c: null,
+  d: undefined,
+  get e() {},
 };
 
 // {"a":3,"b":4,"c":null}
 
 const obj = {
-    a: 3,
-    b: 4,
-    c: null,
-    d: undefined,
-    get e() {
-        return 100;
-    },
+  a: 3,
+  b: 4,
+  c: null,
+  d: undefined,
+  get e() {
+    return 100;
+  },
 };
 
 // {"a":3,"b":4,"c":null,"e":100}
@@ -126,14 +123,14 @@ bind 函数多次调用会已第一次绑定的 this 为准，softbind 已最后
 
 ```js
 Function.prototype.softBind = function (obj, ...rest) {
-    const fn = this;
-    const bound = function (...args) {
-        const o = !this || this === (window || global) ? obj : this;
-        return fn.apply(o, [...rest, ...args]);
-    };
+  const fn = this;
+  const bound = function (...args) {
+    const o = !this || this === (window || global) ? obj : this;
+    return fn.apply(o, [...rest, ...args]);
+  };
 
-    bound.prototype = Object.create(fn.prototype);
-    return bound;
+  bound.prototype = Object.create(fn.prototype);
+  return bound;
 };
 ```
 
@@ -160,8 +157,9 @@ Object.seal()方法封闭一个对象，阻止添加新属性并将所有现有�
 ## 说明下面例子
 
 ```js
-[].forEach.call($$('*'), function (a) {
-    a.style.outline = '1px solid #' + (~~(Math.random() * (1 << 24))).toString(16);
+[].forEach.call($$("*"), function (a) {
+  a.style.outline =
+    "1px solid #" + (~~(Math.random() * (1 << 24))).toString(16);
 });
 ```
 
@@ -205,13 +203,9 @@ Function 原型对象的 length 属性值为 0 。
 
 ## Script 放在底部还会影响 dom 的解析和渲染吗？Script 内部的代码执行会等待 css 加载完吗？css 加载会影响 DOMContentLoaded 么？
 
-
-
-
-
 ## 判断一个对象是否是数组，处理类数组对象
 
-####  判断数组方式
+#### 判断数组方式
 
 - `[] instanceof Array`
 - `Object.prototype.toString.call([]) === '[object Array]'`
@@ -248,32 +242,28 @@ Array.from(arguments);
 
 // 方式三
 // 这种方式要求 数据结构 必须有 遍历器接口
-[...arguments] 
+[...arguments]
 
 // 方式四
 [].concat.apply([],arguments)
 
 // 方式五：手动实现
 function toArray(s){
-  var arr = [];  
-  for(var i = 0,len = s.length; i < len; i++){   
-    arr[i] = s[i];   
-  }  
-  return arr;  
+  var arr = [];
+  for(var i = 0,len = s.length; i < len; i++){
+    arr[i] = s[i];
+  }
+  return arr;
 }
 ```
 
 **3）转换后注意几点**
 
-- 数组长度由类数组的length属性决定
-- 索引不连续，会自动补位undefined
-- 仅考虑0和正整数索引；
-- slice会产生稀疏数组，内容是empty而不是undefined
-- 类数组push注意，push操作的是索引值为length的位置
-
-
-
-
+- 数组长度由类数组的 length 属性决定
+- 索引不连续，会自动补位 undefined
+- 仅考虑 0 和正整数索引；
+- slice 会产生稀疏数组，内容是 empty 而不是 undefined
+- 类数组 push 注意，push 操作的是索引值为 length 的位置
 
 ## 在 map 中和 for 中调用异步函数
 
@@ -389,10 +379,6 @@ function getData() {
 // data
 ```
 
-
-
-
-
 ## TypedArray / ArrayBuffer / DataView
 
 ### ArrayBuffer
@@ -402,18 +388,16 @@ function getData() {
 不能直接操作 `ArrayBuffer` 的内容，而是要通过[类型数组对象,TypedArray]或 [`DataView`]对象来操作，它们会将缓冲区中的数据表示为特定的格式，并通过这些格式来读写缓冲区的内容。
 
 ```javascript
-new ArrayBuffer(length)
+new ArrayBuffer(length);
 // ArrayBuffer 构造函数用来创建一个指定字节长度的 ArrayBuffer 对象。
 // length 要创建的 ArrayBuffer 的大小，单位为字节。
 // 返回值  一个指定大小的 ArrayBuffer 对象，其内容被初始化为 0。
 // 如果 length 大于 Number.MAX_SAFE_INTEGER（>= 2 ** 53）或为负数，则抛出一个  RangeError  异常。
 
-ArrayBuffer.length  // ArrayBuffer 构造函数的 length 属性，其值为1。
+ArrayBuffer.length; // ArrayBuffer 构造函数的 length 属性，其值为1。
 
-ArrayBuffer.prototype.byteLength // 这个返回的才是构造函数中的长度
+ArrayBuffer.prototype.byteLength; // 这个返回的才是构造函数中的长度
 ```
-
-
 
 ### TypedArray
 
@@ -453,15 +437,11 @@ buffer, byteOffset, length
 当传入一个 buffer 参数，或者再另外加上可选参数 byteOffset 和 length 时，一个新的类型化数组视图将会被创建，并可用于呈现传入的 ArrayBuffer 实例。byteOffset 和length 参数指定了类型化数组视图将要暴露的内存范围。如果两者都未传入，那么整个buffer 都会被呈现；如果仅仅忽略 length，那么 buffer 中偏移了 byteOffset 后剩下的 buffer 将会被呈现。
 ```
 
-
-
-ECMAScript 2015 定义了一个 *`TypeArray`* 构造器作为所有的类型化数组构造器（`Int8Array`, `Int16Array` 等）的原型（`[[Prototype]]`）。该构造器并不会直接暴露出来：即没有全局的 `%TypedArray%` 和 `TypeArray` 属性，只能通过使用类似于 `Object.getPrototypeOf(Int8Array.prototype)` 的方式直接访问。所有的类型化数组构造器都会继承 `%``TypeArray%` 构造器函数的公共属性和方法。此外，**所有的类型化数组的原型（如 `Int8Array.prototype`)都以 `%TypeArray%.prototype` 作为原型。**
+ECMAScript 2015 定义了一个 _`TypeArray`_ 构造器作为所有的类型化数组构造器（`Int8Array`, `Int16Array` 等）的原型（`[[Prototype]]`）。该构造器并不会直接暴露出来：即没有全局的 `%TypedArray%` 和 `TypeArray` 属性，只能通过使用类似于 `Object.getPrototypeOf(Int8Array.prototype)` 的方式直接访问。所有的类型化数组构造器都会继承 ` %``TypeArray% ` 构造器函数的公共属性和方法。此外，**所有的类型化数组的原型（如 `Int8Array.prototype`)都以 `%TypeArray%.prototype` 作为原型。**
 
 `%TypedArray%` 构造器自身不是特别有用，直接调用或使用 `new` 表达式实例化都会抛出一个[`TypeError`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/TypeError) 异常。因此 `%TypeArray%` 仅仅在对所有的类型化数组构造器（`Int8Array` 等）的方法和属性进行 polyfill 的时候比较有用.
 
 当创建一个 `TypedArray` 实例（如 `Int8Array`）时，一个数组缓冲区将被创建在内存中，如果一个 `ArrayBuffer` 对象被当作参数传给构造函数，那么将使用传入的 `ArrayBuffer` 代替（即缓冲区被创建到 `ArrayBuffer` 中）。缓冲区的地址被存储在实例的内部属性中，并且所有 `%TypedArray%.prototype`上的方法，例如 `set value` 和 `get value` 等，都会在这个数组缓冲区上进行操作。
-
-
 
 你可以使用标准数组索引语法获取类型化数组中的元素（也就是和访问普通数组元素一样，如 `foo[1]`），然而，在类型化数组上获取或者设置属性的值时，并不会在这个属性的原型链中进行搜索，即使在索引超出了边界的时候。在原型中添加的属性将会在 [`ArrayBuffer`]中查询而不是在对象的属性中。但是你依然可以像其他对象一样使用命名的属性来访问（`foo.bar` 的形式）；具体见下面的例子：
 
@@ -488,8 +468,6 @@ Int8Array.prototype.foo = "bar";
 (new Int8Array(32)).foo; // "bar"
 ```
 
-
-
 | 类型              | 单个元素值的范围                             | 大小(bytes) | 描述                                              | Web IDL 类型          | C 语言中的等价类型              |
 | :---------------- | :------------------------------------------- | :---------- | :------------------------------------------------ | :-------------------- | :------------------------------ |
 | Int8Array         | `-128` 到 `127`                              | 1           | 8 位二进制有符号整数                              | `byte`                | `int8_t`                        |
@@ -503,10 +481,6 @@ Int8Array.prototype.foo = "bar";
 | Float64Array      | `-1.8E308` 到 `1.8E308` 最小正数为：`5E-324` | 8           | 64 位 IEEE 浮点数（16 有效数字，如 `1.123...15`)  | `unrestricted double` | `double`                        |
 | BigInt64Array     | `-2^63` 到 `2^63-1`                          | 8           | 64 位二进制有符号整数                             | `bigint`              | `int64_t (signed long long)`    |
 | BigUint64Array    | `0` 到 `2^64 - 1`                            | 8           | 64 位无符号整数                                   | `bigint`              | `uint64_t (unsigned long long)` |
-
-
-
-
 
 #### 属性
 
@@ -528,16 +502,12 @@ Int8Array.prototype.foo = "bar";
 - TypedArray.of()
 
 ```javascript
-Int8Array.from({length:5})
+Int8Array.from({ length: 5 });
 // Int8Array(5) [0, 0, 0, 0, 0, buffer: ArrayBuffer(5), byteLength: 5, byteOffset: 0, length: 5, Symbol(Symbol.toStringTag): 'Int8Array']
 
-Int8Array.of(1,2,3,4,5)
+Int8Array.of(1, 2, 3, 4, 5);
 // Int8Array(5) [1, 2, 3, 4, 5, buffer: ArrayBuffer(5), byteLength: 5, byteOffset: 0, length: 5, Symbol(Symbol.toStringTag): 'Int8Array']
 ```
-
-
-
-
 
 ### DataView
 
@@ -562,13 +532,11 @@ byteLength 可选 此 DataView 对象的字节长度。如果未指定，这个�
 
 因为 JavaScript 目前不包含对 64 位整数值支持的标准，所以 `DataView` 不提供原生的 64 位操作。
 
-
-
 - dataview.getXXX(byteOffset [, littleEndian])
 
   byteOffset 偏移量，以字节为单位。指明视图开始读取数据的偏移量。
 
-  littleEndian 可选 指明该64位整型数值的存储方式[大小端模式] 。 如果为 `false` 或 `undefined`, 则按大端方式读取数据。
+  littleEndian 可选 指明该 64 位整型数值的存储方式[大小端模式] 。 如果为 `false` 或 `undefined`, 则按大端方式读取数据。
 
   如果 `byteOffset` 设置的偏移量超出了视图的范围，则抛出该异常。
 
@@ -578,46 +546,37 @@ byteLength 可选 此 DataView 对象的字节长度。如果未指定，这个�
 
   value 设置的数值.
 
-  littleEndian 
+  littleEndian
 
   返回值：undefined
 
-  如果byteOffset超出了视图能储存的值,就会抛出错误RangeError.
-
-
-
-
+  如果 byteOffset 超出了视图能储存的值,就会抛出错误 RangeError.
 
 ## Blob
 
-- `Blob` 对象表示一个不可变、原始数据的类文件对象。它的数据可以按文本或二进制的格式进行读取，也可以转换成 [`ReadableStream`] 来用于数据操作。 
+- `Blob` 对象表示一个不可变、原始数据的类文件对象。它的数据可以按文本或二进制的格式进行读取，也可以转换成 [`ReadableStream`] 来用于数据操作。
 
-- Blob 表示的不一定是JavaScript原生格式的数据。File 接口基于Blob，继承了 blob 的功能并将其扩展使其支持用户系统上的文件。
+- Blob 表示的不一定是 JavaScript 原生格式的数据。File 接口基于 Blob，继承了 blob 的功能并将其扩展使其支持用户系统上的文件。
 
-- 要从其他非blob对象和数据构造一个 Blob，请使用 Blob() 构造函数。要创建一个 blob 数据的子集 blob，请使用 slice() 方法。要获取用户文件系统上的文件对应的 Blob 对象，请参阅 File 文档。
+- 要从其他非 blob 对象和数据构造一个 Blob，请使用 Blob() 构造函数。要创建一个 blob 数据的子集 blob，请使用 slice() 方法。要获取用户文件系统上的文件对应的 Blob 对象，请参阅 File 文档。
 
-- 接受 Blob 对象的API也被列在 File 文档中。
+- 接受 Blob 对象的 API 也被列在 File 文档中。
 
 `slice()` 方法原本接受 `length` 作为第二个参数，以表示复制到新 `Blob` 对象的字节数。如果设置的参数使 `start + length` 超出了源 `Blob` 对象的大小，则返回从开始到结尾的所有数据。
 
-
-
-#### 示例：使用 Blob 创建一个指向类型化数组的URL
+#### 示例：使用 Blob 创建一个指向类型化数组的 URL
 
 ```js
 var typedArray = GetTheTypedArraySomehow();
-var blob = new Blob([typedArray.buffer], {type: 'application/octet-stream'}); // 传入一个合适的 MIME 类型
+var blob = new Blob([typedArray.buffer], { type: "application/octet-stream" }); // 传入一个合适的 MIME 类型
 var url = URL.createObjectURL(blob);
 // 会产生一个类似 blob:d3958f5c-0777-0845-9dcf-2cb28783acaf 这样的URL字符串
 // 你可以像使用普通 URL 那样使用它，比如用在 img.src 上。
-
 ```
-
-
 
 #### 从 Blob 中提取数据
 
-一种从Blob中读取内容的方法是使用 FileReader。以下代码将 Blob 的内容作为类型数组读取：
+一种从 Blob 中读取内容的方法是使用 FileReader。以下代码将 Blob 的内容作为类型数组读取：
 
 ```
 var reader = new FileReader();
@@ -627,25 +586,89 @@ reader.addEventListener("loadend", function() {
 reader.readAsArrayBuffer(blob);
 ```
 
-另一种读取Blob中内容的方式是使用Response对象。下述代码将Blob中的内容读取为文本： 
+另一种读取 Blob 中内容的方式是使用 Response 对象。下述代码将 Blob 中的内容读取为文本：
 
 ```
 var text = await (new Response(blob)).text();
 ```
 
-通过使用 FileReader 的其它方法可以把 Blob 读取为字符串或者数据URL。
+通过使用 FileReader 的其它方法可以把 Blob 读取为字符串或者数据 URL。
 
-- FileReader.abort() 中止读取操作。在返回时，**readyState**属性为DONE。
+- FileReader.abort() 中止读取操作。在返回时，**readyState**属性为 DONE。
 
-  | 常量名    | 值   | 描述                  |
-  | --------- | ---- | --------------------- |
-  | `EMPTY`   | `0`  | 还没有加载任何数据.   |
-  | `LOADING` | `1`  | 数据正在被加载.       |
-  | `DONE`    | `2`  | 已完成全部的读取请求. |
+  | 常量名    | 值  | 描述                  |
+  | --------- | --- | --------------------- |
+  | `EMPTY`   | `0` | 还没有加载任何数据.   |
+  | `LOADING` | `1` | 数据正在被加载.       |
+  | `DONE`    | `2` | 已完成全部的读取请求. |
 
-- FileReader.readAsArrayBuffer(blob) 开始读取指定的 Blob中的内容, 一旦完成, result 属性中保存的将是被读取文件的 ArrayBuffer 数据对象.
+- FileReader.readAsArrayBuffer(blob) 开始读取指定的 Blob 中的内容, 一旦完成, result 属性中保存的将是被读取文件的 ArrayBuffer 数据对象.
 
-- FileReader.readAsDataURL(blob) 开始读取指定的Blob中的内容。一旦完成，result属性中将包含一个data: URL格式的Base64字符串以表示所读取文件的内容。
+- FileReader.readAsDataURL(blob) 开始读取指定的 Blob 中的内容。一旦完成，result 属性中将包含一个 data: URL 格式的 Base64 字符串以表示所读取文件的内容。
 
-- FileReader.readAsText(blob[, encoding]) 开始读取指定的Blob中的内容。一旦完成，result属性中将包含一个字符串以表示所读取的文件内容。
+- FileReader.readAsText(blob[, encoding]) 开始读取指定的 Blob 中的内容。一旦完成，result 属性中将包含一个字符串以表示所读取的文件内容。
 
+### Class 私有属性和方法
+
+模拟
+
+Symbol
+
+```js
+const n = Symbol();
+class A {
+  constructor(num) {
+    this[n] = num;
+  }
+
+  add() {
+    this[n]++;
+  }
+
+  print() {
+    console.log(this[n]);
+  }
+}
+
+let a = new A(9);
+a.add();
+a.n = 100;
+a.print();
+```
+
+取整操作也可以用按位操作
+
+```
+var x = 1.23 | 0;  // 1
+```
+
+因为按位操作只支持 32 位的整型，所以小数点部分全部都被抛弃
+
+`parseInt` 太小的数字会产生 bug
+
+**arguments** 和形参是别名关系
+
+```
+function test(a, b) {
+  console.log(a, b); // 2, 3
+
+  arguments[0] = 100;
+  arguments[1] = 200;
+
+  console.log(a, b); // 100, 200
+}
+test(2, 3);
+```
+
+深拷贝最简单的实现是: `JSON.parse(JSON.stringify(obj))`
+
+`JSON.parse(JSON.stringify(obj))` 是最简单的实现方式，但是有一些缺陷：
+
+1. 对象的属性值是函数时，无法拷贝。
+2. 原型链上的属性无法拷贝
+3. 不能正确的处理 Date 类型的数据
+4. 不能处理 RegExp
+5. 会忽略 symbol
+6. 会忽略 undefined
+
+![图片](640.jpeg)

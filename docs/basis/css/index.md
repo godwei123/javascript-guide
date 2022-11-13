@@ -704,6 +704,14 @@ BFC 是一个独立的区域,它内部的元素都依照它的规则渲染,并�
 
 ## 14、z-index 失效
 
+z-index 堆叠上下文只有在 postion:relative/absolute/fixed 脱离文档流控制时才生效，static 时无效。
+
+z-index 属性在下列情况下会失效：
+
+- 父元素 position 为 relative 时，子元素的 z-index 失效。解决：父元素 position 改为 absolute 或 static；
+- 元素没有设置 position 属性为非 static 属性。解决：设置该元素的 position 属性为 relative，absolute 或是 fixed 中的一种；
+- 元素在设置 z-index 的同时还设置了 float 浮动。解决：float 去除，改为 display：inline-block；
+
 ## 15、响应式布局
 
 ## 16、px rem em vw vh
@@ -790,6 +798,13 @@ line-height 是相对于元素自身的字体大小来取值，但同时会被�
 某元素的 fontSize: 2rem; lineHeight: 1.5em; 此时 lineHeight 为多少像素？
 fontSize = 2 _ 16 = 32px
 lineHeight = 1.5 _ 32 = 48px
+
+## 21、vertical-align
+
+只能应用于内联元素以及 display 值为 table-cell 的元素。在 css 中，有些 css 属性是会改变元素的 display 值的，例如 float 和 position: absolute，一旦设置了这两个属性之一，元素的 display 值就是变为 block，因此，vertical-align 也就失去了作用。
+
+1.vertical-align 必须对子元素设置，不是对父元素设置 2.必须设置 line-height，不然不会起作用
+3.vertical-align 只对 inline-block 元素有效
 
 ## 常见布局实现
 
