@@ -1,18 +1,4 @@
-export const sidebarHTML = [
-  {
-    text: "Html",
-    items: [{ text: "Introduction", link: "/html/" }],
-  },
-];
-
-export const sidebarCSS = [
-  {
-    text: "CSS",
-    items: [{ text: "Introduction", link: "/css/" }],
-  },
-];
-
-export const sidebarJavaScript = [
+const sidebarJavaScript = [
   {
     text: "JavaScript",
     items: [
@@ -28,3 +14,4 @@ export const sidebarJavaScript = [
     ],
   },
 ];
+export default sidebarJavaScript;

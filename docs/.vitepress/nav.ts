@@ -6,7 +6,7 @@ const nav = [
   },
   {
     text: "工程化与优化",
-    link: "/project/polyfill",
+    link: "/project/",
     activeMatch: "/project/",
   },
 
@@ -20,11 +20,11 @@ const nav = [
     items: [
       {
         text: "Vue",
-        link: "/framework/vue",
+        link: "/framework/vue/",
       },
       {
         text: "React",
-        link: "/framework/react",
+        link: "/framework/react/",
       },
     ],
   },
