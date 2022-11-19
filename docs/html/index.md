@@ -8,19 +8,19 @@
 
 ### 为什么要语义化？
 
--   为了在没有 CSS 的情况下，页面也能呈现出很好地内容结构、代码结构
--   有利于 SEO，和搜索引擎建立良好沟通，有助于爬虫抓取更多的有效信息
--   方便其他设备解析以意义的方式来渲染网页；
--   便于团队开发和维护，语义化更具可读性，是下一步网页的重要动向，遵循 W3C 标准的团队都遵循这个标准，可以减少差异化。
+- 为了在没有 CSS 的情况下，页面也能呈现出很好地内容结构、代码结构
+- 有利于 SEO，和搜索引擎建立良好沟通，有助于爬虫抓取更多的有效信息
+- 方便其他设备解析以意义的方式来渲染网页；
+- 便于团队开发和维护，语义化更具可读性，是下一步网页的重要动向，遵循 W3C 标准的团队都遵循这个标准，可以减少差异化。
 
 ### 常见语义化标签
 
--   header：定义文档的页眉（头部）；
--   nav：定义导航链接的部分；
--   footer：定义文档或节的页脚（底部）；
--   article：定义文章内容；
--   section：定义文档中的节（section、区段）；
--   aside：定义其所处内容之外的内容（侧边）；
+- header：定义文档的页眉（头部）；
+- nav：定义导航链接的部分；
+- footer：定义文档或节的页脚（底部）；
+- article：定义文章内容；
+- section：定义文档中的节（section、区段）；
+- aside：定义其所处内容之外的内容（侧边）；
 
 ## 2、script - defer、async
 
@@ -68,17 +68,20 @@
 （5）`viewport`，适配移动端，可以控制视口的大小和比例：
 
 ```html
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, maximum-scale=1"
+/>
 ```
 
 其中，`content` 参数有以下几种：
 
--   `width` ：宽度(数值/device-width)
--   `height` ：高度(数值/device-height)
--   `initial-scale` ：初始缩放比例
--   `maximum-scale` ：最大缩放比例
--   `minimum-scale` ：最小缩放比例
--   `user-scalable` ：是否允许用户缩放(yes/no）
+- `width` ：宽度(数值/device-width)
+- `height` ：高度(数值/device-height)
+- `initial-scale` ：初始缩放比例
+- `maximum-scale` ：最大缩放比例
+- `minimum-scale` ：最小缩放比例
+- `user-scalable` ：是否允许用户缩放(yes/no）
 
 （6）搜索引擎索引方式：
 
@@ -88,12 +91,12 @@
 
 其中，`content` 参数有以下几种：
 
--   `all`：文件将被检索，且页面上的链接可以被查询；
--   `none`：文件将不被检索，且页面上的链接不可以被查询；
--   `index`：文件将被检索；
--   `follow`：页面上的链接可以被查询；
--   `noindex`：文件将不被检索；
--   `nofollow`：页面上的链接不可以被查询。
+- `all`：文件将被检索，且页面上的链接可以被查询；
+- `none`：文件将不被检索，且页面上的链接不可以被查询；
+- `index`：文件将被检索；
+- `follow`：页面上的链接可以被查询；
+- `noindex`：文件将不被检索；
+- `nofollow`：页面上的链接不可以被查询。
 
 ## 4、常见行内元素和块级元素
 
@@ -135,15 +138,15 @@ iframe 元素会创建包含另外一个文档的内联框架（即行内框架�
 
 优点：
 
--   用来加载速度较慢的内容（如广告）
--   可以使脚本可以并行下载
--   可以实现跨子域通信
+- 用来加载速度较慢的内容（如广告）
+- 可以使脚本可以并行下载
+- 可以实现跨子域通信
 
 缺点：
 
--   iframe 会阻塞主页面的 onload 事件
--   无法被一些搜索引擎索识别
--   会产生很多页面，不容易管理
+- iframe 会阻塞主页面的 onload 事件
+- 无法被一些搜索引擎索识别
+- 会产生很多页面，不容易管理
 
 ## 9、target
 
@@ -169,35 +172,35 @@ iframe 元素会创建包含另外一个文档的内联框架（即行内框架�
 
 (1) 表单类型
 
--   email ：能够验证当前输入的邮箱地址是否合法
--   url ： 验证 URL
--   number ： 只能输入数字，其他输入不了，而且自带上下增大减小箭头，max 属性可以设置为最大值，min 可以设置为最小值，value 为默认值。
--   search ： 输入框后面会给提供一个小叉，可以删除输入的内容，更加人性化。
--   range ： 可以提供给一个范围，其中可以设置 max 和 min 以及 value，其中 value 属性可以设置为默认值
--   color ： 提供了一个颜色拾取器
--   time ： 时分秒
--   date ： 日期选择年月日
--   datetime ： 时间和日期(目前只有 Safari 支持)
--   datetime-local ：日期时间控件
--   week ：周控件
--   month：月控件
+- email ：能够验证当前输入的邮箱地址是否合法
+- url ： 验证 URL
+- number ： 只能输入数字，其他输入不了，而且自带上下增大减小箭头，max 属性可以设置为最大值，min 可以设置为最小值，value 为默认值。
+- search ： 输入框后面会给提供一个小叉，可以删除输入的内容，更加人性化。
+- range ： 可以提供给一个范围，其中可以设置 max 和 min 以及 value，其中 value 属性可以设置为默认值
+- color ： 提供了一个颜色拾取器
+- time ： 时分秒
+- date ： 日期选择年月日
+- datetime ： 时间和日期(目前只有 Safari 支持)
+- datetime-local ：日期时间控件
+- week ：周控件
+- month：月控件
 
 (2) 表单属性
 
--   placeholder ：提示信息
--   autofocus ：自动获取焦点
--   autocomplete=“on” 或者 autocomplete=“off” 使用这个属性需要有两个前提：
-    -   表单必须提交过
-    -   必须有 name 属性。
--   required：要求输入框不能为空，必须有值才能够提交。
--   pattern=" " 里面写入想要的正则模式，例如手机号 patte="^(+86)?\d{10}$"
--   multiple：可以选择多个文件或者多个邮箱
--   form=" form 表单的 ID"
+- placeholder ：提示信息
+- autofocus ：自动获取焦点
+- autocomplete=“on” 或者 autocomplete=“off” 使用这个属性需要有两个前提：
+  - 表单必须提交过
+  - 必须有 name 属性。
+- required：要求输入框不能为空，必须有值才能够提交。
+- pattern=" " 里面写入想要的正则模式，例如手机号 patte="^(+86)?\d{10}$"
+- multiple：可以选择多个文件或者多个邮箱
+- form=" form 表单的 ID"
 
 (3) 表单事件
 
--   oninput 每当 input 里的输入框内容发生变化都会触发此事件。
--   oninvalid 当验证不通过时触发此事件。
+- oninput 每当 input 里的输入框内容发生变化都会触发此事件。
+- oninvalid 当验证不通过时触发此事件。
 
 4、进度条/度量器
 
@@ -205,8 +208,8 @@ progress 标签：用来表示任务的进度，max 用来表示任务的进度�
 
 5、DOM 查询
 
--   document.querySelector()
--   document.querySelectorAll()
+- document.querySelector()
+- document.querySelectorAll()
 
 6、web 存储
 
@@ -222,8 +225,8 @@ history API：go、forward、back、pushstate
 
 8、移除的元素
 
--   纯表现的元素：basefont，big，center，font, s，strike，tt，u;
--   对可用性产生负面影响的元素：frame，frameset，noframes；
+- 纯表现的元素：basefont，big，center，font, s，strike，tt，u;
+- 对可用性产生负面影响的元素：frame，frameset，noframes；
 
 ## 11、web worker 理解
 
@@ -260,10 +263,10 @@ port.start(); // worker线程中的调用, 假设port变量代表一个端口
 
 ```html
 <body>
-    <h1>使用web worker 排序,输入数据，空格分隔</h1>
-    <textarea name="" id="content" cols="30" rows="10"></textarea>
-    <button id="btn">排序</button>
-    <p id="result"></p>
+  <h1>使用web worker 排序,输入数据，空格分隔</h1>
+  <textarea name="" id="content" cols="30" rows="10"></textarea>
+  <button id="btn">排序</button>
+  <p id="result"></p>
 </body>
 <script src="./index.js"></script>
 <script src="./worker.js"></script>
@@ -271,30 +274,30 @@ port.start(); // worker线程中的调用, 假设port变量代表一个端口
 
 ```js
 // index.js
-const worker = new Worker('worker.js');
-const content = document.getElementById('content');
-const result = document.getElementById('result');
+const worker = new Worker("worker.js");
+const content = document.getElementById("content");
+const result = document.getElementById("result");
 worker.onmessage = function (e) {
-    console.log('myworker', e.data);
-    result.innerText = JSON.stringify(e.data);
+  console.log("myworker", e.data);
+  result.innerText = JSON.stringify(e.data);
 };
 
-document.getElementById('btn').addEventListener('click', () => {
-    let arr = content.value
-        .split(' ')
-        .filter(item => item !== '')
-        .map(it => parseInt(it));
-    console.log(arr);
-    worker.postMessage(arr);
+document.getElementById("btn").addEventListener("click", () => {
+  let arr = content.value
+    .split(" ")
+    .filter((item) => item !== "")
+    .map((it) => parseInt(it));
+  console.log(arr);
+  worker.postMessage(arr);
 });
 ```
 
 ```js
 // worker.js
 onmessage = function (e) {
-    console.log(e);
-    let res = e.data.sort((a, b) => b - a);
-    postMessage(res);
+  console.log(e);
+  let res = e.data.sort((a, b) => b - a);
+  postMessage(res);
 };
 ```
 
@@ -316,132 +319,121 @@ importScripts('script1.js', 'script2.js') // 加载多个脚本
 
 Drag Source 被拖放元素 / Drag Target 目标元素
 
--   dragstart：事件主体是***被拖放元素***，在开始拖放被拖放元素时触发。🤔
--   drag：事件主体是***被拖放元素***，在正在拖放被拖放元素时触发。
--   dragenter：事件主体是目标元素，在被拖放元素进入某元素时触发。
--   dragover：事件主体是目标元素，在被拖放在某元素内移动时触发。🤔
--   dragleave：事件主体是目标元素，在被拖放元素移出目标元素是触发。
--   drop：事件主体是目标元素，在目标元素完全接受被拖放元素时触发。🤔
--   dragend：事件主体是***被拖放元素***，在整个拖放操作结束时触发。
+- dragstart：事件主体是**_被拖放元素_**，在开始拖放被拖放元素时触发。🤔
+- drag：事件主体是**_被拖放元素_**，在正在拖放被拖放元素时触发。
+- dragenter：事件主体是目标元素，在被拖放元素进入某元素时触发。
+- dragover：事件主体是目标元素，在被拖放在某元素内移动时触发。🤔
+- dragleave：事件主体是目标元素，在被拖放元素移出目标元素是触发。
+- drop：事件主体是目标元素，在目标元素完全接受被拖放元素时触发。🤔
+- dragend：事件主体是**_被拖放元素_**，在整个拖放操作结束时触发。
 
 > 記得要針對 `dragover` 取消预设行为（preventDefault），否則可能無法正確觸發 drop 事件。
 
 给需要拖拽的对象设置属性 draggable=“true”
 
-
-
 ```html
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-        <style>
-            body {
-                display: flex;
-                justify-content: center;
-            }
-            #left,
-            #right {
-                width: 300px;
-                border: 1px solid #aaa;
-                box-sizing: border-box;
-                padding: 10px;
-            }
-            #left {
-                margin-right: 40px;
-            }
-            .item {
-                width: 100%;
-                border-radius: 10px;
-                padding: 5px 10px;
-                box-sizing: border-box;
-                box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
-                margin-bottom: 10px;
-                background: #6ca4f7;
-            }
-            .item div {
-                font-size: 18px;
-            }
-        </style>
-    </head>
-    <body>
-        <div id="left"></div>
-        <div id="right">
-            <div class="item" draggable="true">
-                <div>item</div>
-                <p>cdscdcjdbcdjj</p>
-            </div>
-            <div class="item" draggable="true">
-                <div>item</div>
-                <p>cdscdcjdbcdjj</p>
-            </div>
-            <div class="item" draggable="true">
-                <div>item</div>
-                <p>cdscdcjdbcdjj</p>
-            </div>
-            <div class="item" draggable="true">
-                <div>item</div>
-                <p>cdscdcjdbcdjj</p>
-            </div>
-            <div class="item" draggable="true">
-                <div>item</div>
-                <p>cdscdcjdbcdjj</p>
-            </div>
-        </div>
-    </body>
-    <script>
-        let dragged;
-        let enterLeft = false;
-        const left = document.getElementById('left');
-        const right = document.getElementById('right');
-        left.addEventListener('dragenter', e => {
-            e.preventDefault();
-            console.log('dragenter');
-            enterLeft = true;
-            left.appendChild(dragged);
-        });
-        left.addEventListener('dragleave', e => {
-            console.log('dragleave');
-        });
-        right.addEventListener('drag', e => {
-            e.preventDefault();
-        });
-        right.addEventListener('dragend', e => {
-            e.preventDefault();
-        });
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+      }
+      #left,
+      #right {
+        width: 300px;
+        border: 1px solid #aaa;
+        box-sizing: border-box;
+        padding: 10px;
+      }
+      #left {
+        margin-right: 40px;
+      }
+      .item {
+        width: 100%;
+        border-radius: 10px;
+        padding: 5px 10px;
+        box-sizing: border-box;
+        box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+        margin-bottom: 10px;
+        background: #6ca4f7;
+      }
+      .item div {
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="left"></div>
+    <div id="right">
+      <div class="item" draggable="true">
+        <div>item</div>
+        <p>cdscdcjdbcdjj</p>
+      </div>
+      <div class="item" draggable="true">
+        <div>item</div>
+        <p>cdscdcjdbcdjj</p>
+      </div>
+      <div class="item" draggable="true">
+        <div>item</div>
+        <p>cdscdcjdbcdjj</p>
+      </div>
+      <div class="item" draggable="true">
+        <div>item</div>
+        <p>cdscdcjdbcdjj</p>
+      </div>
+      <div class="item" draggable="true">
+        <div>item</div>
+        <p>cdscdcjdbcdjj</p>
+      </div>
+    </div>
+  </body>
+  <script>
+    let dragged;
+    let enterLeft = false;
+    const left = document.getElementById("left");
+    const right = document.getElementById("right");
+    left.addEventListener("dragenter", (e) => {
+      e.preventDefault();
+      console.log("dragenter");
+      enterLeft = true;
+      left.appendChild(dragged);
+    });
+    left.addEventListener("dragleave", (e) => {
+      console.log("dragleave");
+    });
+    right.addEventListener("drag", (e) => {
+      e.preventDefault();
+    });
+    right.addEventListener("dragend", (e) => {
+      e.preventDefault();
+    });
 
-        left.addEventListener('dragstart', e => {
-            dragged = e.target;
-        });
-        right.addEventListener('dragstart', e => {
-            dragged = e.target;
-        });
-        right.addEventListener('dragenter', e => {
-            e.preventDefault();
-            right.appendChild(dragged);
-        });
-    </script>
+    left.addEventListener("dragstart", (e) => {
+      dragged = e.target;
+    });
+    right.addEventListener("dragstart", (e) => {
+      dragged = e.target;
+    });
+    right.addEventListener("dragenter", (e) => {
+      e.preventDefault();
+      right.appendChild(dragged);
+    });
+  </script>
 </html>
 ```
-
-
-
-
 
 ## 13、可替换元素/空（void）元素
 
 可替换元素 : 可替换元素是指元素内容的展现不是由 CSS 来控制的，而是外观渲染独立于 CSS 的外部对象。
 
-**典型的可替换元素有**:  `<img>、<iframe>、<video>、<embed>`
+**典型的可替换元素有**: `<img>、<iframe>、<video>、<embed>`
 
-
-
-空元素：没有内容的HTML元素
+空元素：没有内容的 HTML 元素
 
 常见的有：br、meta、hr、link、input、img
-
-
-

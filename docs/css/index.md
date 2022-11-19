@@ -53,6 +53,7 @@
 .parent {
   display: grid;
 }
+
 .son {
   justify-self: center;
 }
@@ -94,6 +95,7 @@
   display: table-cell;
   text-align: center;
 }
+
 .son {
   display: inline-block;
 }
@@ -134,12 +136,14 @@
 .parent {
   position: relative;
 }
+
 .son {
   position: absolute;
   top: 0;
   bottom: 0;
   margin: auto 0;
 }
+
 .son {
   position: absolute;
   top: 50%;
@@ -153,6 +157,7 @@
 .parent {
   line-height: 600px;
 }
+
 .son {
   display: inline-block;
   vertical-align: middle;
@@ -166,6 +171,7 @@
   display: table-cell;
   vertical-align: middle;
 }
+
 .son {
   display: inline-block;
 }
@@ -197,6 +203,7 @@
 .parent {
   display: grid;
 }
+
 .son {
   justify-self: center;
   align-self: center;
@@ -209,12 +216,14 @@
 .parent {
   position: relative;
 }
+
 .son {
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
 }
+
 .son {
   position: absolute;
   left: 0;
@@ -233,6 +242,7 @@
   vertical-align: middle;
   text-align: center;
 }
+
 .son {
   display: inline-block;
 }
@@ -280,7 +290,8 @@ CSS3 中的盒模型有以下两种:标准盒子模型、IE 盒子模型
 
 (1) block:会独占一行,多个元素会另起一行,可以设置 width、height、margin 和 padding 属性;
 
-(2) inline:元素不会独占一行,设置 width、height 属性无效.但可以设置水平方向的 margin 和 padding 属性,不能设置垂直方向的 padding 和 margin;
+(2) inline:元素不会独占一行,设置 width、height 属性无效.但可以设置水平方向的 margin 和 padding 属性,不能设置垂直方向的
+padding 和 margin;
 
 (3) inline-block:将对象设置为 inline 对象,但对象的内容作为 block 对象呈现,之后的内联对象会被排列在同一行内.
 
@@ -299,13 +310,16 @@ CSS3 中的盒模型有以下两种:标准盒子模型、IE 盒子模型
 
 ## 5、伪类和伪元素
 
-伪元素 : 在内容元素的前后插入额外的元素或样式,但是这些元素实际上并不在文档中生成.它们只在外部显示可见,但不会在文档的源代码中找到它们,因此,称为“伪”元素.伪元素类似于增添一个新的 DOM 节点到 DOM
+伪元素 : 在内容元素的前后插入额外的元素或样式,但是这些元素实际上并不在文档中生成.它们只在外部显示可见,但不会在文档的源代码中找到它们,因此,称为“伪”元素.伪元素类似于增添一个新的
+DOM 节点到 DOM
 树中,而不是改变元素的状态.注意了,这里是类似,而不是真的增加一个节点,这也是其被称为伪元素的原因（实质上,元素被创建在文档外）.
 
-伪类 : 将特殊的效果添加到特定选择器上.它是已有元素上添加类别的,不会产生新的元素.伪类就是一个选择处于特定状态的元素的选择器,比如某一个 clsss 的第一个元素,某个被 hover 的元素等等,我们可以理解成一个特定的 CSS
+伪类 : 将特殊的效果添加到特定选择器上.它是已有元素上添加类别的,不会产生新的元素.伪类就是一个选择处于特定状态的元素的选择器,比如某一个
+clsss 的第一个元素,某个被 hover 的元素等等,我们可以理解成一个特定的 CSS
 类,但与普通的类不一样,它只有处于 DOM 树无法描述的状态下才能为元素添加样式,所以将其称为伪类.
 
-总结：（1）伪类是通过在元素选择器上加⼊伪类改变元素状态,⽽伪元素通过对元素的操作进⾏对元素的改变.（2）伪类是操作文档中已有的元素,而伪元素是创建了一个文档外的元素.（3）为了书写 CSS 时进行区分,一般伪类是单冒号,如:
+总结：（1）伪类是通过在元素选择器上加⼊伪类改变元素状态,⽽伪元素通过对元素的操作进⾏对元素的改变.（2）伪类是操作文档中已有的元素,而伪元素是创建了一个文档外的元素.（3）为了书写
+CSS 时进行区分,一般伪类是单冒号,如:
 hover,而伪元素是双冒号::before.
 
 ## 6、position
@@ -314,18 +328,27 @@ hover,而伪元素是双冒号::before.
 
 | **属性值** | **
 概述** |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| absolute | 生成绝对定位的元素,相对于 static 定位以外的一个父元素进行定位.元素的位置通过 left、top、right、bottom 属性进行规定. |
-| relative | 生成相对定位的元素,相对于其原来的位置进行定位.元素的位置通过 left、top、right、bottom 属性进行规定.元素原来位置保留 |
-| fixed | 生成绝对定位的元素,指定元素相对于屏幕视⼝（viewport）的位置来指定元素位置.元素的位置在屏幕滚动时不会改变,⽐如回到顶部的按钮⼀般都是⽤此定位⽅式. |
-| static | 默认值,没有定位,元素出现在正常的文档流中,会忽略 top, bottom, left, right 或者 z-index 声明,块级元素从上往下纵向排布,⾏级元素从左向右排列. |
+| ---------- |
+
+---
+
+|
+| absolute | 生成绝对定位的元素,相对于 static 定位以外的一个父元素进行定位.元素的位置通过 left、top、right、bottom 属性进行规定.
+|
+| relative | 生成相对定位的元素,相对于其原来的位置进行定位.元素的位置通过 left、top、right、bottom 属性进行规定.元素原来位置保留
+|
+| fixed | 生成绝对定位的元素,指定元素相对于屏幕视⼝（viewport）的位置来指定元素位置.元素的位置在屏幕滚动时不会改变,⽐如回到顶部的按钮⼀般都是⽤此定位⽅式.
+|
+| static | 默认值,没有定位,元素出现在正常的文档流中,会忽略 top, bottom, left, right 或者 z-index
+声明,块级元素从上往下纵向排布,⾏级元素从左向右排列. |
 | inherit | 规定从父元素继承 position 属性的值 |
 
 relative:元素的定位永远是相对于元素自身位置的,和其他元素没关系,也不会影响其他元素
 
 fixed:元素的定位是相对于 window （或者 iframe）边界的,和其他元素没有关系.但是它具有破坏性,会导致其他元素位置的变化.
 
-absolute:元素的定位相对于前两者要复杂许多.如果为 absolute 设置了 top、left,浏览器会递归查找该元素的所有父元素,如果找到一个设置了 position:relative/absolute/fixed
+absolute:元素的定位相对于前两者要复杂许多.如果为 absolute 设置了 top、left,浏览器会递归查找该元素的所有父元素,如果找到一个设置了
+position:relative/absolute/fixed
 的元素,就以该元素为基准定位,如果没找到,就以浏览器边界定位.
 
 ### position:sticky
@@ -333,7 +356,8 @@ absolute:元素的定位相对于前两者要复杂许多.如果为 absolute 设
 用法
 
 - position:sticky 被称为粘性定位元素（stickily positioned element）是计算后位置属性为 sticky 的元素.
-- 简单的理解就是:在目标区域以内,它的行为就像 position:relative;在滑动过程中,某个元素距离其父元素的距离达到 sticky 粘性定位的要求时(比如 top:100px);position:sticky 这时的效果相当于
+- 简单的理解就是:在目标区域以内,它的行为就像 position:relative;在滑动过程中,某个元素距离其父元素的距离达到 sticky
+  粘性定位的要求时(比如 top:100px);position:sticky 这时的效果相当于
   fixed 定位,固定到适当位置.
 - 元素固定的相对偏移是**相对于离它最近的具有滚动框的祖先元素**,如果祖先元素都不可以滚动,那么是相对于 viewport 来计算元素的偏移量.
 
@@ -421,7 +445,7 @@ wrap-reverse: 换行,第一行在下方
 默认值为: row nowrap(这里是分开的两个属性哦)
  */
 .container {
-  flex-flow: <flex-direction> || <flex-wrap>;
+  flex-flow: < flex-direction > | | < flex-wrap >;
 }
 ```
 
@@ -476,13 +500,15 @@ baseline:   项目的第一行文字的基线对齐
 
 - flex-shrink 属性: 定义了项目的缩小比例,默认为 1,即如果空间不足,该项目将缩小.
 
-- flex-basis 属性: 定义了在分配多余空间之前,项目占据的主轴空间（main size）.浏览器根据这个属性,计算主轴是否有多余空间.它的默认值为 auto,即项目的本来大小.
+- flex-basis 属性: 定义了在分配多余空间之前,项目占据的主轴空间（main size）.浏览器根据这个属性,计算主轴是否有多余空间.它的默认值为
+  auto,即项目的本来大小.
 
 - align-self 属性: 当前子容器在交叉轴对齐方式
 
 ### flex 简写
 
-第一个数值是 flex-grow。赋值为正数的话是让元素增加所占空间。第二个数值是 flex-shrink 正数可以让它缩小所占空间，但是只有在 flex 元素总和超出主轴才会生效。最后一个数值是 flex-basis；flex
+第一个数值是 flex-grow。赋值为正数的话是让元素增加所占空间。第二个数值是 flex-shrink 正数可以让它缩小所占空间，但是只有在
+flex 元素总和超出主轴才会生效。最后一个数值是 flex-basis；flex
 元素是在这个基准值的基础上缩放的。
 
 flex 简写属性在下面有三个值的定义 默认值为 0 1 auto;
@@ -497,7 +523,8 @@ flex 简写属性在下面有三个值的定义 默认值为 0 1 auto;
 
 flex: initial 是把 flex 元素重置为 Flexbox 的初始值，它相当于 flex: 0 1 auto。
 
-在这里 flex-grow 的值为 0，所以 flex 元素不会超过它们 flex-basis 的尺寸。flex-shrink 的值为 1, 所以可以缩小 flex 元素来防止它们溢出。flex-basis 的值为 auto. Flex
+在这里 flex-grow 的值为 0，所以 flex 元素不会超过它们 flex-basis 的尺寸。flex-shrink 的值为 1, 所以可以缩小 flex
+元素来防止它们溢出。flex-basis 的值为 auto. Flex
 元素尺寸可以是在主维度上设置的，也可以是根据内容自动得到的。
 
 #### flex:\<positive-number>
@@ -546,7 +573,8 @@ flex: none 可以把 flex 元素设置为不可伸缩。它和设置为 flex: 0 
 
    - 设置元素的浮动 （不推荐）. `float: left;`
    - 将元素设置为行内块元素 （不推荐）. `display: inline-block;`
-   - 将元素 overflow 设置为一个非 visible 的值,常见方式为元素设置 overflow:hidden 开启其 BFC,以使其可以包含浮动的元素. `overflow: auto;`
+   - 将元素 overflow 设置为一个非 visible 的值,常见方式为元素设置 overflow:hidden 开启其
+     BFC,以使其可以包含浮动的元素. `overflow: auto;`
 
    第一种方式设置父元素浮动使父元素也脱离了文档流;第二种一般不采用设置行内块元素的方式;第三种可以使父元素保持块元素特点,同时宽高由子元素撑开.
 
@@ -578,10 +606,12 @@ css 样式里在 box 的后面用 content 添加一个空元素,并设置为块�
 
 **问题描述:**
 
-两个块级元素的上外边距和下外边距可能会合并（折叠）为一个外边距,其大小会取其中外边距值大的那个,这种行为就是外边距折叠.需要注意的是,**浮动的元素和绝对定位**这种脱离文档流的元素的外边距不会折叠.重叠只会出现在**垂直方向**.
+两个块级元素的上外边距和下外边距可能会合并（折叠）为一个外边距,其大小会取其中外边距值大的那个,这种行为就是外边距折叠.需要注意的是,**
+浮动的元素和绝对定位**这种脱离文档流的元素的外边距不会折叠.重叠只会出现在**垂直方向**.
 
 下面代码效果:
-box1 和 box2 都有上边距 100px,相对位置没有变化.和预期效果（子元素 div.box2 会从左上角移动到父元素 div.box1 的左下角,父元素位置不变）不同
+box1 和 box2 都有上边距 100px,相对位置没有变化.和预期效果（子元素 div.box2 会从左上角移动到父元素 div.box1
+的左下角,父元素位置不变）不同
 
 ```html
 <style>
@@ -590,6 +620,7 @@ box1 和 box2 都有上边距 100px,相对位置没有变化.和预期效果（�
     height: 200px;
     background-color: saddlebrown;
   }
+
   .box2 {
     width: 100px;
     height: 100px;
@@ -644,7 +675,8 @@ BFC 是一个独立的区域,它内部的元素都依照它的规则渲染,并�
 - 行内块元素（元素的 display 为 inline-block）
 - 表格单元格（元素的 display 为 table-cell,HTML 表格单元格默认为该值）
 - 表格标题（元素的 display 为 table-caption,HTML 表格标题默认为该值）
-- 匿名表格单元格元素（元素的 display 为 table、table-row、 table-row-group、table-header-group、table-footer-group（分别是 HTML
+- 匿名表格单元格元素（元素的 display 为 table、table-row、 table-row-group、table-header-group、table-footer-group（分别是
+  HTML
   table、row、tbody、thead、tfoot 的默认属性）或 inline-table）
 - overflow 值不为 visible 的块元素
 - display 值为 flow-root 的元素
@@ -719,7 +751,8 @@ z-index 属性在下列情况下会失效：
 - px 是固定的像素,一旦设置了就无法因为适应页面大小而改变.
 - em 和 rem 相对于 px 更具有灵活性,他们是相对长度单位,其长度不是固定的,更适用于响应式布局.
 - em 是相对于根据自身元素的 font-size 来设置字体大小.而 rem 是相对于根元素(即 html),这样就意味着,只需要在根元素确定一个参考值.
-- vw/vh 是与视图窗口有关的单位,vw 表示相对于视图窗口的宽度,vh 表示相对于视图窗口高度,除了 vw 和 vh 外,还有 vmin 和 vmax 两个相关的单位.
+- vw/vh 是与视图窗口有关的单位,vw 表示相对于视图窗口的宽度,vh 表示相对于视图窗口高度,除了 vw 和 vh 外,还有 vmin 和 vmax
+  两个相关的单位.
 
 ## 17、CSS 可继承与不可继承属性
 
@@ -784,8 +817,10 @@ z-index 属性在下列情况下会失效：
 
 ## 19、CSS 动画
 
-- transition 是过渡属性,强调过度,它的实现需要触发一个事件（比如鼠标移动上去,焦点,点击等）才执行动画.它类似于 flash 的补间动画,设置一个开始关键帧,一个结束关键帧.
-- animation 是动画属性,它的实现不需要触发事件,设定好时间之后可以自己执行,且可以循环一个动画.它也类似于 flash 的补间动画,但是它可以设置多个关键帧（用@keyframe 定义）完成动画.
+- transition 是过渡属性,强调过度,它的实现需要触发一个事件（比如鼠标移动上去,焦点,点击等）才执行动画.它类似于 flash
+  的补间动画,设置一个开始关键帧,一个结束关键帧.
+- animation 是动画属性,它的实现不需要触发事件,设定好时间之后可以自己执行,且可以循环一个动画.它也类似于 flash
+  的补间动画,但是它可以设置多个关键帧（用@keyframe 定义）完成动画.
 
 ## 20、line-height
 
@@ -801,7 +836,8 @@ lineHeight = 1.5 _ 32 = 48px
 
 ## 21、vertical-align
 
-只能应用于内联元素以及 display 值为 table-cell 的元素。在 css 中，有些 css 属性是会改变元素的 display 值的，例如 float 和 position: absolute，一旦设置了这两个属性之一，元素的 display 值就是变为 block，因此，vertical-align 也就失去了作用。
+只能应用于内联元素以及 display 值为 table-cell 的元素。在 css 中，有些 css 属性是会改变元素的 display 值的，例如 float 和
+position: absolute，一旦设置了这两个属性之一，元素的 display 值就是变为 block，因此，vertical-align 也就失去了作用。
 
 1.vertical-align 必须对子元素设置，不是对父元素设置 2.必须设置 line-height，不然不会起作用
 3.vertical-align 只对 inline-block 元素有效
@@ -818,12 +854,14 @@ lineHeight = 1.5 _ 32 = 48px
     height: 200px;
     background: #ccc;
   }
+
   .left {
     width: 200px;
     float: left;
     background: tomato;
     height: 100%;
   }
+
   .right {
     margin-left: 200px;
     width: auto;
@@ -846,12 +884,14 @@ lineHeight = 1.5 _ 32 = 48px
     height: 200px;
     background: #ccc;
   }
+
   .left {
     width: 200px;
     float: left;
     background: tomato;
     height: 100%;
   }
+
   .right {
     overflow: hidden;
     background: gold;
@@ -874,10 +914,12 @@ lineHeight = 1.5 _ 32 = 48px
     height: 200px;
     background: #ccc;
   }
+
   .left {
     width: 200px;
     background: tomato;
   }
+
   .right {
     flex: 1;
     background: gold;
@@ -920,7 +962,7 @@ lineHeight = 1.5 _ 32 = 48px
 
 css3 中新增了一些选择器，主要为如下图所示：
 
-![](../../public/fe90770f9aca04a184911154.png)
+![](../public/fe90770f1154.png)
 
 ### 边框
 
@@ -960,7 +1002,8 @@ background-clip: no-clip; 默认属性，等同于 border-box
 
 #### background-origin
 
-当我们设置背景图片时，图片是会以左上角对齐，但是是以 border 的左上角对齐还是以 padding 的左上角或者 content 的左上角对齐? border-origin 正是用来设置这个的
+当我们设置背景图片时，图片是会以左上角对齐，但是是以 border 的左上角对齐还是以 padding 的左上角或者 content 的左上角对齐?
+border-origin 正是用来设置这个的
 
 background-origin: border-box; 从 border 开始计算 background-position
 
@@ -1105,7 +1148,8 @@ linear-gradient(0deg, red, green);
 ## 谷歌浏览器怎么设置小于 12px 的字体
 
 - 使用 Webkit 的内核的-webkit-text-size-adjust 的私有 CSS 属性来解决，只要加了`-webkit-text-size-adjust:none`
-  ;字体大小就不受限制了。但是 chrome 更新到 27 版本之后就不可以用了。所以高版本 chrome 谷歌浏览器已经不再支持-webkit-text-size-adjust 样式，所以要使用时候慎用。
+  ;字体大小就不受限制了。但是 chrome 更新到 27 版本之后就不可以用了。所以高版本 chrome 谷歌浏览器已经不再支持-webkit-text-size-adjust
+  样式，所以要使用时候慎用。
 - 使用 css3 的 transform 缩放属性-webkit-transform:scale(0.5); 注意-webkit-transform:scale(0.75)
   ;收缩的是整个元素的大小，这时候，如果是内联元素，必须要将内联元素转换成块元素，可以使用 display：block/inline-block/...；
 - 使用图片：如果是内容固定不变情况下，使用将小于 12px 文字内容切出做图片，这样不影响兼容也不影响美观。
@@ -1118,10 +1162,12 @@ linear-gradient(0deg, red, green);
 
 **CSS 中的 1px 并不等于设备的 1px**
 
-对于前端来说，在高清屏出现之前，前端代码的 `1px` 即等于手机物理像素点的 `1px`。但有了 dpr 的概念之后，由于前端代码中的使用的是 CSS 像素，手机会根据 dpr 换算成实际的物理像素大小来渲染页面。比如 iPhone6
+对于前端来说，在高清屏出现之前，前端代码的 `1px` 即等于手机物理像素点的 `1px`。但有了 dpr 的概念之后，由于前端代码中的使用的是
+CSS 像素，手机会根据 dpr 换算成实际的物理像素大小来渲染页面。比如 iPhone6
 的设备像素比 `dpr = 2` ，相当于一个 CSS 像素等于两个物理像素，即 `1px` 由 2 个物理像素点组成。
 
-那么问题来了，以 iPhone6 为例，其 `dpr = 2`、屏幕尺寸(CSS 像素) 为 `375x667`，一般设计稿提供 2 倍图尺寸为 `750x1334` 。那么设计稿中的 `1px`，对应屏幕尺寸其实应该写成 `0.5px`
+那么问题来了，以 iPhone6 为例，其 `dpr = 2`、屏幕尺寸(CSS 像素) 为 `375x667`，一般设计稿提供 2 倍图尺寸为 `750x1334`
+。那么设计稿中的 `1px`，对应屏幕尺寸其实应该写成 `0.5px`
 。再由 dpr 计算公式可知，`0.5 * 2 = 1px` 物理像素。
 
 **其实设计稿本质上要实现的是 CSS 像素的 ！**
@@ -1130,7 +1176,8 @@ linear-gradient(0deg, red, green);
 
 PC 端浏览器的最小识别像素为 `1px`。
 
-> 简单来说，rem 布局实现移动端适配的思想是，由于 rem 单位是根据页面根元素的 `fontSize` 来计算的，那么将 `fontSize` 设置成屏幕宽度 `clientWidth` 与设计稿宽度 `750`
+> 简单来说，rem 布局实现移动端适配的思想是，由于 rem 单位是根据页面根元素的 `fontSize` 来计算的，那么将 `fontSize`
+> 设置成屏幕宽度 `clientWidth` 与设计稿宽度 `750`
 > 的比值，那么我们按照设计稿的尺寸来重构页面的时候，使用 rem 单位即自动乘以 `fontSize` 计算出了适配不同屏幕的尺寸。
 
 ```javascript
@@ -1144,13 +1191,15 @@ document.documentElement.style.fontSize = ft + "px";
 
 #### 如何实现 1px 的效果？
 
-1px 问题指的是：在一些 `Retina屏幕` 的机型上，移动端页面的 1px 会变得很粗，呈现出不止 1px 的效果。原因很简单——CSS 中的 1px 并不能和移动设备上的 1px 划等号。它们之间的比例关系有一个专门的属性来描述：
+1px 问题指的是：在一些 `Retina屏幕` 的机型上，移动端页面的 1px 会变得很粗，呈现出不止 1px 的效果。原因很简单——CSS 中的 1px
+并不能和移动设备上的 1px 划等号。它们之间的比例关系有一个专门的属性来描述：
 
 ```html
 window.devicePixelRatio = 设备的物理像素 / CSS像素。
 ```
 
-打开 Chrome 浏览器，启动移动端调试模式，在控制台去输出这个 `devicePixelRatio` 的值。这里选中 iPhone6/7/8 这系列的机型，输出的结果就是 2
+打开 Chrome 浏览器，启动移动端调试模式，在控制台去输出这个 `devicePixelRatio` 的值。这里选中 iPhone6/7/8 这系列的机型，输出的结果就是
+2
 
 这就意味着设置的 1px CSS 像素，在这个设备上实际会用 2 个物理像素单元来进行渲染，所以实际看到的一定会比 1px 粗一些。
 
@@ -1159,13 +1208,14 @@ window.devicePixelRatio = 设备的物理像素 / CSS像素。
 如果之前 1px 的样式这样写：
 
 ```css
-border: 1px solid #333;
+border: 1 px solid #333;
 ```
 
-可以先在 JS 中拿到 window.devicePixelRatio 的值，然后把这个值通过 JSX 或者模板语法给到 CSS 的 data 里，达到这样的效果（这里用 JSX 语法做示范）：
+可以先在 JS 中拿到 window.devicePixelRatio 的值，然后把这个值通过 JSX 或者模板语法给到 CSS 的 data 里，达到这样的效果（这里用
+JSX 语法做示范）：
 
 ```javascript
-<div id="container" data-device={{window.devicePixelRatio}}></div>
+<div id="container" data-device={{ window.devicePixelRatio }}></div>
 ```
 
 然后就可以在 CSS 中用属性选择器来命中 devicePixelRatio 为某一值的情况，比如说这里尝试命中 devicePixelRatio 为 2 的情况：
@@ -1176,14 +1226,17 @@ border: 1px solid #333;
 }
 ```
 
-直接把 1px 改成 1/devicePixelRatio 后的值，这是目前为止最简单的一种方法。这种方法的缺陷在于兼容性不行，IOS 系统需要 8 及以上的版本，安卓系统则直接不兼容。
+直接把 1px 改成 1/devicePixelRatio 后的值，这是目前为止最简单的一种方法。这种方法的缺陷在于兼容性不行，IOS 系统需要 8
+及以上的版本，安卓系统则直接不兼容。
 
 #### 思路二：伪元素先放大后缩小
 
 这个方法的可行性会更高，兼容性也更好。唯一的缺点是代码会变多。
 
-思路是**先放大、后缩小：\*\***在目标元素的后面追加一个 ::after 伪元素，让这个元素布局为 absolute 之后、整个伸展开铺在目标元素上，然后把它的宽和高都设置为目标元素的两倍，border 值设为 1px。接着借助 CSS
-动画特效中的放缩能力，把整个伪元素缩小为原来的 50%。此时，伪元素的宽高刚好可以和原有的目标元素对齐，而 border 也缩小为了 1px 的二分之一，间接地实现了 0.5px 的效果。
+思路是**先放大、后缩小：\*\***在目标元素的后面追加一个 ::after 伪元素，让这个元素布局为 absolute
+之后、整个伸展开铺在目标元素上，然后把它的宽和高都设置为目标元素的两倍，border 值设为 1px。接着借助 CSS
+动画特效中的放缩能力，把整个伪元素缩小为原来的 50%。此时，伪元素的宽高刚好可以和原有的目标元素对齐，而 border 也缩小为了 1px
+的二分之一，间接地实现了 0.5px 的效果。
 
 代码如下：
 
@@ -1191,26 +1244,33 @@ border: 1px solid #333;
 #container[data-device="2"] {
     position: relative;
 }
-#container[data-device="2"]::after{
-      position:absolute;
-      top: 0;
-      left: 0;
-      width: 200%;
-      height: 200%;
-      content:"";
-      transform: scale(0.5);
-      transform-origin: left top;
-      box-sizing: border-box;
-      border: 1px solid #333;
-    }
+
+#container[data-device="2"]::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    content: "";
+    transform: scale(0.5);
+    transform-origin: left top;
+    box-sizing: border-box;
+    border: 1px solid #333;
+}
+
 }
 
 
-// 通过伪元素实现 0.5px border
+/
+/
+通过伪元素实现
+
+0.5
+px border
 .border::after {
     content: "";
-    box-sizing: border-box; // 为了与原元素等大
-    position: absolute;
+    box-sizing: border-box;
+/ / 为了与原元素等大 position: absolute;
     left: 0;
     top: 0;
     width: 200%;
@@ -1220,7 +1280,12 @@ border: 1px solid #333;
     transform-origin: 0 0;
 }
 
-// 通过伪元素实现 0.5px 细线
+/
+/
+通过伪元素实现
+
+0.5
+px 细线
 .line::after {
     content: '';
     position: absolute;
@@ -1233,20 +1298,21 @@ border: 1px solid #333;
     transform-origin: 0 0;
 }
 
-// dpr适配可以这样写
-@media (-webkit-min-device-pixel-ratio: 2)  {
+/
+/
+dpr适配可以这样写
+
+@media (-webkit-min-device-pixel-ratio: 2) {
     .line::after {
-    	...
-     	height: 1px;
+    . . . height: 1 px;
         transform: scale(0.5);
         transform-origin: 0 0;
     }
 }
 
-@media (-webkit-min-device-pixel-ratio: 3)  {
+@media (-webkit-min-device-pixel-ratio: 3) {
     .line::after {
-        ...
-     	height: 1px;
+    . . . height: 1 px;
         transform: scale(0.333);
         transform-origin: 0 0;
     }
@@ -1265,7 +1331,8 @@ border: 1px solid #333;
 />
 ```
 
-这里针对像素比为 2 的页面，把整个页面缩放为了原来的 1/2 大小。这样，本来占用 2 个物理像素的 1px 样式，现在占用的就是标准的一个物理像素。根据像素比的不同，这个缩放比例可以被计算为不同的值，用 js 代码实现如下：
+这里针对像素比为 2 的页面，把整个页面缩放为了原来的 1/2 大小。这样，本来占用 2 个物理像素的 1px
+样式，现在占用的就是标准的一个物理像素。根据像素比的不同，这个缩放比例可以被计算为不同的值，用 js 代码实现如下：
 
 ```javascript
 const scale = 1 / window.devicePixelRatio;
@@ -1276,4 +1343,5 @@ metaEl.setAttribute(
 );
 ```
 
-这样解决了，但这样做的副作用也很大，整个页面被缩放了。这时 1px 已经被处理成物理像素大小，这样的大小在手机上显示边框很合适。但是，一些原本不需要被缩小的内容，比如文字、图片等，也被无差别缩小掉了。
+这样解决了，但这样做的副作用也很大，整个页面被缩放了。这时 1px
+已经被处理成物理像素大小，这样的大小在手机上显示边框很合适。但是，一些原本不需要被缩小的内容，比如文字、图片等，也被无差别缩小掉了。

@@ -28,6 +28,7 @@ function currying(fn) {
     }
   };
 }
+
 let add = currying(function () {
   let sum = 0;
   for (let i = 0; i < arguments.length; i++) {
@@ -136,10 +137,13 @@ Function.prototype.softBind = function (obj, ...rest) {
 
 ## Object.freeze & Object.seal
 
-这两种方法之间的区别在于，当我们对一个对象使用 Object.freeze 方法时，该对象的属性是不可变的，这意味着我们不能更改或编辑这些属性的值。而在 Obj.seal 方法中，我们可以改变现有的属性。
+这两种方法之间的区别在于，当我们对一个对象使用 Object.freeze 方法时，该对象的属性是不可变的，这意味着我们不能更改或编辑这些属性的值。而在
+Obj.seal 方法中，我们可以改变现有的属性。
 
 1）Object.freeze()
-Object.freeze() 方法可以冻结一个对象。一个被冻结的对象再也不能被修改；冻结了一个对象则不能向这个对象添加新的属性，不能删除已有属性，不能修改该对象已有属性的可枚举性、可配置性、可写性，以及不能修改已有属性的值。此外，冻结一个对象后该对象的原型也不能被修改。freeze() 返回和传入的参数相同的对象。
+Object.freeze()
+方法可以冻结一个对象。一个被冻结的对象再也不能被修改；冻结了一个对象则不能向这个对象添加新的属性，不能删除已有属性，不能修改该对象已有属性的可枚举性、可配置性、可写性，以及不能修改已有属性的值。此外，冻结一个对象后该对象的原型也不能被修改。freeze()
+返回和传入的参数相同的对象。
 
 2）Object.seal()
 Object.seal()方法封闭一个对象，阻止添加新属性并将所有现有属性标记为不可配置。当前属性的值只要可写就可以改变。
@@ -168,7 +172,8 @@ Object.seal()方法封闭一个对象，阻止添加新属性并将所有现有�
 几个关键点：
 1）选择页面中所有的元素
 
-`$$`函数是现代浏览器提供的一个命令行 API，它相当于`document.querySelectorAll`，可以将当前页面中的 CSS 选择器作为参数传给该方法，然后它会返回匹配的所有元素。
+`$$`函数是现代浏览器提供的一个命令行 API，它相当于`document.querySelectorAll`，可以将当前页面中的 CSS
+选择器作为参数传给该方法，然后它会返回匹配的所有元素。
 
 2）遍历元素
 
@@ -178,16 +183,19 @@ Object.seal()方法封闭一个对象，阻止添加新属性并将所有现有�
 3）为元素添加颜色
 
 `a.style.outline="1px solid #" + color`
-代码中使用 outline 的 CSS 属性给元素添加一个边框。由于渲染的 outline 是不在 CSS 盒模型中的，所以为元素添加 outline 并不会影响元素的大小和页面的布局。
+代码中使用 outline 的 CSS 属性给元素添加一个边框。由于渲染的 outline 是不在 CSS 盒模型中的，所以为元素添加 outline
+并不会影响元素的大小和页面的布局。
 
 4）生成随机颜色
 
 ` ~~(Math.random()(1<<24))).toString(16)`
 ①Math.random()(1<<24) 可以得到 0~2^24 - 1 之间的随机数，使用了位操作
-② 因为得到的是一个浮点数，但我们只需要整数部分，使用取反操作符 ~ 连续两次取反获得整数部分，使用两个波浪号等价于使用 parseInt，
+② 因为得到的是一个浮点数，但我们只需要整数部分，使用取反操作符 ~ 连续两次取反获得整数部分，使用两个波浪号等价于使用
+parseInt，
 const a =12.34;
 ~~a == parseInt(a, 10); // true
-③ 然后再用 toString(16) 的方式，转换为一个十六进制的字符串。toString()方法将数值转换成字符串时，接收一个参数用以指明数值的进制。如果省略了该参数，则默认采用十进制，但你可以指定为其他的进制，
+③ 然后再用 toString(16) 的方式，转换为一个十六进制的字符串。toString()
+方法将数值转换成字符串时，接收一个参数用以指明数值的进制。如果省略了该参数，则默认采用十进制，但你可以指定为其他的进制，
 
 ## Function
 
@@ -197,7 +205,8 @@ var b = new Function().length;
 console.log(a === b);
 ```
 
-Function 构造器本身也是个 Function。他的 length 属性值为 1 。该属性 Writable: false, Enumerable: false, Configurable: true.
+Function 构造器本身也是个 Function。他的 length 属性值为 1 。该属性 Writable: false, Enumerable: false, Configurable:
+true.
 
 Function 原型对象的 length 属性值为 0 。
 
@@ -328,6 +337,7 @@ function getData() {
     }, 1000);
   });
 }
+
 // 异步的map
 async function selfMap(arr, fn) {
   let result = [];
@@ -337,6 +347,7 @@ async function selfMap(arr, fn) {
   }
   return result;
 }
+
 // 调用
 (async () => {
   const res = await selfMap([1, 2, 3, 4, 5], async (item, i) => {
@@ -385,7 +396,8 @@ function getData() {
 
 **`ArrayBuffer`** 对象用来表示通用的、固定长度的原始二进制数据缓冲区。它是一个字节数组。
 
-不能直接操作 `ArrayBuffer` 的内容，而是要通过[类型数组对象,TypedArray]或 [`DataView`]对象来操作，它们会将缓冲区中的数据表示为特定的格式，并通过这些格式来读写缓冲区的内容。
+不能直接操作 `ArrayBuffer` 的内容，而是要通过[类型数组对象,TypedArray]或 [`DataView`]
+对象来操作，它们会将缓冲区中的数据表示为特定的格式，并通过这些格式来读写缓冲区的内容。
 
 ```javascript
 new ArrayBuffer(length);
@@ -401,16 +413,20 @@ ArrayBuffer.prototype.byteLength; // 这个返回的才是构造函数中的长�
 
 ### TypedArray
 
-一个**类型化数组**（**TypedArray）**对象描述了一个底层的[二进制数据缓冲区,ArrayBuffer]（binary data buffer）的一个类数组视图（view）。事实上，没有名为 `TypedArray` 的全局属性，也没有一个名为 `TypedArray` 的构造函数。相反，有许多不同的全局属性，它们的值是特定元素类型的类型化数组构造函数。
+一个**类型化数组**（**TypedArray）**对象描述了一个底层的[二进制数据缓冲区,ArrayBuffer]（binary data
+buffer）的一个类数组视图（view）。事实上，没有名为 `TypedArray` 的全局属性，也没有一个名为 `TypedArray`
+的构造函数。相反，有许多不同的全局属性，它们的值是特定元素类型的类型化数组构造函数。
 
-```javascript
+```
 // 下面代码是语法格式，不能直接运行，
 // TypedArray 关键字需要替换为底部列出的构造函数。
 new TypedArray(); // ES2017中新增
 new TypedArray(length);
 new TypedArray(typedArray);
 new TypedArray(object);
-new TypedArray(buffer [, byteOffset [, length]]);
+new TypedArray(buffer [, byteOffset [, length
+]])
+;
 
 // TypedArray 指的是以下的其中之一：
 
@@ -425,25 +441,79 @@ Float32Array();
 Float64Array();
 
 length
-当传入 length 参数时，一个内部的数组缓冲区会被创建在内存中，该缓存区的大小（类型化数组中 byteLength 属性的值）是传入的 length 乘以数组中每个元素的字节数（BYTES_PER_ELEMENT），每个元素的值都为0。(译者注：每个元素的字节数是由具体的构造函数决定的，比如 Int16Array() 的每个元素的字节数为 2，Int32Array() 的每个元素的字节数为 4)
+当传入
+length
+参数时，一个内部的数组缓冲区会被创建在内存中，该缓存区的大小（类型化数组中
+byteLength
+属性的值）是传入的
+length
+乘以数组中每个元素的字节数（BYTES_PER_ELEMENT），每个元素的值都为0。(译者注：每个元素的字节数是由具体的构造函数决定的，比如
+Int16Array()
+的每个元素的字节数为
+2，Int32Array()
+的每个元素的字节数为
+4
+)
 
 typedArray
-当传入一个任意类型化数组对象作为 typedArray 参数时（比如 Int32Array），typedArray 会被复制到一个新的类型数组中。typedArray 中的每个值在被复制到新的数组之前，会被转化为相应类型的构造函数。新的生成的类型化数组对象将会有跟传入的数组相同的长度（译者注：比如原来的类型化数组的 length==2，那么新生成的数组的 length 也是 2，只是数组中的每一项进行了转化）。
+当传入一个任意类型化数组对象作为
+typedArray
+参数时（比如
+Int32Array），typedArray
+会被复制到一个新的类型数组中。typedArray
+中的每个值在被复制到新的数组之前，会被转化为相应类型的构造函数。新的生成的类型化数组对象将会有跟传入的数组相同的长度（译者注：比如原来的类型化数组的
+length == 2，那么新生成的数组的
+length
+也是
+2，只是数组中的每一项进行了转化）。
 
 object
-当传入一个 object 作为参数时，就像通过 TypedArray.from() 方法创建一个新的类型化数组一样。
+当传入一个
+object
+作为参数时，就像通过
+TypedArray.from()
+方法创建一个新的类型化数组一样。
 
 buffer, byteOffset, length
-当传入一个 buffer 参数，或者再另外加上可选参数 byteOffset 和 length 时，一个新的类型化数组视图将会被创建，并可用于呈现传入的 ArrayBuffer 实例。byteOffset 和length 参数指定了类型化数组视图将要暴露的内存范围。如果两者都未传入，那么整个buffer 都会被呈现；如果仅仅忽略 length，那么 buffer 中偏移了 byteOffset 后剩下的 buffer 将会被呈现。
+当传入一个
+buffer
+参数，或者再另外加上可选参数
+byteOffset
+和
+length
+时，一个新的类型化数组视图将会被创建，并可用于呈现传入的
+ArrayBuffer
+实例。byteOffset
+和length
+参数指定了类型化数组视图将要暴露的内存范围。如果两者都未传入，那么整个buffer
+都会被呈现；如果仅仅忽略
+length，那么
+buffer
+中偏移了
+byteOffset
+后剩下的
+buffer
+将会被呈现。
 ```
 
-ECMAScript 2015 定义了一个 _`TypeArray`_ 构造器作为所有的类型化数组构造器（`Int8Array`, `Int16Array` 等）的原型（`[[Prototype]]`）。该构造器并不会直接暴露出来：即没有全局的 `%TypedArray%` 和 `TypeArray` 属性，只能通过使用类似于 `Object.getPrototypeOf(Int8Array.prototype)` 的方式直接访问。所有的类型化数组构造器都会继承 ` %``TypeArray% ` 构造器函数的公共属性和方法。此外，**所有的类型化数组的原型（如 `Int8Array.prototype`)都以 `%TypeArray%.prototype` 作为原型。**
+ECMAScript 2015 定义了一个 _`TypeArray`_ 构造器作为所有的类型化数组构造器（`Int8Array`, `Int16Array`
+等）的原型（`[[Prototype]]`）。该构造器并不会直接暴露出来：即没有全局的 `%TypedArray%` 和 `TypeArray`
+属性，只能通过使用类似于 `Object.getPrototypeOf(Int8Array.prototype)`
+的方式直接访问。所有的类型化数组构造器都会继承 ` %``TypeArray% ` 构造器函数的公共属性和方法。此外，**
+所有的类型化数组的原型（如 `Int8Array.prototype`)都以 `%TypeArray%.prototype` 作为原型。**
 
-`%TypedArray%` 构造器自身不是特别有用，直接调用或使用 `new` 表达式实例化都会抛出一个[`TypeError`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/TypeError) 异常。因此 `%TypeArray%` 仅仅在对所有的类型化数组构造器（`Int8Array` 等）的方法和属性进行 polyfill 的时候比较有用.
+`%TypedArray%` 构造器自身不是特别有用，直接调用或使用 `new`
+表达式实例化都会抛出一个[`TypeError`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/TypeError)
+异常。因此 `%TypeArray%` 仅仅在对所有的类型化数组构造器（`Int8Array` 等）的方法和属性进行 polyfill 的时候比较有用.
 
-当创建一个 `TypedArray` 实例（如 `Int8Array`）时，一个数组缓冲区将被创建在内存中，如果一个 `ArrayBuffer` 对象被当作参数传给构造函数，那么将使用传入的 `ArrayBuffer` 代替（即缓冲区被创建到 `ArrayBuffer` 中）。缓冲区的地址被存储在实例的内部属性中，并且所有 `%TypedArray%.prototype`上的方法，例如 `set value` 和 `get value` 等，都会在这个数组缓冲区上进行操作。
+当创建一个 `TypedArray` 实例（如 `Int8Array`）时，一个数组缓冲区将被创建在内存中，如果一个 `ArrayBuffer`
+对象被当作参数传给构造函数，那么将使用传入的 `ArrayBuffer` 代替（即缓冲区被创建到 `ArrayBuffer`
+中）。缓冲区的地址被存储在实例的内部属性中，并且所有 `%TypedArray%.prototype`上的方法，例如 `set value` 和 `get value`
+等，都会在这个数组缓冲区上进行操作。
 
-你可以使用标准数组索引语法获取类型化数组中的元素（也就是和访问普通数组元素一样，如 `foo[1]`），然而，在类型化数组上获取或者设置属性的值时，并不会在这个属性的原型链中进行搜索，即使在索引超出了边界的时候。在原型中添加的属性将会在 [`ArrayBuffer`]中查询而不是在对象的属性中。但是你依然可以像其他对象一样使用命名的属性来访问（`foo.bar` 的形式）；具体见下面的例子：
+你可以使用标准数组索引语法获取类型化数组中的元素（也就是和访问普通数组元素一样，如 `foo[1]`
+），然而，在类型化数组上获取或者设置属性的值时，并不会在这个属性的原型链中进行搜索，即使在索引超出了边界的时候。在原型中添加的属性将会在 [`ArrayBuffer`]
+中查询而不是在对象的属性中。但是你依然可以像其他对象一样使用命名的属性来访问（`foo.bar` 的形式）；具体见下面的例子：
 
 ```
 // 使用标准数组语法来获取和设置属性值
@@ -486,7 +556,8 @@ Int8Array.prototype.foo = "bar";
 
 - TypedArray.BYTES_PER_ELEMENT
 
-  返回一个数值，代表不同类型的类型化数组对象中，单个元素的字节大小。例如 `new Int8Array().BYTES_PER_ELEMENT === 1`, `new Int16Array().BYTES_PER_ELEMENT === 2` （ 8 位字节为 1，16 位为 2 字节，类推）。
+  返回一个数值，代表不同类型的类型化数组对象中，单个元素的字节大小。例如 `new Int8Array().BYTES_PER_ELEMENT === 1`
+  , `new Int16Array().BYTES_PER_ELEMENT === 2` （ 8 位字节为 1，16 位为 2 字节，类推）。
 
 - TypedArray.length
 
@@ -513,21 +584,22 @@ Int8Array.of(1, 2, 3, 4, 5);
 
 **`DataView`** 视图是一个可以从 二进制[`ArrayBuffer`]对象中读写多种数值类型的底层接口，使用它时，不用考虑不同平台的字节序问题。
 
-```javascript
-new DataView(buffer [, byteOffset [, byteLength]])
+```
+new DataView(buffer [, byteOffset [, byteLength
+]])
 
 /**
 
-buffer 一个 已经存在的ArrayBuffer 或 SharedArrayBuffer Experimental 对象，DataView 对象的数据源。
-byteOffset 可选 此 DataView 对象的第一个字节在 buffer 中的字节偏移。如果未指定，则默认从第一个字节开始。
-byteLength 可选 此 DataView 对象的字节长度。如果未指定，这个视图的长度将匹配buffer的长度。
+ buffer 一个 已经存在的ArrayBuffer 或 SharedArrayBuffer Experimental 对象，DataView 对象的数据源。
+ byteOffset 可选 此 DataView 对象的第一个字节在 buffer 中的字节偏移。如果未指定，则默认从第一个字节开始。
+ byteLength 可选 此 DataView 对象的字节长度。如果未指定，这个视图的长度将匹配buffer的长度。
 
-返回值：一个表示指定数据缓存区的新DataView 对象。（这句话也许不是非常有助于说明清楚）
-你可以把返回的对象想象成一个二进制字节缓存区 array buffer 的“解释器”——它知道如何在读取或写入时正确地转换字节码。这意味着它能在二进制层面处理整数与浮点转化、字节顺序等其他有关的细节问题。
+ 返回值：一个表示指定数据缓存区的新DataView 对象。（这句话也许不是非常有助于说明清楚）
+ 你可以把返回的对象想象成一个二进制字节缓存区 array buffer 的“解释器”——它知道如何在读取或写入时正确地转换字节码。这意味着它能在二进制层面处理整数与浮点转化、字节顺序等其他有关的细节问题。
 
-如果 byteOffset 或者 byteLength 参数的值导致视图超出了 buffer 的结束位置就会抛出此异常。
+ 如果 byteOffset 或者 byteLength 参数的值导致视图超出了 buffer 的结束位置就会抛出此异常。
 
-*/
+ */
 ```
 
 因为 JavaScript 目前不包含对 64 位整数值支持的标准，所以 `DataView` 不提供原生的 64 位操作。
@@ -554,15 +626,19 @@ byteLength 可选 此 DataView 对象的字节长度。如果未指定，这个�
 
 ## Blob
 
-- `Blob` 对象表示一个不可变、原始数据的类文件对象。它的数据可以按文本或二进制的格式进行读取，也可以转换成 [`ReadableStream`] 来用于数据操作。
+- `Blob`
+  对象表示一个不可变、原始数据的类文件对象。它的数据可以按文本或二进制的格式进行读取，也可以转换成 [`ReadableStream`]
+  来用于数据操作。
 
 - Blob 表示的不一定是 JavaScript 原生格式的数据。File 接口基于 Blob，继承了 blob 的功能并将其扩展使其支持用户系统上的文件。
 
-- 要从其他非 blob 对象和数据构造一个 Blob，请使用 Blob() 构造函数。要创建一个 blob 数据的子集 blob，请使用 slice() 方法。要获取用户文件系统上的文件对应的 Blob 对象，请参阅 File 文档。
+- 要从其他非 blob 对象和数据构造一个 Blob，请使用 Blob() 构造函数。要创建一个 blob 数据的子集 blob，请使用 slice()
+  方法。要获取用户文件系统上的文件对应的 Blob 对象，请参阅 File 文档。
 
 - 接受 Blob 对象的 API 也被列在 File 文档中。
 
-`slice()` 方法原本接受 `length` 作为第二个参数，以表示复制到新 `Blob` 对象的字节数。如果设置的参数使 `start + length` 超出了源 `Blob` 对象的大小，则返回从开始到结尾的所有数据。
+`slice()` 方法原本接受 `length` 作为第二个参数，以表示复制到新 `Blob` 对象的字节数。如果设置的参数使 `start + length`
+超出了源 `Blob` 对象的大小，则返回从开始到结尾的所有数据。
 
 #### 示例：使用 Blob 创建一个指向类型化数组的 URL
 
@@ -602,9 +678,11 @@ var text = await (new Response(blob)).text();
   | `LOADING` | `1` | 数据正在被加载.       |
   | `DONE`    | `2` | 已完成全部的读取请求. |
 
-- FileReader.readAsArrayBuffer(blob) 开始读取指定的 Blob 中的内容, 一旦完成, result 属性中保存的将是被读取文件的 ArrayBuffer 数据对象.
+- FileReader.readAsArrayBuffer(blob) 开始读取指定的 Blob 中的内容, 一旦完成, result 属性中保存的将是被读取文件的
+  ArrayBuffer 数据对象.
 
-- FileReader.readAsDataURL(blob) 开始读取指定的 Blob 中的内容。一旦完成，result 属性中将包含一个 data: URL 格式的 Base64 字符串以表示所读取文件的内容。
+- FileReader.readAsDataURL(blob) 开始读取指定的 Blob 中的内容。一旦完成，result 属性中将包含一个 data: URL 格式的 Base64
+  字符串以表示所读取文件的内容。
 
 - FileReader.readAsText(blob[, encoding]) 开始读取指定的 Blob 中的内容。一旦完成，result 属性中将包含一个字符串以表示所读取的文件内容。
 
@@ -616,6 +694,7 @@ Symbol
 
 ```js
 const n = Symbol();
+
 class A {
   constructor(num) {
     this[n] = num;
@@ -671,4 +750,4 @@ test(2, 3);
 5. 会忽略 symbol
 6. 会忽略 undefined
 
-![图片](640.jpeg)
+![图片](/docs/public/640-67gd67832dhq89323.jpeg)
