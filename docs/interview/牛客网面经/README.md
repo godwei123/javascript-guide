@@ -8,7 +8,8 @@ v-if 是可以和 `<template>` 标签配合使用的。但 v-show 不行。
 
 v-if 是有缓存的。v-show 没有缓存。
 
-v-if 是惰性的，如果初始条件为假，则什么也不做；只有在条件第一次变为真时才开始局部编译; v-show 是在任何条件下，无论首次条件是否为真，都被编译，然后被缓存，而且 DOM 元素保留；
+v-if 是惰性的，如果初始条件为假，则什么也不做；只有在条件第一次变为真时才开始局部编译; v-show
+是在任何条件下，无论首次条件是否为真，都被编译，然后被缓存，而且 DOM 元素保留；
 
 v-if 有更高的切换消耗；v-show 有更高的初始渲染消耗；
 
@@ -36,11 +37,14 @@ vue2 的响应式基本原理：
 
 5、之后当依赖项的 setter 被调用时，会通知 watcher 重新计算，从而致使它关联的组件得以更新。
 
-1、在生命周期的 initState 方法中将 data，prop，method，computed，watch 中的数据劫持， 通过 observe 方法与 Object.defineProperty 方法将相关对象转为换 Observer 对象。
+1、在生命周期的 initState 方法中将 data，prop，method，computed，watch 中的数据劫持， 通过 observe 方法与
+Object.defineProperty 方法将相关对象转为换 Observer 对象。
 
-2、然后在 initRender 方法中解析模板，通过 Watcher 对象，Dep 对象与观察者模式将模板中的 指令与对象的数据建立依赖关系，使用全局对象 Dep.target 实现依赖收集。
+2、然后在 initRender 方法中解析模板，通过 Watcher 对象，Dep 对象与观察者模式将模板中的 指令与对象的数据建立依赖关系，使用全局对象
+Dep.target 实现依赖收集。
 
-3、当数据变化时，setter 被调用，触发 Object.defineProperty 方法中的 dep.notify 方法， 遍历该数据依赖列表，执行器 update 方法通知 Watcher 进行视图更新。
+3、当数据变化时，setter 被调用，触发 Object.defineProperty 方法中的 dep.notify 方法， 遍历该数据依赖列表，执行器 update 方法通知
+Watcher 进行视图更新。
 
 vue 是无法检测到对象属性的添加和删除，但是可以使用全局 Vue.set 方法（或 vm.\$set 实例方法）。
 
@@ -48,7 +52,8 @@ vue 无法检测利用索引设置数组，但是可以使用全局 Vue.set 方�
 
 无法检测直接修改数组长度，但是可以使用 splice
 
-Proxy 需要的是整体监听，不需要关心里面有什么属性，而且 Proxy 的配置项有 13 种，可以做更细致的事情，这是之前的 defineProperty 无法达到的。
+Proxy 需要的是整体监听，不需要关心里面有什么属性，而且 Proxy 的配置项有 13 种，可以做更细致的事情，这是之前的 defineProperty
+无法达到的。
 
 ### Object.defineProperty 具体怎么绑？会新建对象的属性？
 
@@ -114,15 +119,15 @@ Element:nth-of-type 使用时要注意，**它选中的是元素**。当你把 E
 
 ### Promise 原理
 
-一个`promise`的当前状态只能是`pending`、`fulfilled`和`rejected`三种之一。状态改变只能是`pending`到`fulfilled`或者`pending`到`rejected`,而且状态改变不可逆的。
+一个`promise`的当前状态只能是`pending`、`fulfilled`和`rejected`三种之一。状态改变只能是`pending`到`fulfilled`或者`pending`
+到`rejected`,而且状态改变不可逆的。
 
-`promise`的`then`方法接收两个可选参数，表示该`promise`状态改变时的回调(`promise.then(onFulfilled, onRejected`))。`then`方法返回一个`promise`。`then`方法能够被同一个`promise`调用屡次。
+`promise`的`then`方法接收两个可选参数，表示该`promise`状态改变时的回调(`promise.then(onFulfilled, onRejected`))。`then`
+方法返回一个`promise`。`then`方法能够被同一个`promise`调用屡次。
 
-在 Promise 的内部，有一个状态管理器的存在，有三种状态：pending、fulfilled、rejected。　　　　
-(1) promise 对象初始化状态为 pending。　　　　
-(2) 当调用 resolve(成功)，会由 pending => fulfilled。　　　　
-(3) 当调用 reject(失败)，会由 pending => rejected。　　
-需要记住的是注意 promsie 状态 只能由 pending => fulfilled/rejected, 一旦修改就不能再变。
+在 Promise 的内部，有一个状态管理器的存在，有三种状态：pending、fulfilled、rejected。(1) promise 对象初始化状态为 pending。(2)
+当调用 resolve(成功)，会由 pending => fulfilled。(3) 当调用 reject(失败)，会由 pending => rejected。 需要记住的是注意
+promsie 状态 只能由 pending => fulfilled/rejected, 一旦修改就不能再变。
 
 解决异步回调问题
 
@@ -136,9 +141,12 @@ catch 不仅能捕获 then 中抛出的异常，还能捕获前面 promise 抛�
 
 Generator 函数可以说是 Iterator 接口的具体实现方式。Generator 最大的特点就是可以控制函数的执行。
 
-`iterator` 也是一种对象，不过它有着专为迭代而设计的接口。它有`next` 方法，该方法返回一个包含 `value` 和 `done` 两个属性的对象 (下称 `result` )。前者是迭代的值，后者是表明迭代是否完成的标志 -- 布尔值: `true` 表示迭代完成，`false` 表示没有。`iterator` 内部有指向迭代位置的指针，每次调用`next`, 自动移动指针并返回相应的 `result`。
+`iterator` 也是一种对象，不过它有着专为迭代而设计的接口。它有`next` 方法，该方法返回一个包含 `value` 和 `done`
+两个属性的对象 (下称 `result` )。前者是迭代的值，后者是表明迭代是否完成的标志 -- 布尔值: `true` 表示迭代完成，`false`
+表示没有。`iterator` 内部有指向迭代位置的指针，每次调用`next`, 自动移动指针并返回相应的 `result`。
 
-手动写个 `iterator` 太麻烦了，所以`ES6` 推出 `generator` ，方便创建 `iterator`。也就是说，`generator` 就是一个返回值为 `iterator` 的函数。
+手动写个 `iterator` 太麻烦了，所以`ES6` 推出 `generator` ，方便创建 `iterator`。也就是说，`generator`
+就是一个返回值为 `iterator` 的函数。
 
 `*` 标明这是个 `generators`， `yield` 用来在调用 `next`时返回 `value`。
 
@@ -163,12 +171,15 @@ vuex 是一个专为 vue.js 应用程序开发的状态管理模式
 2.vuex 的核心概念；
 vuex 的属性；vuex 五大核心属性：state，getter，mutation，action，module
 
-state：存储数据，存储状态；在根实例中注册了 store 后，用 this.$store.state 来访问；对应 vue 里面的 data；存放数据方式为响应式，vue 组件从 store 中读取数据，如数据发生变化，组件也会对应的更新。
+state：存储数据，存储状态；在根实例中注册了 store 后，用 this.$store.state 来访问；对应 vue 里面的 data；存放数据方式为响应式，vue
+组件从 store 中读取数据，如数据发生变化，组件也会对应的更新。
 getter：可以认为是 store 的计算属性，它的返回值会根据它的依赖被缓存起来，且只有当它的依赖值发生了改变才会被重新计算。
 mutation：更改 Vuex 的 store 中的状态的唯一方法是提交 mutation。
 action：包含任意异步操作，通过提交 mutation 间接更变状态。
 module：将 store 分割成模块，每个模块都具有 state、mutation、action、getter、甚至是嵌套子模块。
-vuex 的数据传递流程；当组件进行数据修改的时候我们需要调用 dispatch 来触发 actions 里面的方法。actions 里面的每个方法中都会有一个 commit 方法，当方法执行的时候会通过 commit 来触发 mutations 里面的方法进行数据的修改。mutations 里面的每个函数都会有一个 state 参数，这样就可以在 mutations 里面进行 state 的数据修改，当数据修改完毕后，会传导给页面。页面的数据也会发生改变。
+vuex 的数据传递流程；当组件进行数据修改的时候我们需要调用 dispatch 来触发 actions 里面的方法。actions 里面的每个方法中都会有一个
+commit 方法，当方法执行的时候会通过 commit 来触发 mutations 里面的方法进行数据的修改。mutations 里面的每个函数都会有一个
+state 参数，这样就可以在 mutations 里面进行 state 的数据修改，当数据修改完毕后，会传导给页面。页面的数据也会发生改变。
 
 3.为什么要用 vuex？
 由于传参的方法对于多层嵌套的组件将会非常繁琐，并且对于兄弟组件间的状态传递无能为力。我们经常会采用父子组件直接引用或者通过事件来变更和同步状态的多份拷贝。以上的这些模式非常脆弱，通常会导致代码无法维护。所以我们需要把组件的共享状态抽取出来，以一个全局单例模式管理。在这种模式下，我们的组件树构成了一个巨大的“视图”，不管在树的哪个位置，任何组件都能获取状态或者触发行为！另外，通过定义和隔离状态管理中的各种概念并强制遵守一定的规则，我们的代码将会变得更结构化且易维护。
@@ -177,7 +188,8 @@ vuex 的数据传递流程；当组件进行数据修改的时候我们需要调
 
 Vue.use(Vuex); // vue 的插件机制,安装 vuex 插件
 
-store 注入 vue 的实例组件的方式，是通过 vue 的 mixin 机制，借助 vue 组件的生命周期 钩子 beforeCreate 完成的。即 每个 vue 组件实例化过程中，会在 beforeCreate 钩子前调用 vuexInit 方法。
+store 注入 vue 的实例组件的方式，是通过 vue 的 mixin 机制，借助 vue 组件的生命周期 钩子 beforeCreate 完成的。即 每个 vue
+组件实例化过程中，会在 beforeCreate 钩子前调用 vuexInit 方法。
 
 Vuex 的双向绑定通过调用 new Vue 实现，然后通过 Vue.mixin 注入到 Vue 组件的生命周期中，再通过劫持 state.get 将数据放入组件中
 
@@ -203,7 +215,7 @@ Vuex 的双向绑定通过调用 new Vue 实现，然后通过 Vue.mixin 注入�
 
 ### 观察者模式和发布订阅者模式有什么区别
 
-> ![](webp.jpg)
+> ![](../../public/3d4s5d6s7a8e8.jpg)
 >
 > 从图中可以看出，观察者模式中观察者和目标直接进行交互，而发布订阅模式中统一由调度中心进行处理，订阅者和发布者互不干扰。这样一方面实现了解耦，还有就是可以实现更细粒度的一些控制。比如发布者发布了很多消息，但是不想所有的订阅者都接收到，就可以在调度中心做一些处理，类似于权限控制之类的。还可以做一些节流操作。
 >
@@ -282,9 +294,11 @@ Vuex 的双向绑定通过调用 new Vue 实现，然后通过 Vue.mixin 注入�
 
 ### ES6 模块机制与 CommonJS 的区别
 
-1. commonjs 模块输出的是值的浅拷贝，ES6 模块输出的是值的引用 (也就是说，cmmonjs 模块输出后被改变，其他引用模块不会改变，而 ES6 模块会改变)
+1. commonjs 模块输出的是值的浅拷贝，ES6 模块输出的是值的引用 (也就是说，cmmonjs 模块输出后被改变，其他引用模块不会改变，而
+   ES6 模块会改变)
 
-2. commonjs 模块是运行时加载，而 ES6 模块是编译时输出接口，之所以 webpack 的 tree-shaking 只能作用于 ES6 模块，就是因为 ES6 模块在编译时就能确定依赖
+2. commonjs 模块是运行时加载，而 ES6 模块是编译时输出接口，之所以 webpack 的 tree-shaking 只能作用于 ES6 模块，就是因为 ES6
+   模块在编译时就能确定依赖
 3. CommonJS 模块的`require()`是同步加载模块，ES6 模块的`import`命令是异步加载，有一个独立的模块依赖的解析阶段。
 
 ### 怎么去做优化项目
@@ -509,7 +523,8 @@ get post head put delete options
 
 ### css 选择器知道吗，有哪些？
 
-组合选择器知道吗？（兄弟 ？....）---->（组合选择器指的就是同时使用多个选择器，比如一个标签父元素（div）的 class 是 a， 这个标签（p）本身 id 是 b，组合选择器就是 div.a p.b{}）
+组合选择器知道吗？（兄弟 ？....）---->（组合选择器指的就是同时使用多个选择器，比如一个标签父元素（div）的 class 是 a， 这个标签（p）本身
+id 是 b，组合选择器就是 div.a p.b{}）
 
 ### 选择器优先级
 
@@ -571,11 +586,11 @@ static、relative、absolute、sticky、fixed
 
 promise api 有哪些？
 
-1.  all
-2.  race
-3.  finadlly
-4.  catch
-5.  resolve/reject...
+1. all
+2. race
+3. finadlly
+4. catch
+5. resolve/reject...
 
 pending fulfilled rejected （三种状态）
 
@@ -635,23 +650,24 @@ catch 中捕捉一个异常
 
 ### Es6 增加了什么？
 
-1.  let
-2.  promise
-3.  箭头函数
-4.  async await
-5.  解构赋值
-6.  还有别的......
+1. let
+2. promise
+3. 箭头函数
+4. async await
+5. 解构赋值
+6. 还有别的......
 
 ### const 不能改变？详细说说（值操作，不能指向新的对象）
 
 ### promise 你了解到的？
 
-1.  js 对象，对回调函数的缺点进行处理，回调函数无法浏览器记录信息所以回调地狱，出现.then 链式调用，promise 有三个状态，pending,resolve,reject
+1. js 对象，对回调函数的缺点进行处理，回调函数无法浏览器记录信息所以回调地狱，出现.then 链式调用，promise
+   有三个状态，pending,resolve,reject
 
 ### async 当我们用 await 等待一个结果 后面的代码执行顺序？
 
-1.  await 后面的同步执行，下面的代码压入微任务队列
-2.  await 阻塞
+1. await 后面的同步执行，下面的代码压入微任务队列
+2. await 阻塞
 
 ### 文件的上传和下载（将默认请求阻止，进行了二次封装）
 
@@ -699,6 +715,7 @@ function curry(fn) {
     return fn(parmas);
   };
 }
+
 function add(arr) {
   return arr.reduce((acc, item) => {
     return acc + item;
@@ -728,7 +745,8 @@ console.log(curried(1)(2)(3)(4)(10, 20)()); //40
 > 任何定义了遍历器（Iterator）接口的对象，都可以用扩展运算符转为真正的数组。如：Map 和 Set 结构，Generator 函数
 >
 > Array.from:
-> Array.from 方法用于将两类对象转为真正的数组：类似数组的对象（array-like object）和可遍历（iterable）的对象（包括 ES6 新增的数据结构 Set 和 Map）。
+> Array.from 方法用于将两类对象转为真正的数组：类似数组的对象（array-like object）和可遍历（iterable）的对象（包括 ES6 新增的数据结构
+> Set 和 Map）。
 >
 > 能用扩展运算符转的 都能用 Array.from。
 >
@@ -804,7 +822,8 @@ console.log(curried(1)(2)(3)(4)(10, 20)()); //40
 >
 > **（2）listener**
 >
-> 当所监听的事件类型触发时，会接收到一个事件通知（实现了 Event 接口的对象）对象。listener 必须是一个实现了 EventListener 接口的对象，或者是一个函数。
+> 当所监听的事件类型触发时，会接收到一个事件通知（实现了 Event 接口的对象）对象。listener 必须是一个实现了 EventListener
+> 接口的对象，或者是一个函数。
 >
 > **（3）options 可选**
 >
@@ -813,16 +832,23 @@ console.log(curried(1)(2)(3)(4)(10, 20)()); //40
 > - capture: Boolean，**表示 listener 会在该类型的事件捕获阶段传播到该 EventTarget 时触发。**
 >
 > - once: Boolean，表示 listener 在添加之后最多只调用一次。如果是 true， listener 会在其被调用之后自动移除。
-> - passive: Boolean，设置为 true 时，表示 listener 永远不会调用 preventDefault()。如果 listener 仍然调用了这个函数，客户端将会忽略它并抛出一个控制台警告。
+> - passive: Boolean，设置为 true 时，表示 listener 永远不会调用 preventDefault()。如果 listener
+
+    仍然调用了这个函数，客户端将会忽略它并抛出一个控制台警告。
+
 > - signal：AbortSignal，该 AbortSignal 的 abort() 方法被调用时，监听器会被移除。
 >
 > **（4）useCapture** **可选**
 >
-> Boolean，在 DOM 树中，注册了 listener 的元素， 是否要先于它下面的 EventTarget，调用该 listener。 当 useCapture(设为 true) 时，沿着 DOM 树向上冒泡的事件，不会触发 listener。当一个元素嵌套了另一个元素，并且两个元素都对同一事件注册了一个处理函数时，所发生的事件冒泡和事件捕获是两种不同的事件传播方式。事件传播模式决定了元素以哪个顺序接收事件。如果没有指定， useCapture 默认为 false 。
+> Boolean，在 DOM 树中，注册了 listener 的元素， 是否要先于它下面的 EventTarget，调用该 listener。 当 useCapture(设为 true)
+> 时，沿着 DOM 树向上冒泡的事件，不会触发
+> listener。当一个元素嵌套了另一个元素，并且两个元素都对同一事件注册了一个处理函数时，所发生的事件冒泡和事件捕获是两种不同的事件传播方式。事件传播模式决定了元素以哪个顺序接收事件。如果没有指定，
+> useCapture 默认为 false 。
 >
 > **（5）wantsUntrusted**
 >
-> 如果为 true , 则事件处理程序会接收网页自定义的事件。此参数只适用于 Gecko（chrome 的默认值为 true，其他常规网页的默认值为 false），主要用于附加组件的代码和浏览器本身。
+> 如果为 true , 则事件处理程序会接收网页自定义的事件。此参数只适用于 Gecko（chrome 的默认值为 true，其他常规网页的默认值为
+> false），主要用于附加组件的代码和浏览器本身。
 
 ### async await 在进行异常捕获的时候，怎么实现？在 promise 外层能用 try-catch 捕获吗？
 
@@ -840,7 +866,8 @@ try {
 }
 ```
 
-JS 的事件循环，哪些是宏任务？视图渲染的机制？结合宏任务、微任务，视图渲染是在什么时机去做？页面渲染是宏任务能具体讲讲？（参考这篇文章，之前我也不清楚 https://zhuanlan.zhihu.com/p/441288090）
+JS
+的事件循环，哪些是宏任务？视图渲染的机制？结合宏任务、微任务，视图渲染是在什么时机去做？页面渲染是宏任务能具体讲讲？（参考这篇文章，之前我也不清楚 https://zhuanlan.zhihu.com/p/441288090）
 
 ### Vue 的 mixin 和 mixins？
 
@@ -964,6 +991,7 @@ getId(id) {
 function wait() {
   return new Promise((resolve) => setTimeout(resolve, 10 * 1000));
 }
+
 async function main() {
   console.time();
   const a = wait();
@@ -974,6 +1002,7 @@ async function main() {
   await c;
   console.timeEnd();
 }
+
 main();
 ```
 
@@ -1015,13 +1044,20 @@ main();
 
 ### css 样式隔离了解吗？有哪几种方法？
 
-- 命名空间，这很好理解，其实就是给每个不同模块使用的 css 规划好命名，这样所有的 css 就都不会出现冲突，这种方法虽然很好理解和简单，但是编写起来很繁琐，维护成本会很高，当然，现在也有打包工具很容易就可以实现就是了。
+- 命名空间，这很好理解，其实就是给每个不同模块使用的 css 规划好命名，这样所有的 css
+  就都不会出现冲突，这种方法虽然很好理解和简单，但是编写起来很繁琐，维护成本会很高，当然，现在也有打包工具很容易就可以实现就是了。
 
-- css Modules，这其实跟命名空间有点类似，vue 应该就是使用类似的方法，给选择器加上特殊的字符串，达到 css 隔离的效果。理解起来很简单，给每一个 dom 都给了一个独立的 Hash，对于它们上面所挂在的 css 样式通过该 hash 绑定即可，没什么好说的，现在打包工具这么完善，借助打包工具很轻松的就能实现这种代码。
+- css Modules，这其实跟命名空间有点类似，vue 应该就是使用类似的方法，给选择器加上特殊的字符串，达到 css 隔离的效果。理解起来很简单，给每一个
+  dom 都给了一个独立的 Hash，对于它们上面所挂在的 css 样式通过该 hash 绑定即可，没什么好说的，现在打包工具这么完善，借助打包工具很轻松的就能实现这种代码。
 
 - css-in-js，使用 JS 语言写 CSS。
 
-- Shadow DOM，Web components 的一个重要属性是封装——可以将标记结构、样式和行为隐藏起来，并与页面上的其他代码相隔离，保证不同的部分不会混在一起，可使代码更加干净、整洁。其中，Shadow DOM 接口是关键所在，它可以将一个隐藏的、独立的 DOM 附加到一个元素上。Shadow DOM 是指浏览器的一种能力，它允许在文档（document）渲染时插入一棵 DOM 元素子树，但是这棵子树不在主 DOM 树中。有了 Shadow DOM，元素就可以和一个新类型的节点关联。这个新类型的节点称为 shadow root。与一个 shadow root 关联的元素称作一个 shadow host。shadow host 的内容不会渲染；shadow root 的内容会渲染。Shadow DOM 允许将隐藏的 DOM 树附加到常规的 DOM 树中——它以 shadow root 节点为起始根节点，在这个根节点的下方，可以是任意元素，和普通的 DOM 元素一样。
+- Shadow DOM，Web components 的一个重要属性是封装——可以将标记结构、样式和行为隐藏起来，并与页面上的其他代码相隔离，保证不同的部分不会混在一起，可使代码更加干净、整洁。其中，Shadow
+  DOM 接口是关键所在，它可以将一个隐藏的、独立的 DOM 附加到一个元素上。Shadow DOM 是指浏览器的一种能力，它允许在文档（document）渲染时插入一棵
+  DOM 元素子树，但是这棵子树不在主 DOM 树中。有了 Shadow DOM，元素就可以和一个新类型的节点关联。这个新类型的节点称为 shadow
+  root。与一个 shadow root 关联的元素称作一个 shadow host。shadow host 的内容不会渲染；shadow root 的内容会渲染。Shadow DOM
+  允许将隐藏的 DOM 树附加到常规的 DOM 树中——它以 shadow root 节点为起始根节点，在这个根节点的下方，可以是任意元素，和普通的
+  DOM 元素一样。
 
 ### 21、vue 中是怎么实现 SPA 的？原理？
 
@@ -1048,6 +1084,7 @@ main();
 
 > 两种类型的区别在于存储位置的不同：
 > 原始数据类型直接存储在栈（stack）中的简单数据段，占据空间小、大小固定，属于被频繁使用数据，所以放入栈中存储；
+>
 > 引用数据类型存储在堆（heap）中的对象，占据空间大、大小不固定。如果存储在栈中，将会影响程序运行的性能；引用数据类型在栈中存储了指针，该指针指向堆中该实体的起始地址。当解释器寻找引用值时，会首先检索其在栈中的地址，取得地址后从堆中获得实体。
 
 ### 4、内存溢出是栈溢出还是堆溢出？
@@ -1068,7 +1105,9 @@ main();
 
 引用计数
 
-这种方式用的不多。引用计数，顾名思义就是计算这个变量被引用的次数。当一个变量被声明且赋上引用类型，这个变量的引用次数就会相应的加 1，如果包含这个值的引用变量又附上了另外一个值，那么这个值的引用次数就相应的减 1，当引用次数变为 0 的时候，就无法访问这个值了。当垃圾收集器运行的时候，就会回收引用次数为 0 的值所占的内存，并释放这些内存。
+这种方式用的不多。引用计数，顾名思义就是计算这个变量被引用的次数。当一个变量被声明且赋上引用类型，这个变量的引用次数就会相应的加
+1，如果包含这个值的引用变量又附上了另外一个值，那么这个值的引用次数就相应的减 1，当引用次数变为 0
+的时候，就无法访问这个值了。当垃圾收集器运行的时候，就会回收引用次数为 0 的值所占的内存，并释放这些内存。
 
 ### 场景题：比如说我有 20 个请求，然后需要限制执行，并发请求只有 4 个
 
@@ -1112,11 +1151,13 @@ async function asyncPool(poolLimit, array) {
 div {
   height: 200px;
 }
+
 .left {
   width: 200px;
   position: absolute;
   background: goldenrod;
 }
+
 .right {
   position: absolute;
   width: 100%;
@@ -1160,7 +1201,8 @@ div {
 
 - 项目的模块规范必须使用 esmodule
 - package.json 中的 sideEffects 设置为 false，表示整个项目没有副作用，可以进行 tree-shaking 处理
-- 如果 css 文件通过@import 引入的其他的 css 文件，说明该样式文件存在副作用，需要在 sideEffects 配置一个数组，值为对应的 css 文件名称
+- 如果 css 文件通过@import 引入的其他的 css 文件，说明该样式文件存在副作用，需要在 sideEffects 配置一个数组，值为对应的 css
+  文件名称
 
 ### webpack 压缩时，主要压缩了什么？
 
@@ -1279,7 +1321,9 @@ Array.prototype.myMap = function() {      } const arr  = [1,2,3] arr.myMap(el =>
 
 Http1.0 非持久连接、不支持断点续传、缓存（If-Modified-Since、Expires）
 
-Http1.1 持久连接（多个 http 请求复用同一个 TCP 连接）、支持断点续传（206）、缓存（Etag、If-Unmodified-Since、If-Match、If-None-Match）、**新增 host 字段、新增请求方法（put、delete、head、options）**
+Http1.1 持久连接（多个 http 请求复用同一个 TCP
+连接）、支持断点续传（206）、缓存（Etag、If-Unmodified-Since、If-Match、If-None-Match）、**新增 host
+字段、新增请求方法（put、delete、head、options）**
 
 Http2.0 二进制协议、多路复用（解决队头阻塞）、头信息压缩、数据流、服务器推送（静态资源）
 
@@ -1295,7 +1339,8 @@ multipart/form-data
 
 text/xml
 
-**form-data，FormData 对象的字段类型可以是 Blob, File, 或者 string，如果它的字段类型不是 Blob 也不是 File，则会被转换成字符串类**
+**form-data，FormData 对象的字段类型可以是 Blob, File, 或者 string，如果它的字段类型不是 Blob 也不是
+File，则会被转换成字符串类**
 
 ### 回流和重绘
 
@@ -1315,7 +1360,8 @@ axios 的封装，介绍 restful 风格，封装成基于资源的库是如何�
 
    输入 "123{23[2a(d)]}34" 输出 true
 
-2. 合并两个有序数组。实现后提问复杂度，再问，能不能用 O(n)实现（用插入[排序](https://www.nowcoder.com/jump/super-jump/word?word=排序)）
+2. 合并两个有序数组。实现后提问复杂度，再问，能不能用 O(n)
+   实现（用插入[排序](https://www.nowcoder.com/jump/super-jump/word?word=排序)）
 
 3. 301, 302 有什么区别
 
@@ -1335,7 +1381,8 @@ axios 的封装，介绍 restful 风格，封装成基于资源的库是如何�
 
 11. 跨域，nginx 哪一个环节解决
 
-12. vue 踩过哪些坑：我答的响应式，用$set；还可以答 css 污染，加 scope；data 要 return 一个函数，只能组件内部用；watch 可以设置 deep，immediate；处理 dom，放在 nextTick
+12. vue 踩过哪些坑：我答的响应式，用$set；还可以答 css 污染，加 scope；data 要 return 一个函数，只能组件内部用；watch 可以设置
+    deep，immediate；处理 dom，放在 nextTick
 
 13. vue-router 路由跳转，几种模式（hash，history）,自己实现路由跳转（点击 url 更新页面，可以服务器渲染）
 
@@ -1653,7 +1700,8 @@ Vue3 有什么优势
 
 - 采用 TS 重构，增强对于 TS 的支持能力
 - 重构响应式系统，将 Object.defineProperty 改为 Proxy，拦截整个对象属性的操作
-- 重构 diff[算法](https://www.nowcoder.com/jump/super-jump/word?word=算法)，引入[最长递增子序列](https://www.nowcoder.com/jump/super-jump/word?word=最长递增子序列)的思想，减少比对次数，提升性能
+- 重构 diff[算法](https://www.nowcoder.com/jump/super-jump/word?word=算法)
+  ，引入[最长递增子序列](https://www.nowcoder.com/jump/super-jump/word?word=最长递增子序列)的思想，减少比对次数，提升性能
 - 修复 vue2 中插槽更新的异常，比如子组件更新引发整个父组件更新
 - 引入组合式 API，降低对于 this 的依赖程度，通过函数式编程的思想管理组织功能模块
 
@@ -1734,7 +1782,8 @@ xss 攻击也分几大类：Store XSS、Reflected XSS、DOM-based XSS、Mutation
 
 - 一个巧妙地攻击方式，利用浏览器的特性
 
-  > 如果用户所提供的富文本内容通过 javascript 代码进入 innerHTML 属性后，一些意外的变化会使得这个认定不再成立：浏览器的渲染引擎会将本来没有任何危害的 HTML 代码渲染成具有潜在危险的 XSS 攻击代码。
+  > 如果用户所提供的富文本内容通过 javascript 代码进入 innerHTML 属性后，一些意外的变化会使得这个认定不再成立：浏览器的渲染引擎会将本来没有任何危害的
+  > HTML 代码渲染成具有潜在危险的 XSS 攻击代码。
 
 - 巧妙，最难防御的一种方式,攻击者非常的懂浏览器
 
@@ -1746,11 +1795,12 @@ xss 攻击也分几大类：Store XSS、Reflected XSS、DOM-based XSS、Mutation
 
 - **构造**指定 HTTP **请求**，进而窃取或修改用户敏感信息
 
-  ![image.png](1d29931c3b.jpg)
+  ![image.png](../../public/1d29931c3b.jpg)
 
   一个用户访问了一个恶意的页面，这个页面向银行发送一个转账请求，ServerA 为银行的服务器，发现这个请求带有用户的 cookie，成功
 
-  > CSRF 通过伪装来自受信任用户的请求来利用受信任的网站。与[XSS]攻击相比，CSRF 攻击往往不大流行（因此对其进行防范的资源也相当稀少）和难以防范，所以被认为比[XSS]`更具危险性`。
+  > CSRF 通过伪装来自受信任用户的请求来利用受信任的网站。与[XSS]攻击相比，CSRF
+  > 攻击往往不大流行（因此对其进行防范的资源也相当稀少）和难以防范，所以被认为比[XSS]`更具危险性`。
 
 #### Injection（注入）
 
@@ -1772,7 +1822,7 @@ xss 攻击也分几大类：Store XSS、Reflected XSS、DOM-based XSS、Mutation
 
 - 贪婪：n 次不行 ? n-1 次再试试?——回溯
 
-  ![image.png](ff22a97e5c29b.jpg)
+  ![image.png](../../public/ff22a97e5c29b.jpg)
 
 - Distributed Dos （DDOS）
 
@@ -1954,7 +2004,8 @@ Object.prototype.valueOf()返回指定对象的原始值。
 
 \3. 看你用了 Echarts 内部原理有无了解？ 无，只是浅用，有了解其他的工具比如 D3
 
-\4. 项目里面用到了 react-dnd ，它是怎么实现的？和 H5 的拖拽有啥区别？ 说了一下怎么使用的，和 H5 的拖拽使用比较相似，（当时说个人认为是基于 h5 然后方便在 react 使用的一个库）
+\4. 项目里面用到了 react-dnd ，它是怎么实现的？和 H5 的拖拽有啥区别？ 说了一下怎么使用的，和 H5 的拖拽使用比较相似，（当时说个人认为是基于
+h5 然后方便在 react 使用的一个库）
 
 \5. 还有啥方法实现拖拽 ? 我回答了绑定鼠标事件，然后重新设置 dom 元素位置 （实在是不知道，尽力想了个方法）
 
@@ -1972,7 +2023,8 @@ Object.prototype.valueOf()返回指定对象的原始值。
 
 \12. 读程序
 
-\13. 实现一个函数 可以接收三个参数 前两个是一个数组 两个数组取并集，去掉重合元素，第三个参数为一个处理函数，处理数组中每个元素 func([1,1,2,2,3],[2,,3,4]) // [1,1,4] func([1,1,2.1,2.2,3 ],[2,,3,4],Math.floor) //[1,1,4]
+\13. 实现一个函数 可以接收三个参数 前两个是一个数组 两个数组取并集，去掉重合元素，第三个参数为一个处理函数，处理数组中每个元素
+func([1,1,2,2,3],[2,,3,4]) // [1,1,4] func([1,1,2.1,2.2,3 ],[2,,3,4],Math.floor) //[1,1,4]
 
 简单[算法](https://www.nowcoder.com/jump/super-jump/word?word=算法)
 
@@ -2002,7 +2054,8 @@ Object.prototype.valueOf()返回指定对象的原始值。
 
 二面：（一个小时）4.6
 
-有点紧张，这几天在刷[牛客](https://www.nowcoder.com/jump/super-jump/word?word=牛客)看到大家的二面都是项目面，一看我那学着 b 站做的简单的 curd 项目，太慌了，还好面试官没问我项目。
+有点紧张，这几天在刷[牛客](https://www.nowcoder.com/jump/super-jump/word?word=牛客)看到大家的二面都是项目面，一看我那学着
+b 站做的简单的 curd 项目，太慌了，还好面试官没问我项目。
 
 1.自我介绍
 
@@ -2060,7 +2113,8 @@ Object.prototype.valueOf()返回指定对象的原始值。
 
 v-if 和 v-show 区别，
 
-diff[算法](https://www.nowcoder.com/jump/super-jump/word?word=算法)，diff[算法](https://www.nowcoder.com/jump/super-jump/word?word=算法)缺陷（没了解过，跳过了），
+diff[算法](https://www.nowcoder.com/jump/super-jump/word?word=算法)
+，diff[算法](https://www.nowcoder.com/jump/super-jump/word?word=算法)缺陷（没了解过，跳过了），
 
 [keep](https://www.nowcoder.com/jump/super-jump/word?word=keep)-alive 是什么，怎么实现的，
 
@@ -2102,13 +2156,18 @@ position
 
 （1）首先判断 display 属性是否为 none，如果为 none，则 position 和 float 属性的值不影响元素最后的表现。
 
-（2）然后判断 position 的值是否为 absolute 或者 fixed，如果是，则 float 属性失效，并且 display 的值应该被设置为 table 或者 block，具体转换需要看初始转换值。
+（2）然后判断 position 的值是否为 absolute 或者 fixed，如果是，则 float 属性失效，并且 display 的值应该被设置为 table 或者
+block，具体转换需要看初始转换值。
 
-（3）如果 position 的值不为 absolute 或者 fixed，则判断 float 属性的值是否为 none，如果不是，则 display 的值则按上面的规则转换。注意，如果 position 的值为 relative 并且 float 属性的值存在，则 relative 相对于浮动后的最终位置定位。
+（3）如果 position 的值不为 absolute 或者 fixed，则判断 float 属性的值是否为 none，如果不是，则 display 的值则按上面的规则转换。注意，如果
+position 的值为 relative 并且 float 属性的值存在，则 relative 相对于浮动后的最终位置定位。
 
-（4）如果 float 的值为 none，则判断元素是否为根元素，如果是根元素则 display 属性按照上面的规则转换，如果不是，则保持指定的 display 属性值不变。
+（4）如果 float 的值为 none，则判断元素是否为根元素，如果是根元素则 display 属性按照上面的规则转换，如果不是，则保持指定的
+display 属性值不变。
 
-总的来说，可以把它看作是一个类似优先级的机制，"position:absolute"和"position:fixed"优先级最高，有它存在的时候，浮动不起作用，'display'的值也需要调整；其次，元素的'float'特性的值不是"none"的时候或者它是根元素的时候，调整'display'的值；最后，非根元素，并且非浮动元素，并且非绝对定位的元素，'display'特性值同设置值。
+总的来说，可以把它看作是一个类似优先级的机制，"position:absolute"和"position:fixed"
+优先级最高，有它存在的时候，浮动不起作用，'display'的值也需要调整；其次，元素的'float'特性的值不是"none"
+的时候或者它是根元素的时候，调整'display'的值；最后，非根元素，并且非浮动元素，并且非绝对定位的元素，'display'特性值同设置值。
 
 ### object 和其它数据类型的区别
 
@@ -2124,11 +2183,13 @@ function f1() {
     console.log("===f1", this.id);
   }, 100);
 }
+
 function f2() {
   setTimeout(function log() {
     console.log("===f2:", this.id);
   }, 100);
 }
+
 var id = 1;
 f1.call({ id: 23 }); // 23
 f2.call({ id: 23 }); // 1
@@ -2214,7 +2275,8 @@ JS 数组常用方法有那些
 
 ### splice 几个参数分别是什么
 
-- start,指定修改的开始位置（从 0 计数）。如果超出了数组的长度，则从数组末尾开始添加内容；如果是负值，则表示从数组末位开始的第几位（从-1 计数，这意味着-n 是倒数第 n 个元素并且等价于`array.length-n`）；如果负数的绝对值大于数组的长度，则表示开始位置为第 0 位。
+- start,指定修改的开始位置（从 0 计数）。如果超出了数组的长度，则从数组末尾开始添加内容；如果是负值，则表示从数组末位开始的第几位（从-1
+  计数，这意味着-n 是倒数第 n 个元素并且等价于`array.length-n`）；如果负数的绝对值大于数组的长度，则表示开始位置为第 0 位。
 
 - deleteCount
 
@@ -2226,7 +2288,9 @@ JS 数组常用方法有那些
 
 ### Array(7) 和 Array.of(7)
 
-`Array.of()` 和 `Array` 构造函数之间的区别在于处理整数参数：`Array.of(7)` 创建一个具有**单个**元素 7 的数组，而 **`Array(7)`** 创建一个**长度为 7**的空数组（**注意：**这是指一个有 7 个空位(empty)的数组，而不是由 7 个`undefined`组成的数组）。
+`Array.of()` 和 `Array` 构造函数之间的区别在于处理整数参数：`Array.of(7)` 创建一个具有**单个**元素 7
+的数组，而 **`Array(7)`** 创建一个**长度为 7**的空数组（**注意：**这是指一个有 7 个空位(empty)的数组，而不是由 7
+个`undefined`组成的数组）。
 
 ```js
 Array.of(7); // [7]
@@ -2296,7 +2360,8 @@ computed 和 methods 的区别
 
 手写 promise.all
 
-[两数之和](https://www.nowcoder.com/jump/super-jump/word?word=两数之和)（可以使用[哈希表](https://www.nowcoder.com/jump/super-jump/word?word=哈希表)把数字的值当成 key 然后把下标当成值）
+[两数之和](https://www.nowcoder.com/jump/super-jump/word?word=两数之和)
+（可以使用[哈希表](https://www.nowcoder.com/jump/super-jump/word?word=哈希表)把数字的值当成 key 然后把下标当成值）
 
 vue 组件传参方式，兄弟组件的传参方式
 
@@ -2317,7 +2382,9 @@ flex-grow，flex-shrink 的膨胀压缩规则
 
 选择器的优先级
 echarts 两种渲染（canvas 和 svg），比较一下 canvas 和 svg 渲染的区别
-移动端和 pc 端开发的区别移动端 js+rem 适配移动端的点击延迟，怎么解决？fastclick 库（监测到 touch 事件的时候， 通过 DOM 自定义事件立即出发模拟一个 click 事件，并把浏览器在 300ms 之后的 click 事件阻止掉 。）touch-action 的属性：如果设置为 none 的话表明这个元素上的操作不会触发任何默认的行为，也就不会自动去进行 300ms 的延迟判断
+移动端和 pc 端开发的区别移动端 js+rem 适配移动端的点击延迟，怎么解决？fastclick 库（监测到 touch 事件的时候， 通过 DOM
+自定义事件立即出发模拟一个 click 事件，并把浏览器在 300ms 之后的 click 事件阻止掉 。）touch-action 的属性：如果设置为 none
+的话表明这个元素上的操作不会触发任何默认的行为，也就不会自动去进行 300ms 的延迟判断
 
 图片懒加载原理
 
@@ -2425,7 +2492,8 @@ new 的过程中发生了什么，现场手撕
     obj2.say = obj1.say
     obj2.say()
 
-3.知道 promise 嘛？说一下是做什么的？为什么可以链式调用？如果返回个 promise 怎么处理？它的 then 方法和 catch 方法关系？promise 的错误捕获怎么做的？
+3.知道 promise 嘛？说一下是做什么的？为什么可以链式调用？如果返回个 promise 怎么处理？它的 then 方法和 catch 方法关系？promise
+的错误捕获怎么做的？
 
 4.说一下 eventloop？微任务里面嵌套一个微任务怎么执行？
 
@@ -2445,9 +2513,11 @@ function` `sleep(timeout){``   ``return` `new` `Promise((resolve,reject)=>{``   
 
 9.写一下垂直居中的方案，尽可能多的写。（就写了三种）
 
-10.[算法题](https://www.nowcoder.com/jump/super-jump/word?word=算法题)：两个有序数组[排序](https://www.nowcoder.com/jump/super-jump/word?word=排序)
+10.[算法题](https://www.nowcoder.com/jump/super-jump/word?word=算法题)
+：两个有序数组[排序](https://www.nowcoder.com/jump/super-jump/word?word=排序)
 
-11.[算法题](https://www.nowcoder.com/jump/super-jump/word?word=算法题)：简化路径 https://[leetcode](https://www.nowcoder.com/jump/super-jump/word?word=leetcode)-cn.com/problems/simplify-path/
+11.[算法题](https://www.nowcoder.com/jump/super-jump/word?word=算法题)：简化路径 https:
+//[leetcode](https://www.nowcoder.com/jump/super-jump/word?word=leetcode)-cn.com/problems/simplify-path/
 
 3.介绍项目封装的组件，骨架屏是怎么封装的？
 
@@ -2485,43 +2555,47 @@ instanceof 原理？手写一下？
 // 如果是标准盒子模型，元素的尺寸等于width/height + padding + border-width的总和。
 // 如果box-sizing: border-box，元素的的尺寸等于 width/height。
 
-element.getBoundingClientRect().top<document.body.clientHeight //getBoundingClientRect().top 元素的上边相对浏览器视窗的位置如果小于可视窗口的高度
+element.getBoundingClientRect().top < document.body.clientHeight //getBoundingClientRect().top 元素的上边相对浏览器视窗的位置如果小于可视窗口的高度
 
 // 方法二
-el.offsetTop<=(document.documentElement.scrollTop || document.body.scrollTop) + document.body.clientHeight
+el.offsetTop <= (document.documentElement.scrollTop || document.body.scrollTop) + document.body.clientHeight
 
 // 方法三 IntersectionObserver
 
-created() {
-    this.intersectionObserver();
-},
+created()
+{
+  this.intersectionObserver();
+}
+,
 methods:{
-    intersectionObserver(){
-        let images = document.getElementsByTagName('img');
-        const observer = new IntersectionObserver((imgs) => {
-          console.log('imgs===', imgs)
-          // imgs: 目标元素集合
-          imgs.forEach((img) => {
-            // img.isIntersecting代表目标元素可见，可见的时候给src赋值
-            if (img.isIntersecting) {
-              const item = img.target
-              item.src = item.dataset.src
-              observer.unobserve(item);
-            }
-          })
-        })
-      //定时器和Array.from的目的是让images可遍历
-      setTimeout(()=>{
-        Array.from(images).forEach(item => {
-          observer.observe(item);
-        })
-      },300)
-    }
+  intersectionObserver()
+  {
+    let images = document.getElementsByTagName('img');
+    const observer = new IntersectionObserver((imgs) => {
+      console.log('imgs===', imgs)
+      // imgs: 目标元素集合
+      imgs.forEach((img) => {
+        // img.isIntersecting代表目标元素可见，可见的时候给src赋值
+        if (img.isIntersecting) {
+          const item = img.target
+          item.src = item.dataset.src
+          observer.unobserve(item);
+        }
+      })
+    })
+    //定时器和Array.from的目的是让images可遍历
+    setTimeout(() => {
+      Array.from(images).forEach(item => {
+        observer.observe(item);
+      })
+    }, 300)
+  }
 }
 
 ```
 
-14.浏览器缓存有哪些？（强缓存和协商缓存），又追问了具体字段有哪些？协商缓存的两对字段分别是什么？Etags 是什么？（最开始脑子抽了，说是布尔值，又来又改成了 contentHash），面试官说对。
+14.浏览器缓存有哪些？（强缓存和协商缓存），又追问了具体字段有哪些？协商缓存的两对字段分别是什么？Etags
+是什么？（最开始脑子抽了，说是布尔值，又来又改成了 contentHash），面试官说对。
 
 15.骨架屏有什么用？
 
@@ -2644,11 +2718,13 @@ function strArrToObj(strarr) {
 
 \20. 父子组件传参方式？
 
-\21. 你刚才说到 Vuex?那你聊下 Vuex？Vuex 怎么实现的？（Vuex 都是用同一份 store,class 里面都是一个 this,被面试官引导说出来它的核心思想采用单例模式)
+\21. 你刚才说到 Vuex?那你聊下 Vuex？Vuex 怎么实现的？（Vuex 都是用同一份 store,class 里面都是一个
+this,被面试官引导说出来它的核心思想采用单例模式)
 
 \22. this.$emit 采用了什么设计思想？发布订阅怎么实现？
 
-\23. 看你第一个项目用了 webpack，第二个项目用的 vite， 那你说下用过 webpack 或者 vite 的优化配置？（当时说了 webpack 分包，没然后了，面试官叫我针对编译速度和打包体积方面研究下）
+\23. 看你第一个项目用了 webpack，第二个项目用的 vite， 那你说下用过 webpack 或者 vite 的优化配置？（当时说了 webpack
+分包，没然后了，面试官叫我针对编译速度和打包体积方面研究下）
 
 \3. 你之前用 Vue2.0，为什么选用 Vue3.0
 
@@ -2694,7 +2770,8 @@ Vue3 怎么与 TS 相结合，用 TS 做了那些类型声明？
 实现 TS 类型
 
 - StartsWith:：判断字符串是否以子串为起始
-- ` /**`` ``* 判断字符串是否以子串为起始`` ``* type Result = StartsWith<"123", "12"> // true`` ``*/``type StartsWith<`` ``S1 ``extends ` ` string``,`` ``S2 ``extends ` ` string``> = S1 ``extends ` `` ${S2}${infer Right}` ?  ``true` `: `false`;`
+- ` /**`` ``* 判断字符串是否以子串为起始`` ``* type Result = StartsWith<"123", "12"> // true`` ``*/``type StartsWith<`` ``S1 ``extends ` ` string``,`` ``S2 ``extends ` ` string``> = S1 ``extends ` `` ${S2}${infer Right}` ?  ``
+  true` `: `false`;`
 - Last：判断数组的最后一个元素的类型
 - ` // 实现一个通用的 Last<T>，它接受一个数组 T 并返回其最后一个元素。``type Last<T ``extends ` ` any``[]> = T ``extends ` ` [...``any``[], infer P] ? P : undefined;``type arr1 = [``"a"``, ``"b"``, ``"c"``];``type arr2 = [3, 2, 1]; ` ` type tail1 = Last<arr1>; ``// expected to be 'c'``type tail2 = Last<arr2>; ``// expected to be 1 `
 
@@ -2869,7 +2946,8 @@ vue2.0 中的 Object.defineProperty 和 vue3.0 中的 proxy 有什么区别
 
 4.定义事件回调函数
 
-箭头函数在声明的时候就绑定了执行上下文，要动态改变上下文是不可能的，在需要动态上下文的时候它的弊端就凸显出来。比如在客户端编程中常见的 DOM 事件回调函数（event listenner）绑定，触发回调函数时 this 指向当前发生事件的 DOM 节点，而动态上下文这个时候就非常有用。
+箭头函数在声明的时候就绑定了执行上下文，要动态改变上下文是不可能的，在需要动态上下文的时候它的弊端就凸显出来。比如在客户端编程中常见的
+DOM 事件回调函数（event listenner）绑定，触发回调函数时 this 指向当前发生事件的 DOM 节点，而动态上下文这个时候就非常有用。
 
 ```javascript
 const button = document.getElementById("myButton");
@@ -2891,7 +2969,8 @@ vue 中不能用箭头函数的情况
 
 5.不应该使用箭头函数来定义 watcher 函数
 
-原因: 箭头函数绑定了父级作用域的上下文，this 将不会按照期望指向 Vue 实例。也就是说，你不能使用 this 来访问你组件中的 data 数据以及 method 方法了。this 将会指向 undefined。
+原因: 箭头函数绑定了父级作用域的上下文，this 将不会按照期望指向 Vue 实例。也就是说，你不能使用 this 来访问你组件中的 data
+数据以及 method 方法了。this 将会指向 undefined。
 
 ### 说一说箭头函数为什么没有自己的 this。
 
@@ -2908,21 +2987,25 @@ const add=(x,y,z)=>x+y+z;
 
 好像还有浏览器缓存
 
-一面的面试官是一个很帅的小哥，很友好，真的，就面试体验很好，因为我本身面对字节就有点紧张，然后问我 http 的 1.0 1.1 2.0 的区别和一些特性的时候，我当时有些忘记了，他说没关系，你可以仔细想想，想得到就说，想不到也没啥
+一面的面试官是一个很帅的小哥，很友好，真的，就面试体验很好，因为我本身面对字节就有点紧张，然后问我 http 的 1.0 1.1 2.0
+的区别和一些特性的时候，我当时有些忘记了，他说没关系，你可以仔细想想，想得到就说，想不到也没啥
 
 技术二面
 
 1.[算法题](https://www.nowcoder.com/jump/super-jump/word?word=算法题) 是一道递归+剪枝的
 印象中是
 输入[1,2,3,4] 3
-输出[[1,2,3],[1,2,4],[2,3,4]]; 2.你手写过 promise 是把，说说里面的静态方法有哪些？各个分别有啥不同和作用？手写 Promise.all 方法 3.手写 jsonp 4.用过 nodejs 吗，nodejs 的架构？
+输出[[1,2,3],[1,2,4],[2,3,4]]; 2.你手写过 promise 是把，说说里面的静态方法有哪些？各个分别有啥不同和作用？手写 Promise.all
+方法 3.手写 jsonp 4.用过 nodejs 吗，nodejs 的架构？
 5.nodejs 如何开启多进程？如何开启多线程? 6.还有其他的一些，但是我忘记了
 
-二面面试官比较冷一点，[算法题](https://www.nowcoder.com/jump/super-jump/word?word=算法题)写出来了，然后 promise.all 写的有瑕疵，其他的问题关于 nodejs 架构这些我不是很了解，回答的不是很好，以为挂了，没想到后面还是过了
+二面面试官比较冷一点，[算法题](https://www.nowcoder.com/jump/super-jump/word?word=算法题)写出来了，然后 promise.all
+写的有瑕疵，其他的问题关于 nodejs 架构这些我不是很了解，回答的不是很好，以为挂了，没想到后面还是过了
 
 技术三面
 
-1.项目问题，拿着我的简历问问问，说说你对低代码的理解？ 2.在你的这些项目中，你做过最难的项目是什么？最难的点是什么？ 3.平时你是怎么学习前端的？ 4.以后的打算是啥？ 5.你简历上写了你看了源码，说说你对 diff[算法](https://www.nowcoder.com/jump/super-jump/word?word=算法)的理解？
+1.项目问题，拿着我的简历问问问，说说你对低代码的理解？ 2.在你的这些项目中，你做过最难的项目是什么？最难的点是什么？ 3.平时你是怎么学习前端的？ 4.以后的打算是啥？ 5.你简历上写了你看了源码，说说你对
+diff[算法](https://www.nowcoder.com/jump/super-jump/word?word=算法)的理解？
 6.axios 源码看过是把，说说你从中收获了什么？ 7.还有其他的一些，但是我忘记了 dbq
 
 面试官问项目比较多一些，为人也很面善，在此感谢他
@@ -2986,8 +3069,10 @@ v-if v-for 区别
 26. 原型链的终点是什么？
 27. 什么是外边距塌陷？如何解决？
 28. BFC 还有哪些功能？
-29. [算法题](https://www.nowcoder.com/jump/super-jump/word?word=算法题)：[有效的括号](https://leetcode-cn.com/problems/valid-parentheses/)
-30. [算法题](https://www.nowcoder.com/jump/super-jump/word?word=算法题)：[两数之和](https://leetcode-cn.com/problems/two-sum/)
+29. [算法题](https://www.nowcoder.com/jump/super-jump/word?word=算法题)
+    ：[有效的括号](https://leetcode-cn.com/problems/valid-parentheses/)
+30. [算法题](https://www.nowcoder.com/jump/super-jump/word?word=算法题)
+    ：[两数之和](https://leetcode-cn.com/problems/two-sum/)
 31. 反问
 
 二面：
@@ -3003,7 +3088,8 @@ v-if v-for 区别
 9. 说一下事件循环
 10. Vue 源码中有哪些用到了事件循环的地方？
 11. 智力题：有一个 7 升的杯子和一个 4 升的杯子，如何盛出 5 升水？
-12. [算法题](https://www.nowcoder.com/jump/super-jump/word?word=算法题)：[二分查找](https://leetcode-cn.com/problems/binary-search/)
+12. [算法题](https://www.nowcoder.com/jump/super-jump/word?word=算法题)
+    ：[二分查找](https://leetcode-cn.com/problems/binary-search/)
 
 nextTick() 为什么会存在及其实现原理
 
