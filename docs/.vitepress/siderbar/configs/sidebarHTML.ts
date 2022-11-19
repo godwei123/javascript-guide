@@ -1,7 +1,7 @@
 const sidebarHTML = [
   {
     text: "Html",
-    items: [{ text: "Introduction", link: "/html/" }],
+    items: [{ text: "Introduction", link: "/basic/html/" }],
   },
 ];
 

@@ -11,9 +11,9 @@ import sidebarExample from "./configs/sidebarExample";
 import sidebarProject from "./configs/sidebarProject";
 
 const sidebar = {
-  "/html/": sidebarHTML,
-  "/css/": sidebarCSS,
-  "/javascript/": sidebarJavaScript,
+  "/basic/html/": sidebarHTML,
+  "/basic/css/": sidebarCSS,
+  "/basic/javascript/": sidebarJavaScript,
   "/browser/": sidebarBrowser,
   "/network/": sidebarNetwork,
   "/project/": sidebarProject,

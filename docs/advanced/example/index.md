@@ -14,11 +14,11 @@
 
 ```js
 const promise = new Promise((resolve, reject) => {
-    console.log(1);
-    console.log(2);
+  console.log(1);
+  console.log(2);
 });
 promise.then(() => {
-    console.log(3);
+  console.log(3);
 });
 console.log(4);
 ```
@@ -38,14 +38,14 @@ promise.then 是微任务，它会在所有的宏任务执行完之后才会执�
 
 ```js
 const promise1 = new Promise((resolve, reject) => {
-    console.log('promise1');
-    resolve('resolve1');
+  console.log("promise1");
+  resolve("resolve1");
 });
-const promise2 = promise1.then(res => {
-    console.log(res);
+const promise2 = promise1.then((res) => {
+  console.log(res);
 });
-console.log('1', promise1);
-console.log('2', promise2);
+console.log("1", promise1);
+console.log("2", promise2);
 ```
 
 ::: details 答案
@@ -77,37 +77,37 @@ resolve1
 ```js
 console.log(1);
 setTimeout(() => {
-    console.log(2);
-    process.nextTick(() => {
-        console.log(3);
-    });
-    new Promise(resolve => {
-        console.log(4);
-        resolve();
-    }).then(() => {
-        console.log(5);
-    });
-});
-new Promise(resolve => {
-    console.log(7);
+  console.log(2);
+  process.nextTick(() => {
+    console.log(3);
+  });
+  new Promise((resolve) => {
+    console.log(4);
     resolve();
+  }).then(() => {
+    console.log(5);
+  });
+});
+new Promise((resolve) => {
+  console.log(7);
+  resolve();
 }).then(() => {
-    console.log(8);
+  console.log(8);
 });
 process.nextTick(() => {
-    console.log(6);
+  console.log(6);
 });
 setTimeout(() => {
-    console.log(9);
-    process.nextTick(() => {
-        console.log(10);
-    });
-    new Promise(resolve => {
-        console.log(11);
-        resolve();
-    }).then(() => {
-        console.log(12);
-    });
+  console.log(9);
+  process.nextTick(() => {
+    console.log(10);
+  });
+  new Promise((resolve) => {
+    console.log(11);
+    resolve();
+  }).then(() => {
+    console.log(12);
+  });
 });
 ```
 
@@ -136,25 +136,25 @@ node>=11
 
 ```js
 async function async1() {
-    console.log('async1 start');
-    await async2();
-    console.log('async1 end');
+  console.log("async1 start");
+  await async2();
+  console.log("async1 end");
 }
 async function async2() {
-    console.log('async2');
+  console.log("async2");
 }
-console.log('script start');
+console.log("script start");
 setTimeout(function () {
-    console.log('setTimeout');
+  console.log("setTimeout");
 }, 0);
 async1();
 new Promise(function (resolve) {
-    console.log('promise1');
-    resolve();
+  console.log("promise1");
+  resolve();
 }).then(function () {
-    console.log('promise2');
+  console.log("promise2");
 });
-console.log('script end');
+console.log("script end");
 ```
 
 ::: details 答案
@@ -176,15 +176,15 @@ setTimeout
 
 ```js
 function getName() {
-    for (let i = 0; i < 5; i++) {
-        setTimeout(function () {
-            console.log(i);
-        }, i * 1000);
-    }
-    return;
-    {
-        name: '京程一灯';
-    }
+  for (let i = 0; i < 5; i++) {
+    setTimeout(function () {
+      console.log(i);
+    }, i * 1000);
+  }
+  return;
+  {
+    name: "京程一灯";
+  }
 }
 console.log(getName());
 ```
@@ -206,12 +206,12 @@ undefined
 
 ```js
 function yideng(n, o) {
-    console.log(o); // ？
-    return {
-        yideng: function (m) {
-            return yideng(m, n);
-        },
-    };
+  console.log(o); // ？
+  return {
+    yideng: function (m) {
+      return yideng(m, n);
+    },
+  };
 }
 const a = yideng(0);
 a.yideng(1);
@@ -249,15 +249,15 @@ undefined
 ### 1、代码输出结果
 
 ```js
-var fullname = 'a';
+var fullname = "a";
 var obj = {
-    fullname: 'b',
-    prop: {
-        fullname: 'c',
-        getFullname: function () {
-            return this.fullname;
-        },
+  fullname: "b",
+  prop: {
+    fullname: "c",
+    getFullname: function () {
+      return this.fullname;
     },
+  },
 };
 
 console.log(obj.prop.getFullname());
@@ -284,10 +284,10 @@ a
 
 ```js
 var foo = {
-    bar: function () {
-        return this.baz;
-    },
-    baz: 1,
+  bar: function () {
+    return this.baz;
+  },
+  baz: 1,
 };
 console.log(typeof (f = foo.bar)());
 ```
@@ -303,10 +303,10 @@ console.log(typeof (f = foo.bar)());
 
 ```js
 var foo = {
-    bar: function () {
-        return this.baz;
-    },
-    baz: 1,
+  bar: function () {
+    return this.baz;
+  },
+  baz: 1,
 };
 console.log(typeof (foo.bar = foo.bar)());
 ```
@@ -360,10 +360,10 @@ NaN
 ### 4、代码输出结果
 
 ```js
-const person = { name: 'yideng' };
+const person = { name: "yideng" };
 
 function sayHi(age) {
-    return `${this.name} is ${age}`;
+  return `${this.name} is ${age}`;
 }
 console.log(sayHi.call(person, 21));
 console.log(sayHi.bind(person, 21));
@@ -389,14 +389,14 @@ yideng is 21
 ```js
 let length = 10;
 function fn() {
-    console.log(this.length);
+  console.log(this.length);
 }
 var obj = {
-    length: 5,
-    method: function (fn) {
-        fn();
-        arguments[0]();
-    },
+  length: 5,
+  method: function (fn) {
+    fn();
+    arguments[0]();
+  },
 };
 obj.method(fn, 1);
 ```
@@ -461,10 +461,10 @@ console.log((foo.bar, foo.bar)());
 
 ```js
 for (let i = 0; i < 3; i++) {
-    setTimeout(() => console.log(i), 1);
+  setTimeout(() => console.log(i), 1);
 }
 for (var i = 0; i < 3; i++) {
-    setTimeout(() => console.log(i), 1);
+  setTimeout(() => console.log(i), 1);
 }
 ```
 
@@ -505,22 +505,22 @@ undefined
 
 ```js
 var a1 = {},
-    b1 = '123',
-    c1 = 123;
-a1[b1] = 'b';
-a1[c1] = 'c';
+  b1 = "123",
+  c1 = 123;
+a1[b1] = "b";
+a1[c1] = "c";
 console.log(a1[b1]); // c
 var a2 = {},
-    b2 = Symbol('123'),
-    c2 = Symbol('123');
-a2[b2] = 'b';
-a2[c2] = 'c';
+  b2 = Symbol("123"),
+  c2 = Symbol("123");
+a2[b2] = "b";
+a2[c2] = "c";
 console.log(a2[b2]); // b
 var a3 = {},
-    b3 = { key: '123' },
-    c3 = { key: '456' };
-a3[b3] = 'b';
-a3[c3] = 'c';
+  b3 = { key: "123" },
+  c3 = { key: "456" };
+a3[b3] = "b";
+a3[c3] = "c";
 console.log(a3[b3]); // c
 ```
 
@@ -543,11 +543,11 @@ a3 = { [object Object]: 'c' } obj 做 key 会调用 toString 方法
 ```js
 let x, y;
 try {
-    throw new Error();
+  throw new Error();
 } catch (x) {
-    x = 1;
-    y = 2;
-    console.log(x);
+  x = 1;
+  y = 2;
+  console.log(x);
 }
 console.log(x);
 console.log(y);
@@ -569,12 +569,12 @@ undefined
 ```js
 var a = 0;
 if (true) {
-    a = 10;
-    console.log(a, window.a);
-    function a() {}
-    console.log(a, window.a);
-    a = 20;
-    console.log(a, window.a);
+  a = 10;
+  console.log(a, window.a);
+  function a() {}
+  console.log(a, window.a);
+  a = 20;
+  console.log(a, window.a);
 }
 console.log(a);
 ```
@@ -595,7 +595,7 @@ console.log(a);
 
 ```js
 const lowerCaseOnly = /^[a-z]+$/;
-console.log(lowerCaseOnly.test('yideng'));
+console.log(lowerCaseOnly.test("yideng"));
 console.log(lowerCaseOnly.test(null));
 console.log(lowerCaseOnly.test());
 ```
@@ -617,7 +617,7 @@ test 方法的参数会被调用 toString 强制转换成字符串
 
 ```js
 function f() {
-    return f;
+  return f;
 }
 console.log(new f() instanceof f);
 ```
@@ -643,18 +643,18 @@ console.log(new f() instanceof f);
 
 ```js
 function Foo() {
-    Foo.a = function () {
-        console.log(1);
-    };
-    this.a = function () {
-        console.log(2);
-    };
+  Foo.a = function () {
+    console.log(1);
+  };
+  this.a = function () {
+    console.log(2);
+  };
 }
 Foo.prototype.a = function () {
-    console.log(3);
+  console.log(3);
 };
 Foo.a = function () {
-    console.log(4);
+  console.log(4);
 };
 Foo.a();
 let obj = new Foo();
@@ -714,9 +714,9 @@ Foo.prototype.a = function() {console.log(3)}
 
 ```js
 function user(obj) {
-    obj.name = 'aaa';
-    obj = new Object();
-    obj.name = 'bbb';
+  obj.name = "aaa";
+  obj = new Object();
+  obj.name = "bbb";
 }
 let person = new Object();
 user(person);
@@ -731,10 +731,10 @@ aaa
 
 ```js
 function user(obj) {
-    // obj传入的是引用
-    obj.name = 'aaa'; // 修改引用的值
-    obj = new Object(); // obj 指向了一个新地址
-    obj.name = 'bbb'; //  修改的是新对象，没法改变传入的对象
+  // obj传入的是引用
+  obj.name = "aaa"; // 修改引用的值
+  obj = new Object(); // obj 指向了一个新地址
+  obj.name = "bbb"; //  修改的是新对象，没法改变传入的对象
 }
 ```
 
@@ -744,22 +744,22 @@ function user(obj) {
 
 ```js
 function fn() {
-    getValue = function () {
-        console.log(1);
-    };
-    return this;
+  getValue = function () {
+    console.log(1);
+  };
+  return this;
 }
 fn.getValue = function () {
-    console.log(2);
+  console.log(2);
 };
 fn.prototype.getValue = function () {
-    console.log(3);
+  console.log(3);
 };
 var getValue = function () {
-    console.log(4);
+  console.log(4);
 };
 function getValue() {
-    console.log(5);
+  console.log(5);
 }
 
 //请写出以下输出结果：
@@ -784,33 +784,33 @@ new fn().getValue();
 
 ```js
 var getValue = function () {
-    console.log(4);
+  console.log(4);
 };
 function getValue() {
-    console.log(5);
+  console.log(5);
 }
 
 //  相当于下面代码，所以第一个输出 4
 function getValue() {
-    console.log(5);
+  console.log(5);
 }
 var getValue;
 getValue = function () {
-    console.log(4);
+  console.log(4);
 };
 
 // ======
 function fn() {
-    getValue = function () {
-        console.log(1);
-    };
-    return this;
+  getValue = function () {
+    console.log(1);
+  };
+  return this;
 }
 fn().getValue();
 //执行fn()函数，将getValue重新赋值，返回this,this 指向 window，
 // 执行window.getValue() 如下代码，输出 1
 getValue = function () {
-    console.log(1);
+  console.log(1);
 };
 // ====
 
@@ -818,14 +818,14 @@ getValue(); // 输出 1
 
 // ====
 fn.getValue = function () {
-    console.log(2);
+  console.log(2);
 };
 
 new fn.getValue(); // 输出 2
 
 // ====
 fn.prototype.getValue = function () {
-    console.log(3);
+  console.log(3);
 };
 new fn().getValue(); //创建一个实例，调用getValue方法，输出 3
 ```
@@ -837,7 +837,7 @@ new fn().getValue(); //创建一个实例，调用getValue方法，输出 3
 ```js
 function test() {}
 const a = {},
-    b = Object.prototype;
+  b = Object.prototype;
 console.log(a.prototype === b);
 console.log(Object.getPrototypeOf(a) === b);
 console.log(test.prototype === Object.getPrototypeOf(test));
@@ -867,10 +867,10 @@ Object.getPrototypeOf(f) === Function.prototype; //true
 ```js
 var F = function () {};
 Object.prototype.a = function () {
-    console.log('a');
+  console.log("a");
 };
 Function.prototype.b = function () {
-    console.log('b');
+  console.log("b");
 };
 var f = new F();
 F.a();
@@ -903,9 +903,9 @@ f instanceof Object // true
 ```js
 var a = [0];
 if (a) {
-    console.log(a == true);
+  console.log(a == true);
 } else {
-    console.log(a);
+  console.log(a);
 }
 ```
 
@@ -922,9 +922,9 @@ false
 ```js
 var a = [1];
 if (a) {
-    console.log(a == true);
+  console.log(a == true);
 } else {
-    console.log(a);
+  console.log(a);
 }
 // true
 
@@ -932,7 +932,7 @@ if (a) {
 !![0][0] == true; //true 数组转换为布尔值是 true //false 数组与布尔值比较时却变成了 false
 Number([]); //0
 Number(false); //0
-Number(['1']); //1
+Number(["1"]); //1
 ```
 
 2）所以当 a 出现在 if 的条件中时，被转成布尔值，而 Boolean([0])为 true,所以就进行下一步判断 a == true,在进行比较时，js 的规则是：
@@ -954,7 +954,7 @@ Number(['1']); //1
 ### 2、代码输出结果
 
 ```js
-const value = 'Value is' + !!Number(['0']) ? 'yideng' : 'undefined';
+const value = "Value is" + !!Number(["0"]) ? "yideng" : "undefined";
 console.log(value);
 ```
 
@@ -972,10 +972,10 @@ yideng
 
 ```js
 const a = [1, 2, 3],
-    b = [1, 2, 3],
-    c = [1, 2, 4],
-    d = '2',
-    e = '11';
+  b = [1, 2, 3],
+  c = [1, 2, 4],
+  d = "2",
+  e = "11";
 console.log([a == b, a === b, a > c, a < c, d > e]);
 ```
 
@@ -1015,7 +1015,7 @@ null==0// null 在做相等判断时，不进行转型，所以 null 和 0 为�
 
 ```js
 let a = [];
-let b = '0';
+let b = "0";
 console.log(a == 0);
 console.log(a == !a);
 console.log(b == 0);
@@ -1040,7 +1040,7 @@ false
 4.数组继承了默认的valueOf()方法，但是数组、函数和正则表达式调用此方法后，只返回对象本身，因此转换为数字，还会继续调用toString（）方法，空数组调用toString（）返回空字符串，转换为数字为0，
 */
 let a = [];
-let b = '0';
+let b = "0";
 console.log(a == 0);
 // == 运算符，一边为对象，一边数字，对象到数字的转换过程，0==0 返回true
 console.log(a == !a);
@@ -1057,7 +1057,7 @@ console.log(a == b);
 
 ```js
 var obj = {};
-var x = +obj.yideng?.name ?? '京程一灯';
+var x = +obj.yideng?.name ?? "京程一灯";
 console.log(x);
 ```
 
@@ -1076,12 +1076,12 @@ NaN
 
 ```js
 function side(arr) {
-    arr[0] = arr[2];
+  arr[0] = arr[2];
 }
 function a(a, b, c = 3) {
-    c = 10;
-    side(arguments);
-    return a + b + c;
+  c = 10;
+  side(arguments);
+  return a + b + c;
 }
 a(1, 1, 1);
 ```
@@ -1096,13 +1096,13 @@ function a(a, b, c = 3) 这里的 c，因为 a 函数加了默认值，所以就
 
 ```js
 function side(arr) {
-    arr[0] = arr[2];
+  arr[0] = arr[2];
 }
 function a(a, b, c = 3) {
-    c = 10;
-    console.log(arguments);
-    side(arguments); // 这里 a，c的值不管怎么改变都是不会改变的
-    return a + b + c;
+  c = 10;
+  console.log(arguments);
+  side(arguments); // 这里 a，c的值不管怎么改变都是不会改变的
+  return a + b + c;
 }
 a(1, 1, 1); //12
 ```
@@ -1111,13 +1111,13 @@ a(1, 1, 1); //12
 
 ```js
 function side(arr) {
-    arr[0] = arr[2];
+  arr[0] = arr[2];
 }
 function a(a, b, c) {
-    c = 10;
-    console.log(arguments);
-    side(arguments); // 这里 a，c的值不管怎么改变都是不会改变的
-    return a + b + c;
+  c = 10;
+  console.log(arguments);
+  side(arguments); // 这里 a，c的值不管怎么改变都是不会改变的
+  return a + b + c;
 }
 a(1, 1, 1); // 21
 ```
@@ -1148,8 +1148,8 @@ Math.min 的参数是 0 个或者多个，如果多个参数很容易理解，�
 ```js
 var a = 1;
 (function a() {
-    a = 2;
-    console.log(a);
+  a = 2;
+  console.log(a);
 })();
 ```
 
@@ -1172,7 +1172,7 @@ var a = 1;
 
 ```js
 (function () {
-    var a = (b = 5);
+  var a = (b = 5);
 })();
 console.log(b);
 console.log(a);
@@ -1192,8 +1192,8 @@ Error, a is not defined
 
 ```js
 (function () {
-    'use strict';
-    var a = (b = 5);
+  "use strict";
+  var a = (b = 5);
 })();
 
 console.log(b); //Uncaught ReferenceError: b is not defined
@@ -1201,8 +1201,8 @@ console.log(b); //Uncaught ReferenceError: b is not defined
 /*---------------------------*/
 
 (function () {
-    'use strict';
-    var a = (window.b = 5);
+  "use strict";
+  var a = (window.b = 5);
 })();
 
 console.log(b); // 5
@@ -1214,7 +1214,7 @@ console.log(b); // 5
 
 ```js
 var company = {
-    address: 'beijing',
+  address: "beijing",
 };
 var yideng = Object.create(company);
 delete yideng.address;
@@ -1252,8 +1252,8 @@ delete 不能删除的：
 
 ```js
 var output = (function (x) {
-    delete x;
-    return x;
+  delete x;
+  return x;
 })(0);
 console.log(output);
 ```
@@ -1265,8 +1265,8 @@ console.log(output);
 ```js
 var x = 1;
 var output = (function () {
-    delete x;
-    return x;
+  delete x;
+  return x;
 })();
 console.log(output);
 ```
@@ -1278,8 +1278,8 @@ console.log(output);
 ```js
 x = 1;
 var output = (function () {
-    delete x;
-    return x;
+  delete x;
+  return x;
 })();
 console.log(output);
 ```
@@ -1291,8 +1291,8 @@ console.log(output);
 ```js
 var x = { foo: 1 };
 var output = (function () {
-    delete x.foo;
-    return x.foo;
+  delete x.foo;
+  return x.foo;
 })();
 console.log(output);
 ```
@@ -1304,7 +1304,7 @@ console.log(output);
 
 ```js
 var foo = function bar() {
-    return 12;
+  return 12;
 };
 console.log(typeof bar());
 // 写出执行结果，并解释原因
@@ -1333,7 +1333,7 @@ typeof(bar()). // Uncaught ReferenceError: bar is not defined
 ```js
 var x = 1;
 if (function f() {}) {
-    x += typeof f;
+  x += typeof f;
 }
 console.log(x);
 // 写出执行结果，并解释原因
@@ -1352,7 +1352,7 @@ console.log(x);
 ### 8、代码输出结果
 
 ```js
-['1', '2', '3'].map(parseInt);
+["1", "2", "3"].map(parseInt);
 ```
 
 ::: details 答案
@@ -1371,11 +1371,11 @@ callback 函数的执行规则
 
 参数：自动传入三个参数
 
--   currentValue（当前被传递的元素）；
+- currentValue（当前被传递的元素）；
 
--   index（当前被传递的元素的索引）；
+- index（当前被传递的元素的索引）；
 
--   array（调用 map 方法的数组）
+- array（调用 map 方法的数组）
 
 2）parseInt 方法接收两个参数
 
@@ -1416,7 +1416,7 @@ parseInt("3", 2)执行时，由于"3"不属于二进制字符，解析结果为 
 ```js
 function f() {}
 const a = f.prototype,
-    b = Object.getPrototypeOf(f);
+  b = Object.getPrototypeOf(f);
 console.log(a === b);
 ```
 
@@ -1437,21 +1437,21 @@ b === Function.prototype // true
 
 ```js
 function showCase(value) {
-    switch (value) {
-        case 'A':
-            console.log('Case A');
-            break;
-        case 'B':
-            console.log('Case B');
-            break;
-        case undefined:
-            console.log('undefined');
-            break;
-        default:
-            console.log('Do not know!');
-    }
+  switch (value) {
+    case "A":
+      console.log("Case A");
+      break;
+    case "B":
+      console.log("Case B");
+      break;
+    case undefined:
+      console.log("undefined");
+      break;
+    default:
+      console.log("Do not know!");
+  }
 }
-showCase(new String('A'));
+showCase(new String("A"));
 ```
 
 ::: details 答案
@@ -1463,8 +1463,8 @@ Do not know!
 switch 是严格比较, String 实例和 字符串不一样.
 
 ```js
-var str1 = 'str';
-var str2 = new String('str');
+var str1 = "str";
+var str2 = new String("str");
 console.log(typeof str1); // "string"
 console.log(typeof str2); //"object"
 ```
@@ -1499,7 +1499,7 @@ console.log([].reduce(Math.pow, 3));
 var arr = [0, 1];
 arr[5] = 5;
 newArr = arr.filter(function (x) {
-    return x === undefined;
+  return x === undefined;
 });
 console.log(newArr.length);
 ```
@@ -1548,11 +1548,11 @@ a.join = a.shift;
 
 ```js
 const obj = {
-    2: 3,
-    3: 4,
-    length: 2,
-    splice: Array.prototype.splice,
-    push: Array.prototype.push,
+  2: 3,
+  3: 4,
+  length: 2,
+  splice: Array.prototype.splice,
+  push: Array.prototype.push,
 };
 obj.push(1);
 obj.push(2);
@@ -1570,7 +1570,7 @@ Object(4) [empty × 2, 1, 2, splice: ƒ, push: ƒ]
 ### 16、代码输出结果
 
 ```js
-const num = parseInt('2*4', 10);
+const num = parseInt("2*4", 10);
 console.log(num);
 ```
 
@@ -1586,8 +1586,8 @@ console.log(num);
 ### 17、代码输出结果
 
 ```js
-const company = { name: 'tom' };
-Object.defineProperty(company, 'address', { value: '北京' });
+const company = { name: "tom" };
+Object.defineProperty(company, "address", { value: "北京" });
 console.log(company);
 console.log(Object.keys(company));
 ```
@@ -1611,7 +1611,7 @@ Object.keys 方法仅返回对象中 可枚举(enumerable) 的属性，因此只
 ```js
 let num = 10;
 const increaseNumber = () => num++;
-const increasePassedNumber = number => number++;
+const increasePassedNumber = (number) => number++;
 const num1 = increaseNumber();
 const num2 = increasePassedNumber(num1);
 console.log(num1);
@@ -1635,7 +1635,7 @@ a++ 与 ++a 的区别
 ```js
 const value = { number: 10 };
 const multiply = (x = { ...value }) => {
-    console.log((x.number *= 2));
+  console.log((x.number *= 2));
 };
 multiply();
 multiply();
@@ -1684,12 +1684,12 @@ undefined 4
 
 ```js
 // index.js
-console.log('running index.js');
-import { sum } from './sum.js';
+console.log("running index.js");
+import { sum } from "./sum.js";
 console.log(sum(1, 2));
 
 // sum.js
-console.log('running sum.js');
+console.log("running sum.js");
 export const sum = (a, b) => a + b;
 ```
 
@@ -1711,9 +1711,9 @@ import 命令是编译阶段执行的，在代码运行之前。因此这意味�
 
 ```js
 function addToList(item, list) {
-    return list.push(item);
+  return list.push(item);
 }
-const result = addToList('company', ['yideng']);
+const result = addToList("company", ["yideng"]);
 console.log(result);
 ```
 
@@ -1746,25 +1746,25 @@ var obj = { x: 1, y: 2, z: 3 };
 
 ```js
 obj[Symbol.iterator] = function () {
-    const _this = this;
-    //也可使用: keys = Object.getOwnPropertyNames(this)
-    const keys = Object.keys(this);
-    let index = 0;
-    return {
-        next() {
-            return {
-                value: _this[keys[index++]],
-                done: index > keys.length,
-            };
-        },
-    };
+  const _this = this;
+  //也可使用: keys = Object.getOwnPropertyNames(this)
+  const keys = Object.keys(this);
+  let index = 0;
+  return {
+    next() {
+      return {
+        value: _this[keys[index++]],
+        done: index > keys.length,
+      };
+    },
+  };
 };
 
 obj[Symbol.iterator] = function* () {
-    const values = Object.values(this);
-    for (const value of values) {
-        yield value;
-    }
+  const values = Object.values(this);
+  for (const value of values) {
+    yield value;
+  }
 };
 ```
 
@@ -1774,11 +1774,11 @@ obj[Symbol.iterator] = function* () {
 
 ```js
 function foo() {
-    console.log(length);
+  console.log(length);
 }
 function bar() {
-    var length = '京程一灯';
-    foo();
+  var length = "京程一灯";
+  foo();
 }
 bar();
 ```
@@ -1814,12 +1814,12 @@ console.log(ydArray);
 
 ```js
 const arrLike = {
-    length: 4,
-    0: 0,
-    1: 1,
-    '-1': 2,
-    3: 3,
-    4: 4,
+  length: 4,
+  0: 0,
+  1: 1,
+  "-1": 2,
+  3: 3,
+  4: 4,
 };
 console.log(Array.from(arrLike));
 console.log(Array.prototype.slice.call(arrLike));

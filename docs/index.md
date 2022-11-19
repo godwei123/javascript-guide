@@ -3,15 +3,12 @@ layout: home
 
 hero:
   name: JavaScript Guide
-  text: ""
+  text: "JavaScript 学习+面试指南"
   tagline: 我本来可以很快乐，是前端害了我
   actions:
     - theme: brand
-      text: 开始
-      link: /javascript/
-    - theme: alt
-      text: View on GitHub
-      link: https://github.com/vuejs/vitepress
+      text: 开   始
+      link: /basic/javascript/
 
 features:
   - title: HTML
