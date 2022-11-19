@@ -3,7 +3,6 @@ layout: home
 
 hero:
   name: JavaScript Guide
-  text: "JavaScript 学习+面试指南"
   tagline: 我本来可以很快乐，是前端害了我
   actions:
     - theme: brand

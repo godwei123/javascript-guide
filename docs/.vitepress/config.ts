@@ -21,6 +21,7 @@ export default defineConfig({
       copyright: "Copyright © 2021-present God Wei",
     },
   },
+
   markdown: {
     lineNumbers: false,
   },
