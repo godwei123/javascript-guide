@@ -25,8 +25,8 @@
 ## 2、script - defer、async
 
 ```html
-<script defer src="./index.js"></script>
-<script async src="./index.js"></script>
+<script defer src=""></script>
+<script async src=""></script>
 ```
 
 使用 async 属性和 defer 属性都是去异步加载外部的 JS 文件，不会阻塞 DOM 的解析。
