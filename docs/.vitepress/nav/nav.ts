@@ -2,9 +2,9 @@ const nav = [
   {
     text: "前端基础",
     items: [
-      { text: "html5", link: "/basic/html/" },
-      { text: "css3", link: "/basic/css/" },
-      { text: "javascript", link: "/basic/javascript/" },
+      { text: "html5", link: "/basic/html/introduction" },
+      { text: "css3", link: "/basic/css/introduction" },
+      { text: "javascript", link: "/basic/javascript/introduction" },
     ],
   },
   {
@@ -26,10 +26,10 @@ const nav = [
     ],
   },
   {
-    text: "State Of",
+    text: "StateOf",
     items: [
       { text: "State Of CSS", link: "/stateof/CSS/blend-mode" },
-      { text: "State Of JS", link: "/stateof/JavaScript22" },
+      { text: "State Of JS", link: "/stateof/JavaScript" },
     ],
   },
 ];

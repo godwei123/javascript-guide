@@ -14,13 +14,15 @@ const sidebar = {
   "/basic/html/": sidebarHTML,
   "/basic/css/": sidebarCSS,
   "/basic/javascript/": sidebarJavaScript,
-  "/browser/": sidebarBrowser,
-  "/network/": sidebarNetwork,
-  "/project/": sidebarProject,
-  "/code/": sidebarCode,
-  "/example/": sidebarExample,
+
+  "/advanced/browser/": sidebarBrowser,
+  "/advanced/network/": sidebarNetwork,
+  "/advanced/project/": sidebarProject,
+  "/advanced/code/": sidebarCode,
+  "/advanced/example/": sidebarExample,
+  "/advanced/optimization/": sidebarOptimization,
+
   "/interview/": sidebarInterview,
-  "/optimization/": sidebarOptimization,
   "/stateof/": sidebarStateOf,
 };
 export default sidebar;

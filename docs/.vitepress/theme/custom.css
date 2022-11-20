@@ -4,40 +4,6 @@
     Hiragino Sans GB, Arial, sans-serif, -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
     "Helvetica Neue", sans-serif;
-  --font-family-mono: "IBM Plex Mono", JetBrainsMono, source-code-pro, Menlo,
+  --vp-font-family-mono: "IBM Plex Mono", JetBrainsMono, source-code-pro, Menlo,
     Monaco, Consolas, "Courier New", monospace;
-}
-
-@font-face {
-  font-family: "JetBrainsMono";
-  font-style: normal;
-  font-weight: normal;
-  font-display: auto;
-  src: local("JetBrainsMono"), local("JetBrainsMono"),
-    url("./font/JetBrainsMonoNL-Regular.ttf");
-}
-
-@font-face {
-  font-family: "JetBrainsMono";
-  font-weight: bold;
-  font-display: auto;
-  src: local("JetBrainsMono"), local("JetBrainsMono"),
-    url("./font/JetBrainsMonoNL-Bold.ttf");
-}
-
-@font-face {
-  font-family: "NotoSansSC";
-  font-style: normal;
-  font-weight: normal;
-  font-display: auto;
-  src: local("NotoSansSC"), local("NotoSansSC"),
-    url("./font/NotoSansSC-Regular.otf") format("otf");
-}
-
-@font-face {
-  font-family: "NotoSansSC";
-  font-weight: bold;
-  font-display: auto;
-  src: local("NotoSansSC"), local("NotoSansSC"),
-    url("./font/NotoSansSC-Bold.otf") format("otf");
 }

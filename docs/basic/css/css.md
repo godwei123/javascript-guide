@@ -1061,7 +1061,7 @@ animation、transition、transform、translate 这几个属性要搞清楚：
 </html>
 ```
 
-## （2）问：visibility 和 display 的差别（还有 opacity)
+## （2）问：visibility 和 display 的差别还有 opacity
 
 - visibility 设置 hidden 会隐藏元素，但是其位置还存在与页面文档流中，不会被删除，所以会触发浏览器渲染引擎的重绘
 - display 设置了 none 属性会隐藏元素，且其位置也不会被保留下来，所以会触发浏览器渲染引擎的回流和重绘。
@@ -1162,17 +1162,17 @@ BFC 是页面中一个独立的隔离容器，内部的子元素不会影响到�
 - 给父级添加 overflow:hidden 清除浮动方法
 - 万能清除法 after 伪类 清浮动（现在主流方法，推荐使用）
 
-```
-.float_div:after{
-  content:".";
-  clear:both;
-  display:block;
-  height:0;
-  overflow:hidden;
-  visibility:hidden;
+```css
+.float_div:after {
+  content: ".";
+  clear: both;
+  display: block;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
 }
-.float_div{
-  zoom:1
+.float_div {
+  zoom: 1;
 }
 ```
 
@@ -1182,7 +1182,6 @@ BFC 是页面中一个独立的隔离容器，内部的子元素不会影响到�
 - https://segmentfault.com/a/1190000013325778
 - https://juejin.im/post/5ca80d366fb9a05e3345dccf#heading-16
 - https://juejin.im/post/5e8d5268f265da480f0f9c6e#heading-33
--
 - https://juejin.im/post/5cc59e41e51d456e62545b66#heading-75
 - https://juejin.im/post/5a0c184c51882531926e4294#heading-50
 - https://juejin.im/post/5ce607a7e51d454f6f16eb3d#heading-34
