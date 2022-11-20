@@ -1,13 +1,5 @@
 # 代码输出
 
-:::tip
-异步编程、事件循环、this 指向、作用域、变量提升、闭包、原型、继承。
-
-知识点往往不是单独出现的，而是在同一段代码中包含多个知识点。
-
-此处为题目，具体知识点见相应文档
-:::
-
 ## 异步编程、事件循环
 
 ### 1、代码输出结果
@@ -340,8 +332,8 @@ const num = {
   add() {
     return this.a + 2;
   },
-  reduce: () => this.a - 2;
-}
+  reduce: () => this.a - 2,
+};
 console.log(num.add());
 console.log(num.reduce());
 ```
@@ -670,43 +662,50 @@ Foo.a();
 1
 ```
 
-```js
 首先，
 
+```js
 function Foo() {
-Foo.a = function() {console.log(1)}
-this.a = function() {console.log(2)}
+  Foo.a = function () {
+    console.log(1);
+  };
+  this.a = function () {
+    console.log(2);
+  };
 }
+```
+
 上面这段代码执行完之后，我们有了一个名为 Foo 的函数，虽然函数里面也有一些代码，但此时它们还不会被执行，接下来
 
-Foo.prototype.a = function() {console.log(3)}
+`Foo.prototype.a = function() {console.log(3)}`
 
 到这里，我们知道了这个函数所有的实例都会有一个叫做 a 的方法，执行这个方法之后会输出 3，再往下看
 
-Foo.a = function() {console.log(4)}
+`Foo.a = function() {console.log(4)}`
 
 我们又给 Foo 函数添加了一个静态方法，也叫做 a，执行这个方法时会输出 4，继续看接下来的代码
 
-Foo.a();
+`Foo.a();`
+
 毫无疑问，调用了 Foo 函数的静态方法 a，刚才也说了会输出 4，所以这里会输出一个 4
 
-let obj = new Foo();
+`let obj = new Foo();`
+
 然后我们使用 new 操作符以 Foo 构造函数创建了一个实例叫做 obj，创建实例时会执行构造函数的代码，也就是 Foo 里面的代码被执行了。首先，
 
-Foo.a = function() {console.log(1)}
+`Foo.a = function() {console.log(1)}`
 
 Foo 函数的静态方法 a 被修改了，原来是输出 4，修改之后会输出 1。接着
 
-this.a = function() {console.log(2)}
+`this.a = function() {console.log(2)}`
 
 使用 new 操作符创建实例时，构造函数中的 this 会指向新创建的实例，在这里新创建的实例就是 obj，因此 obj 有了一个方法叫做 a，执行这个方法会输出 2。同时，在 obj 的原型链上存在一个同样叫做 a 的方法，那个方法执行时会输出 3，也就是上面通过
 
-Foo.prototype.a = function() {console.log(3)}
+`Foo.prototype.a = function() {console.log(3)}`
 
 声明的方法，显而易见，对于 obj 来说，自身的方法 a 会覆盖原型链上的同名方法，因此，在下面的代码中调用 obj.a();时会输出 2。
 最后，再次调用 Foo.a();时，由于刚在在创建 obj 实例时，Foo 函数的静态方法 a 已经被修改了，因此这里执行的是修改后的函数，所以会输出 1。
-综上所述，最终的输出结果为
-```
+综上所述，最终输出结果为
 
 :::
 
@@ -940,10 +939,10 @@ Number(["1"]); //1
 ① 如果比较的是原始类型的值，原始类型的值会转成数值再进行比较
 
 ```js
-1 == true  //true   1 === Number(true)
-'true' == true //false Number('true')->NaN  Number(true)->1
-'' = 0//true
-'1' == true//true  Number('1')->1
+1 == true; //true   1 === Number(true)
+"true" == true; //false Number('true')->NaN  Number(true)->1
+"" == 0; //true
+"1" == true; //true  Number('1')->1
 ```
 
 ② 对象与原始类型值比较，对象会转换成原始类型的值再进行比较。
@@ -1320,10 +1319,10 @@ console.log(typeof bar());
 这种命名函数表达式函数只能在函数体内有效
 
 ```js
-typeof(bar). // "undefined"
-typeof(foo()). // "number"
-typeof(foo).   // "function"
-typeof(bar()). // Uncaught ReferenceError: bar is not defined
+typeof bar; // "undefined"
+typeof foo(); // "number"
+typeof foo; // "function"
+typeof bar(); // Uncaught ReferenceError: bar is not defined
 ```
 
 :::
@@ -1517,9 +1516,9 @@ filter 为数组中的每个元素调用一次 callback 函数，并利用所有
 
 ```js
 // a 在什么情况下会打印 1
-var a = ?;
-if(a == 1 && a== 2 && a== 3){
- 	console.log(1);
+var a; // ?;
+if (a == 1 && a == 2 && a == 3) {
+  console.log(1);
 }
 ```
 
