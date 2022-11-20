@@ -5,7 +5,7 @@ import { defineConfig } from "vitepress";
 
 export default defineConfig({
   title: "JavaScriptGuide",
-  base: "/docs",
+  base: "/JavaScriptGuide/",
   description: "Just playing around.",
   lang: "zh-CN",
   head: [
