@@ -28,6 +28,7 @@ shape-outside 的 CSS 属性定义了一个可以是非矩形的形状，相邻�
 
 `shape-outside` 属性指定使用下面列表的值来定义浮动元素的浮动区域。这个浮动区域决定了行内内容（浮动元素）所包裹的形状。
 
+```
 /_ 关键字值 _/
 shape-outside: none;
 shape-outside: margin-box;
@@ -51,6 +52,7 @@ shape-outside: linear-gradient(45deg, rgba(255, 255, 255, 0) 150px, red 150px);
 shape-outside: initial;
 shape-outside: inherit;
 shape-outside: unset;
+```
 
 none
 该浮动区域不产生影响，行内元素以默认的方式包裹着该元素的 margin box。

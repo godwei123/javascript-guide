@@ -10,12 +10,12 @@ const nav = [
   {
     text: "前端进阶",
     items: [
-      { text: "浏览器", link: "/advanced/browser/" },
-      { text: "网络", link: "/advanced/network/" },
+      { text: "浏览器", link: "/advanced/browser/introduction" },
+      { text: "网络", link: "/advanced/network/introduction" },
       { text: "项目优化", link: "/advanced/optimization/" },
       { text: "场景题", link: "/advanced/scene/" },
-      { text: "手写代码", link: "/advanced/code/" },
-      { text: "代码输出", link: "/advanced/example/" },
+      { text: "手写代码", link: "/advanced/code/introduction" },
+      { text: "代码输出", link: "/advanced/example/introduction" },
     ],
   },
   {
@@ -27,10 +27,7 @@ const nav = [
   },
   {
     text: "StateOf",
-    items: [
-      { text: "State Of CSS", link: "/stateof/CSS/blend-mode" },
-      { text: "State Of JS", link: "/stateof/JavaScript" },
-    ],
+    link: "/stateof/introduction",
   },
 ];
 
