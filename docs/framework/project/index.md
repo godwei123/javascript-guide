@@ -186,7 +186,7 @@ HRM Runtime 更新代码
 
 ### 三、HMR 原理详解
 
-![hmr](../../public/2f696d672d73746.png)
+![hmr](/public/2f696d672d73746.png)
 
 使用 webpack-dev-server 去启动本地服务，内部实现主要使用了 webpack、express、websocket。
 

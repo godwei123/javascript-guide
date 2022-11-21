@@ -7,7 +7,7 @@ hero:
   actions:
     - theme: brand
       text: 开   始
-      link: /basic/javascript/
+      link: /basic/javascript/introduction
 
 features:
   - title: HTML

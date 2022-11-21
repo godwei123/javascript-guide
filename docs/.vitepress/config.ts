@@ -5,14 +5,14 @@ import { defineConfig } from "vitepress";
 
 export default defineConfig({
   title: "JavaScriptGuide",
-  base: "/JavaScriptGuide/",
+  base: "/javascript-guide/",
   description: "Just playing around.",
   lang: "zh-CN",
   head: [
     ["link", { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" }],
   ],
   themeConfig: {
-    siteTitle: "JavaScriptGuide 🐶",
+    siteTitle: "JavaScriptGuide",
     logo: "/favicon.svg",
     nav,
     sidebar,

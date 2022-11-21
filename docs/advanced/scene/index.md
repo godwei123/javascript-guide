@@ -662,7 +662,7 @@ js 模拟 DOM 树并对 DOM 树操作的一种技术。virtual DOM 是一个纯 
 无论是异步还是非异步错误，onerror 都能捕获到运行时错误
 onerror 主要是来捕获预料之外的错误，而 try-catch 则是用来在可预见情况下监控特定的错误，两者结合使用更加高效。
 window.onerror 函数只有在返回 true 的时候，异常才不会向上抛出，否则即使是知道异常的发生控制台还是会显示 Uncaught Error: xxxxx。
-当我们遇到 <img src="./404.png"> 报 404 网络请求异常的时候，onerror 是无法帮助我们捕获到异常的。
+当我们遇到 `<img src="./404.png">` 报 404 网络请求异常的时候，onerror 是无法帮助我们捕获到异常的。
 缺点: 监听不到资源加载的报错 onerror,事件处理函数只能声明一次，不会重复执行多个回调：
 
 #### 3.window.addEventListener('error')
@@ -1171,7 +1171,7 @@ RWD：Ethan Marcote 的文章是大家认为 RWD 的起源。他提出的 RWD �
 
 AWD：Adaptive Design 是 Aaron Gustafson 的书的标题。他认为 AWD 在包括 RWD 的 CSS 媒体查询技术以外，也要用 Javascript 来操作 HTML 来更适应移动设备的能力。AWD 有可能会针对移动端用户**减去内容，减去功能**。AWD 可以在服务器端就进行优化，把优化过的内容送到终端上。
 
-![图片](../../public/640327834738732.png)
+![图片](/public/640327834738732.png)
 
 **渐进增强和优雅降级**
 
@@ -1234,7 +1234,7 @@ rem（font size of the root element），在 **CSS Values and Units Module Level
 - `1vw` 等于 `window.innerWidth` 的数值的 1%
 - `1vh` 等于`window.innerHeight` 的数值的 1%
 
-![图片](../../public/6403274893291991.png)
+![图片](/public/6403274893291991.png)
 
 vw 确实看上去很不错，但是也是存在它的一些问题：
 

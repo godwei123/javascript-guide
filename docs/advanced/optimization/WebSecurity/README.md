@@ -131,6 +131,6 @@
 >
 > ​ 加密 过程：
 >
-> ![img](clip_image002.jpg)
+> ![img](/public/clip_image002.jpg)
 >
 > ​

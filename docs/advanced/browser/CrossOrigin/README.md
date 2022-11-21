@@ -109,4 +109,4 @@ callback 函数中，返回给浏览器，浏览器解析执行，从而前端�
 
 （5）websocket
 
-![preview](/docs/public/d9ad503b91107080.jpg)
+![preview](/public/d9ad503b91107080.jpg)
