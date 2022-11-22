@@ -1176,13 +1176,4 @@ BFC 是页面中一个独立的隔离容器，内部的子元素不会影响到�
 }
 ```
 
-### 参考链接
-
-- https://juejin.im/post/5cc59e41e51d456e62545b66
-- https://segmentfault.com/a/1190000013325778
-- https://juejin.im/post/5ca80d366fb9a05e3345dccf#heading-16
-- https://juejin.im/post/5e8d5268f265da480f0f9c6e#heading-33
-- https://juejin.im/post/5cc59e41e51d456e62545b66#heading-75
-- https://juejin.im/post/5a0c184c51882531926e4294#heading-50
-- https://juejin.im/post/5ce607a7e51d454f6f16eb3d#heading-34
-- https://juejin.im/post/5e8b163ff265da47ee3f54a6#heading-12
+-

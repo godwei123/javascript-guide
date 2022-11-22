@@ -30,7 +30,7 @@
 
   指定包含字体数据的资源。这可以是远程字体文件位置的 URL，也可以是用户计算机上字体的名称。
 
-  为了向浏览器提供有关字体资源格式的提示——以便它可以选择合适的格式——可以在`format()`函数中包含格式类型：可用的类型是` "woff"``"woff2"``"truetype"``"opentype"``"embedded-opentype" `和`"svg"`
+  为了向浏览器提供有关字体资源格式的提示——以便它可以选择合适的格式——可以在`format()`函数中包含格式类型：可用的类型是 "woff","woff2","truetype","opentype","embedded-opentype" 和"svg"
 
 - font-variant
 
@@ -73,4 +73,4 @@
 
 - 因为这里没有为 TrueType(ttf), OpenType(otf) 和 Web Open File Format(WOFF) 字体定义 MIME，因此不能为这些字体类型设置特定的 MIME（实际上 WOFF 的 MIME 将会是 application/font-woff，但浏览器对此 MIME 的识别还不统一，其它字体情况也类似，可暂时使用 application/octet-stream）。
 
-- 你不能在一个 CSS 选择器中定义 @font-face。例如，这样写是无效的：
+- 你不能在一个 CSS 选择器中定义 @font-face。
