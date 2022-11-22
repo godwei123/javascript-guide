@@ -11,7 +11,6 @@ const sidebarCSS = [
       { text: "BFC", link: "/basic/css/bfc" },
       { text: "position", link: "/basic/css/position" },
       { text: "过渡与动画", link: "/basic/css/过渡与动画" },
-      { text: "其他", link: "/basic/css/other" },
     ],
   },
 ];
