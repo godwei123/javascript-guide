@@ -1,12 +1,8 @@
-# JavaScriptGuild
+# JavaScriptGuide dev
 
-「JavaScript 学习+面试指南」一份涵盖大部分 JavaScript 程序员所需要掌握的核心知识。准备 JavaScript 面试，首选 JavaScriptGuide！
+「JavaScript 学习+面试指南」一份涵盖大部分 JavaScript 程序员所需要掌握的核心知识。
 
-### 优秀的库
-
-RxJS
-
-https://lgwebdream.github.io/FE-Interview/daily/#day170-%E8%AF%B7%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA-json-parse
+> 项目思路来源于 JavaGuide 网站，后续将逐步完善内容，目前整个文档处于开发中，文档还没有整理完成。
 
 #### 网站链接：
 
@@ -23,6 +19,8 @@ https://www.yuque.com/cuggz/feplus/oewdt3
 大厂面试题每日一题 https://q.shanyue.tech/
 
 https://lgwebdream.github.io/FE-Interview/daily/#%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98%E6%B1%87%E6%80%BB
+
+https://lgwebdream.github.io/FE-Interview/daily/#day170-%E8%AF%B7%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA-json-parse
 
 #### 文章链接：
 
