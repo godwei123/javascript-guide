@@ -8,7 +8,7 @@ const SidebarBrowser = [
       { text: "浏览器缓存", link: "/advanced/browser/浏览器缓存" },
       { text: "浏览器安全", link: "/advanced/browser/浏览器安全" },
       { text: "浏览器渲染", link: "/advanced/browser/浏览器渲染" },
-      { text: "浏览器开发者工具", link: "/advanced/browser/浏览器开发者工具" },
+      { text: "浏览器性能", link: "/advanced/browser/浏览器性能" },
     ],
   },
 ];
