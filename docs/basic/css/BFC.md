@@ -159,3 +159,76 @@ BFC 是一个独立的区域,它内部的元素都依照它的规则渲染,并�
 **3.自适应两栏布局**
 
 根据规则 BFC 的区域不会与浮动元素的 box 重叠，可以实现自适应两栏布局
+
+## 层叠上下文
+
+我们假定用户正面向（浏览器）视窗或网页，而 HTML 元素沿着其相对于用户的一条虚构的 z 轴排开，**层叠上下文**就是对这些 HTML 元素的一个三维构想。众 HTML 元素基于其元素属性按照优先级顺序占据这个空间。
+
+层叠上下文
+
+在本篇之前的部分——运用 z-index，（我们认识到）某些元素的渲染顺序是由其  `z-index`  的值影响的。这是因为这些元素具有能够使他们形成一个*层叠上下文*的特殊属性。
+
+文档中的层叠上下文由满足以下任意一个条件的元素形成：
+
+- 文档根元素（`<html>`）；
+- `position`  值为  `absolute`（绝对定位）或  `relative`（相对定位）且  `z-index`  值不为  `auto`  的元素；
+- `position`  值为  `fixed`（固定定位）或  `sticky`（粘滞定位）的元素（沾滞定位适配所有移动设备上的浏览器，但老的桌面浏览器不支持）；
+- flex 容器的子元素，且  `z-index`  值不为  `auto`；
+- grid 容器的子元素，且  `z-index`  值不为  `auto`；
+- `opacity`属性值小于  `1`  的元素；
+- `mix-blend-mode`属性值不为  `normal`  的元素；
+- 以下任意属性值不为  `none`  的元素：
+  - `transform`
+  - `filter`
+  - `backdrop-filter`
+  - `perspective`
+  - `clip-path`
+  - `mask` / `mask-image` / `mask-border`
+- `isolation`属性值为  `isolate`  的元素；
+- `will-change` 值设定了任一属性而该属性在 non-initial 值时会创建层叠上下文的元素；
+- `contain`属性值为  `layout`、`paint`  或包含它们其中之一的合成值（比如  `contain: strict`、`contain: content`）的元素。
+
+在层叠上下文中，子元素同样也按照上面解释的规则进行层叠。重要的是，其子级层叠上下文的  `z-index`  值只在父级中才有意义。子级层叠上下文被自动视为父级层叠上下文的一个独立单元。
+
+总结：
+
+- 层叠上下文可以包含在其他层叠上下文中，并且一起创建一个层叠上下文的层级。
+- 每个层叠上下文都完全独立于它的兄弟元素：当处理层叠时只考虑子元素。
+- 每个层叠上下文都是自包含的：当一个元素的内容发生层叠后，该元素将被作为整体在父级层叠上下文中按顺序进行层叠。
+
+**备注：**  层叠上下文的层级是 HTML 元素层级的一个子级，因为只有某些元素才会创建层叠上下文。可以这样说，没有创建自己的层叠上下文的元素会被父层叠上下文*同化*。
+
+例子代码，添加解释
+
+## 块格式化上下文
+
+**块格式化上下文**（Block Formatting Context，BFC）是 Web 页面的可视 CSS 渲染的一部分，是块级盒子的布局过程发生的区域，也是浮动元素与其他元素交互的区域。
+
+下列方式会创建块格式化上下文：
+
+- 根元素（`<html>`）
+- 浮动元素（`float` 值不为  `none`）
+- 绝对定位元素（`position` 值为  `absolute`  或  `fixed`）
+- 行内块元素（`display` 值为  `inline-block`）
+- 表格单元格（`display` 值为  `table-cell`，HTML 表格单元格默认值）
+- 表格标题（`display` 值为  `table-caption`，HTML 表格标题默认值）
+- 匿名表格单元格元素（`display`  值为  `table`、`table-row`、 `table-row-group`、`table-header-group`、`table-footer-group`（分别是 HTML table、tr、tbody、thead、tfoot 的默认值）或  `inline-table`）
+- `overflow` 值不为  `visible`、`clip`  的块元素
+- `display`  值为  `flow-root`  的元素
+- `contain` 值为  `layout`、`content`  或  `paint`  的元素
+- 弹性元素（`display`  值为  `flex`  或  `inline-flex`  元素的直接子元素），如果它们本身既不是  flex、grid 也不是  table 容器
+- 网格元素（`display`  值为  `grid`  或  `inline-grid`  元素的直接子元素），如果它们本身既不是  flex、grid 也不是  table  容器
+- 多列容器（`column-count`或  `column-width`值不为  `auto`，包括`column-count`  为  `1`）
+- `column-span`  值为  `all`  的元素始终会创建一个新的 BFC，即使该元素没有包裹在一个多列容器中。
+
+格式化上下文影响布局，通常，我们会为定位和清除浮动创建新的 BFC，而不是更改布局，因为它将：
+
+- 包含内部浮动
+- 排除外部浮动
+- 阻止外边距重叠
+
+**备注：** flex/grid 容器（display：flex/grid/inline-flex/inline-grid）建立新的 flex/grid 格式上下文，除布局之外，它与块格式上下文类似。flex/grid 容器中没有可用的浮动子级，但排除外部浮动和阻止外边距重叠仍然有效。
+
+## [示例](https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context#%E7%A4%BA%E4%BE%8B)
+
+例子也很重要，参考网站上的内容实现相应代码
