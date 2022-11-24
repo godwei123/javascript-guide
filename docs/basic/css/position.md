@@ -120,3 +120,13 @@ sticky
 粘性定位常用于定位字母列表的头部元素。标示 B 部分开始的头部元素在滚动 A 部分时，始终处于 A 的下方。而在开始滚动 B 部分时，B 的头部会固定在屏幕顶部，直到所有 B 的项均完成滚动后，才被 C 的头部替代。
 
 须指定 top, right, bottom 或 left 四个阈值其中之一，才可使粘性定位生效。否则其行为与相对定位相同。
+
+static：无特殊定位，对象遵循正常文档流。top，right，bottom，left 等属性不会被应用。
+
+relative：对象遵循正常文档流，但将依据 top，right，bottom，left 等属性在正常文档流中偏移位置。而其层叠通过 z-index 属性定义。
+
+absolute：对象脱离正常文档流，使用 top，right，bottom，left 等属性进行绝对定位。而其层叠通过 z-index 属性定义。
+
+fixed：对象脱离正常文档流，使用 top，right，bottom，left 等属性以窗口为参考点进行定位，当出现滚动条时，对象不会随着滚动。而其层叠通过 z-index 属性定义。
+
+sticky：具体是类似 relative 和 fixed，在 viewport 视口滚动到阈值之前应用 relative，滚动到阈值之后应用 fixed 布局，由 top 决定。

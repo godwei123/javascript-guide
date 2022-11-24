@@ -80,11 +80,6 @@
 
 - https://zhuanlan.zhihu.com/p/41604775
 
-## 问：介绍 Flex 布局，flex 是什么属性的缩写：
-
-- 弹性盒布局，CSS3 的新属性，用于方便布局，比如垂直居中
-- flex 属性是 `flex-grow`、`flex-shrink` 和 `flex-basis` 的简写
-
 ### 参考链接
 
 - https://www.ruanyifeng.com/blog/2015/07/flex-grammar.html
@@ -1061,7 +1056,7 @@ animation、transition、transform、translate 这几个属性要搞清楚：
 </html>
 ```
 
-## （2）问：visibility 和 display 的差别还有 opacity
+## visibility 和 display 的差别还有 opacity
 
 - visibility 设置 hidden 会隐藏元素，但是其位置还存在与页面文档流中，不会被删除，所以会触发浏览器渲染引擎的重绘
 - display 设置了 none 属性会隐藏元素，且其位置也不会被保留下来，所以会触发浏览器渲染引擎的回流和重绘。
@@ -1069,7 +1064,7 @@ animation、transition、transform、translate 这几个属性要搞清楚：
 
 ## 问：opacity 可以有过渡效果嘛？
 
-> 可以设置过渡效果
+可以设置过渡效果
 
 ## 问：BFC 与 IFC 区别
 
@@ -1138,9 +1133,7 @@ box-sizing: border-box;
 
 ## 问：说一下你知道的 position 属性，都有啥特点？
 
-static：无特殊定位，对象遵循正常文档流。top，right，bottom，left 等属性不会被应用。relative：对象遵循正常文档流，但将依据 top，right，bottom，left 等属性在正常文档流中偏移位置。而其层叠通过 z-index 属性定义。absolute：对象脱离正常文档流，使用 top，right，bottom，left 等属性进行绝对定位。而其层叠通过 z-index 属性定义。fixed：对象脱离正常文档流，使用 top，right，bottom，left 等属性以窗口为参考点进行定位，当出现滚动条时，对象不会随着滚动。而其层叠通过 z-index 属性定义。sticky：具体是类似 relative 和 fixed，在 viewport 视口滚动到阈值之前应用 relative，滚动到阈值之后应用 fixed 布局，由 top 决定。
-
-## 问：两个 div 上下排列，都设 margin，有什么现象？
+## 两个 div 上下排列，都设 margin，有什么现象？
 
 - 都正取大
 - 一正一负相加
@@ -1151,7 +1144,7 @@ static：无特殊定位，对象遵循正常文档流。top，right，bottom，
 
 BFC 是页面中一个独立的隔离容器，内部的子元素不会影响到外部的元素。
 
-## 问：清除浮动有哪些方法？
+## 清除浮动有哪些方法？
 
 不清楚浮动会发生高度塌陷：浮动元素父元素高度自适应（父元素不写高度时，子元素写了浮动后，父元素会发生高度塌陷）
 
@@ -1175,5 +1168,3 @@ BFC 是页面中一个独立的隔离容器，内部的子元素不会影响到�
   zoom: 1;
 }
 ```
-
--
