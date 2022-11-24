@@ -1,0 +1,1760 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>选择器 | JavaScriptGuide</title>
+    <meta name="description" content="Just playing around." />
+    <link rel="stylesheet" href="/javascript-guide/assets/style.c76a2051.css" />
+    <link rel="modulepreload" href="/javascript-guide/assets/app.61809bb9.js" />
+    <link
+      rel="modulepreload"
+      href="/javascript-guide/assets/basic_css_selectors.md.e8b794fb.lean.js"
+    />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script id="check-dark-light">
+      (() => {
+        const e = localStorage.getItem("vitepress-theme-appearance") || "",
+          a = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        (!e || e === "auto" ? a : e === "dark") &&
+          document.documentElement.classList.add("dark");
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="app">
+      <div class="Layout" data-v-f44a984a>
+        <!--[--><!--]--><!--[--><span tabindex="-1" data-v-151f2593></span
+        ><a
+          href="#VPContent"
+          class="VPSkipLink visually-hidden"
+          data-v-151f2593
+        >
+          Skip to content </a
+        ><!--]--><!---->
+        <header class="VPNav" data-v-f44a984a data-v-a50780ff>
+          <div class="VPNavBar has-sidebar" data-v-a50780ff data-v-6f1d18b5>
+            <div class="container" data-v-6f1d18b5>
+              <div
+                class="VPNavBarTitle has-sidebar"
+                data-v-6f1d18b5
+                data-v-d5925166
+              >
+                <a class="title" href="/javascript-guide/" data-v-d5925166
+                  ><!--[--><!--]--><!--[--><img
+                    class="VPImage logo"
+                    src="/javascript-guide/favicon.svg"
+                    alt
+                    data-v-b7ac6bd3
+                  /><!--]--><!--[-->JavaScriptGuide<!--]--><!--[--><!--]--></a
+                >
+              </div>
+              <div class="content" data-v-6f1d18b5>
+                <!--[--><!--]--><!---->
+                <nav
+                  aria-labelledby="main-nav-aria-label"
+                  class="VPNavBarMenu menu"
+                  data-v-6f1d18b5
+                  data-v-f83db6ba
+                >
+                  <span
+                    id="main-nav-aria-label"
+                    class="visually-hidden"
+                    data-v-f83db6ba
+                    >Main Navigation</span
+                  ><!--[--><!--[-->
+                  <div
+                    class="VPFlyout VPNavBarMenuGroup"
+                    data-v-f83db6ba
+                    data-v-6ffb57d3
+                  >
+                    <button
+                      type="button"
+                      class="button"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                      data-v-6ffb57d3
+                    >
+                      <span class="text" data-v-6ffb57d3
+                        ><!---->
+                        前端基础
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          aria-hidden="true"
+                          focusable="false"
+                          viewbox="0 0 24 24"
+                          class="text-icon"
+                          data-v-6ffb57d3
+                        >
+                          <path
+                            d="M12,16c-0.3,0-0.5-0.1-0.7-0.3l-6-6c-0.4-0.4-0.4-1,0-1.4s1-0.4,1.4,0l5.3,5.3l5.3-5.3c0.4-0.4,1-0.4,1.4,0s0.4,1,0,1.4l-6,6C12.5,15.9,12.3,16,12,16z"
+                          ></path></svg
+                      ></span>
+                    </button>
+                    <div class="menu" data-v-6ffb57d3>
+                      <div class="VPMenu" data-v-6ffb57d3 data-v-1c5d0cfc>
+                        <div class="items" data-v-1c5d0cfc>
+                          <!--[--><!--[-->
+                          <div
+                            class="VPMenuLink"
+                            data-v-1c5d0cfc
+                            data-v-e8e0fb1d
+                          >
+                            <a
+                              class="VPLink link"
+                              href="/javascript-guide/basic/html/introduction.html"
+                              data-v-e8e0fb1d
+                              data-v-3c355974
+                              ><!--[-->html5<!--]--><!----></a
+                            >
+                          </div>
+                          <!--]--><!--[-->
+                          <div
+                            class="VPMenuLink"
+                            data-v-1c5d0cfc
+                            data-v-e8e0fb1d
+                          >
+                            <a
+                              class="VPLink link"
+                              href="/javascript-guide/basic/css/introduction.html"
+                              data-v-e8e0fb1d
+                              data-v-3c355974
+                              ><!--[-->css3<!--]--><!----></a
+                            >
+                          </div>
+                          <!--]--><!--[-->
+                          <div
+                            class="VPMenuLink"
+                            data-v-1c5d0cfc
+                            data-v-e8e0fb1d
+                          >
+                            <a
+                              class="VPLink link"
+                              href="/javascript-guide/basic/javascript/introduction.html"
+                              data-v-e8e0fb1d
+                              data-v-3c355974
+                              ><!--[-->javascript<!--]--><!----></a
+                            >
+                          </div>
+                          <!--]--><!--]-->
+                        </div>
+                        <!--[--><!--]-->
+                      </div>
+                    </div>
+                  </div>
+                  <!--]--><!--[-->
+                  <div
+                    class="VPFlyout VPNavBarMenuGroup"
+                    data-v-f83db6ba
+                    data-v-6ffb57d3
+                  >
+                    <button
+                      type="button"
+                      class="button"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                      data-v-6ffb57d3
+                    >
+                      <span class="text" data-v-6ffb57d3
+                        ><!---->
+                        前端进阶
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          aria-hidden="true"
+                          focusable="false"
+                          viewbox="0 0 24 24"
+                          class="text-icon"
+                          data-v-6ffb57d3
+                        >
+                          <path
+                            d="M12,16c-0.3,0-0.5-0.1-0.7-0.3l-6-6c-0.4-0.4-0.4-1,0-1.4s1-0.4,1.4,0l5.3,5.3l5.3-5.3c0.4-0.4,1-0.4,1.4,0s0.4,1,0,1.4l-6,6C12.5,15.9,12.3,16,12,16z"
+                          ></path></svg
+                      ></span>
+                    </button>
+                    <div class="menu" data-v-6ffb57d3>
+                      <div class="VPMenu" data-v-6ffb57d3 data-v-1c5d0cfc>
+                        <div class="items" data-v-1c5d0cfc>
+                          <!--[--><!--[-->
+                          <div
+                            class="VPMenuLink"
+                            data-v-1c5d0cfc
+                            data-v-e8e0fb1d
+                          >
+                            <a
+                              class="VPLink link"
+                              href="/javascript-guide/advanced/browser/introduction.html"
+                              data-v-e8e0fb1d
+                              data-v-3c355974
+                              ><!--[-->浏览器<!--]--><!----></a
+                            >
+                          </div>
+                          <!--]--><!--[-->
+                          <div
+                            class="VPMenuLink"
+                            data-v-1c5d0cfc
+                            data-v-e8e0fb1d
+                          >
+                            <a
+                              class="VPLink link"
+                              href="/javascript-guide/advanced/network/introduction.html"
+                              data-v-e8e0fb1d
+                              data-v-3c355974
+                              ><!--[-->网络<!--]--><!----></a
+                            >
+                          </div>
+                          <!--]--><!--[-->
+                          <div
+                            class="VPMenuLink"
+                            data-v-1c5d0cfc
+                            data-v-e8e0fb1d
+                          >
+                            <a
+                              class="VPLink link"
+                              href="/javascript-guide/advanced/optimization/"
+                              data-v-e8e0fb1d
+                              data-v-3c355974
+                              ><!--[-->项目优化<!--]--><!----></a
+                            >
+                          </div>
+                          <!--]--><!--[-->
+                          <div
+                            class="VPMenuLink"
+                            data-v-1c5d0cfc
+                            data-v-e8e0fb1d
+                          >
+                            <a
+                              class="VPLink link"
+                              href="/javascript-guide/advanced/scene/"
+                              data-v-e8e0fb1d
+                              data-v-3c355974
+                              ><!--[-->场景题<!--]--><!----></a
+                            >
+                          </div>
+                          <!--]--><!--[-->
+                          <div
+                            class="VPMenuLink"
+                            data-v-1c5d0cfc
+                            data-v-e8e0fb1d
+                          >
+                            <a
+                              class="VPLink link"
+                              href="/javascript-guide/advanced/code/introduction.html"
+                              data-v-e8e0fb1d
+                              data-v-3c355974
+                              ><!--[-->手写代码<!--]--><!----></a
+                            >
+                          </div>
+                          <!--]--><!--[-->
+                          <div
+                            class="VPMenuLink"
+                            data-v-1c5d0cfc
+                            data-v-e8e0fb1d
+                          >
+                            <a
+                              class="VPLink link"
+                              href="/javascript-guide/advanced/example/introduction.html"
+                              data-v-e8e0fb1d
+                              data-v-3c355974
+                              ><!--[-->代码输出<!--]--><!----></a
+                            >
+                          </div>
+                          <!--]--><!--]-->
+                        </div>
+                        <!--[--><!--]-->
+                      </div>
+                    </div>
+                  </div>
+                  <!--]--><!--[-->
+                  <div
+                    class="VPFlyout VPNavBarMenuGroup"
+                    data-v-f83db6ba
+                    data-v-6ffb57d3
+                  >
+                    <button
+                      type="button"
+                      class="button"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                      data-v-6ffb57d3
+                    >
+                      <span class="text" data-v-6ffb57d3
+                        ><!---->
+                        框架
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          aria-hidden="true"
+                          focusable="false"
+                          viewbox="0 0 24 24"
+                          class="text-icon"
+                          data-v-6ffb57d3
+                        >
+                          <path
+                            d="M12,16c-0.3,0-0.5-0.1-0.7-0.3l-6-6c-0.4-0.4-0.4-1,0-1.4s1-0.4,1.4,0l5.3,5.3l5.3-5.3c0.4-0.4,1-0.4,1.4,0s0.4,1,0,1.4l-6,6C12.5,15.9,12.3,16,12,16z"
+                          ></path></svg
+                      ></span>
+                    </button>
+                    <div class="menu" data-v-6ffb57d3>
+                      <div class="VPMenu" data-v-6ffb57d3 data-v-1c5d0cfc>
+                        <div class="items" data-v-1c5d0cfc>
+                          <!--[--><!--[-->
+                          <div
+                            class="VPMenuLink"
+                            data-v-1c5d0cfc
+                            data-v-e8e0fb1d
+                          >
+                            <a
+                              class="VPLink link"
+                              href="/javascript-guide/framework/vue/"
+                              data-v-e8e0fb1d
+                              data-v-3c355974
+                              ><!--[-->Vue<!--]--><!----></a
+                            >
+                          </div>
+                          <!--]--><!--[-->
+                          <div
+                            class="VPMenuLink"
+                            data-v-1c5d0cfc
+                            data-v-e8e0fb1d
+                          >
+                            <a
+                              class="VPLink link"
+                              href="/javascript-guide/framework/react/"
+                              data-v-e8e0fb1d
+                              data-v-3c355974
+                              ><!--[-->React<!--]--><!----></a
+                            >
+                          </div>
+                          <!--]--><!--]-->
+                        </div>
+                        <!--[--><!--]-->
+                      </div>
+                    </div>
+                  </div>
+                  <!--]--><!--[--><a
+                    class="VPLink link VPNavBarMenuLink"
+                    href="/javascript-guide/stateof/introduction.html"
+                    data-v-f83db6ba
+                    data-v-47a2263e
+                    data-v-3c355974
+                    ><!--[-->StateOf<!--]--><!----></a
+                  ><!--]--><!--]-->
+                </nav>
+                <!---->
+                <div
+                  class="VPNavBarAppearance appearance"
+                  data-v-6f1d18b5
+                  data-v-a3e7452b
+                >
+                  <button
+                    class="VPSwitch VPSwitchAppearance"
+                    type="button"
+                    role="switch"
+                    aria-label="toggle dark mode"
+                    aria-checked="false"
+                    data-v-a3e7452b
+                    data-v-481098f9
+                    data-v-eba7420e
+                  >
+                    <span class="check" data-v-eba7420e
+                      ><span class="icon" data-v-eba7420e
+                        ><!--[--><svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          aria-hidden="true"
+                          focusable="false"
+                          viewbox="0 0 24 24"
+                          class="sun"
+                          data-v-481098f9
+                        >
+                          <path
+                            d="M12,18c-3.3,0-6-2.7-6-6s2.7-6,6-6s6,2.7,6,6S15.3,18,12,18zM12,8c-2.2,0-4,1.8-4,4c0,2.2,1.8,4,4,4c2.2,0,4-1.8,4-4C16,9.8,14.2,8,12,8z"
+                          ></path>
+                          <path
+                            d="M12,4c-0.6,0-1-0.4-1-1V1c0-0.6,0.4-1,1-1s1,0.4,1,1v2C13,3.6,12.6,4,12,4z"
+                          ></path>
+                          <path
+                            d="M12,24c-0.6,0-1-0.4-1-1v-2c0-0.6,0.4-1,1-1s1,0.4,1,1v2C13,23.6,12.6,24,12,24z"
+                          ></path>
+                          <path
+                            d="M5.6,6.6c-0.3,0-0.5-0.1-0.7-0.3L3.5,4.9c-0.4-0.4-0.4-1,0-1.4s1-0.4,1.4,0l1.4,1.4c0.4,0.4,0.4,1,0,1.4C6.2,6.5,5.9,6.6,5.6,6.6z"
+                          ></path>
+                          <path
+                            d="M19.8,20.8c-0.3,0-0.5-0.1-0.7-0.3l-1.4-1.4c-0.4-0.4-0.4-1,0-1.4s1-0.4,1.4,0l1.4,1.4c0.4,0.4,0.4,1,0,1.4C20.3,20.7,20,20.8,19.8,20.8z"
+                          ></path>
+                          <path
+                            d="M3,13H1c-0.6,0-1-0.4-1-1s0.4-1,1-1h2c0.6,0,1,0.4,1,1S3.6,13,3,13z"
+                          ></path>
+                          <path
+                            d="M23,13h-2c-0.6,0-1-0.4-1-1s0.4-1,1-1h2c0.6,0,1,0.4,1,1S23.6,13,23,13z"
+                          ></path>
+                          <path
+                            d="M4.2,20.8c-0.3,0-0.5-0.1-0.7-0.3c-0.4-0.4-0.4-1,0-1.4l1.4-1.4c0.4-0.4,1-0.4,1.4,0s0.4,1,0,1.4l-1.4,1.4C4.7,20.7,4.5,20.8,4.2,20.8z"
+                          ></path>
+                          <path
+                            d="M18.4,6.6c-0.3,0-0.5-0.1-0.7-0.3c-0.4-0.4-0.4-1,0-1.4l1.4-1.4c0.4-0.4,1-0.4,1.4,0s0.4,1,0,1.4l-1.4,1.4C18.9,6.5,18.6,6.6,18.4,6.6z"
+                          ></path></svg
+                        ><svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          aria-hidden="true"
+                          focusable="false"
+                          viewbox="0 0 24 24"
+                          class="moon"
+                          data-v-481098f9
+                        >
+                          <path
+                            d="M12.1,22c-0.3,0-0.6,0-0.9,0c-5.5-0.5-9.5-5.4-9-10.9c0.4-4.8,4.2-8.6,9-9c0.4,0,0.8,0.2,1,0.5c0.2,0.3,0.2,0.8-0.1,1.1c-2,2.7-1.4,6.4,1.3,8.4c2.1,1.6,5,1.6,7.1,0c0.3-0.2,0.7-0.3,1.1-0.1c0.3,0.2,0.5,0.6,0.5,1c-0.2,2.7-1.5,5.1-3.6,6.8C16.6,21.2,14.4,22,12.1,22zM9.3,4.4c-2.9,1-5,3.6-5.2,6.8c-0.4,4.4,2.8,8.3,7.2,8.7c2.1,0.2,4.2-0.4,5.8-1.8c1.1-0.9,1.9-2.1,2.4-3.4c-2.5,0.9-5.3,0.5-7.5-1.1C9.2,11.4,8.1,7.7,9.3,4.4z"
+                          ></path></svg
+                        ><!--]--></span
+                      ></span
+                    >
+                  </button>
+                </div>
+                <div
+                  class="VPSocialLinks VPNavBarSocialLinks social-links"
+                  data-v-6f1d18b5
+                  data-v-738bef5a
+                  data-v-f6988cfb
+                >
+                  <!--[--><a
+                    class="VPSocialLink"
+                    href="https://github.com/godwei123"
+                    target="_blank"
+                    rel="noopener"
+                    data-v-f6988cfb
+                    data-v-e57698f6
+                    ><svg
+                      role="img"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <title>GitHub</title>
+                      <path
+                        d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+                      /></svg></a
+                  ><!--]-->
+                </div>
+                <div
+                  class="VPFlyout VPNavBarExtra extra"
+                  data-v-6f1d18b5
+                  data-v-e4361c82
+                  data-v-6ffb57d3
+                >
+                  <button
+                    type="button"
+                    class="button"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    aria-label="extra navigation"
+                    data-v-6ffb57d3
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      aria-hidden="true"
+                      focusable="false"
+                      viewbox="0 0 24 24"
+                      class="icon"
+                      data-v-6ffb57d3
+                    >
+                      <circle cx="12" cy="12" r="2"></circle>
+                      <circle cx="19" cy="12" r="2"></circle>
+                      <circle cx="5" cy="12" r="2"></circle>
+                    </svg>
+                  </button>
+                  <div class="menu" data-v-6ffb57d3>
+                    <div class="VPMenu" data-v-6ffb57d3 data-v-1c5d0cfc>
+                      <!----><!--[--><!--[--><!---->
+                      <div class="group" data-v-e4361c82>
+                        <div class="item appearance" data-v-e4361c82>
+                          <p class="label" data-v-e4361c82>Appearance</p>
+                          <div class="appearance-action" data-v-e4361c82>
+                            <button
+                              class="VPSwitch VPSwitchAppearance"
+                              type="button"
+                              role="switch"
+                              aria-label="toggle dark mode"
+                              aria-checked="false"
+                              data-v-e4361c82
+                              data-v-481098f9
+                              data-v-eba7420e
+                            >
+                              <span class="check" data-v-eba7420e
+                                ><span class="icon" data-v-eba7420e
+                                  ><!--[--><svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    aria-hidden="true"
+                                    focusable="false"
+                                    viewbox="0 0 24 24"
+                                    class="sun"
+                                    data-v-481098f9
+                                  >
+                                    <path
+                                      d="M12,18c-3.3,0-6-2.7-6-6s2.7-6,6-6s6,2.7,6,6S15.3,18,12,18zM12,8c-2.2,0-4,1.8-4,4c0,2.2,1.8,4,4,4c2.2,0,4-1.8,4-4C16,9.8,14.2,8,12,8z"
+                                    ></path>
+                                    <path
+                                      d="M12,4c-0.6,0-1-0.4-1-1V1c0-0.6,0.4-1,1-1s1,0.4,1,1v2C13,3.6,12.6,4,12,4z"
+                                    ></path>
+                                    <path
+                                      d="M12,24c-0.6,0-1-0.4-1-1v-2c0-0.6,0.4-1,1-1s1,0.4,1,1v2C13,23.6,12.6,24,12,24z"
+                                    ></path>
+                                    <path
+                                      d="M5.6,6.6c-0.3,0-0.5-0.1-0.7-0.3L3.5,4.9c-0.4-0.4-0.4-1,0-1.4s1-0.4,1.4,0l1.4,1.4c0.4,0.4,0.4,1,0,1.4C6.2,6.5,5.9,6.6,5.6,6.6z"
+                                    ></path>
+                                    <path
+                                      d="M19.8,20.8c-0.3,0-0.5-0.1-0.7-0.3l-1.4-1.4c-0.4-0.4-0.4-1,0-1.4s1-0.4,1.4,0l1.4,1.4c0.4,0.4,0.4,1,0,1.4C20.3,20.7,20,20.8,19.8,20.8z"
+                                    ></path>
+                                    <path
+                                      d="M3,13H1c-0.6,0-1-0.4-1-1s0.4-1,1-1h2c0.6,0,1,0.4,1,1S3.6,13,3,13z"
+                                    ></path>
+                                    <path
+                                      d="M23,13h-2c-0.6,0-1-0.4-1-1s0.4-1,1-1h2c0.6,0,1,0.4,1,1S23.6,13,23,13z"
+                                    ></path>
+                                    <path
+                                      d="M4.2,20.8c-0.3,0-0.5-0.1-0.7-0.3c-0.4-0.4-0.4-1,0-1.4l1.4-1.4c0.4-0.4,1-0.4,1.4,0s0.4,1,0,1.4l-1.4,1.4C4.7,20.7,4.5,20.8,4.2,20.8z"
+                                    ></path>
+                                    <path
+                                      d="M18.4,6.6c-0.3,0-0.5-0.1-0.7-0.3c-0.4-0.4-0.4-1,0-1.4l1.4-1.4c0.4-0.4,1-0.4,1.4,0s0.4,1,0,1.4l-1.4,1.4C18.9,6.5,18.6,6.6,18.4,6.6z"
+                                    ></path></svg
+                                  ><svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    aria-hidden="true"
+                                    focusable="false"
+                                    viewbox="0 0 24 24"
+                                    class="moon"
+                                    data-v-481098f9
+                                  >
+                                    <path
+                                      d="M12.1,22c-0.3,0-0.6,0-0.9,0c-5.5-0.5-9.5-5.4-9-10.9c0.4-4.8,4.2-8.6,9-9c0.4,0,0.8,0.2,1,0.5c0.2,0.3,0.2,0.8-0.1,1.1c-2,2.7-1.4,6.4,1.3,8.4c2.1,1.6,5,1.6,7.1,0c0.3-0.2,0.7-0.3,1.1-0.1c0.3,0.2,0.5,0.6,0.5,1c-0.2,2.7-1.5,5.1-3.6,6.8C16.6,21.2,14.4,22,12.1,22zM9.3,4.4c-2.9,1-5,3.6-5.2,6.8c-0.4,4.4,2.8,8.3,7.2,8.7c2.1,0.2,4.2-0.4,5.8-1.8c1.1-0.9,1.9-2.1,2.4-3.4c-2.5,0.9-5.3,0.5-7.5-1.1C9.2,11.4,8.1,7.7,9.3,4.4z"
+                                    ></path></svg
+                                  ><!--]--></span
+                                ></span
+                              >
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="group" data-v-e4361c82>
+                        <div class="item social-links" data-v-e4361c82>
+                          <div
+                            class="VPSocialLinks social-links-list"
+                            data-v-e4361c82
+                            data-v-f6988cfb
+                          >
+                            <!--[--><a
+                              class="VPSocialLink"
+                              href="https://github.com/godwei123"
+                              target="_blank"
+                              rel="noopener"
+                              data-v-f6988cfb
+                              data-v-e57698f6
+                              ><svg
+                                role="img"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <title>GitHub</title>
+                                <path
+                                  d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+                                /></svg></a
+                            ><!--]-->
+                          </div>
+                        </div>
+                      </div>
+                      <!--]--><!--]-->
+                    </div>
+                  </div>
+                </div>
+                <!--[--><!--]--><button
+                  type="button"
+                  class="VPNavBarHamburger hamburger"
+                  aria-label="mobile navigation"
+                  aria-expanded="false"
+                  aria-controls="VPNavScreen"
+                  data-v-6f1d18b5
+                  data-v-e5dd9c1c
+                >
+                  <span class="container" data-v-e5dd9c1c
+                    ><span class="top" data-v-e5dd9c1c></span
+                    ><span class="middle" data-v-e5dd9c1c></span
+                    ><span class="bottom" data-v-e5dd9c1c></span
+                  ></span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!---->
+        </header>
+        <div class="VPLocalNav" data-v-f44a984a data-v-b6162a8b>
+          <button
+            class="menu"
+            aria-expanded="false"
+            aria-controls="VPSidebarNav"
+            data-v-b6162a8b
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              focusable="false"
+              viewbox="0 0 24 24"
+              class="menu-icon"
+              data-v-b6162a8b
+            >
+              <path
+                d="M17,11H3c-0.6,0-1-0.4-1-1s0.4-1,1-1h14c0.6,0,1,0.4,1,1S17.6,11,17,11z"
+              ></path>
+              <path
+                d="M21,7H3C2.4,7,2,6.6,2,6s0.4-1,1-1h18c0.6,0,1,0.4,1,1S21.6,7,21,7z"
+              ></path>
+              <path
+                d="M21,15H3c-0.6,0-1-0.4-1-1s0.4-1,1-1h18c0.6,0,1,0.4,1,1S21.6,15,21,15z"
+              ></path>
+              <path
+                d="M17,19H3c-0.6,0-1-0.4-1-1s0.4-1,1-1h14c0.6,0,1,0.4,1,1S17.6,19,17,19z"
+              ></path></svg
+            ><span class="menu-text" data-v-b6162a8b>Menu</span></button
+          ><a class="top-link" href="#" data-v-b6162a8b> Return to top </a>
+        </div>
+        <aside class="VPSidebar" data-v-f44a984a data-v-a186aa16>
+          <nav
+            class="nav"
+            id="VPSidebarNav"
+            aria-labelledby="sidebar-aria-label"
+            tabindex="-1"
+            data-v-a186aa16
+          >
+            <span
+              class="visually-hidden"
+              id="sidebar-aria-label"
+              data-v-a186aa16
+            >
+              Sidebar Navigation </span
+            ><!--[--><!--]--><!--[-->
+            <div class="group" data-v-a186aa16>
+              <section class="VPSidebarGroup" data-v-a186aa16 data-v-6e45c352>
+                <div class="title" data-v-6e45c352>
+                  <h2 class="title-text" data-v-6e45c352>CSS</h2>
+                  <div class="action" data-v-6e45c352>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink"
+                      viewbox="0 0 24 24"
+                      class="icon minus"
+                      data-v-6e45c352
+                    >
+                      <path
+                        d="M19,2H5C3.3,2,2,3.3,2,5v14c0,1.7,1.3,3,3,3h14c1.7,0,3-1.3,3-3V5C22,3.3,20.7,2,19,2zM20,19c0,0.6-0.4,1-1,1H5c-0.6,0-1-0.4-1-1V5c0-0.6,0.4-1,1-1h14c0.6,0,1,0.4,1,1V19z"
+                      ></path>
+                      <path
+                        d="M16,11H8c-0.6,0-1,0.4-1,1s0.4,1,1,1h8c0.6,0,1-0.4,1-1S16.6,11,16,11z"
+                      ></path></svg
+                    ><svg
+                      version="1.1"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewbox="0 0 24 24"
+                      class="icon plus"
+                      data-v-6e45c352
+                    >
+                      <path
+                        d="M19,2H5C3.3,2,2,3.3,2,5v14c0,1.7,1.3,3,3,3h14c1.7,0,3-1.3,3-3V5C22,3.3,20.7,2,19,2z M20,19c0,0.6-0.4,1-1,1H5c-0.6,0-1-0.4-1-1V5c0-0.6,0.4-1,1-1h14c0.6,0,1,0.4,1,1V19z"
+                      ></path>
+                      <path
+                        d="M16,11h-3V8c0-0.6-0.4-1-1-1s-1,0.4-1,1v3H8c-0.6,0-1,0.4-1,1s0.4,1,1,1h3v3c0,0.6,0.4,1,1,1s1-0.4,1-1v-3h3c0.6,0,1-0.4,1-1S16.6,11,16,11z"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+                <div class="items" data-v-6e45c352>
+                  <!--[--><!--[--><a
+                    class="VPLink link link"
+                    href="/javascript-guide/basic/css/introduction.html"
+                    style="padding-left: 0px"
+                    data-v-36b976d1
+                    data-v-3c355974
+                    ><!--[--><span class="link-text" data-v-36b976d1
+                      >Introduction</span
+                    ><!--]--><!----></a
+                  ><!----><!--]--><!--[--><a
+                    class="VPLink link link"
+                    href="/javascript-guide/basic/css/css.html"
+                    style="padding-left: 0px"
+                    data-v-36b976d1
+                    data-v-3c355974
+                    ><!--[--><span class="link-text" data-v-36b976d1>基础</span
+                    ><!--]--><!----></a
+                  ><!----><!--]--><!--[--><a
+                    class="VPLink link link"
+                    href="/javascript-guide/basic/css/flex.html"
+                    style="padding-left: 0px"
+                    data-v-36b976d1
+                    data-v-3c355974
+                    ><!--[--><span class="link-text" data-v-36b976d1>flex</span
+                    ><!--]--><!----></a
+                  ><!----><!--]--><!--[--><a
+                    class="VPLink link link"
+                    href="/javascript-guide/basic/css/grid.html"
+                    style="padding-left: 0px"
+                    data-v-36b976d1
+                    data-v-3c355974
+                    ><!--[--><span class="link-text" data-v-36b976d1>grid</span
+                    ><!--]--><!----></a
+                  ><!----><!--]--><!--[--><a
+                    class="VPLink link link"
+                    href="/javascript-guide/basic/css/center.html"
+                    style="padding-left: 0px"
+                    data-v-36b976d1
+                    data-v-3c355974
+                    ><!--[--><span class="link-text" data-v-36b976d1>居中</span
+                    ><!--]--><!----></a
+                  ><!----><!--]--><!--[--><a
+                    class="VPLink link link"
+                    href="/javascript-guide/basic/css/layout.html"
+                    style="padding-left: 0px"
+                    data-v-36b976d1
+                    data-v-3c355974
+                    ><!--[--><span class="link-text" data-v-36b976d1
+                      >常见布局</span
+                    ><!--]--><!----></a
+                  ><!----><!--]--><!--[--><a
+                    class="VPLink link link"
+                    href="/javascript-guide/basic/css/bfc.html"
+                    style="padding-left: 0px"
+                    data-v-36b976d1
+                    data-v-3c355974
+                    ><!--[--><span class="link-text" data-v-36b976d1>BFC</span
+                    ><!--]--><!----></a
+                  ><!----><!--]--><!--[--><a
+                    class="VPLink link link"
+                    href="/javascript-guide/basic/css/position.html"
+                    style="padding-left: 0px"
+                    data-v-36b976d1
+                    data-v-3c355974
+                    ><!--[--><span class="link-text" data-v-36b976d1
+                      >position</span
+                    ><!--]--><!----></a
+                  ><!----><!--]--><!--[--><a
+                    class="VPLink link link"
+                    href="/javascript-guide/basic/css/%E8%BF%87%E6%B8%A1%E4%B8%8E%E5%8A%A8%E7%94%BB.html"
+                    style="padding-left: 0px"
+                    data-v-36b976d1
+                    data-v-3c355974
+                    ><!--[--><span class="link-text" data-v-36b976d1
+                      >过渡与动画</span
+                    ><!--]--><!----></a
+                  ><!----><!--]--><!--]-->
+                </div>
+              </section>
+            </div>
+            <!--]--><!--[--><!--]-->
+          </nav>
+        </aside>
+        <div
+          class="VPContent has-sidebar"
+          id="VPContent"
+          data-v-f44a984a
+          data-v-d981fe29
+        >
+          <div
+            class="VPDoc has-sidebar has-aside"
+            data-v-d981fe29
+            data-v-cfb513e0
+          >
+            <div class="container" data-v-cfb513e0>
+              <div class="aside" data-v-cfb513e0>
+                <div class="aside-curtain" data-v-cfb513e0></div>
+                <div class="aside-container" data-v-cfb513e0>
+                  <div class="aside-content" data-v-cfb513e0>
+                    <div class="VPDocAside" data-v-cfb513e0 data-v-afc4c1a1>
+                      <!--[--><!--]--><!--[--><!--]-->
+                      <div
+                        class="VPDocAsideOutline"
+                        data-v-afc4c1a1
+                        data-v-2865c0b0
+                      >
+                        <div class="content" data-v-2865c0b0>
+                          <div class="outline-marker" data-v-2865c0b0></div>
+                          <div class="outline-title" data-v-2865c0b0>
+                            On this page
+                          </div>
+                          <nav
+                            aria-labelledby="doc-outline-aria-label"
+                            data-v-2865c0b0
+                          >
+                            <span
+                              class="visually-hidden"
+                              id="doc-outline-aria-label"
+                              data-v-2865c0b0
+                            >
+                              Table of Contents for current page
+                            </span>
+                            <ul class="root" data-v-2865c0b0 data-v-1188541a>
+                              <!--[--><!--]-->
+                            </ul>
+                          </nav>
+                        </div>
+                      </div>
+                      <!--[--><!--]-->
+                      <div class="spacer" data-v-afc4c1a1></div>
+                      <!--[--><!--]--><!----><!--[--><!--]--><!--[--><!--]-->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="content" data-v-cfb513e0>
+                <div class="content-container" data-v-cfb513e0>
+                  <!--[--><!--]-->
+                  <main class="main" data-v-cfb513e0>
+                    <div
+                      style="position: relative"
+                      class="vp-doc _javascript-guide_basic_css_selectors"
+                      data-v-cfb513e0
+                    >
+                      <div>
+                        <h1 id="选择器" tabindex="-1">
+                          选择器
+                          <a
+                            class="header-anchor"
+                            href="#选择器"
+                            aria-hidden="true"
+                            >#</a
+                          >
+                        </h1>
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>选择器</th>
+                              <th>描述</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>类型选择器</td>
+                              <td><code>h1 { }</code></td>
+                            </tr>
+                            <tr>
+                              <td>通配选择器</td>
+                              <td><code>* { }</code></td>
+                            </tr>
+                            <tr>
+                              <td>类选择器</td>
+                              <td><code>.box { }</code></td>
+                            </tr>
+                            <tr>
+                              <td>ID 选择器</td>
+                              <td><code>#unique { }</code></td>
+                            </tr>
+                            <tr>
+                              <td>标签属性选择器</td>
+                              <td><code>a[title] { }</code></td>
+                            </tr>
+                            <tr>
+                              <td>伪类选择器</td>
+                              <td><code>p:first-child { }</code></td>
+                            </tr>
+                            <tr>
+                              <td>伪元素选择器</td>
+                              <td><code>p::first-line { }</code></td>
+                            </tr>
+                            <tr>
+                              <td>后代选择器</td>
+                              <td><code>article p</code></td>
+                            </tr>
+                            <tr>
+                              <td>子代选择器</td>
+                              <td><code>article &gt; p</code></td>
+                            </tr>
+                            <tr>
+                              <td>相邻兄弟选择器</td>
+                              <td><code>h1 + p</code></td>
+                            </tr>
+                            <tr>
+                              <td>通用兄弟选择器</td>
+                              <td><code>h1 ~ p</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <h2 id="类型、类和-id-选择器" tabindex="-1">
+                          类型、类和 ID 选择器
+                          <a
+                            class="header-anchor"
+                            href="#类型、类和-id-选择器"
+                            aria-hidden="true"
+                            >#</a
+                          >
+                        </h2>
+                        <p>
+                          <strong>类型选择器</strong
+                          >有时也叫做“标签名选择器”或者是”元素选择器“，因为它在文档中选择了一个
+                          HTML 标签元素的缘故。
+                        </p>
+                        <p>
+                          全局选择器，是由一个星号（<code>*</code>）代指的，它选中了文档中的所有内容（或者是父元素中的所有内容，比如，它紧随在其他元素以及邻代运算符之后的时候）。
+                        </p>
+                        <p>
+                          类选择器以一个句点（<code>.</code>）开头，会选择文档中应用了这个类的所有元素。
+                        </p>
+                        <p>
+                          ID 选择器开头为
+                          <code>#</code>
+                          而非句点，不过基本上和类选择器是同种用法。可是在一篇文档中，一个
+                          ID
+                          只会用到一次。它能选中设定了<code>id</code>的元素，你可以在
+                          ID 前面加上类型选择器，只指向元素和 ID 都匹配的类。
+                        </p>
+                        <h2 id="标签属性选择器" tabindex="-1">
+                          标签属性选择器
+                          <a
+                            class="header-anchor"
+                            href="#标签属性选择器"
+                            aria-hidden="true"
+                            >#</a
+                          >
+                        </h2>
+                        <p>
+                          这些选择器允许基于一个元素自身是否存在（例如<code>href</code>）或者基于各式不同的按属性值的匹配，来选取元素。
+                        </p>
+                        <p>
+                          | 选择器 | 示例 | 描述 | | --------------- |
+                          ------------------------------- |
+                          ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                          |
+                          ------------------------------------------------------------------------------------------------
+                          | | <code>[attr]</code> | <code>a[title]</code> |
+                          匹配带有一个名为<em>attr</em>的属性的元素——方括号里的值。
+                          | | <code>[attr=value]</code> |
+                          <code>a[href=”https://example.com“]</code> |
+                          匹配带有一个名为<em>attr</em>的属性的元素，其值正为<em>value</em>——引号中的字符串。
+                          | | <code>[attr~=value]</code> |
+                          <code>p[class~=”special“]</code> |
+                          匹配带有一个名为<em>attr</em>的属性的元素，其值正为<em>value</em>，或者匹配带有一个<em>attr</em>属性的元素，其值有一个或者更多，至少有一个和<em>value</em>匹配。注意，在一列中的好几个值，是用空格隔开的。
+                          | | <code>[attr | =value]</code> |
+                          <code>div[lang=&#39;zh&#39;] </code> |
+                          匹配带有一个名为<em>attr</em>的属性的元素，其值可正为<em>value</em>，或者开始为<em>value</em>，后面紧随着一个连字符。
+                          |
+                        </p>
+                        <ul>
+                          <li>
+                            使用<code>li[class]</code>，我们就能匹配任何有 class
+                            属性的选择器。
+                          </li>
+                          <li>
+                            <code>li[class=”a“]</code
+                            >匹配带有一个<code>a</code>类的选择器，不过不会选中一部分值为<code>a</code>而另一部分是另一个用空格隔开的值的类。
+                          </li>
+                          <li>
+                            <code>li[class~=”a“]</code
+                            >会匹配一个<code>a</code>类，不过也可以匹配一列用空格分开、包含<code>a</code>类的值。
+                          </li>
+                        </ul>
+                        <p>子字符串匹配选择器</p>
+                        <p>
+                          这些选择器让更高级的属性的值的子字符串的匹配变得可行。例如，如果你有<code>box-warning</code>和<code>box-error</code>类，想把开头为“box-”字符串的每个物件都匹配上的话，你可以用<code>[class^=”box-“]</code>来把它们两个都选中。
+                        </p>
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>选择器</th>
+                              <th>示例</th>
+                              <th>描述</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td><code>[attr^=value]</code></td>
+                              <td><code>li[class^=”box-“]</code></td>
+                              <td>
+                                匹配带有一个名为<em>attr</em>的属性的元素，其值开头为<em>value</em>子字符串。
+                              </td>
+                            </tr>
+                            <tr>
+                              <td><code>[attr$=value]</code></td>
+                              <td><code>li[class$=”-box“]</code></td>
+                              <td>
+                                匹配带有一个名为<em>attr</em>的属性的元素，其值结尾为<em>value</em>子字符串
+                              </td>
+                            </tr>
+                            <tr>
+                              <td><code>[attr*=value]</code></td>
+                              <td><code>li[class*=”box“]</code></td>
+                              <td>
+                                匹配带有一个名为<em>attr</em>的属性的元素，其值的字符串中的任何地方，至少出现了一次<em>value</em>子字符串。
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <p>下个示例展示了这些选择器的用法：</p>
+                        <ul>
+                          <li>
+                            <code>li[class^=”a“]</code
+                            >匹配了任何值开头为<code>a</code>的属性。
+                          </li>
+                          <li>
+                            <code>li[class$=”a“]</code
+                            >匹配了任何值结尾为<code>a</code>的属性。
+                          </li>
+                          <li>
+                            <code>li[class*=”a“]</code
+                            >匹配了任何值的字符串中出现了<code>a</code>的属性。
+                          </li>
+                        </ul>
+                        <h3 id="大小写敏感" tabindex="-1">
+                          大小写敏感
+                          <a
+                            class="header-anchor"
+                            href="#大小写敏感"
+                            aria-hidden="true"
+                            >#</a
+                          >
+                        </h3>
+                        <p>
+                          如果你想在大小写不敏感的情况下，匹配属性值的话，你可以在闭合括号之前，使用<code>i</code>值。这个标记告诉浏览器，要以大小写不敏感的方式匹配
+                          ASCII
+                          字符。没有了这个标记的话，值会按照文档语言对大小写的处理方式，进行匹配——HTML
+                          中是大小写敏感的。
+                        </p>
+                        <p>
+                          下面的示例中，第一个选择器将会匹配一个开头为<code>a</code>的值，这样它只匹配了第一项，因为另外两项开头是大写的
+                          A。第二个选择器使用了大小写不敏感的标记，于是匹配了所有项。
+                        </p>
+                        <div class="language-css">
+                          <button title="Copy Code" class="copy"></button
+                          ><span class="lang">css</span>
+                          <pre
+                            class="shiki"
+                          ><code><span class="line"><span style="color:#FFCB6B;">li</span><span style="color:#89DDFF;">[</span><span style="color:#C792EA;">class</span><span style="color:#89DDFF;">^=</span><span style="color:#89DDFF;">&quot;</span><span style="color:#C3E88D;">a</span><span style="color:#89DDFF;">&quot;</span><span style="color:#A6ACCD;"> </span><span style="color:#C792EA;">i</span><span style="color:#89DDFF;">]</span><span style="color:#A6ACCD;"> </span><span style="color:#89DDFF;">{</span></span>
+<span class="line"><span style="color:#A6ACCD;">  </span><span style="color:#B2CCD6;">color</span><span style="color:#89DDFF;">:</span><span style="color:#A6ACCD;"> red</span><span style="color:#89DDFF;">;</span></span>
+<span class="line"><span style="color:#89DDFF;">}</span></span>
+<span class="line"></span></code></pre>
+                        </div>
+                        <h2 id="伪类和伪元素" tabindex="-1">
+                          伪类和伪元素
+                          <a
+                            class="header-anchor"
+                            href="#伪类和伪元素"
+                            aria-hidden="true"
+                            >#</a
+                          >
+                        </h2>
+                        <p>
+                          伪类是选择器的一种，它用于选择处于特定状态的元素，比如当它们是这一类型的第一个元素时，或者是当鼠标指针悬浮在元素上面的时候。它们表现得会像是你向你的文档的某个部分应用了一个类一样，帮你在你的标记文本中减少多余的类，让你的代码更灵活、更易于维护。
+                        </p>
+                        <p>伪类就是开头为冒号的关键字：</p>
+                        <div class="language-css">
+                          <button title="Copy Code" class="copy"></button
+                          ><span class="lang">css</span>
+                          <pre
+                            class="shiki"
+                          ><code><span class="line"><span style="color:#A6ACCD;">:</span><span style="color:#FFCB6B;">pseudo-class-name</span><span style="color:#A6ACCD;"> ;</span></span>
+<span class="line"></span></code></pre>
+                        </div>
+                        <p>
+                          伪元素以类似方式表现，不过表现得是像你往标记文本中加入全新的
+                          HTML
+                          元素一样，而不是向现有的元素上应用类。伪元素开头为双冒号<code>::</code>。
+                        </p>
+                        <h3 id="伪类" tabindex="-1">
+                          伪类
+                          <a
+                            class="header-anchor"
+                            href="#伪类"
+                            aria-hidden="true"
+                            >#</a
+                          >
+                        </h3>
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>选择器</th>
+                              <th>描述</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td><code>:active</code></td>
+                              <td>在用户激活（例如点击）元素的时候匹配。</td>
+                            </tr>
+                            <tr>
+                              <td><code>:any-link</code></td>
+                              <td>
+                                匹配一个链接的<code>:link</code>和<code>:visited</code>状态。
+                              </td>
+                            </tr>
+                            <tr>
+                              <td><code>:blank</code></td>
+                              <td>
+                                匹配空输入值的<code>&lt;input&gt;</code>元素。
+                              </td>
+                            </tr>
+                            <tr>
+                              <td><code>:checked</code></td>
+                              <td>匹配处于选中状态的单选或者复选框。</td>
+                            </tr>
+                            <tr>
+                              <td><code>:current</code></td>
+                              <td>匹配正在展示的元素，或者其上级元素。</td>
+                            </tr>
+                            <tr>
+                              <td><code>:default</code></td>
+                              <td>
+                                匹配一组相似的元素中默认的一个或者更多的 UI
+                                元素。
+                              </td>
+                            </tr>
+                            <tr>
+                              <td><code>:dir</code></td>
+                              <td>
+                                基于其方向性（HTML <code>dir</code>属性或者 CSS
+                                <code>direction</code>属性的值）匹配一个元素。
+                              </td>
+                            </tr>
+                            <tr>
+                              <td><code>:disabled</code></td>
+                              <td>匹配处于关闭状态的用户界面元素</td>
+                            </tr>
+                            <tr>
+                              <td><code>:empty</code></td>
+                              <td>
+                                匹配除了可能存在的空格外，没有子元素的元素。
+                              </td>
+                            </tr>
+                            <tr>
+                              <td><code>:enabled</code></td>
+                              <td>匹配处于开启状态的用户界面元素。</td>
+                            </tr>
+                            <tr>
+                              <td><code>:first</code></td>
+                              <td>匹配分页媒体的第一页。</td>
+                            </tr>
+                            <tr>
+                              <td><code>:first-child</code></td>
+                              <td>匹配兄弟元素中的第一个元素。</td>
+                            </tr>
+                            <tr>
+                              <td><code>:first-of-type</code></td>
+                              <td>匹配兄弟元素中第一个某种类型的元素。</td>
+                            </tr>
+                            <tr>
+                              <td><code>:focus</code></td>
+                              <td>当一个元素有焦点的时候匹配。</td>
+                            </tr>
+                            <tr>
+                              <td><code>:focus-visible</code></td>
+                              <td>
+                                当元素有焦点，且焦点对用户可见的时候匹配。
+                              </td>
+                            </tr>
+                            <tr>
+                              <td><code>:focus-within</code></td>
+                              <td>
+                                匹配有焦点的元素，以及子代元素有焦点的元素。
+                              </td>
+                            </tr>
+                            <tr>
+                              <td><code>:future</code></td>
+                              <td>匹配当前元素之后的元素。</td>
+                            </tr>
+                            <tr>
+                              <td><code>:hover</code></td>
+                              <td>当用户悬浮到一个元素之上的时候匹配。</td>
+                            </tr>
+                            <tr>
+                              <td><code>:indeterminate</code></td>
+                              <td>匹配未定态值的 UI 元素，通常为 复选框。</td>
+                            </tr>
+                            <tr>
+                              <td><code>:in-range</code></td>
+                              <td>
+                                用一个区间匹配元素，当值处于区间之内时匹配。
+                              </td>
+                            </tr>
+                            <tr>
+                              <td><code>:invalid</code></td>
+                              <td>
+                                匹配诸如<code>&lt;input&gt;</code>的位于不可用状态的元素。
+                              </td>
+                            </tr>
+                            <tr>
+                              <td><code>:lang</code></td>
+                              <td>基于语言（HTML lang 属性的值）匹配元素。</td>
+                            </tr>
+                            <tr>
+                              <td><code>:last-child</code></td>
+                              <td>匹配兄弟元素中最末的那个元素。</td>
+                            </tr>
+                            <tr>
+                              <td><code>:last-of-type</code></td>
+                              <td>匹配兄弟元素中最后一个某种类型的元素。</td>
+                            </tr>
+                            <tr>
+                              <td><code>:left</code></td>
+                              <td>在分页媒体中，匹配左手边的页。</td>
+                            </tr>
+                            <tr>
+                              <td><code>:link</code></td>
+                              <td>匹配未曾访问的链接。</td>
+                            </tr>
+                            <tr>
+                              <td><code>:local-link</code></td>
+                              <td>匹配指向和当前文档同一网站页面的链接。</td>
+                            </tr>
+                            <tr>
+                              <td><code>:is()</code></td>
+                              <td>匹配传入的选择器列表中的任何选择器。</td>
+                            </tr>
+                            <tr>
+                              <td><code>:not</code></td>
+                              <td>匹配作为值传入自身的选择器未匹配的物件。</td>
+                            </tr>
+                            <tr>
+                              <td><code>:nth-child</code></td>
+                              <td>
+                                匹配一列兄弟元素中的元素——兄弟元素按照<em>an+b</em>形式的式子进行匹配（比如
+                                2n+1 匹配元素 1、3、5、7 等。即所有的奇数个）。
+                              </td>
+                            </tr>
+                            <tr>
+                              <td><code>:nth-of-type</code></td>
+                              <td>
+                                匹配某种类型的一列兄弟元素（比如，<code>&lt;p&gt;</code>元素）——兄弟元素按照<em>an+b</em>形式的式子进行匹配（比如
+                                2n+1 匹配元素 1、3、5、7 等。即所有的奇数个）。
+                              </td>
+                            </tr>
+                            <tr>
+                              <td><code>:nth-last-child</code></td>
+                              <td>
+                                匹配一列兄弟元素，从后往前倒数。兄弟元素按照<em>an+b</em>形式的式子进行匹配（比如
+                                2n+1
+                                匹配按照顺序来的最后一个元素，然后往前两个，再往前两个，诸如此类。从后往前数的所有奇数个）。
+                              </td>
+                            </tr>
+                            <tr>
+                              <td><code>:nth-last-of-type</code></td>
+                              <td>
+                                匹配某种类型的一列兄弟元素（比如，<code>&lt;p&gt;</code>元素），从后往前倒数。兄弟元素按照<em>an+b</em>形式的式子进行匹配（比如
+                                2n+1
+                                匹配按照顺序来的最后一个元素，然后往前两个，再往前两个，诸如此类。从后往前数的所有奇数个）。
+                              </td>
+                            </tr>
+                            <tr>
+                              <td><code>:only-child</code></td>
+                              <td>匹配没有兄弟元素的元素。</td>
+                            </tr>
+                            <tr>
+                              <td><code>:only-of-type</code></td>
+                              <td>匹配兄弟元素中某类型仅有的元素。</td>
+                            </tr>
+                            <tr>
+                              <td><code>:optional</code></td>
+                              <td>匹配不是必填的 form 元素。</td>
+                            </tr>
+                            <tr>
+                              <td><code>:out-of-range</code></td>
+                              <td>
+                                按区间匹配元素，当值不在区间内的的时候匹配。
+                              </td>
+                            </tr>
+                            <tr>
+                              <td><code>:past</code></td>
+                              <td>匹配当前元素之前的元素。</td>
+                            </tr>
+                            <tr>
+                              <td><code>:placeholder-shown</code></td>
+                              <td>匹配显示占位文字的 input 元素。</td>
+                            </tr>
+                            <tr>
+                              <td><code>:playing</code></td>
+                              <td>
+                                匹配代表音频、视频或者相似的能“播放”或者“暂停”的资源的，且正在“播放”的元素。
+                              </td>
+                            </tr>
+                            <tr>
+                              <td><code>:paused</code></td>
+                              <td>
+                                匹配代表音频、视频或者相似的能“播放”或者“暂停”的资源的，且正在“暂停”的元素。
+                              </td>
+                            </tr>
+                            <tr>
+                              <td><code>:read-only</code></td>
+                              <td>匹配用户不可更改的元素。</td>
+                            </tr>
+                            <tr>
+                              <td><code>:read-write</code></td>
+                              <td>匹配用户可更改的元素。</td>
+                            </tr>
+                            <tr>
+                              <td><code>:required</code></td>
+                              <td>匹配必填的 form 元素。</td>
+                            </tr>
+                            <tr>
+                              <td><code>:right</code></td>
+                              <td>在分页媒体中，匹配右手边的页。</td>
+                            </tr>
+                            <tr>
+                              <td><code>:root</code></td>
+                              <td>匹配文档的根元素。</td>
+                            </tr>
+                            <tr>
+                              <td><code>:scope</code></td>
+                              <td>匹配任何为参考点元素的的元素。</td>
+                            </tr>
+                            <tr>
+                              <td><code>:valid</code></td>
+                              <td>
+                                匹配诸如<code>&lt;input&gt;</code>元素的处于可用状态的元素。
+                              </td>
+                            </tr>
+                            <tr>
+                              <td><code>:target</code></td>
+                              <td>
+                                匹配当前 URL
+                                目标的元素（例如如果它有一个匹配当前<a
+                                  href="https://en.wikipedia.org/wiki/Fragment_identifier"
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  >URL 分段</a
+                                >的元素）。
+                              </td>
+                            </tr>
+                            <tr>
+                              <td><code>:visited</code></td>
+                              <td>匹配已访问链接。</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <h3 id="伪元素" tabindex="-1">
+                          伪元素
+                          <a
+                            class="header-anchor"
+                            href="#伪元素"
+                            aria-hidden="true"
+                            >#</a
+                          >
+                        </h3>
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>选择器</th>
+                              <th>描述</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td><code>::after</code></td>
+                              <td>
+                                匹配出现在原有元素的实际内容之后的一个可样式化元素。
+                              </td>
+                            </tr>
+                            <tr>
+                              <td><code>::before</code></td>
+                              <td>
+                                匹配出现在原有元素的实际内容之前的一个可样式化元素。
+                              </td>
+                            </tr>
+                            <tr>
+                              <td><code>::first-letter</code></td>
+                              <td>匹配元素的第一个字母。</td>
+                            </tr>
+                            <tr>
+                              <td><code>::first-line</code></td>
+                              <td>匹配包含此伪元素的元素的第一行。</td>
+                            </tr>
+                            <tr>
+                              <td><code>::grammar-error</code></td>
+                              <td>
+                                匹配文档中包含了浏览器标记的语法错误的那部分。
+                              </td>
+                            </tr>
+                            <tr>
+                              <td><code>::selection</code></td>
+                              <td>匹配文档中被选择的那部分。</td>
+                            </tr>
+                            <tr>
+                              <td><code>::spelling-error</code></td>
+                              <td>
+                                匹配文档中包含了浏览器标记的拼写错误的那部分。
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <h2 id="关系选择器" tabindex="-1">
+                          关系选择器
+                          <a
+                            class="header-anchor"
+                            href="#关系选择器"
+                            aria-hidden="true"
+                            >#</a
+                          >
+                        </h2>
+                        <p>后代选择器</p>
+                        <p>
+                          后代选择器——典型用单个空格（”
+                          “）字符——组合两个选择器，比如，第二个选择器匹配的元素被选择，如果他们有一个祖先（父亲，父亲的父亲，父亲的父亲的父亲，等等）元素匹配第一个选择器。选择器利用后代组合符被称作后代选择器。
+                        </p>
+                        <div class="language-">
+                          <button title="Copy Code" class="copy"></button
+                          ><span class="lang"></span>
+                          <pre
+                            class="shiki"
+                          ><code><span class="line"><span style="color:#A6ACCD;">body article p</span></span>
+<span class="line"><span style="color:#A6ACCD;"></span></span></code></pre>
+                        </div>
+                        <p>子代关系选择器</p>
+                        <p>
+                          子代关系选择器是个大于号（<code>&gt;</code>），只会在选择器选中直接子元素的时候匹配。继承关系上更远的后代则不会匹配。例如，只选中作为<code>&lt;article&gt;</code>的直接子元素的<code>&lt;p&gt;</code>元素：
+                        </p>
+                        <div class="language-">
+                          <button title="Copy Code" class="copy"></button
+                          ><span class="lang"></span>
+                          <pre
+                            class="shiki"
+                          ><code><span class="line"><span style="color:#A6ACCD;">article &gt; p</span></span>
+<span class="line"><span style="color:#A6ACCD;"></span></span></code></pre>
+                        </div>
+                        <p>邻接兄弟</p>
+                        <p>
+                          邻接兄弟选择器（<code>+</code>）用来选中恰好处于另一个在继承关系上同级的元素旁边的物件。例如，选中所有紧随<code>&lt;p&gt;</code>元素之后的<code>&lt;img&gt;</code>元素：
+                        </p>
+                        <div class="language-">
+                          <button title="Copy Code" class="copy"></button
+                          ><span class="lang"></span>
+                          <pre
+                            class="shiki"
+                          ><code><span class="line"><span style="color:#A6ACCD;">p + img</span></span>
+<span class="line"><span style="color:#A6ACCD;"></span></span></code></pre>
+                        </div>
+                        <p>通用兄弟</p>
+                        <p>
+                          如果你想选中一个元素的兄弟元素，即使它们不直接相邻，你还是可以使用通用兄弟关系选择器（<code>~</code>）。要选中所有的<code>&lt;p&gt;</code>元素后<em>任何地方</em>的<code>&lt;img&gt;</code>元素，我们会这样做：
+                        </p>
+                        <div class="language-">
+                          <button title="Copy Code" class="copy"></button
+                          ><span class="lang"></span>
+                          <pre
+                            class="shiki"
+                          ><code><span class="line"><span style="color:#A6ACCD;">p ~ img</span></span>
+<span class="line"><span style="color:#A6ACCD;"></span></span></code></pre>
+                        </div>
+                        <h2 id="优先级与权重" tabindex="-1">
+                          优先级与权重
+                          <a
+                            class="header-anchor"
+                            href="#优先级与权重"
+                            aria-hidden="true"
+                            >#</a
+                          >
+                        </h2>
+                        <p>
+                          浏览器通过<strong>优先级</strong>来判断哪些属性值与一个元素最为相关，从而在该元素上应用这些属性值。优先级是基于不同种类[选择器]组成的匹配规则。
+                        </p>
+                        <p>优先级是如何计算的？</p>
+                        <p>
+                          优先级就是分配给指定的 CSS 声明的一个权重，它由
+                          匹配的选择器中的 每一种选择器类型的 数值 决定。
+                        </p>
+                        <p>
+                          而当优先级与多个 CSS
+                          声明中任意一个声明的优先级相等的时候，CSS
+                          中最后的那个声明将会被应用到元素上。
+                        </p>
+                        <p>
+                          当同一个元素有多个声明的时候，优先级才会有意义。因为每一个直接作用于元素的
+                          CSS 规则总是会接管/覆盖（take
+                          over）该元素从祖先元素继承而来的规则。
+                        </p>
+                        <ul>
+                          <li>
+                            <strong>一定</strong
+                            >要优先考虑使用样式规则的优先级来解决问题而不是
+                             <code>!important</code>
+                          </li>
+                          <li>
+                            <strong>只有</strong>在需要覆盖全站或外部 CSS
+                            的特定页面中使用  <code>!important</code>
+                          </li>
+                          <li>
+                            <strong>永远不要</strong>在你的插件中使用  <code
+                              >!important</code
+                            >
+                          </li>
+                          <li>
+                            <strong>永远不要</strong>在全站范围的 CSS 代码中使用
+                             <code>!important</code>
+                          </li>
+                          <li>
+                            <strong>与其使用</strong> <strong
+                              ><code>!important</code></strong
+                            >，你可以：
+                          </li>
+                        </ul>
+                        <ol>
+                          <li><p>更好地利用 CSS 级联属性</p></li>
+                          <li>
+                            <p>
+                              使用更具体的规则。在您选择的元素之前，增加一个或多个其他元素，使选择器变得更加具体，并获得更高的优先级。
+                            </p>
+                            <div class="language-html">
+                              <button title="Copy Code" class="copy"></button
+                              ><span class="lang">html</span>
+                              <pre
+                                class="shiki"
+                              ><code><span class="line"><span style="color:#89DDFF;">&lt;</span><span style="color:#F07178;">div</span><span style="color:#89DDFF;"> </span><span style="color:#C792EA;">id</span><span style="color:#89DDFF;">=</span><span style="color:#89DDFF;">&quot;</span><span style="color:#C3E88D;">”test“</span><span style="color:#89DDFF;">&quot;</span><span style="color:#89DDFF;">&gt;</span></span>
+<span class="line"><span style="color:#A6ACCD;">  </span><span style="color:#89DDFF;">&lt;</span><span style="color:#F07178;">span</span><span style="color:#89DDFF;">&gt;</span><span style="color:#A6ACCD;">Text</span><span style="color:#89DDFF;">&lt;/</span><span style="color:#F07178;">span</span><span style="color:#89DDFF;">&gt;</span></span>
+<span class="line"><span style="color:#89DDFF;">&lt;/</span><span style="color:#F07178;">div</span><span style="color:#89DDFF;">&gt;</span></span>
+<span class="line"></span></code></pre>
+                            </div>
+                            <div class="language-css">
+                              <button title="Copy Code" class="copy"></button
+                              ><span class="lang">css</span>
+                              <pre
+                                class="shiki"
+                              ><code><span class="line"><span style="color:#FFCB6B;">div</span><span style="color:#89DDFF;">#</span><span style="color:#F78C6C;">test</span><span style="color:#A6ACCD;"> </span><span style="color:#FFCB6B;">span</span><span style="color:#A6ACCD;"> </span><span style="color:#89DDFF;">{</span></span>
+<span class="line"><span style="color:#A6ACCD;">  </span><span style="color:#B2CCD6;">color</span><span style="color:#89DDFF;">:</span><span style="color:#A6ACCD;"> green</span><span style="color:#89DDFF;">;</span></span>
+<span class="line"><span style="color:#89DDFF;">}</span></span>
+<span class="line"><span style="color:#FFCB6B;">div</span><span style="color:#A6ACCD;"> </span><span style="color:#FFCB6B;">span</span><span style="color:#A6ACCD;"> </span><span style="color:#89DDFF;">{</span></span>
+<span class="line"><span style="color:#A6ACCD;">  </span><span style="color:#B2CCD6;">color</span><span style="color:#89DDFF;">:</span><span style="color:#A6ACCD;"> blue</span><span style="color:#89DDFF;">;</span></span>
+<span class="line"><span style="color:#89DDFF;">}</span></span>
+<span class="line"><span style="color:#FFCB6B;">span</span><span style="color:#A6ACCD;"> </span><span style="color:#89DDFF;">{</span></span>
+<span class="line"><span style="color:#A6ACCD;">  </span><span style="color:#B2CCD6;">color</span><span style="color:#89DDFF;">:</span><span style="color:#A6ACCD;"> red</span><span style="color:#89DDFF;">;</span></span>
+<span class="line"><span style="color:#89DDFF;">}</span></span>
+<span class="line"></span></code></pre>
+                            </div>
+                            <p>
+                              无论 c​ss
+                              语句的顺序是什么样的，文本都会是绿色的（green），因为这一条规则是最有针对性、优先级最高的。（同理，无论语句顺序怎样，蓝色
+                              blue 的规则都会覆盖红色 red 的规则）
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              对于（2）的一种特殊情况，当您无其他要指定的内容时，请复制简单的选择器以增加特异性。
+                            </p>
+                            <div class="language-css">
+                              <button title="Copy Code" class="copy"></button
+                              ><span class="lang">css</span>
+                              <pre
+                                class="shiki"
+                              ><code><span class="line"><span style="color:#89DDFF;">#</span><span style="color:#F78C6C;">myId</span><span style="color:#89DDFF;">#</span><span style="color:#F78C6C;">myId</span><span style="color:#A6ACCD;"> </span><span style="color:#FFCB6B;">span</span><span style="color:#A6ACCD;"> </span><span style="color:#89DDFF;">{</span></span>
+<span class="line"><span style="color:#A6ACCD;">  </span><span style="color:#B2CCD6;">color</span><span style="color:#89DDFF;">:</span><span style="color:#A6ACCD;"> yellow</span><span style="color:#89DDFF;">;</span></span>
+<span class="line"><span style="color:#89DDFF;">}</span></span>
+<span class="line"><span style="color:#89DDFF;">.</span><span style="color:#FFCB6B;">myClass</span><span style="color:#89DDFF;">.</span><span style="color:#FFCB6B;">myClass</span><span style="color:#A6ACCD;"> </span><span style="color:#FFCB6B;">span</span><span style="color:#A6ACCD;"> </span><span style="color:#89DDFF;">{</span></span>
+<span class="line"><span style="color:#A6ACCD;">  </span><span style="color:#B2CCD6;">color</span><span style="color:#89DDFF;">:</span><span style="color:#A6ACCD;"> orange</span><span style="color:#89DDFF;">;</span></span>
+<span class="line"><span style="color:#89DDFF;">}</span></span>
+<span class="line"></span></code></pre>
+                            </div>
+                          </li>
+                        </ol>
+                        <h4 id="什么的情况下可以使用-important" tabindex="-1">
+                          什么的情况下可以使用  <code>!important</code>：
+                          <a
+                            class="header-anchor"
+                            href="#什么的情况下可以使用-important"
+                            aria-hidden="true"
+                            >#</a
+                          >
+                        </h4>
+                        <h5 id="a-覆盖内联样式" tabindex="-1">
+                          A) 覆盖内联样式
+                          <a
+                            class="header-anchor"
+                            href="#a-覆盖内联样式"
+                            aria-hidden="true"
+                            >#</a
+                          >
+                        </h5>
+                        <p>
+                          你的网站上有一个设定了全站样式的 CSS
+                          文件，同时你（或是你同事）写了一些很差的内联样式。
+                        </p>
+                        <p>
+                          全局的 CSS
+                          文件会在全局范围内设置网站的外观，而直接在各个元素上定义的内联样式可能会覆盖您的全局
+                          CSS 文件。内联样式和 !important
+                          都被认为是非常不好的做法，但是有时你可以在 CSS
+                          文件里用 !important 去覆盖内联样式。
+                        </p>
+                        <p>
+                          在这种情况下，你就可以在你全局的 CSS 文件中写一些
+                           <code>!important</code> 
+                          的样式来覆盖掉那些直接写在元素上的行内样式。
+                        </p>
+                        <div class="language-">
+                          <button title="Copy Code" class="copy"></button
+                          ><span class="lang"></span>
+                          <pre
+                            class="shiki"
+                          ><code><span class="line"><span style="color:#A6ACCD;">&lt;div class=”foo“ style=”color: red;“&gt;What color am I?&lt;/div&gt;</span></span>
+<span class="line"><span style="color:#A6ACCD;"></span></span></code></pre>
+                        </div>
+                        <div class="language-">
+                          <button title="Copy Code" class="copy"></button
+                          ><span class="lang"></span>
+                          <pre
+                            class="shiki"
+                          ><code><span class="line"><span style="color:#A6ACCD;">.foo[style*=”color: red“] {</span></span>
+<span class="line"><span style="color:#A6ACCD;">  color: firebrick !important;</span></span>
+<span class="line"><span style="color:#A6ACCD;">}</span></span>
+<span class="line"><span style="color:#A6ACCD;"></span></span></code></pre>
+                        </div>
+                        <p>
+                          许多 JavaScript
+                          框架和库都添加了内联样式。有时候可以用<code>!important</code>与优先级高的选择器一起使用，以重写覆盖这些内联样式。
+                        </p>
+                        <h5 id="b-覆盖优先级高的选择器" tabindex="-1">
+                          B) 覆盖优先级高的选择器
+                          <a
+                            class="header-anchor"
+                            href="#b-覆盖优先级高的选择器"
+                            aria-hidden="true"
+                            >#</a
+                          >
+                        </h5>
+                        <div class="language-">
+                          <button title="Copy Code" class="copy"></button
+                          ><span class="lang"></span>
+                          <pre
+                            class="shiki"
+                          ><code><span class="line"><span style="color:#A6ACCD;">#someElement p {</span></span>
+<span class="line"><span style="color:#A6ACCD;">  color: blue;</span></span>
+<span class="line"><span style="color:#A6ACCD;">}</span></span>
+<span class="line"><span style="color:#A6ACCD;"></span></span>
+<span class="line"><span style="color:#A6ACCD;">p.awesome {</span></span>
+<span class="line"><span style="color:#A6ACCD;">  color: red;</span></span>
+<span class="line"><span style="color:#A6ACCD;">}</span></span>
+<span class="line"><span style="color:#A6ACCD;"></span></span></code></pre>
+                        </div>
+                        <p>
+                          在外层有  <code>#someElement</code> 
+                          的情况下，你怎样能使
+                           <code>awesome</code>的段落变成红色呢？这种情况下，如果不使用
+                           <code>!important</code>，第一条规则永远比第二条的优先级更高
+                        </p>
+                        <h4 id="怎样覆盖-important" tabindex="-1">
+                          怎样覆盖  <code>!important</code>
+                          <a
+                            class="header-anchor"
+                            href="#怎样覆盖-important"
+                            aria-hidden="true"
+                            >#</a
+                          >
+                        </h4>
+                        <p>
+                          A) 很简单，只需再添加一条 带  <code>!important</code> 
+                          的 CSS
+                          规则，再给这个给选择器更高的优先级（添加一个标签，ID
+                          或类）；或是添加一样选择器，把它的位置放在原有声明的后面（总之，最后定义一条规则比胜）。
+                        </p>
+                        <p>一些拥有更高优先级的例子：</p>
+                        <div class="language-">
+                          <button title="Copy Code" class="copy"></button
+                          ><span class="lang"></span>
+                          <pre
+                            class="shiki"
+                          ><code><span class="line"><span style="color:#A6ACCD;">   table td { height: 50px !important; }</span></span>
+<span class="line"><span style="color:#A6ACCD;">.myTable td { height: 50px !important; }</span></span>
+<span class="line"><span style="color:#A6ACCD;">#myTable td { height: 50px !important; }</span></span>
+<span class="line"><span style="color:#A6ACCD;"></span></span></code></pre>
+                        </div>
+                        <p>B) 或者使用相同的选择器，但是置于已有的样式之后：</p>
+                        <div class="language-">
+                          <button title="Copy Code" class="copy"></button
+                          ><span class="lang"></span>
+                          <pre
+                            class="shiki"
+                          ><code><span class="line"><span style="color:#A6ACCD;">td { height: 50px !important; }</span></span>
+<span class="line"><span style="color:#A6ACCD;"></span></span></code></pre>
+                        </div>
+                        <p>
+                          C) 或干脆改写原来的规则，以避免使用
+                           <code>!important</code>。
+                        </p>
+                        <div class="language-">
+                          <button title="Copy Code" class="copy"></button
+                          ><span class="lang"></span>
+                          <pre
+                            class="shiki"
+                          ><code><span class="line"><span style="color:#A6ACCD;">[id=”someElement“] p {</span></span>
+<span class="line"><span style="color:#A6ACCD;">  color: blue;</span></span>
+<span class="line"><span style="color:#A6ACCD;">}</span></span>
+<span class="line"><span style="color:#A6ACCD;"></span></span>
+<span class="line"><span style="color:#A6ACCD;">p.awesome {</span></span>
+<span class="line"><span style="color:#A6ACCD;">  color: red;</span></span>
+<span class="line"><span style="color:#A6ACCD;">}</span></span>
+<span class="line"><span style="color:#A6ACCD;"></span></span></code></pre>
+                        </div>
+                        <p>
+                          将 id 作为属性选择器的一部分而不是 id
+                          选择器，将使其具有与类相同的特异性。上面的两个选择器现在具有相同的权重。在优先级相同情况下，后面定义的
+                          CSS 样式会被应用。
+                        </p>
+                        <p>
+                          <code>:not</code> 
+                          否定伪类在优先级计算中不会被看作是伪类。事实上，在计算选择器数量时还是会把其中的选择器当做普通选择器进行计数。
+                        </p>
+                        <p>
+                          伪类<code>:where()</code>实验性总是将其特异性替换为零。
+                        </p>
+                        <ul>
+                          <li>
+                            <p>
+                              优先级是基于选择器的形式进行计算的。在下面的例子中，尽管选择器
+                              *[id=”foo“] 选择了一个
+                              ID，但是它还是作为一个属性选择器来计算自身的优先级。
+                            </p>
+                          </li>
+                          <li><p>无视 Dom 树中的距离，</p></li>
+                          <li>
+                            <p>
+                              为目标元素直接添加样式，永远比继承样式的优先级高，无视优先级的遗传规则。
+                            </p>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </main>
+                  <!--[--><!--]-->
+                  <footer class="VPDocFooter" data-v-cfb513e0 data-v-21f75714>
+                    <!---->
+                    <div class="prev-next" data-v-21f75714>
+                      <div class="pager" data-v-21f75714><!----></div>
+                      <div class="pager" data-v-21f75714>
+                        <a
+                          class="pager-link next"
+                          href="/javascript-guide/basic/css/introduction.html"
+                          data-v-21f75714
+                          ><span class="desc" data-v-21f75714>Next page</span
+                          ><span class="title" data-v-21f75714
+                            >Introduction</span
+                          ></a
+                        >
+                      </div>
+                    </div>
+                  </footer>
+                  <!--[--><!--]-->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="VPFooter has-sidebar" data-v-f44a984a data-v-9f24cc86>
+          <div class="container" data-v-9f24cc86>
+            <p class="message" data-v-9f24cc86>
+              Released under the MIT License.
+            </p>
+            <p class="copyright" data-v-9f24cc86>
+              Copyright © 2021-present God Wei
+            </p>
+          </div>
+        </footer>
+        <!--[--><!--]-->
+      </div>
+    </div>
+    <script>
+      __VP_HASH_MAP__ = JSON.parse(
+        '{"advanced_browser_crossorigin_readme.md":"9a478e83","advanced_browser_interview.md":"a41ce02e","advanced_browser_introduction.md":"a84910fa","advanced_browser_浏览器存储.md":"321a2f44","advanced_browser_浏览器安全.md":"4a280bd0","advanced_browser_浏览器性能.md":"a9cd0e53","advanced_browser_浏览器插件.md":"543e2e12","advanced_browser_浏览器渲染.md":"3cd89c9a","advanced_browser_浏览器缓存.md":"0a7cb490","advanced_browser_浏览器跨域.md":"9d74d1ef","advanced_browser_移动端适配.md":"3779ee74","advanced_code_index.md":"1fbb3ce2","advanced_code_introduction.md":"dd1eb8d0","advanced_code_part-one.md":"86581841","advanced_code_part-three.md":"2dabeff8","advanced_code_part-two.md":"a9089a3b","advanced_code_常见代码.md":"b7973e05","advanced_example_index.md":"e949d8ed","advanced_example_introduction.md":"ca2695c8","advanced_example_template.md":"251dcc71","advanced_example_this.md":"f32b27ca","advanced_example_其他.md":"71fcf1a0","advanced_example_原型.md":"9456bfb5","advanced_example_变量作用域.md":"5bbaf5b2","advanced_example_异步.md":"1a6fe3b3","advanced_example_类型转换.md":"a80c26e4","advanced_network_index.md":"178cc5db","advanced_network_计算机网络.md":"d8201d28","advanced_optimization_websecurity_readme.md":"f9ff5872","advanced_optimization_index.md":"5e726899","advanced_optimization_优化.md":"addf4d9c","advanced_scene_index.md":"cf669c4c","advanced_scene_打包器.md":"621202b6","basic_css_bfc.md":"8782ee1b","basic_css_center.md":"77950ae8","basic_css_flex.md":"be034222","basic_css_grid.md":"cc2e05d5","basic_css_interview.md":"37453f9d","basic_css_introduction.md":"d1e7c07e","basic_css_layout.md":"2a4066ba","basic_css_other.md":"e7fbd4ac","basic_css_position.md":"6093e1f7","basic_css_pseudo-classes-element.md":"f0591eac","basic_css_selectors.md":"e8b794fb","basic_css_transition-animation.md":"d16afd07","basic_html_attribute.md":"1ea0faa6","basic_html_canvas.md":"22e53911","basic_html_element.md":"93bff776","basic_html_input.md":"43826d4c","basic_html_interview.md":"e761acdc","basic_html_introduction.md":"a867785b","basic_html_table.md":"8a78c2ca","basic_javascript_array.md":"27f43e9c","basic_javascript_dom.md":"d7a84ebc","basic_javascript_es5_.md":"1f1c6771","basic_javascript_es6.md":"ab9a1636","basic_javascript_string.md":"62206e1e","basic_javascript_untitled.md":"eff3f12e","basic_javascript_async.md":"1ad95bbb","basic_javascript_event.md":"7b09fda6","basic_javascript_eventloop.md":"62aa4fe6","basic_javascript_extends.md":"ab55a269","basic_javascript_interview.md":"7f1bbc04","basic_javascript_introduction.md":"5ecb5ccb","basic_javascript_javascript.md":"ba661b58","basic_javascript_object.md":"0cbb4848","basic_javascript_prototype.md":"2daf67bc","basic_javascript_this.md":"fdd8c255","basic_javascript_正则表达式.md":"1a0b63d4","basic_javascript_类型和语法.md":"6cd7df6c","basic_javascript_类型转换.md":"77f6196a","basic_javascript_节流与防抖.md":"251b2e74","basic_javascript_闭包.md":"1b203abf","basic_javascript_闭包和函数柯里化.md":"806b9a25","basic_javascript_面试题.md":"7f8100c5","framework_axios_axios.md":"107cfdcc","framework_project_git.md":"94c6943e","framework_project_index.md":"d8324f30","framework_react_interview.md":"8dc2be66","framework_react_introduction.md":"e6b2f059","framework_vue-reactive-code_readme.md":"b371ae71","framework_vue_interview.md":"e80903bd","framework_vue_introduction.md":"23d2c26c","framework_vue_vue.md":"f78e9996","framework_vue_vue原理.md":"4fd11ad6","framework_vue_vue基础.md":"f73ecf87","index.md":"7afd906a","readme.md":"a2944c9f","stateof_css_@font-face.md":"b3d591d4","stateof_css_untitled.md":"0307a2da","stateof_css_basic-shape.md":"97cb1135","stateof_css_blend-mode.md":"01a6a633","stateof_css_clip-path.md":"c8d30bf4","stateof_css_filter.md":"71ae5f93","stateof_css_masking.md":"2f2d83ba","stateof_css_shapes.md":"064f67a9","stateof_introduction.md":"5b5af4b2"}'
+      );
+    </script>
+    <script
+      type="module"
+      async
+      src="/javascript-guide/assets/app.61809bb9.js"
+    ></script>
+  </body>
+</html>

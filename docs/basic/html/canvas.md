@@ -172,13 +172,13 @@ Path2D API 添加了 `addPath`作为将`path`结合起来的方法。当你想�
 
 - **`Path2D.addPath(path [, transform])`**
 
-​ 添加了一条路径到当前路径（可能添加了一个变换矩阵）。
+  添加了一条路径到当前路径（可能添加了一个变换矩阵）。
 
-```javas
+```js
 function draw() {
-  var canvas = document.getElementById('canvas');
-  if (canvas.getContext){
-    var ctx = canvas.getContext('2d');
+  var canvas = document.getElementById("canvas");
+  if (canvas.getContext) {
+    var ctx = canvas.getContext("2d");
 
     var rectangle = new Path2D();
     rectangle.rect(10, 10, 50, 50);
