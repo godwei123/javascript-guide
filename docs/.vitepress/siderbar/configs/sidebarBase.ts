@@ -3,12 +3,12 @@ const sidebarBase = [
     text: "Html",
     items: [
       { text: "Introduction", link: "/basic/html/introduction" },
+      { text: "HTML元素", link: "/basic/html/element" },
+      { text: "HTML属性", link: "/basic/html/attribute" },
+      { text: "Input元素", link: "/basic/html/input" },
+      { text: "Table元素", link: "/basic/html/table" },
+      { text: "Canvas元素", link: "/basic/html/canvas" },
       { text: "Interview", link: "/basic/html/interview" },
-      { text: "元素", link: "/basic/html/element" },
-      { text: "属性", link: "/basic/html/attribute" },
-      { text: "Input", link: "/basic/html/input" },
-      { text: "Table", link: "/basic/html/table" },
-      { text: "Canvas", link: "/basic/html/canvas" },
     ],
   },
   {
@@ -23,6 +23,7 @@ const sidebarBase = [
       { text: "BFC", link: "/basic/css/bfc" },
       { text: "position", link: "/basic/css/position" },
       { text: "过渡与动画", link: "/basic/css/过渡与动画" },
+      { text: "Interview", link: "/basic/css/interview" },
     ],
   },
   {
@@ -46,6 +47,7 @@ const sidebarBase = [
       { text: "DOM", link: "/basic/javascript/DOM" },
       { text: "BOM", link: "/basic/javascript/BOM" },
       { text: "其他", link: "/basic/javascript/other" },
+      { text: "Interview", link: "/basic/javascript/interview" },
     ],
   },
 ];

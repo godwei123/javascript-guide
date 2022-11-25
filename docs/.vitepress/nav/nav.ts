@@ -19,6 +19,10 @@ const nav = [
     text: "StateOf",
     link: "/stateof/introduction",
   },
+  {
+    text: "v0.0.1",
+    link: "",
+  },
 ];
 
 export default nav;

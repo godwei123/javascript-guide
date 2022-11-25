@@ -10,6 +10,5 @@ const sidebar = {
   "/framework/": sidebarFramework,
   "/stateof/": sidebarStateOf,
   "/code/": sidebarCode,
-  // "/interview/": sidebarInterview,
 };
 export default sidebar;
