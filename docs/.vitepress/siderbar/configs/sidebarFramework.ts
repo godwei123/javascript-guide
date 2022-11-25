@@ -1,4 +1,4 @@
-const sidebarVue = [
+const sidebarFramework = [
   {
     text: "Vue",
     items: [
@@ -9,4 +9,5 @@ const sidebarVue = [
     ],
   },
 ];
-export default sidebarVue;
+
+export default sidebarFramework;

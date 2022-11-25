@@ -1,4 +1,30 @@
-const sidebarJavaScript = [
+const sidebarBase = [
+  {
+    text: "Html",
+    items: [
+      { text: "Introduction", link: "/basic/html/introduction" },
+      { text: "Interview", link: "/basic/html/interview" },
+      { text: "元素", link: "/basic/html/element" },
+      { text: "属性", link: "/basic/html/attribute" },
+      { text: "Input", link: "/basic/html/input" },
+      { text: "Table", link: "/basic/html/table" },
+      { text: "Canvas", link: "/basic/html/canvas" },
+    ],
+  },
+  {
+    text: "CSS",
+    items: [
+      { text: "Introduction", link: "/basic/css/introduction" },
+      { text: "基础", link: "/basic/css/css" },
+      { text: "flex", link: "/basic/css/flex" },
+      { text: "grid", link: "/basic/css/grid" },
+      { text: "居中", link: "/basic/css/center" },
+      { text: "常见布局", link: "/basic/css/layout" },
+      { text: "BFC", link: "/basic/css/bfc" },
+      { text: "position", link: "/basic/css/position" },
+      { text: "过渡与动画", link: "/basic/css/过渡与动画" },
+    ],
+  },
   {
     text: "JavaScript",
     items: [
@@ -23,4 +49,4 @@ const sidebarJavaScript = [
     ],
   },
 ];
-export default sidebarJavaScript;
+export default sidebarBase;
