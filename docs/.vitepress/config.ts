@@ -8,9 +8,7 @@ export default defineConfig({
   base: "/javascript-guide/",
   description: "Just playing around.",
   lang: "zh-CN",
-  head: [
-    ["link", { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" }],
-  ],
+  head: [["link", { rel: "icon", href: "/favicon.ico" }]],
   themeConfig: {
     siteTitle: "JavaScriptGuide",
     logo: "/favicon.svg",
