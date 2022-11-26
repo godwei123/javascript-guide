@@ -1,13 +1,8 @@
-# 手写代码题
+# 手写代码题 part-3
 
-::: tip
-面试中常见的需要手写的方法
-:::
-
-## 1、手写 浅拷贝
+## 手写 浅拷贝
 
 ```js
-// 方法一
 const _shallowClone = (target) => {
   if (typeof target === "object" && target !== null) {
     let cloneObj = Array.isArray(target) ? [] : {};
@@ -22,97 +17,79 @@ const _shallowClone = (target) => {
   }
 };
 
-// 方法二
 let ans = Object.assign({}, target);
 
-// 方法三
 let ans = { ...target };
 ```
 
-## 2、手写 深拷贝
+## 手写 深拷贝
 
 ```javascript
-// 方法一
-const _deepClone = (target) => {
-  let cloneObj = {};
-  for (let key in target) {
-    if (typeof target[key] === "object") {
-      cloneObj[key] = _deepClone(target[key]);
-    } else {
-      cloneObj[key] = target[key];
+const _deepClone = target =>{
+  let cloneObj = {}
+	for(let key in target){
+    if(typeof target[key] === "object"){
+    	cloneObj[key] = _deepClone(target[key])
+  	}else{
+      cloneObj[key] = target[key]
     }
   }
-  return cloneObj;
-};
+  return cloneObj
+}
 
-// 方法二
-function deepClone(val, map = new WeakMap()) {
-  if (val === null || typeof val !== "object") return val;
-  //循环引用
-  if (map.has(val)) return map.get(val);
-  let clone = Array.isArray(val) ? [] : {};
-  map.set(val, clone);
-  // 获取对象中所有的属性名（包含Symbol值）
-  let keys = Reflect.ownKeys(val);
-  //（可换为：Object.keys(val).concat(Object.ownPropertySymbols(val))）
-  let len = keys.length;
-  while (len--) {
-    clone[keys[len]] = deepClone(val[keys[len]], map);
-  }
-  return clone;
+
+function deepClone(val,map = new WeakMap()){
+    if(val === null || typeof val !=='object') return val;
+    //循环引用
+    if(map.has(val)) return map.get(val);
+    let clone = Array.isArray(val) ? [] : {};
+    map.set(val,clone);
+    // 获取对象中所有的属性名（包含Symbol值）
+    let keys = Reflect.ownKeys(val);（可换为：Object.keys(val).concat(Object.ownPropertySymbols(val))）
+    let len = keys.length;
+    while(len--){
+        clone[keys[len]] = deepClone(val[keys[len]],map);
+    }
+    return clone;
 }
 ```
 
-## 3、手写 防抖
+## 手写 防抖
 
 ```js
 function debounce(fn, wait) {
   var timer = null;
+
   return function () {
     var context = this,
       args = [...arguments];
+
     // 如果此时存在定时器的话，则取消之前的定时器重新记时
     if (timer) {
       clearTimeout(timer);
       timer = null;
     }
+
     // 设置定时器，使事件间隔指定事件后执行
     timer = setTimeout(() => {
       fn.apply(context, args);
     }, wait);
   };
 }
-
-// 立即执行版本
-function debounce(fn, wait) {
-  var timer = null;
-  return function () {
-    var context = this,
-      args = [...arguments];
-    // 如果此时存在定时器的话，则取消之前的定时器重新记时
-    if (timer) clearTimeout(timer);
-
-    //定义wait时间后把timer变为null
-    //即在wait时间之后事件才会有效
-    // timer为null,那么执行func函数
-    if (!timer) fn.apply(context, args);
-    timer = setTimeout(() => {
-      timer = null;
-    }, wait);
-  };
-}
 ```
 
-## 4、手写 节流
+## 手写 节流
 
 ```js
 // 时间戳版
 function throttle(fn, delay) {
   var preTime = Date.now();
+
   return function () {
     var context = this,
       args = [...arguments],
       nowTime = Date.now();
+
     // 如果两次时间间隔超过了指定时间，则执行函数。
     if (nowTime - preTime >= delay) {
       preTime = Date.now();
@@ -137,75 +114,13 @@ function throttle(fun, wait) {
 }
 ```
 
-## 5、手写 Promise
+## 手写 发布订阅模式
 
 ```js
-class MyPromise {
-  static PENDING = "pending";
-  static FULFILLED = "fulfilled";
-  static REJECTED = "rejected";
-
-  constructor(executor) {
-    this.state = MyPromise.PENDING;
-    this.value = null;
-    this.reason = null;
-    this.resolvedCallback = [];
-    this.rejectedCallback = [];
-    try {
-      executor(this.resolve.bind(this), this.reject.bind(this));
-    } catch (e) {
-      this.reject(e);
-    }
-  }
-
-  resolve(value) {
-    setTimeout(() => {
-      if (this.state === MyPromise.PENDING) {
-        this.state = MyPromise.FULFILLED;
-        this.value = value;
-        this.resolvedCallback.forEach((callback) => {
-          callback(value);
-        });
-      }
-    });
-  }
-
-  reject(reason) {
-    setTimeout(() => {
-      if (this.state === MyPromise.PENDING) {
-        this.state = MyPromise.REJECTED;
-        this.reason = reason;
-        this.resolvedCallback.forEach((callback) => {
-          callback(reason);
-        });
-      }
-    });
-  }
-
-  then(onfulfilled, onrejected) {
-    return new MyPromise((resolve, reject) => {
-      onfulfilled = typeof onfulfilled === "function" ? onfulfilled : () => {};
-      onrejected = typeof onrejected === "function" ? onrejected : () => {};
-      if (this.state === MyPromise.PENDING) {
-        this.resolvedCallback.push(onfulfilled);
-        this.rejectedCallback.push(onrejected);
-      }
-      if (this.state === MyPromise.FULFILLED) {
-        setTimeout(() => {
-          onfulfilled(this.value);
-        });
-      }
-      if (this.state === MyPromise.REJECTED) {
-        setTimeout(() => {
-          onrejected(this.reason);
-        });
-      }
-    });
-  }
-}
+class EmitEvent {}
 ```
 
-## 6、手写 Promise.all
+## 手写 `Promise.all`
 
 ```js
 function promiseAll(promises) {
@@ -227,41 +142,9 @@ function promiseAll(promises) {
     }
   });
 }
-
-// 手写一个Promise.all方法，但是存在最大并发数量限制
-const promiseAll = (promiseLists = [], limit = Infinity) => {
-  return new Promise((resolve, reject) => {
-    let n = promiseLists.length;
-    let result = [];
-    let count = 0;
-    let queue = [...promiseLists];
-
-    function run() {
-      if (queue.length > 0) {
-        let time = queue.shift();
-        return time()
-          .then((res) => {
-            result.push(res);
-            count++;
-            return run();
-          })
-          .catch((err) => reject(err))
-          .finally(() => {
-            if (count === n) {
-              resolve(result);
-            }
-          });
-      }
-    }
-
-    for (let i = 0; i < Math.min(limit, n); i++) {
-      Promise.resolve().then(run());
-    }
-  });
-};
 ```
 
-## 7、手写 Promise.race
+## 手写 `Promise.race`
 
 ```js
 Promise.race = function (args) {
@@ -273,7 +156,7 @@ Promise.race = function (args) {
 };
 ```
 
-## 8、Array.prototype.reduce
+## 手写 Array.prototype.reduce()
 
 ```js
 Array.prototype._reduce = function (fn, prev) {
@@ -289,7 +172,7 @@ Array.prototype._reduce = function (fn, prev) {
 };
 ```
 
-## 9、Array.prototype.filter
+## 手写 Array.prototype.filter()
 
 ```js
 Array.prototype._filter = function (Fn) {
@@ -304,7 +187,7 @@ Array.prototype._filter = function (Fn) {
 };
 ```
 
-## 10、Array.prototype.map
+## 手写 Array.prototype.map()
 
 ```js
 Array.prototype._map = function (Fn) {
@@ -319,7 +202,7 @@ Array.prototype._map = function (Fn) {
 };
 ```
 
-## 11、Array.prototype.flat
+## 手写 Array.prototype.flat()
 
 ```js
 function _flat(arr, depth) {
@@ -336,7 +219,7 @@ function _flat(arr, depth) {
 }
 ```
 
-## 12、手写 new
+## 手写 new
 
 ```js
 const _new = function (constructor, ...args) {
@@ -382,19 +265,11 @@ function objectFactory() {
 objectFactory(构造函数, 初始化参数);
 ```
 
-## 13、手写 原型式继承
+## 手写 原型式继承
 
-```js
+## 手写 寄生式继承
 
-```
-
-## 14、手写 寄生式继承
-
-```js
-
-```
-
-## 15、手写 instanceof
+## 手写 instanceof
 
 ```js
 const myInstanceof = (left, right) => {
@@ -412,10 +287,19 @@ const myInstanceof = (left, right) => {
 };
 ```
 
-## 16、手写 bind
+## 手写 bind
 
 ```js
-Function.prototype._bind = function (context, ...args) {
+Function.prototype._bind = function (target, ...arguments1) {
+  const _this = this;
+  return function (...arguments2) {
+    return _this.apply(target, arguments1.concat(arguments2));
+  };
+};
+
+// bind
+
+Function.prototype.bind = function (context, ...args) {
   context = context || window;
   const fnSymbol = Symbol("fn");
   context[fnSymbol] = this;
@@ -429,10 +313,12 @@ Function.prototype._bind = function (context, ...args) {
 };
 ```
 
-## 17、手写 apply
+## 手写 apply
 
 ```js
-Function.prototype._apply = function (context, argsArr) {
+// apply
+
+Function.prototype.apply = function (context, argsArr) {
   context = context || window;
 
   const fnSymbol = Symbol("fn");
@@ -443,10 +329,19 @@ Function.prototype._apply = function (context, argsArr) {
 };
 ```
 
-## 18、手写 call
+## 手写 call
 
 ```js
-Function.prototype._call = function (context, ...args) {
+Function.prototype._call = function (target = window) {
+  target["fn"] = this;
+  const result = target["fn"]([...arguments].shift());
+  delete target["fn"];
+  return result;
+};
+
+// call
+
+Function.prototype.call = function (context, ...args) {
   context = context || window;
 
   const fnSymbol = Symbol("fn");
@@ -457,7 +352,7 @@ Function.prototype._call = function (context, ...args) {
 };
 ```
 
-## 19、Object.create()
+## Object.create()
 
 ```js
 const _objectCreate = (proto) => {
@@ -468,7 +363,7 @@ const _objectCreate = (proto) => {
 };
 ```
 
-## 20、手写 数组去重
+## 手写 数组去重
 
 ```js
 // 1. Set
@@ -485,23 +380,20 @@ for (let i = 0; i < array.length; i++) {
   }
 }
 
-// 3. reduce + includes
 array.reduce((pre, cur) => {
   !pre.includes(cur) && pre.push(cue);
   return pre;
 }, []);
 
-// 4. filter + includes
 let newArr = [];
 array.filter((item) => {
   return !newArr.includes(item) && (newArr[newArr.length] = item);
 });
 ```
 
-## 21、数组扁平化
+## 数组扁平化
 
 ```js
-// 方法一
 Array.prototype.myFlat = (arr) => {
   return [].concat(
     ...arr.map((item) => {
@@ -510,28 +402,16 @@ Array.prototype.myFlat = (arr) => {
   );
 };
 
-// 方法二
 Array.prototype.myFlat = (arr) => {
   return arr.reduce((a, b) => {
     return a.concat(Array.isArray(b) ? myFlat(b) : b);
   }, []);
 };
-
-function getFlatArr(list, deepNum = 1) {
-  return deepNum > 0
-    ? list.reduce((pre, item) => {
-        return pre.concat(
-          Array.isArray(item) ? getFlatArr(item, deepNum - 1) : item
-        );
-      }, [])
-    : list.slice();
-}
 ```
 
-## 22、sleep()
+## sleep()
 
 ```js
-// 方法一
 const sleep = (time) => {
   return new Promise((resolve, reject) => {
     setTimeout(resolve, time);
@@ -541,7 +421,7 @@ sleep(1000).then(() => {
   console.log(1);
 });
 
-// 方法二
+// ========
 function sleep(callback, time) {
   if (typeof callback === "function") setTimeout(callback, time);
 }
@@ -551,7 +431,7 @@ function output() {
 sleep(output, 1000);
 ```
 
-## 23、List To Tree
+## List To Tree
 
 ```js
 const convert = (list) => {
@@ -589,7 +469,7 @@ const result = convert(list);
 console.log(result);
 ```
 
-## 24、EventEmitter
+## EventEmitter
 
 ```typescript
 type FnCallback = (...args) => any;
@@ -622,292 +502,4 @@ class EventEmitter {
     });
   }
 }
-```
-
-## 实现一个 compose 函数，进行函数合成
-
-```js
-const add10 = (x) => x + 10;
-const mul10 = (x) => x * 10;
-const add100 = (x) => x + 100;
-
-// (10 + 100) * 10 + 10 = 1110
-compose(add10, mul10, add100)(10);
-
-function compose(...fns) {
-  return fns.reduce((a, b) => (...args) => {
-    return a(b(...args));
-  });
-}
-
-const composeAsync = (...fns) => {
-  return (x) => {
-    return fns.reduceRight((prev, cur) => {
-      return prev.then(cur);
-    }, Promise.resolve(x));
-  };
-};
-
-composeAsync(
-  add10,
-  mul10,
-  add100
-)(10).then((res) => {
-  console.log(res);
-});
-```
-
-## 实现类似 lodash.get 函数
-
-```js
-const object = { a: [{ b: { c: 3 } }] };
-
-//=> 3
-get(object, "a[0].b.c");
-//=> 3
-get(object, 'a[0]["b"]["c"]');
-//=> 10086
-get(object, "a[100].b.c", 10086);
-
-function get(source, path, defaultValue = undefined) {
-  // a[3].b -> a.3.b -> [a, 3, b]
-  const paths = path
-    .replace(/\[(\w+)\]/g, ".$1")
-    .replace(/\["(\w+)"\]/g, ".$1")
-    .replace(/\['(\w+)'\]/g, ".$1")
-    .split(".");
-  let result = source;
-  for (const p of paths) {
-    result = result?.[p];
-  }
-  return result === undefined ? defaultValue : result;
-}
-
-function get(arm, params = "", defaultVal) {
-  if (typeof params !== "string" && !Array.isArray(params)) {
-    throw new Error(`${params} is not string or array`);
-  }
-  if (!Array.isArray(params)) {
-    params = params.split(/\].|[\[.]/);
-  }
-  for (let i = 0; i < params.length; i++) {
-    if (Object.prototype.hasOwnProperty.call(arm, params[i])) {
-      arm = arm[params[i]];
-    } else {
-      return defaultVal;
-    }
-  }
-  return arm;
-}
-```
-
-## (5).add(3).minus(2) = 6
-
-```js
-Number.prototype.add = function (x) {
-  return this + x;
-};
-Number.prototype.minus = function (x) {
-  return this - x;
-};
-console.log((5).add(3).minus(2)); // 6
-```
-
-## 手写 EventBus
-
-```js
-class EventBus {
-  events = new Map();
-  constructor() {}
-  on(type, fn) {
-    const callbacks = this.events.get(type);
-    if (callbacks) {
-      callbacks.push(fn);
-    } else {
-      this.events.set(type, [fn]);
-    }
-  }
-  emit(type, ...args) {
-    const context = this;
-    const callbacks = this.events.get(type);
-    if (!callbacks) return;
-    callbacks.forEach((fn) => {
-      fn.apply(context, [...args]);
-    });
-  }
-}
-```
-
-## mergePromise
-
-```js
-const timeout = (ms) =>
-  new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve();
-    }, ms);
-  });
-const ajax1 = () =>
-  timeout(2000).then(() => {
-    console.log("1");
-    return 1;
-  });
-const ajax2 = () =>
-  timeout(1000).then(() => {
-    console.log("2");
-    return 2;
-  });
-const ajax3 = () =>
-  timeout(2000).then(() => {
-    console.log("3");
-    return 3;
-  });
-// --------- 1 --------
-const mergePromise = (ajaxArray) => {
-  // 1,2,3 done [1,2,3] 此处写代码 请写出ES6、ES3 2中解法
-  var data = [];
-  var sequence = Promise.resolve();
-  ajaxArray.forEach((item) => {
-    sequence = sequence.then(item).then((res) => {
-      data.push(res);
-      return data;
-    });
-  });
-  return sequence;
-};
-// ---------- 2 -------
-const mergePromise = (ajaxArray) => {
-  let data = [];
-  return ajaxArray.reduce((prev, curr) => {
-    return prev.then(curr).then((res) => {
-      data.push(res);
-      return data;
-    });
-  }, Promise.resolve());
-};
-
-mergePromise([ajax1, ajax2, ajax3]).then((data) => {
-  console.log("done");
-  console.log(data); // data 为[1,2,3]
-});
-// 执行结果为：1 2 3 done [1,2,3]
-```
-
-## 控制并发数
-
-```javascript
-function imageLoad(urls,fetchImage,limit) {
-  //先创建长度为limit的池子
-  let pool = urls.splice(0,limit).map((item,index)=>{
-    return fetchImage(item).then(res=>{
-      return index //将当前加载完图片的 index返回
-    })
-  });
-  let p = Promise.race(pool) //将第一个执行成功的 先返回
-  for (let i = 0; i < urls.length; i++) {
-    p = p.then(index=>{  //形成链式调用.then .then
-      pool[index] = fetchImage(urls[i]).then(()=>{
-      //将已经加载完成的图片重新替换成新的 未加载的图片
-        return index
-      })
-      return Promise.race(pool)
-    })
-  }
-}
-执行 imageLoad(imageUrls,fetchImage,3)
-
-
-```
-
-```
-function imageLoad1(urls, limit) {
-  function run() {
-    if(urls.length > 0) {
-      const url = urls.shift()
-      return fetchImage(url).then(res => {
-        return run() //当图片请求成功之后继续递归调用run
-      })
-    }
-  }
-  // 当imageUrls.length < limit的时候，我们也没有必要去创建多余的Promise
-  const promiseList = Array(Math.min(limit, urls.length))
-    .fill(Promise.resolve())
-    .map(promise => promise.then(run))
-
-  Promise.all(promiseList).then(()=>{
-    //全部加载完成后的操作
-  })
-}
-imageLoad1(imageUrls,3)
-
-
-```
-
-## 实现函数功能
-
-```
-function sortArr(arr1,arr2){
-    let arr = arr1.flat(Infinity)
-    arr = arr.concat(arr2.flat(Infinity))
-    arr = [...new Set(arr)].sort((a,b)=>a-b)
-    let ans=[]
-    let k=-1
-    let index=-1
-    for(let i=0;i<arr.length;i++){
-        let t = Math.floor(arr[i]/10);
-        if(t!==k){
-            index++;
-            k=t
-            ans[index] = []
-            ans[index].push(arr[i])
-        }else {
-            ans[index].push(arr[i])
-        }
-    }
-    return ans
-}
-
-let arr1 = [ 1, [2,4], [44], [22,21] ],arr2 = [ 2, [6], [55], [ 33, [32,31] ] ]
-
-// console.log(sortArr(arr1, arr2));
-
-
-```
-
-## 实现函数功能
-
-```
-const data = [{
-    id:1,
-    name:'xx',
-    children:[
-        {id:11,name:'1xx',children:[ {id:111,name:'xx'} ]},
-        {id:12,name:'12x'} ]
-}]
-
-function data2Tree(data){
-    let ans={}
-    const dfs = (target,id)=>{
-        ans[target.id] = {
-            name:target.name
-        }
-        if(id){
-            ans[target.id].parent = id
-        }
-        if(target.children){
-            ans[target.id].children = []
-            for (let child of target.children) {
-                ans[target.id].children.push(child.id)
-                dfs(child,target.id)
-            }
-        }
-
-    }
-    for (let datum of data) {
-        dfs(datum)
-    }
-    return ans
-}
-
-console.log(data2Tree(data))
 ```
