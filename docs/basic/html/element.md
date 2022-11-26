@@ -129,7 +129,7 @@ HTML 标签里的元素名不区分大小写。也就是说，它们可以用大
 <abbr></abbr>
 ```
 
-## `<abbr>`
+## `abbr`
 
 **HTML 缩写元素**（**`<abbr>`**）用于代表缩写，并且可以通过可选的 `title`属性提供完整的描述。若使用 `title` 属性，则它必须且仅可包含完整的描述内容。
 
@@ -209,7 +209,7 @@ HTML 标签里的元素名不区分大小写。也就是说，它们可以用大
   标准的 lang 属性写法
   <meta charset="’utf-8′" />
   声明文档使用的字符编码
-  <meta http-equiv="”X-UA-Compatible”" content="”IE" ="edge,chrome" ="1″" />
+  <meta http-equiv="X-UA-Compatible" content="”IE" ="edge,chrome" ="1″" />
   优先使用 IE 最新版本和 Chrome
   <meta name="”description”" content="”不超过150个字符”" />
   页面描述
@@ -268,13 +268,11 @@ HTML 标签里的元素名不区分大小写。也就是说，它们可以用大
   QQ应用模式
   <meta name="”msapplication-tap-highlight”" content="”no”" />
   windows phone 点击无高光 设置页面不缓存
-  <meta http-equiv="”pragma”" content="”no-cache”" />
-  <meta http-equiv="”cache-control”" content="”no-cache”" />
-  <meta http-equiv="”expires”" content="”0″" />
+  <meta http-equiv="pragma" content="”no-cache”" />
+  <meta http-equiv="cache-control" content="”no-cache”" />
+  <meta http-equiv="expires" content="”0″" />
 </head>
 ```
-
-##
 
 ## 块级元素
 
@@ -285,5 +283,3 @@ HTML 标签里的元素名不区分大小写。也就是说，它们可以用大
 常见行内元素：`span`、`a`、`img`、`input`
 
 常见块级元素：`div`、`h1 ~ h6`、`p`、`ol`、`ul`、`li`
-
-##

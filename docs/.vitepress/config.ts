@@ -6,9 +6,10 @@ import { defineConfig } from "vitepress";
 export default defineConfig({
   title: "JavaScriptGuide",
   base: "/javascript-guide/",
-  description: "Just playing around.",
+  description:
+    "front-end study and interview, include html,css,javascript,network...",
   lang: "zh-CN",
-  head: [["link", { rel: "icon", href: "/favicon.ico" }]],
+  head: [["link", { rel: "icon", href: "/javascript-guide/favicon.ico" }]],
   themeConfig: {
     siteTitle: "JavaScriptGuide",
     logo: "/favicon.svg",
