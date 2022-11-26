@@ -2,9 +2,9 @@
 
 ## 常见布局实现
 
-### 两栏布局
+## 两栏布局
 
-#### float+margin
+### float+margin
 
 ```html
 <style>
@@ -34,7 +34,7 @@
 </div>
 ```
 
-#### float+overflow
+### float+overflow
 
 ```html
 <style>
@@ -63,7 +63,7 @@
 </div>
 ```
 
-#### flex
+### flex
 
 ```html
 <style>
@@ -90,7 +90,7 @@
 </div>
 ```
 
-### 三栏布局
+## 三栏布局
 
 ::: warning
 
@@ -98,7 +98,7 @@
 
 :::
 
-### 九宫格布局
+## 九宫格布局
 
 ## 15、响应式布局
 
