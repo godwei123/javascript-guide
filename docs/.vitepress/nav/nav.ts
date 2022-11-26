@@ -20,8 +20,8 @@ const nav = [
     link: "/stateof/introduction",
   },
   {
-    text: "v0.0.1",
-    link: "",
+    text: "About",
+    link: "/about",
   },
 ];
 
