@@ -1,0 +1,1 @@
+import{_ as s,o as a,c as n,g as l}from"./app.caa83a2e.js";const D=JSON.parse('{"title":"Grid","description":"","frontmatter":{},"headers":[],"relativePath":"basic/css/grid.md"}'),o={name:"basic/css/grid.md"},p=l("",7),e=[p];function t(r,c,i,C,d,A){return a(),n("div",null,e)}const g=s(o,[["render",t]]);export{D as __pageData,g as default};
