@@ -1,3 +1,172 @@
+# 项目优化
+
+渲染优化：减少回流和重绘、防抖和节流、动画、使用 transform
+
+代码优化
+
+资源优化：图片格式选择（png/jpeg/webp）、图片懒加载（https://blog.csdn.net/weixin_42349568/article/details/111568963）
+
+https://blog.csdn.net/qq_27575925/article/details/120047732
+
+https://blog.csdn.net/qq_27575925/category_11323195.html
+
+## 性能优化
+
+- 代码层面：减少不必要的逻辑，降低复杂度
+- 网络方面：减少网络请求。重复的请求取消；限制并发数量；限制失败后重新请求的次数；大文件分片上传；合理利用缓存；
+- 业务方面：防抖节流、事件解绑、长列表优化、懒加载、减少组件的重新渲染、首屏时间优化
+- 打包方面：代码体积、打包时间、CDN
+
+https://mp.weixin.qq.com/s/E9g1WPW5elgxwL9lAytBtg
+
+https://mp.weixin.qq.com/s/-VLnevAo5jay_8t_9vvWhg
+
+https://mp.weixin.qq.com/s/MNw8SBvQLJ7WtNPROEL9og
+
+> ### 环境
+
+1. npm install
+2. 本人使用的编辑器是 VSCode(自行安装 Code Runner 插件，用于运行 server.js)
+
+> ## XSS 攻击
+
+> ### 反射型 XSS 攻击
+
+1. 进入 XSS 目录，运行 server.js (启动本地服务器)
+2. 在浏览器中访问 `localhost:3000/login.html`
+3. 使用错误的用户名/密码进行登录(例如: 123 / 123)，会跳向：`http://localhost:3000/error?type=<script>alert('恶意内容')</script>`
+4. 使用正确的用户名: yvette / yvette 登录，会跳向: `http://localhost:3000/welcome?type=<script>alert('恶意内容')</script>` ;虽然 url 仍然包含恶意脚本，但是我们已经进行了转义，不会再被攻击
+
+> ### DOM 型 XSS 攻击
+
+1. 浏览器中访问 `localhost:3000/after.html`
+
+2. 输入评论内容: `2222<script>alert(1)</script>`
+
+   当然啦，如果是登录状态，还可以拿 cookie 等信息~
+   还可以悄悄引入其它的 js 文件过来，可怕~
+
+3. 我们可以对输入的内容进行转义，这样就不会被攻击啦~
+
+> ### 存储型 XSS 攻击
+
+1. 浏览器中访问 `localhost:3000/comments.html`
+2. 评论需要先登录，如未登录会自动跳去登录页
+3. 输入评论内容: `2222<script>alert(1)</script>`
+4. 恶意脚本未经转换，存储到了后台。任何用户访问此页面，都会执行恶意脚本。
+5. 防范存储型 XSS 攻击，需要我们增加字符串的过滤：前端输入时过滤/服务端增加过滤/前端输出时过滤——一句话：谁都别信！
+6. 浏览器中访问 `localhost:3000/comments2.html`，输入评论: `2222<script>alert(1)</script>`，不会有弹框，因为做了过滤。
+
+> ## CSRF 攻击
+
+偷走你的钱:
+
+1. 进入 CSRF 目录，运行 server.js，端口号是 3001 (runcode 就行)
+2. 在控制台: node server2.js，端口号 3002
+3. 浏览器中访问 `http://localhost:3001/`，没有登录的情况下自动跳转登录页
+4. 使用 loki/loki 登录，可以看到 loki 的账号有 10W 的余额
+5. loki 已经登录了，cookie 已经有了，这个时候，有人给你发了个钓鱼网站的链接: `http://localhost:3002/fish.html`，你点过去了，你的钱就被偷偷偷走了~~~
+6. loki 的钱在不知不觉中就被转到了 yvette 的账户
+7. 可怕不~
+8. 不过银行网站的安全都是做的很好的，别慌~
+
+> ### 防御
+
+说明：safe1.html,safe2.html,safe3.html;fish1.html/fish2.html/fish3.html 的区别仅在于请求接口不用。
+
+1. 使用验证码【用户体验不佳】
+
+   利用 svg-captcha(已安装依赖)
+
+   接口: `api/transfer1`
+
+- 浏览器访问 `http://localhost:3001/safe1.html`，登录之后发现转账需要验证码了~
+- 现在登录之后，再诱惑你点钓鱼网站 `http://localhost:3002/fish1.html`，你的钱不能被转走，因为服务端需要验证你的验证码，发现验证码错误，不会转账。
+
+2. 判断来源(referer) 【referer 并不安全，应该 referer 是可以被修改的】
+
+   接口: `api/transfer2`
+
+- 浏览器访问 `http://localhost:3001/safe2.html`，登录(loki/loki)~
+- 现在登录之后，再诱惑你点钓鱼网站 `http://localhost:3002/fish2.html`，你的钱不能被转走，因为服务端会判断请求来源，发现请求来源是 `localhost:3002`，不会转账。
+
+3. Token【用户无感知】
+
+   接口: `api/transfer3`
+
+- 浏览器访问 `http://localhost:3001/safe3.html`，登录(loki/loki)~
+- 现在登录之后，再诱惑你点钓鱼网站 `http://localhost:3002/fish3.html`，你的钱不能被转走，因为服务端会判断请求来源，发现请求来源是 `localhost:3002`，不会转账。
+
+一 跨站脚本攻击（XSS 攻击）
+
+攻击者往 Web 页面里插入恶意 html 代码，当用户浏览该页之时，嵌入其中 Web 里面的 html 代码会被执行
+
+xss 常见的攻击方式：
+
+用户提交的数据未经处理，直接住注入到动态页面中
+
+危害：盗取各类用户帐号 ，企业数据，强制发送电子邮件，网站挂马
+
+解决方案：不信赖用户输入，对特殊字符如”<”,””转义，或者是替换
+
+小结：用户提交的时候 ，可能输入代码，存放到数据库
+
+用户读取数据的时候，数据库中代码可能会执行
+
+二 跨站请求伪造(CSRF 攻击)
+
+跨站请求伪造(CSRF 攻击)
+
+现象：有一个和官网一样的网站，篡改官网的提交的路径，或者 cookie 一起提交，导致提交数据流入外部网站 从而泄密
+
+解决方案：
+
+用户必须输入验证码，手机验证码...
+
+添加 token 来进行二次校验 增强安全性
+
+三：SQL 注入攻击
+
+验证用户名 和 密码相等的 sql
+
+select \* from 表名 where uName='{\$uName}' and uPwd='{$uPwd}';
+
+select \* from 表名 where uName='zhangsan' or 1='1' and uPwd='';
+
+概念：攻击者将 SQL 命令插入到 Web 表单提交、输入域名、页面请求的查询字符串，
+
+最终达到欺骗服务器执行恶意的 SQL 命令
+
+危害： 任意登录系统 ，进行任意操作
+
+解决： 1. 增加黑白名单验证
+
+白：数据类型 长度 取值范围（js 正则验证）.. 包含= ‘ ，终止请求
+
+黑：包含恶意内容拒绝请求
+
+2.  安全监测 ，依靠各种安全漏洞的工具 来监测安全性
+
+3.  防止敏感信息泄露 --》缩减用户 的权限
+
+四 接口安全：
+
+传递数据的时候，把数据加密，到了后端解密数据，正常入库
+
+数据 crptyjs 加密
+
+加密 过程：
+
+## 优化
+
+1、**生产环境关闭**`productionSourceMap`**、**`css sourceMap`
+
+2、分析大文件，找出内鬼，安装 `npm install webpack-bundle-analyzer -D` 插件
+
+3、**使用 cdn 加载第三方 js。**
+
+4、`compression-webpack-plugin`插件把代码压缩为 gzip
+
 # 面试场景题
 
 ## 1、实现一个简易的 vue-router 的 hash 模式，期望是不同的路由渲染不同的字符串
@@ -1171,7 +1340,7 @@ RWD：Ethan Marcote 的文章是大家认为 RWD 的起源。他提出的 RWD �
 
 AWD：Adaptive Design 是 Aaron Gustafson 的书的标题。他认为 AWD 在包括 RWD 的 CSS 媒体查询技术以外，也要用 Javascript 来操作 HTML 来更适应移动设备的能力。AWD 有可能会针对移动端用户**减去内容，减去功能**。AWD 可以在服务器端就进行优化，把优化过的内容送到终端上。
 
-![图片](../../public/640327834738732.png)
+![图片](../public/640327834738732.png)
 
 **渐进增强和优雅降级**
 
@@ -1251,3 +1420,78 @@ vw 确实看上去很不错，但是也是存在它的一些问题：
 ### 请简述微信小程序的原理。
 
 小程序本质是一个单页面应用。这个页面上可以进行所有的页面渲染和事件处理，同时能通过微信客户端调用原生的各种接口。其架构是数据驱动的架构模式。由于 UI 和数据是分离的，因此所有的页面更新都需要通过更改数据来实现。技术上采用 JavaScript、WXML、WXSS 进行开发；功能上可分为 webview 和 appService 两个部分（其中 webview 用于展现 UI，appService 则用于处理业务逻辑、数据及接口调用）；其在两个进程中运行，通过系统层 JSBridge 实现通信，实现 UI 的渲染、事件的处理等。
+
+# 打包工具
+
+- 传统编译：Webpack, Rollup, Parcel, Esbuild
+- ESM 混合编译：Snowpack, Vite
+
+## Webpack
+
+### **Loader**和**Plugin**的不同？
+
+不同的作⽤:
+
+- **Loader**直译为"加载器"。Webpack 将⼀切⽂件视为模块，但是 webpack 原⽣是只能解析 js ⽂件，如果想将其他⽂件也打包的话，就会⽤到
+  loader 。 所以 Loader 的作⽤是让 webpack 拥有了加载和解析⾮ JavaScript ⽂件的能⼒。
+- **Plugin**直译为"插件"。Plugin 可以扩展 webpack 的功能，让 webpack 具有更多的灵活性。 在 Webpack 运⾏的⽣命周期中会⼴播出许多事件，Plugin
+  可以监听这些事件，在合适的时机通过 Webpack 提供的 API 改变输出结果。
+
+**不同的⽤法**
+
+- **Loader**在 module.rules 中配置，也就是说他作为模块的解析规则⽽存在。 类型为数组，每⼀项都是⼀个 Object ，⾥⾯描述了对于什么类型的⽂件（
+  test ），使⽤什么加载( loader )和使⽤的参数（ options ）
+- **Plugin**在 plugins 中单独配置。 类型为数组，每⼀项是⼀个 plugin 的实例，参数都通过构造函数传⼊。
+
+### **webpack**的构建流程**?**
+
+Webpack 的运⾏流程是⼀个串⾏的过程，从启动到结束会依次执⾏以下流程：
+
+1. 初始化参数：从配置⽂件和 Shell 语句中读取与合并参数，得出最终的参数；
+2. 开始编译：⽤上⼀步得到的参数初始化 Compiler 对象，加载所有配置的插件，执⾏对象的 run ⽅法开始执⾏编译；
+3. 确定⼊⼝：根据配置中的 entry 找出所有的⼊⼝⽂件；
+4. 编译模块：从⼊⼝⽂件出发，调⽤所有配置的 Loader 对模块进⾏翻译，再找出该模块依赖的模块，再递归本步骤直到所有⼊⼝依赖的⽂件都经过了本步骤的处理；
+5. 完成模块编译：在经过第 4 步使⽤ Loader 翻译完所有模块后，得到了每个模块被翻译后的最终内容以及它们之间的依赖关系；
+6. 输出资源：根据⼊⼝和模块之间的依赖关系，组装成⼀个个包含多个模块的 Chunk，再把每个 Chunk
+   转换成⼀个单独的⽂件加⼊到输出列表，这步是可以修改输出内容的最后机会；
+7. 输出完成：在确定好输出内容后，根据配置确定输出的路径和⽂件名，把⽂件内容写⼊到⽂件系统。
+
+在以上过程中，Webpack 会在特定的时间点⼴播出特定的事件，插件在监听到感兴趣的事件后会执⾏特定的逻辑，并且插件可以调⽤ Webpack
+提供的 API 改变 Webpack 的运⾏结果。
+
+### 编写**loader**或**plugin**的思路？
+
+Loader 像⼀个"翻译官"把读到的源⽂件内容转义成新的⽂件内容，并且每个 Loader 通过链式操作，将源⽂件⼀步步翻译成想要的样⼦。
+
+编写 Loader 时要遵循单⼀原则，每个 Loader 只做⼀种"转义"⼯作。 每个 Loader 的拿到的是源⽂件内容（source），可以通过返回值的⽅式将处理后的内容输出，也可以调⽤
+this.callback() ⽅法，将内容返回给 webpack。 还可以通过 this.async() ⽣成⼀个 callback 函数，再⽤这个 callback 将处理后的内容输出出去。
+此外 webpack 还为开发者准备了开发 loader 的⼯具函数集——loader-utils 。
+
+相对于 Loader ⽽⾔，Plugin 的编写就灵活了许多。 webpack 在运⾏的⽣命周期中会⼴播出许多事件，Plugin 可以监听这些事件，在合适的时机通过
+Webpack 提供的 API 改变输出结果。
+
+### 如何⽤**webpack**来优化前端性能？
+
+⽤ webpack 优化前端性能是指优化 webpack 的输出结果，让打包的最终结果在浏览器运⾏快速⾼效。
+
+- **压缩代码**：删除多余的代码、注释、简化代码的写法等等⽅式。可以利⽤ webpack 的 UglifyJsPlugin 和 ParallelUglifyPlugin 来压缩
+  JS ⽂件， 利⽤ cssnano （css-loader?minimize）来压缩 css
+- **利⽤ CDN 加速**: 在构建过程中，将引⽤的静态资源路径修改为 CDN 上对应的路径。可以利⽤ webpack 对于 output 参数和各 loader
+  的 publicPath 参数来修改资源路径
+- **Tree Shaking**: 将代码中永远不会⾛到的⽚段删除掉。可以通过在启动 webpack 时追加参数 --optimize-minimize 来实现
+- **Code Splitting:** 将代码按路由维度或者组件分块(chunk),这样做到按需加载,同时可以充分利⽤浏览器缓存
+- **提取公共第三⽅库**: SplitChunksPlugin 插件来进⾏公共模块抽取,利⽤浏览器缓存可以⻓期缓存这些⽆需频繁变动的公共代码
+
+### **Babel**的原理是什么**?**
+
+babel 的转译过程也分为三个阶段：**parsing、transforming、generating**
+
+babel 的转译过程也分为三个阶段，这三步具体是：
+
+- **解析 Parse**: 将代码解析⽣成抽象语法树（AST），即词法分析与语法分析的过程；
+- **转换 Transform**: 对于 AST 进⾏变换⼀系列的操作，babel 接受得到 AST 并通过 babel-traverse 对其进⾏遍历，在此过程中进⾏添加、更新及移除等操作；
+- **⽣成 Generate**: 将变换后的 AST 再转换为 JS 代码, 使⽤到的模块是 babel-generator。
+
+![img](../public/16159086c2022b1db0.png)
+
+## Vite
