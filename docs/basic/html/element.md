@@ -1,144 +1,69 @@
 # html 元素
 
-HTML 标签里的元素名不区分大小写。也就是说，它们可以用大写，小写或混合形式书写。
+::: tip
 
-标签：
+常见元素将会简单介绍，非经常使用的元素内容请参考 MDN
 
-```html
-<a>
-<abbr>
-<address>
-<area>
-<article>
-<aside>
-<audio>
-<b>
-<base>
-<bdi>
-<bdo>
-<blockquote>
-<body>
-<br>
-<button>
-<canvas>
-<caption>
-<cite>
-<code>
-<col>
-<colgroup>
-<data>
-<datalist>
-<dd>
-<del>
-<details>
-<dfn>
-<dialog>
-<div>
-<dl>
-<dt>
-<em>
-<embed>
-<fieldset>
-<figcaption>
-<figure>
-<footer>
-<form>
-<h1>
-<head>
-<header>
-<hgroup>
-<hr>
-<html>
-<i>
-<iframe>
-<img>
-<input>
-<ins>
-<kbd>
-<label>
-<legend>
-<li>
-<link>
-<main>
-<map>
-<mark>
-<menu>
-<meta>
-<meter>
-<nav>
-<noscript>
-<object>
-<ol>
-<optgroup>
-<option>
-<output>
-<p>
-<picture>
-<pre>
-<progress>
-<q>
-<rp>
-<rt>
-<ruby>
-<s>
-<samp>
-<script>
-<section>
-<select>
-<slot>
-<small>
-<source>
-<span>
-<strong>
-<style>
-<sub>
-<summary>
-<sup>
-<table>
-<tbody>
-<td>
-<template>
-<textarea>
-<tfoot>
-<th>
-<thead>
-<time>
-<title>
-<tr>
-<track>
-<u>
-<ul>
-<var>
-<video>
-<wbr>
-```
+:::
 
-## 常见元素
+HTML 标签里的元素名不区分大小写。
 
-> html 中常见的元素
+HTML 所有元素：
 
-```html
-<a> </a>
-```
+| Element      | Element        | Element      | Element      | Element        |
+| ------------ | -------------- | ------------ | ------------ | -------------- |
+| `<a>`        | `<abbr>`       | `<address>`  | `<area>`     | `<article>`    |
+| `<aside>`    | `<audio>`      | `<b>`        | `<base>`     | `<bdi>`        |
+| `<bdo>`      | `<blockquote>` | `<body>`     | `<br>`       | `<button>`     |
+| `<canvas>`   | `<caption>`    | `<cite>`     | `<code>`     | `<col>`        |
+| `<colgroup>` | `<data>`       | `<datalist>` | `<dd>`       | `<del>`        |
+| `<details>`  | `<dfn>`        | `<dialog>`   | `<div>`      | `<dl>`         |
+| `<dt>`       | `<em>`         | `<embed>`    | `<fieldset>` | `<figcaption>` |
+| `<figure>`   | `<footer>`     | `<form>`     | `<h1>`       | `<head>`       |
+| `<header>`   | `<hgroup>`     | `<hr>`       | `<html>`     | `<i>`          |
+| `<iframe>`   | `<img>`        | `<input>`    | `<ins>`      | `<kbd>`        |
+| `<label>`    | `<legend>`     | `<li>`       | `<link>`     | `<main>`       |
+| `<map>`      | `<mark>`       | `<menu>`     | `<meta>`     | `<meter>`      |
+| `<nav>`      | `<noscript>`   | `<object>`   | `<ol>`       | `<optgroup>`   |
+| `<option>`   | `<output>`     | `<p>`        | `<picture>`  | `<pre>`        |
+| `<progress>` | `<q>`          | `<rp>`       | `<rt>`       | `<ruby>`       |
+| `<s>`        | `<samp>`       | `<script>`   | `<section>`  | `<select>`     |
+| `<slot>`     | `<small>`      | `<source>`   | `<span>`     | `<strong>`     |
+| `<style>`    | `<sub>`        | `<summary>`  | `<sup>`      | `<table>`      |
+| `<tbody>`    | `<td>`         | `<template>` | `<textarea>` | `<tfoot>`      |
+| `<th>`       | `<thead>`      | `<time>`     | `<title>`    | `<tr>`         |
+| `<track>`    | `<u>`          | `<ul>`       | `<var>`      | `<video>`      |
+| `<wbr>`      |                |              |              |                |
 
-## 非常见元素
+## `a`
 
-> 1
+**HTML `<a>` 元素**（或称锚元素）可以通过它的 `href` 属性创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。`<a>` 中的内容**应该**应该指明链接的意图。如果存在 `href` 属性，当 `<a>` 元素聚焦时按下回车键就会激活它。
 
-```html
-<abbr></abbr>
-```
+常见属性：
 
-## `abbr`
+- `download`
 
-**HTML 缩写元素**（**`<abbr>`**）用于代表缩写，并且可以通过可选的 `title`属性提供完整的描述。若使用 `title` 属性，则它必须且仅可包含完整的描述内容。
+  此属性指示浏览器下载 URL 而不是导航到它，因此将提示用户将其保存为本地文件。如果属性有一个值，那么此值将在下载保存过程中作为预填充的文件名（如果用户需要，仍然可以更改文件名）。此属性对允许的值没有限制，但是 / 和 \ 会被转换为下划线。大多数文件系统限制了文件名中的标点符号，故此，浏览器将相应地调整建议的文件名。
 
-当然，我们不是所有的缩写都要使用`<abbr>`标记。但是其在下面一些场景很有帮助：
+  - 此属性仅适用于同源 URL。
+  - 尽管 HTTP URL 需要位于同一源中，但是可以使用 blob: URL 和 data: URL ，以方便用户下载使用 JavaScript 生成的内容（例如使用在线绘图 Web 应用程序创建的照片）。
+  - 如果 HTTP 头中的 Content-Disposition 属性赋予了一个不同于此属性的文件名，HTTP 头属性优先于此属性。
+  - 如果 HTTP 头属性 Content-Disposition 被设置为 inline（即 Content-Disposition='inline'），那么 Firefox 优先考虑 HTTP 头 Content-Dispositiondownload 属性。
 
-- 当你想为缩写在文档流外提供一段扩展或定义的时候，为 `<abbr>` 设置一个合适的`title`。
-- 在定义一个读者可能不太熟悉的缩写时，使用 `<abbr>` 和`title`属性或内联的文本来表现这个术语。
-- 当文本中出现需要进行语义上的标注的缩写词时，`<abbr>`元素可用于依次将其作用样式和脚本。
-- 可以将 `<abbr>` 与 `dfn` 配合使用来建立缩写或首字母缩略词的定义。
+- `href`
+
+  包含超链接指向的 URL 或 URL 片段。URL 片段是哈希标记（#）前面的名称，哈希标记指定当前文档中的内部目标位置（HTML 元素的 ID）。URL 不限于基于 Web（HTTP）的文档，也可以使用浏览器支持的任何协议。例如，在大多数浏览器中正常工作的`file:`、`ftp:`和 `mailto:`。
+
+  **备注：** 可以使用 href="#top" 或者 href="#" 链接返回到页面顶部。
+
+- `target`
+
+  该属性指定在何处显示链接的资源。取值为标签（tab），窗口（window），或框架（iframe）等浏览上下文的名称或其他关键词。以下关键字具有特殊的意义：
+
+  - `_self`: 当前页面加载，即当前的响应到同一 HTML 4 frame（或 HTML5 浏览上下文）。此值是默认的，如果没有指定属性的话。
+  - `_blank`: 新窗口打开，即到一个新的未命名的 HTML4 窗口或 HTML5 浏览器上下文
+  - `_parent`: 加载响应到当前框架的 HTML4 父框架或当前的 HTML5 浏览上下文的父浏览上下文。如果没有 parent 框架或者浏览上下文，此选项的行为方式与 `_self` 相同。
+  - `_top`: IHTML4 中：加载的响应成完整的，原来的窗口，取消所有其它 frame。HTML5 中：加载响应进入顶层浏览上下文（即，浏览上下文，它是当前的一个的祖先，并且没有 parent）。如果没有 parent 框架或者浏览上下文，此选项的行为方式相同\_self
 
 ## `meta`
 

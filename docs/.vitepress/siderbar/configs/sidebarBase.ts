@@ -6,7 +6,6 @@ const sidebarBase = [
       { text: "HTML元素", link: "/basic/html/element" },
       { text: "HTML属性", link: "/basic/html/attribute" },
       { text: "Input元素", link: "/basic/html/input" },
-      { text: "Table元素", link: "/basic/html/table" },
       { text: "Canvas元素", link: "/basic/html/canvas" },
       { text: "Interview", link: "/basic/html/interview" },
     ],
