@@ -1,4 +1,6 @@
-### 手写 浅拷贝
+# 手写代码题 part-3
+
+## 手写 浅拷贝
 
 ```js
 const _shallowClone = (target) => {
@@ -20,7 +22,7 @@ let ans = Object.assign({}, target);
 let ans = { ...target };
 ```
 
-### 手写 深拷贝
+## 手写 深拷贝
 
 ```javascript
 const _deepClone = target =>{
@@ -52,7 +54,7 @@ function deepClone(val,map = new WeakMap()){
 }
 ```
 
-### 手写 防抖
+## 手写 防抖
 
 ```js
 function debounce(fn, wait) {
@@ -76,7 +78,7 @@ function debounce(fn, wait) {
 }
 ```
 
-### 手写 节流
+## 手写 节流
 
 ```js
 // 时间戳版
@@ -112,13 +114,13 @@ function throttle(fun, wait) {
 }
 ```
 
-### 手写 发布订阅模式
+## 手写 发布订阅模式
 
 ```js
 class EmitEvent {}
 ```
 
-### 手写 Promise.all
+## 手写 `Promise.all`
 
 ```js
 function promiseAll(promises) {
@@ -142,7 +144,7 @@ function promiseAll(promises) {
 }
 ```
 
-### 手写 Promise.race
+## 手写 `Promise.race`
 
 ```js
 Promise.race = function (args) {
@@ -154,7 +156,7 @@ Promise.race = function (args) {
 };
 ```
 
-### 手写 Array.prototype.reduce()
+## 手写 Array.prototype.reduce()
 
 ```js
 Array.prototype._reduce = function (fn, prev) {
@@ -170,7 +172,7 @@ Array.prototype._reduce = function (fn, prev) {
 };
 ```
 
-### 手写 Array.prototype.filter()
+## 手写 Array.prototype.filter()
 
 ```js
 Array.prototype._filter = function (Fn) {
@@ -185,7 +187,7 @@ Array.prototype._filter = function (Fn) {
 };
 ```
 
-### 手写 Array.prototype.map()
+## 手写 Array.prototype.map()
 
 ```js
 Array.prototype._map = function (Fn) {
@@ -200,7 +202,7 @@ Array.prototype._map = function (Fn) {
 };
 ```
 
-### 手写 Array.prototype.flat()
+## 手写 Array.prototype.flat()
 
 ```js
 function _flat(arr, depth) {
@@ -217,7 +219,7 @@ function _flat(arr, depth) {
 }
 ```
 
-### 手写 new
+## 手写 new
 
 ```js
 const _new = function (constructor, ...args) {
@@ -263,11 +265,11 @@ function objectFactory() {
 objectFactory(构造函数, 初始化参数);
 ```
 
-### 手写 原型式继承
+## 手写 原型式继承
 
-### 手写 寄生式继承
+## 手写 寄生式继承
 
-### 手写 instanceof
+## 手写 instanceof
 
 ```js
 const myInstanceof = (left, right) => {
@@ -285,7 +287,7 @@ const myInstanceof = (left, right) => {
 };
 ```
 
-### 手写 bind
+## 手写 bind
 
 ```js
 Function.prototype._bind = function (target, ...arguments1) {
@@ -311,7 +313,7 @@ Function.prototype.bind = function (context, ...args) {
 };
 ```
 
-### 手写 apply
+## 手写 apply
 
 ```js
 // apply
@@ -327,7 +329,7 @@ Function.prototype.apply = function (context, argsArr) {
 };
 ```
 
-### 手写 call
+## 手写 call
 
 ```js
 Function.prototype._call = function (target = window) {
@@ -350,7 +352,7 @@ Function.prototype.call = function (context, ...args) {
 };
 ```
 
-### Object.create()
+## Object.create()
 
 ```js
 const _objectCreate = (proto) => {
@@ -361,7 +363,7 @@ const _objectCreate = (proto) => {
 };
 ```
 
-### 手写 数组去重
+## 手写 数组去重
 
 ```js
 // 1. Set
@@ -389,7 +391,7 @@ array.filter((item) => {
 });
 ```
 
-### 数组扁平化
+## 数组扁平化
 
 ```js
 Array.prototype.myFlat = (arr) => {
@@ -407,7 +409,7 @@ Array.prototype.myFlat = (arr) => {
 };
 ```
 
-### sleep()
+## sleep()
 
 ```js
 const sleep = (time) => {
@@ -429,7 +431,7 @@ function output() {
 sleep(output, 1000);
 ```
 
-### List To Tree
+## List To Tree
 
 ```js
 const convert = (list) => {
@@ -467,7 +469,7 @@ const result = convert(list);
 console.log(result);
 ```
 
-### EventEmitter
+## EventEmitter
 
 ```typescript
 type FnCallback = (...args) => any;

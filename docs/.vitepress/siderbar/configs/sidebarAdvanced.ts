@@ -1,4 +1,4 @@
-const SidebarBrowser = [
+const sidebarAdvanced = [
   {
     text: "浏览器 Browser",
     items: [
@@ -11,5 +11,18 @@ const SidebarBrowser = [
       { text: "浏览器性能", link: "/advanced/browser/浏览器性能" },
     ],
   },
+  {
+    text: "网络 network",
+    items: [{ text: "Introduction", link: "/advanced/browser/introduction" }],
+  },
+  {
+    text: "项目优化",
+    items: [{ text: "Introduction", link: "/advanced/browser/introduction" }],
+  },
+  {
+    text: "场景题",
+    items: [{ text: "Introduction", link: "/advanced/scene/" }],
+  },
 ];
-export default SidebarBrowser;
+
+export default sidebarAdvanced;

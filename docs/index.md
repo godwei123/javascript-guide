@@ -4,10 +4,16 @@ layout: home
 hero:
   name: JavaScript Guide
   tagline: 我本来可以很快乐，是前端害了我
+  image:
+    src: /javascript-guide-logo.svg
+    alt: javascript-guide-logo
   actions:
     - theme: brand
       text: 开   始
-      link: /basic/javascript/introduction
+      link: /basic/html/introduction
+    - theme: alt
+      text: View on GitHub
+      link: https://github.com/godwei123/javascript-guide
 
 features:
   - title: HTML
