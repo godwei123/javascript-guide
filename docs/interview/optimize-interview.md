@@ -1,3 +1,172 @@
+# 项目优化
+
+渲染优化：减少回流和重绘、防抖和节流、动画、使用 transform
+
+代码优化
+
+资源优化：图片格式选择（png/jpeg/webp）、图片懒加载（https://blog.csdn.net/weixin_42349568/article/details/111568963）
+
+https://blog.csdn.net/qq_27575925/article/details/120047732
+
+https://blog.csdn.net/qq_27575925/category_11323195.html
+
+## 性能优化
+
+- 代码层面：减少不必要的逻辑，降低复杂度
+- 网络方面：减少网络请求。重复的请求取消；限制并发数量；限制失败后重新请求的次数；大文件分片上传；合理利用缓存；
+- 业务方面：防抖节流、事件解绑、长列表优化、懒加载、减少组件的重新渲染、首屏时间优化
+- 打包方面：代码体积、打包时间、CDN
+
+https://mp.weixin.qq.com/s/E9g1WPW5elgxwL9lAytBtg
+
+https://mp.weixin.qq.com/s/-VLnevAo5jay_8t_9vvWhg
+
+https://mp.weixin.qq.com/s/MNw8SBvQLJ7WtNPROEL9og
+
+> ### 环境
+
+1. npm install
+2. 本人使用的编辑器是 VSCode(自行安装 Code Runner 插件，用于运行 server.js)
+
+> ## XSS 攻击
+
+> ### 反射型 XSS 攻击
+
+1. 进入 XSS 目录，运行 server.js (启动本地服务器)
+2. 在浏览器中访问 `localhost:3000/login.html`
+3. 使用错误的用户名/密码进行登录(例如: 123 / 123)，会跳向：`http://localhost:3000/error?type=<script>alert('恶意内容')</script>`
+4. 使用正确的用户名: yvette / yvette 登录，会跳向: `http://localhost:3000/welcome?type=<script>alert('恶意内容')</script>` ;虽然 url 仍然包含恶意脚本，但是我们已经进行了转义，不会再被攻击
+
+> ### DOM 型 XSS 攻击
+
+1. 浏览器中访问 `localhost:3000/after.html`
+
+2. 输入评论内容: `2222<script>alert(1)</script>`
+
+   当然啦，如果是登录状态，还可以拿 cookie 等信息~
+   还可以悄悄引入其它的 js 文件过来，可怕~
+
+3. 我们可以对输入的内容进行转义，这样就不会被攻击啦~
+
+> ### 存储型 XSS 攻击
+
+1. 浏览器中访问 `localhost:3000/comments.html`
+2. 评论需要先登录，如未登录会自动跳去登录页
+3. 输入评论内容: `2222<script>alert(1)</script>`
+4. 恶意脚本未经转换，存储到了后台。任何用户访问此页面，都会执行恶意脚本。
+5. 防范存储型 XSS 攻击，需要我们增加字符串的过滤：前端输入时过滤/服务端增加过滤/前端输出时过滤——一句话：谁都别信！
+6. 浏览器中访问 `localhost:3000/comments2.html`，输入评论: `2222<script>alert(1)</script>`，不会有弹框，因为做了过滤。
+
+> ## CSRF 攻击
+
+偷走你的钱:
+
+1. 进入 CSRF 目录，运行 server.js，端口号是 3001 (runcode 就行)
+2. 在控制台: node server2.js，端口号 3002
+3. 浏览器中访问 `http://localhost:3001/`，没有登录的情况下自动跳转登录页
+4. 使用 loki/loki 登录，可以看到 loki 的账号有 10W 的余额
+5. loki 已经登录了，cookie 已经有了，这个时候，有人给你发了个钓鱼网站的链接: `http://localhost:3002/fish.html`，你点过去了，你的钱就被偷偷偷走了~~~
+6. loki 的钱在不知不觉中就被转到了 yvette 的账户
+7. 可怕不~
+8. 不过银行网站的安全都是做的很好的，别慌~
+
+> ### 防御
+
+说明：safe1.html,safe2.html,safe3.html;fish1.html/fish2.html/fish3.html 的区别仅在于请求接口不用。
+
+1. 使用验证码【用户体验不佳】
+
+   利用 svg-captcha(已安装依赖)
+
+   接口: `api/transfer1`
+
+- 浏览器访问 `http://localhost:3001/safe1.html`，登录之后发现转账需要验证码了~
+- 现在登录之后，再诱惑你点钓鱼网站 `http://localhost:3002/fish1.html`，你的钱不能被转走，因为服务端需要验证你的验证码，发现验证码错误，不会转账。
+
+2. 判断来源(referer) 【referer 并不安全，应该 referer 是可以被修改的】
+
+   接口: `api/transfer2`
+
+- 浏览器访问 `http://localhost:3001/safe2.html`，登录(loki/loki)~
+- 现在登录之后，再诱惑你点钓鱼网站 `http://localhost:3002/fish2.html`，你的钱不能被转走，因为服务端会判断请求来源，发现请求来源是 `localhost:3002`，不会转账。
+
+3. Token【用户无感知】
+
+   接口: `api/transfer3`
+
+- 浏览器访问 `http://localhost:3001/safe3.html`，登录(loki/loki)~
+- 现在登录之后，再诱惑你点钓鱼网站 `http://localhost:3002/fish3.html`，你的钱不能被转走，因为服务端会判断请求来源，发现请求来源是 `localhost:3002`，不会转账。
+
+一 跨站脚本攻击（XSS 攻击）
+
+攻击者往 Web 页面里插入恶意 html 代码，当用户浏览该页之时，嵌入其中 Web 里面的 html 代码会被执行
+
+xss 常见的攻击方式：
+
+用户提交的数据未经处理，直接住注入到动态页面中
+
+危害：盗取各类用户帐号 ，企业数据，强制发送电子邮件，网站挂马
+
+解决方案：不信赖用户输入，对特殊字符如”<”,””转义，或者是替换
+
+小结：用户提交的时候 ，可能输入代码，存放到数据库
+
+用户读取数据的时候，数据库中代码可能会执行
+
+二 跨站请求伪造(CSRF 攻击)
+
+跨站请求伪造(CSRF 攻击)
+
+现象：有一个和官网一样的网站，篡改官网的提交的路径，或者 cookie 一起提交，导致提交数据流入外部网站 从而泄密
+
+解决方案：
+
+用户必须输入验证码，手机验证码...
+
+添加 token 来进行二次校验 增强安全性
+
+三：SQL 注入攻击
+
+验证用户名 和 密码相等的 sql
+
+select \* from 表名 where uName='{\$uName}' and uPwd='{$uPwd}';
+
+select \* from 表名 where uName='zhangsan' or 1='1' and uPwd='';
+
+概念：攻击者将 SQL 命令插入到 Web 表单提交、输入域名、页面请求的查询字符串，
+
+最终达到欺骗服务器执行恶意的 SQL 命令
+
+危害： 任意登录系统 ，进行任意操作
+
+解决： 1. 增加黑白名单验证
+
+白：数据类型 长度 取值范围（js 正则验证）.. 包含= ‘ ，终止请求
+
+黑：包含恶意内容拒绝请求
+
+2.  安全监测 ，依靠各种安全漏洞的工具 来监测安全性
+
+3.  防止敏感信息泄露 --》缩减用户 的权限
+
+四 接口安全：
+
+传递数据的时候，把数据加密，到了后端解密数据，正常入库
+
+数据 crptyjs 加密
+
+加密 过程：
+
+## 优化
+
+1、**生产环境关闭**`productionSourceMap`**、**`css sourceMap`
+
+2、分析大文件，找出内鬼，安装 `npm install webpack-bundle-analyzer -D` 插件
+
+3、**使用 cdn 加载第三方 js。**
+
+4、`compression-webpack-plugin`插件把代码压缩为 gzip
+
 # 面试场景题
 
 ## 1、实现一个简易的 vue-router 的 hash 模式，期望是不同的路由渲染不同的字符串
@@ -113,443 +282,6 @@ function divscrollFn(event) {
 }
 window.onscroll = throttle(judgeScroll, 300);
 ```
-
-## 图片懒加载
-
-- window.innerHeight 是浏览器可视区的高度
-- document.body.scrollTop || document.documentElement.scrollTop 是浏览器滚动的过的距离
-- imgs.offsetTop 是元素顶部距离文档顶部的高度（包括滚动条的距离）
-- 图片加载条件：img.offsetTop < window.innerHeight + document.body.scrollTop;
-
-```html
-<div class="container">
-  <img src="loading.gif" data-src="pic.png" />
-  <img src="loading.gif" data-src="pic.png" />
-  <img src="loading.gif" data-src="pic.png" />
-  <img src="loading.gif" data-src="pic.png" />
-  <img src="loading.gif" data-src="pic.png" />
-  <img src="loading.gif" data-src="pic.png" />
-</div>
-<script>
-  var imgs = document.querySelectorAll("img");
-  function lozyLoad() {
-    var scrollTop =
-      document.body.scrollTop || document.documentElement.scrollTop;
-    var winHeight = window.innerHeight;
-    for (var i = 0; i < imgs.length; i++) {
-      if (imgs[i].offsetTop < scrollTop + winHeight) {
-        imgs[i].src = imgs[i].getAttribute("data-src");
-      }
-    }
-  }
-  window.onscroll = lozyLoad();
-</script>
-
-<!-- IntersectionObserver -->
-<head>
-  <style>
-    .viewport {
-      width: 300px;
-      height: 200px;
-      border: 1px solid blue;
-      overflow: auto;
-    }
-
-    .box1 {
-      height: 600px;
-      width: 100%;
-    }
-
-    .observed {
-      width: 100px;
-      height: 100px;
-      border: 1px solid green;
-    }
-
-    .imgs {
-      width: 100px;
-      height: 100px;
-    }
-  </style>
-</head>
-
-<body>
-  <div class="viewport" id="viewport">
-    <div class="box1">
-      <img
-        src="./place.jpg"
-        data-src="http://p8.qhimg.com/bdr/__85/t01e5f605262fb61fb4.jpg"
-        alt="图片"
-        class="imgs"
-      />
-      <img
-        src="./place.jpg"
-        data-src="http://p8.qhimg.com/bdr/__85/t01e5f605262fb61fb4.jpg"
-        alt="图片"
-        class="imgs"
-      />
-      <img
-        src="./place.jpg"
-        data-src="http://p8.qhimg.com/bdr/__85/t01e5f605262fb61fb4.jpg"
-        alt="图片"
-        class="imgs"
-      />
-      <img
-        src="./place.jpg"
-        data-src="http://p8.qhimg.com/bdr/__85/t01e5f605262fb61fb4.jpg"
-        alt="图片"
-        class="imgs"
-      />
-      <img
-        src="./place.jpg"
-        data-src="http://p8.qhimg.com/bdr/__85/t01e5f605262fb61fb4.jpg"
-        alt="图片"
-        class="imgs"
-      />
-      <img
-        src="./place.jpg"
-        data-src="http://p8.qhimg.com/bdr/__85/t01e5f605262fb61fb4.jpg"
-        alt="图片"
-        class="imgs"
-      />
-      <img
-        src="./place.jpg"
-        data-src="http://p8.qhimg.com/bdr/__85/t01e5f605262fb61fb4.jpg"
-        alt="图片"
-        class="imgs"
-      />
-      <img
-        src="./place.jpg"
-        data-src="http://p8.qhimg.com/bdr/__85/t01e5f605262fb61fb4.jpg"
-        alt="图片"
-        class="imgs"
-      />
-      <img
-        src="./place.jpg"
-        data-src="http://p8.qhimg.com/bdr/__85/t01e5f605262fb61fb4.jpg"
-        alt="图片"
-        class="imgs"
-      />
-      <img
-        src="./place.jpg"
-        data-src="http://p8.qhimg.com/bdr/__85/t01e5f605262fb61fb4.jpg"
-        alt="图片"
-        class="imgs"
-      />
-      <img
-        src="./place.jpg"
-        data-src="http://p8.qhimg.com/bdr/__85/t01e5f605262fb61fb4.jpg"
-        alt="图片"
-        class="imgs"
-      />
-      <img
-        src="./place.jpg"
-        data-src="http://p8.qhimg.com/bdr/__85/t01e5f605262fb61fb4.jpg"
-        alt="图片"
-        class="imgs"
-      />
-      <img
-        src="./place.jpg"
-        data-src="http://p8.qhimg.com/bdr/__85/t01e5f605262fb61fb4.jpg"
-        alt="图片"
-        class="imgs"
-      />
-      <img
-        src="./place.jpg"
-        data-src="http://p8.qhimg.com/bdr/__85/t01e5f605262fb61fb4.jpg"
-        alt="图片"
-        class="imgs"
-      />
-      <img
-        src="./place.jpg"
-        data-src="http://p8.qhimg.com/bdr/__85/t01e5f605262fb61fb4.jpg"
-        alt="图片"
-        class="imgs"
-      />
-      <img
-        src="./place.jpg"
-        data-src="http://p8.qhimg.com/bdr/__85/t01e5f605262fb61fb4.jpg"
-        alt="图片"
-        class="imgs"
-      />
-    </div>
-  </div>
-</body>
-<script>
-  let viewport = document.getElementById("viewport"); // 可视区域
-  let imgList = document.querySelectorAll(".imgs"); // 被观察元素
-
-  let options = {
-    root: viewport,
-  };
-  let IO = new IntersectionObserver(IOCallback, options);
-
-  // 循环所有 img 标签，使它被观察
-  imgList.forEach((item) => {
-    IO.observe(item);
-  });
-
-  // 回调函数
-  function IOCallback(entries, observer) {
-    // 循环所有观察元素
-    entries.forEach((item) => {
-      // 如果出现在可视区内，则替换 src
-      if (item.isIntersecting) {
-        console.info("出现在可视区内");
-        item.target.src = item.target.dataset.src; // 替换 src
-        IO.unobserve(item.target); // 停止观察当前元素 避免不可见时候再次调用 callback 函数
-      }
-    });
-  }
-</script>
-```
-
-## 文件拖拽上传是怎么实现的？
-
-- dragstart：事件主体是被拖放元素，在开始拖放被拖放元素时触发。
-- drag：事件主体是被拖放元素，在正在拖放被拖放元素时触发。
-- dragenter：事件主体是目标元素，在被拖放元素进入某元素时触发。
-- dragover：事件主体是目标元素，在被拖放在某元素内移动时触发。
-- dragleave：事件主体是目标元素，在被拖放元素移出目标元素是触发。
-- drop：事件主体是目标元素，在目标元素完全接受被拖放元素时触发。
-- dragend：事件主体是被拖放元素，在整个拖放操作结束时触发。
-
-```html
-<!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8" />
-    <title>首页</title>
-    <style>
-      .btn {
-        width: 100px;
-        height: 100px;
-        border: 1px dashed black;
-        margin: 50px auto;
-        cursor: pointer;
-      }
-      #upload {
-        display: none;
-      }
-    </style>
-  </head>
-
-  <body>
-    <div id="box">
-      <input type="file" id="upload" />
-
-      <div class="btn" id="drop"></div>
-    </div>
-
-    <script>
-      const input = document.querySelector("#upload");
-      let files;
-      input.addEventListener("change", (e) => {
-        files = e.target.files;
-        upload();
-      });
-
-      function upload() {
-        console.log(files);
-      }
-
-      document.querySelector(".btn").addEventListener("click", (e) => {
-        input.click();
-      });
-
-      const dropBox = document.querySelector("#drop");
-      dropBox.addEventListener("dragenter", dragEnter, false);
-      dropBox.addEventListener("dragover", dragOver, false);
-      dropBox.addEventListener("drop", drop, false);
-
-      function dragEnter(e) {
-        e.stopPropagation();
-        e.preventDefault();
-      }
-      function dragOver(e) {
-        e.stopPropagation();
-        e.preventDefault();
-      }
-
-      function drop(e) {
-        // 当文件拖拽到dropBox区域时,可以在该事件取到files
-        event.preventDefault();
-        files = e.dataTransfer.files;
-        upload();
-      }
-    </script>
-  </body>
-</html>
-```
-
-## 文件预览
-
-- 通过 FileReader 实现
-
-```js
-const input = document.querySelector("#upload");
-input.addEventListener(
-  "change",
-  function () {
-    const files = this.files;
-    const fileList = Object.entries(files).map(([_, file]) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = (e) => {
-        file.preview = e.target.result;
-      };
-      return file;
-    });
-
-    /*
-     *  file中的preview存的就是可以预览使用url,如果你需要保证fileList的顺序,
-     *  请不要使用这种方式,你可以采用索引的方式存储,来保证它的顺序一致性
-     */
-    console.log(fileList);
-  },
-  false
-);
-```
-
-- 通过 window.URL.createObjectURL()实现
-
-```js
-const input = document.querySelector("#upload");
-input.addEventListener(
-  "change",
-  function () {
-    const files = this.files;
-    const fileList = Object.entries(files).map(([_, file]) => {
-      const preview = window.URL.createObjectURL(file);
-      file.preview = preview;
-      // 需要在合适的实际进行销毁,否则只有在页面卸载的时候才会自动卸载.
-      // window.URL.revokeObjectURL(preview);
-      return file;
-    });
-
-    /*
-     *  file中的preview存的就是可以预览使用url
-     */
-    console.log(fileList);
-  },
-  false
-);
-```
-
-## 限制上传的文件类型只能是图片呢？
-
-- accept 属性
-
-> 属性是一个字符串，它定义了文件 input 应该接受的文件类型。这个字符串是一个以逗号为分隔的唯一文件类型说明符列表。由于给定的文件类型可以用多种方式指定，因此当你需要给定格式的文件时，提供一组完整的类型指定符是非常有用的。
-
-一个以英文句号（"."）开头的合法的不区分大小写的文件名扩展名。例如： .jpg，.pdf 或 .doc。
-
-一个不带扩展名的 MIME 类型字符串。
-
-字符串 audio/\*， 表示 “任何音频文件”。
-
-字符串 video/\*，表示 “任何视频文件”。
-
-字符串 image/\*，表示 “任何图片文件”。
-
-accept 属性不验证所选文件的类型；它只是为浏览器提供提示来引导用户选择正确的文件类型。用户仍然可以（在大多数情况下）在文件选择器中切换一个选项，使其能够覆盖此选项并选择他们希望的任何文件，然后选择不正确的文件类型。
-
-```html
-<input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg" />
-```
-
-- 事件
-
-```js
-const fileTypes = ["image/jpeg", "image/pjpeg", "image/png"];
-
-// 验证格式
-function validFileType(file) {
-  return fileTypes.includes(file.type);
-}
-// 计算文件大小
-function returnFileSize(number) {
-  if (number < 1024) {
-    return number + "bytes";
-  } else if (number >= 1024 && number < 1048576) {
-    return (number / 1024).toFixed(1) + "KB";
-  } else if (number >= 1048576) {
-    return (number / 1048576).toFixed(1) + "MB";
-  }
-}
-const input = document.querySelector("input[type=file]");
-input.addEventListener("change", upload);
-function upload(e) {
-  let file = e.target.files[0];
-  if (validFileType(file.type)) {
-  } else {
-    console.log("文件类型错误");
-    e.target.value = "";
-    return;
-  }
-}
-```
-
-## 大型文件上传如何切片？
-
-参考：https://mp.weixin.qq.com/s/B4Q3b8MWLCAC8KVprLHMPw
-
-文件上传一般是基于两种方式，FormData 以及 Base64
-
-### 基于 FormData 实现文件上传
-
-```js
-let formData = new FormData();
-formData.append("file", file);
-formData.append("filename", file.name);
-// ... 增加字段
-// 上传
-```
-
-### 基于 Base64 实现文件上传
-
-```js
-// 转换为Base64
-export changeBASE64=(file) => {
-    return new Promise(resolve => {
-        let fileReader = new FileReader();
-        fileReader.readAsDataURL(file);
-        fileReader.onload = ev => {
-            resolve(ev.target.result);
-        };
-    });
-};
-
-let data = await instance.post('/upload_single_base64', {
-// encodeURIComponent(BASE64) 防止传输过程中特殊字符乱码，
-// 同时后端需要用decodeURIComponent进行解码
-    file: encodeURIComponent(BASE64),
-    filename: file.name
-}, {
-    headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-    }
-});
-```
-
-### 上传进度
-
-文中用到的请求库是 axios,进度管控主要基于 axios 提供的 onUploadProgress 函数进行实现，这里一起看下这个函数的实现原理 ：xhr.upload.onprogress
-
-- loaded 已经传输的数据量
-- total 总量
-
-### 大文件上传
-
-1、上传前判断文件是否存在（hash 值），判断上传完成还是上传部分
-2、服务器已经存在，则上传完成，没有上传完成，返回已经上传列表（续传）
-3、文件切片
-4、依次上传
-
-File.prototype.slice() / Blob.prototype.slice()
-
-参考文章： https://juejin.cn/post/7080527713399750692
-git 地址： https://github.com/mtt3366/large-file-upload-breakpoint-continuation
 
 ## rem 的原理? 750px 设计稿，如何计算 rem？
 
@@ -1171,7 +903,7 @@ RWD：Ethan Marcote 的文章是大家认为 RWD 的起源。他提出的 RWD �
 
 AWD：Adaptive Design 是 Aaron Gustafson 的书的标题。他认为 AWD 在包括 RWD 的 CSS 媒体查询技术以外，也要用 Javascript 来操作 HTML 来更适应移动设备的能力。AWD 有可能会针对移动端用户**减去内容，减去功能**。AWD 可以在服务器端就进行优化，把优化过的内容送到终端上。
 
-![图片](../../public/640327834738732.png)
+![图片](../public/640327834738732.png)
 
 **渐进增强和优雅降级**
 
@@ -1234,7 +966,7 @@ rem（font size of the root element），在 **CSS Values and Units Module Level
 - `1vw` 等于 `window.innerWidth` 的数值的 1%
 - `1vh` 等于`window.innerHeight` 的数值的 1%
 
-![图片](../../public/6403274893291991.png)
+![图片](../public/6403274893291991.png)
 
 vw 确实看上去很不错，但是也是存在它的一些问题：
 
@@ -1248,6 +980,4 @@ vw 确实看上去很不错，但是也是存在它的一些问题：
 - 使用图片实现（base64）
 - 使用 SVG 实现（嵌入 background url）
 
-### 请简述微信小程序的原理。
-
-小程序本质是一个单页面应用。这个页面上可以进行所有的页面渲染和事件处理，同时能通过微信客户端调用原生的各种接口。其架构是数据驱动的架构模式。由于 UI 和数据是分离的，因此所有的页面更新都需要通过更改数据来实现。技术上采用 JavaScript、WXML、WXSS 进行开发；功能上可分为 webview 和 appService 两个部分（其中 webview 用于展现 UI，appService 则用于处理业务逻辑、数据及接口调用）；其在两个进程中运行，通过系统层 JSBridge 实现通信，实现 UI 的渲染、事件的处理等。
+##
