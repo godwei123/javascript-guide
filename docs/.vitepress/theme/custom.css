@@ -9,3 +9,8 @@
   --vp-font-family-mono: "IBM Plex Mono", JetBrainsMono, source-code-pro, Menlo,
     Monaco, Consolas, "Courier New", monospace;
 }
+
+html,
+body {
+  filter: grayscale(100%);
+}
