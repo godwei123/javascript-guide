@@ -1,0 +1,1 @@
+import{_ as e,o as t,c as a}from"./app.c2ea0a85.js";const d=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"basic/javascript/proxy-reflect.md"}'),r={name:"basic/javascript/proxy-reflect.md"};function c(o,s,p,n,i,_){return t(),a("div")}const l=e(r,[["render",c]]);export{d as __pageData,l as default};

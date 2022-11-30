@@ -1,0 +1,1 @@
+import{_ as e,o as t,c as o}from"./app.c2ea0a85.js";const f=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"basic/css/text-hidden-overflow.md"}'),s={name:"basic/css/text-hidden-overflow.md"};function a(r,c,n,d,i,p){return t(),o("div")}const l=e(s,[["render",a]]);export{f as __pageData,l as default};

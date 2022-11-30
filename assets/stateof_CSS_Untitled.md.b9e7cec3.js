@@ -1,0 +1,1 @@
+import{_ as t,o as e,c as a}from"./app.c2ea0a85.js";const f=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"stateof/CSS/Untitled.md"}'),o={name:"stateof/CSS/Untitled.md"};function n(r,s,c,d,i,p){return e(),a("div")}const l=t(o,[["render",n]]);export{f as __pageData,l as default};

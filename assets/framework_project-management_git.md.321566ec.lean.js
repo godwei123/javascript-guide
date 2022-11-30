@@ -1,0 +1,1 @@
+import{_ as s,o as n,c as a,g as p}from"./app.c2ea0a85.js";const _=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"framework/project-management/git.md"}'),e={name:"framework/project-management/git.md"},l=p("",2),t=[l];function o(c,r,i,C,A,d){return n(),a("div",null,t)}const y=s(e,[["render",o]]);export{_ as __pageData,y as default};

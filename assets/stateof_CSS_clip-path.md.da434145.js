@@ -1,1 +1,0 @@
-import{_ as t,o as e,c as a}from"./app.caa83a2e.js";const f=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"stateof/CSS/clip-path.md"}'),o={name:"stateof/CSS/clip-path.md"};function c(r,s,p,n,i,_){return e(),a("div")}const l=t(o,[["render",c]]);export{f as __pageData,l as default};

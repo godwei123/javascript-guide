@@ -1,0 +1,1 @@
+import{_ as e,o as t,c as r}from"./app.c2ea0a85.js";const m=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"interview/webpack-interview.md"}'),a={name:"interview/webpack-interview.md"};function n(c,i,o,s,p,_){return t(),r("div")}const w=e(a,[["render",n]]);export{m as __pageData,w as default};

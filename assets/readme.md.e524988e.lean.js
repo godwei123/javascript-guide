@@ -1,1 +1,0 @@
-import{_ as e,o as r,c as t,g as a}from"./app.caa83a2e.js";const _=JSON.parse('{"title":"JavaScriptGuide dev","description":"","frontmatter":{},"headers":[],"relativePath":"readme.md"}'),i={name:"readme.md"},n=a("",17),p=[n];function o(h,l,s,d,c,u){return r(),t("div",null,p)}const g=e(i,[["render",o]]);export{_ as __pageData,g as default};
