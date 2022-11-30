@@ -19,5 +19,14 @@ const sidebarStateOf = [
     text: "State Of JavaScript",
     items: [{ text: "Introduction", link: "/basic/javascript/introduction" }],
   },
+  {
+    text: "TEMP",
+    items: [
+      { text: "Introduction1", link: "/interview/面试题目" },
+      { text: "Introduction2", link: "interview/牛客面经总结" },
+      { text: "Introduction3", link: "/interview/problems" },
+      { text: "Introduction4", link: "/interview/readme" },
+    ],
+  },
 ];
 export default sidebarStateOf;
