@@ -74,7 +74,7 @@
 
 ## 说说 position，display
 
-## 请解释\*{box-sizing:border-box;}的作用，并说明使用它的好处
+## 请解释`{box-sizing:border-box;}`的作用，并说明使用它的好处
 
 ## 浮动元素引起的问题和解决办法？绝对定位和相对定位，元素浮动后的 display 值
 
