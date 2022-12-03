@@ -753,3 +753,27 @@ test(2, 3);
 6. 会忽略 undefined
 
 ![图片](../public/640-67gd67832dhq89323.jpeg)
+
+## Worker 线程之间如何通信？
+
+## Symbol 和 Bigint 简单介绍
+
+## undefined 和 null 的区别
+
+## typeof(null) 为什么返回的是 'object'
+
+## == 和 === 的区别？
+
+## Instanceof 的原理
+
+## typeof(NaN) 返回什么
+
+## isNaN 和 Number.isNaN 函数的区别？
+
+## CSS：background 的属性
+
+## Class 和 new
+
+## Promise 的理解
+
+## Object 和 Map 相互转换

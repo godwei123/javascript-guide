@@ -799,3 +799,171 @@ vue 初始化实例是，对 data 对象上的属性，进行 property 执行 se
 3. `$listeners`被移除，事件监听器整合到`$attrs`中
 4. $attrs 包含 style、class 属性
 5. .native 修饰符移除，子组件未定义触发的事件，将被作为子组件的根元素的原生事件监听
+
+## 完整的导航解析流程
+
+1. 导航被触发。
+2. 在失活的组件里调用 `beforeRouteLeave` 守卫。
+3. 调用全局的 `beforeEach` 守卫。
+4. 在重用的组件里调用 `beforeRouteUpdate` 守卫(2.2+)。
+5. 在路由配置里调用 `beforeEnter`。
+6. 解析异步路由组件。
+7. 在被激活的组件里调用 `beforeRouteEnter`。
+8. 调用全局的 `beforeResolve` 守卫(2.5+)。
+9. 导航被确认。
+10. 调用全局的 `afterEach` 钩子。
+11. 触发 DOM 更新。
+12. 调用 `beforeRouteEnter` 守卫中传给 `next` 的回调函数，创建好的组件实例会作为回调函数的参数传入。
+
+## Vue-router 跳转和 location.href 有什么区别
+
+- 使用 `location.href= /url`来跳转，简单方便，但是刷新了页面；
+- 使用 `history.pushState( /url )` ，无刷新页面，静态跳转；
+- 引进 router ，然后使用 `router.push( /url )` 来跳转，使用了 `diff` 算法，实现了按需加载，减少了 dom 的消耗。其实使用 router 跳转和使用 `history.pushState()` 没什么差别的，因为 vue-router 就是用了 `history.pushState()` ，尤其是在 history 模式下。
+
+## params 和 query 的区别
+
+用法：query 要用 path 来引入，params 要用 name 来引入，接收参数都是类似的，分别是 `this.$route.query.name`
+和 `this.$route.params.name` 。
+
+url 地址显示：query 更加类似于 ajax 中 get 传参，params 则类似于 post，说的再简单一点，前者在浏览器地址栏中显示参数，后者则不显示
+
+注意：query 刷新不会丢失 query 里面的数据 params 刷新会丢失 params 里面的数据。
+
+## Vuex
+
+![vuex](../public/160958caf932f8d6.jpeg)
+
+Vuex 实现了一个单向数据流，在全局拥有一个 State 存放数据，当组件要更改 State 中的数据时，必须通过 Mutation 提交修改信息，
+Mutation 同时提供了订阅者模式供外部插件调用获取 State 数据的更新。而当所有异步操作(常见于调用后端接口异步获取更新数据)
+或批量的同步操作需要走 Action ，但 Action 也是无法直接修改 State 的，还是需要通过 Mutation 来修改 State 的数据。最后，根据
+State 的变化，渲染到视图上。
+
+## Vuex 中 action 和 mutation 的区别
+
+更改 Vuex 的 store 中的状态的唯一方法是提交 mutation。Vuex 中的 mutation 非常类似于事件：每个 mutation
+都有一个字符串的事件类型 (type)和一个回调函数 (handler)。这个回调函数就是我们实际进行状态更改的地方，并且它会接受
+state 作为第一个参数
+
+- mutation 必须是同步函数.任何在回调函数中进行的状态的改变都是不可追踪的
+- Action 可以包含任意异步操作。
+- Action 提交的是 mutation，而不是直接变更状态。
+
+两者的不同点如下：
+
+- Mutation 专注于修改 State，理论上是修改 State 的唯一途径；Action 业务代码、异步请求。
+- Mutation：必须同步执行；Action：可以异步，但不能直接操作 State。
+- 在视图更新时，先触发 actions，actions 再触发 mutation
+- mutation 的参数是 state，它包含 store 中的数据；store 的参数是 context，它是 state 的父级，包含 state、getters
+
+## Vuex 和 localStorage 的区别
+
+- vuex 存储在内存，localStorage 存储在本地
+- Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。vuex 用于组件之间的传值。
+- localstorage 是本地存储，是将数据存储到浏览器的方法，一般是在跨页面传递数据时使用 。
+- Vuex 能做到数据的响应式，localstorage 不能
+- 刷新页面时 vuex 存储的值会丢失，localstorage 不会。
+
+## Vuex 有哪几种属性？
+
+有五种，分别是 State、 Getter、Mutation 、Action、 Module
+
+- state = 基本数据(数据源存放地)
+- getters = 从基本数据派生出来的数据
+- mutations = 提交更改数据的方法，同步
+- actions = 像一个装饰器，包裹 mutations，使之可以异步。
+- modules = 模块化 Vuex
+
+## 虚拟 DOM
+
+从本质上来说，Virtual Dom 是一个 JavaScript 对象，通过对象的方式来表示 DOM 结构。将页面的状态抽象为 JS 对象的形式，配合不同的渲染工具，使跨平台渲染成为可能。通过事务处理机制，将多次 DOM 修改的结果一次性的更新到页面上，从而有效的减少页面渲染的次数，减少修改 DOM 的重绘重排次数，提高渲染性能。保证性能下限，在不进行手动优化的情况下，提供过得去的性能；跨平台
+
+## DIFF 算法
+
+在新老虚拟 DOM 对比时：
+首先，对比节点本身，判断是否为同一节点，如果不为相同节点，则删除该节点重新创建节点进行替换，如果为相同节点，进行 patchVnode，判断如何对该节点的子节点进行处理，先判断一方有子节点一方没有子节点的情况(如果新的 children 没有子节点，将旧的子节点移除)
+比较如果都有子节点，则进行 updateChildren，判断如何对这些新老节点的子节点进行操作（diff 核心）。匹配时，找到相同的子节点，递归比较子节点，在 diff 中，只对同层的子节点进行比较，放弃跨级的节点比较，使得时间复杂从 O(n3)降低值 O(n)，也就是说，只有当新旧 children
+都为多个子节点时才需要用核心的 Diff 算法进行同层级比较。
+
+## Vue 中 key 的作用
+
+vue 中 key 值的作用可以分为两种情况来考虑：
+
+第一种情况是 v-if 中使用 key。由于 Vue 会尽可能高效地渲染元素，通常会复用已有元素而不是从头开始渲染。因此当使用 v-if 来实现元素切换的时候，如果切换前后含有相同类型的元素，那么这个元素就会被复用。如果是相同的 input 元素，那么切换前后用户的输入不会被清除掉，这样是不符合需求的。因此可以通过使用 key 来唯一的标识一个元素，这个情况下，使用 key 的元素不会被复用。这个时候 key 的作用是用来标识一个独立的元素。
+
+第二种情况是 v-for 中使用 key。用 v-for 更新已渲染过的元素列表时，它默认使用“就地复用”的策略。如果数据项的顺序发生了改变，Vue 不会移动 DOM 元素来匹配数据项的顺序，而是简单复用此处的每个元素。因此通过为每个列表项提供一个 key 值，来以便 Vue 跟踪元素的身份，从而高效的实现复用。这个时候 key 的作用是为了高效的更新渲染虚拟 DOM。
+
+key 是为 Vue 中 vnode 的唯一标记，通过这个 key，diff 操作可以更准确、更快速。更准确：因为带 key 就不是就地复用了，在 sameNode 函数 a.key === b.key 对比中可以避免就地复用的情况。所以会更加准确。更快速：利用 key 的唯一性生成 map 对象来获取对应节点，比遍历方式更快
+
+## 对 Vue3 的理解
+
+## 在项目当中，用到的 Vue 的周边
+
+## 路由 404 的原因，如何解决
+
+## Vue 组件通信方式
+
+## vue 路由 history 和 hash 两种模式的区别
+
+## Vue 响应式原理
+
+先手写了观察者模式（网上说是发布订阅模式，我觉得还是有区别的，发布订阅模式是 Vue 的 emit 和 $on 的实现原理），之后讲 Vue 如何递归去把数据添加到响应式系统 【Object.defineProperty】，然后讲 Dep 和 Watcher 类，Vue 在 Compile 阶段如何识别 data 数据，实例化 Watcher 的过程【Dep.target】
+
+## Vue 组件间通信方式
+
+（9 种，1. props 父传子 2. emit 子传父 3. bus 公共事件总线 4. Vuex 5. parent/children 6. Storage 7.
+provide/inject 8. attrs 9. ref 和 refs）
+
+## Vue 中 key 的作用，为什么有高效性？（就地复用、Diff 算法）
+
+## vue 中 v-if 和 v-show 的区别
+
+## vue 中的 nextTick 是什么
+
+## nextTick 底层使怎么实现的
+
+## Vue 中 key 值为什么不能用索引(diff 算法)
+
+## Vue 常见的组件通信方法
+
+## 兄弟组件通信你会考虑用哪些方法
+
+## Vue MVVM 实现思路
+
+## vue 有一个很深的子组件，父组件怎么给它传值（想问 inject，没学）
+
+## Vue data 为什么是函数，深拷贝、浅拷贝
+
+## Vue 使用 nextTick 的原因和作用，项目哪些场景用到了 nextTick
+
+## vue 组件封装，写逻辑部分。大概是：全选单选，就像购物车的全选按钮，四个商品四个按钮，一个全选按钮，点击全选，商品都选中，反之，商品都选中则全选按钮亮
+
+## vue 中怎么拦截路由
+
+## vue3 和 vue2 的区别
+
+## vue 的双向数据绑定,底层怎么实现
+
+## v-if、v-show、v-html 的原理
+
+## `v-if` , `v-for`
+
+## v-model 是如何实现的，语法糖实际是什么？
+
+## 对 keep-alive 的理解
+
+## nextTick
+
+## Vue 中给 data 中的对象属性添加一个新的属性时会发生什么？如何解决？
+
+## Vue 数组监听
+
+## SPA/MPA
+
+## Vue template 到 render 的过程
+
+## mixin、extends
+
+## mixin 不足
+
+## extends
