@@ -1,0 +1,1 @@
+import{_ as e,o as t,c as o}from"./app.c2ea0a85.js";const i=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"stateof/CSS/box-reflect.md"}'),a={name:"stateof/CSS/box-reflect.md"};function r(c,s,n,f,p,_){return t(),o("div")}const l=e(a,[["render",r]]);export{i as __pageData,l as default};
