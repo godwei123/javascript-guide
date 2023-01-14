@@ -20,11 +20,6 @@ export default defineConfig({
       message: "Released under the MIT License.",
       copyright: "Copyright © 2021-present God Wei",
     },
-    // algolia: {
-    //   appId: "FPV2IXG60V",
-    //   indexName: "dev_javascript-guide",
-    //   apiKey: "8bddeaa52fff3663114d8d534c368e58",
-    // },
   },
 
   markdown: {
