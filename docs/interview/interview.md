@@ -1,10 +1,5 @@
 # interview
 
-- <https://juejin.cn/post/7075332630417244173>
-- <https://blog.csdn.net/z1832729975/article/details/123431083>
-- <https://juejin.cn/post/6989422484722286600>
-- <https://juejin.cn/post/6844904116339261447>
-
 ## React Hooks，常用的有哪些
 
 ## React hooks 的使用，useEffect 的第二个参数
@@ -13,7 +8,7 @@
 
 ## react 底层的 commit 中断后是重新开始还是继续
 
-## Redux？不了解
+## Redux
 
 ## this.setState 是同步还是异步
 
