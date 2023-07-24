@@ -750,7 +750,7 @@ test(2, 3);
 5. 会忽略 symbol
 6. 会忽略 undefined
 
-![图片](../public/640-67gd67832dhq89323.jpeg)
+![图片](../../public/640-67gd67832dhq89323.jpeg)
 
 ## Worker 线程之间如何通信？
 

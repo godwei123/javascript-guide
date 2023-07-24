@@ -8,16 +8,12 @@ const nav = [
     link: "/advanced/browser/introduction",
   },
   {
-    text: "代码输出",
+    text: "Code",
     link: "/code/code/introduction",
   },
   {
-    text: "框架",
+    text: "Framework",
     link: "/framework/vue/introduction",
-  },
-  {
-    text: "面试题",
-    link: "/interview/introduction",
   },
   {
     text: "About",

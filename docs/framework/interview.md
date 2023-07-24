@@ -2,7 +2,11 @@
 
 ## React Hooks，常用的有哪些
 
+react hooks 常见的有 useState、useEffect、useContext、useReducer、useCallback、useMemo、useRef、useImperativeHandle、useLayoutEffect、useDebugValue
+
 ## React hooks 的使用，useEffect 的第二个参数
+
+useEffect 第二个参数是一个数组，数组中的值是依赖的变量，当依赖的变量发生变化时，useEffect 才会执行，如果没有第二个参数，useEffect 会在每次渲染后都执行
 
 ## setState hook 如何修改超长列表中的某一项（要求性能优化）
 
@@ -26,6 +30,8 @@
 
 ## React 和 Vue 的区别
 
+React 和 Vue 的区别主要有以下几点：
+
 ## 相同引用的 js 代码打包成一个单独的文件要怎么配置
 
 ## 怎么启动混淆模式
@@ -39,6 +45,8 @@
 ## 线程共享为什么比进程共享容易？
 
 ## SPA 是什么？
+
+SPA（Single Page Application）单页应用，是一种特殊的 Web 应用，它将所有的活动局限于一个 Web 页面中，仅在该页面初始化时加载相应的 HTML、JavaScript 和 CSS。一旦页面加载完成了，SPA 不会因为用户的操作而进行页面的重新加载或跳转。取而代之的是利用路由机制实现 HTML 内容的变换，UI 与用户的交互，避免页面的重新加载。
 
 ## 路由
 
