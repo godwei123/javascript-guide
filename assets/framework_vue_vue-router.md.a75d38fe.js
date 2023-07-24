@@ -1,0 +1,1 @@
+import{_ as e,o as r,c as t}from"./chunks/framework.c99fcb40.js";const _=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"framework/vue/vue-router.md","filePath":"framework/vue/vue-router.md"}'),o={name:"framework/vue/vue-router.md"};function a(s,c,n,u,m,f){return r(),t("div")}const d=e(o,[["render",a]]);export{_ as __pageData,d as default};

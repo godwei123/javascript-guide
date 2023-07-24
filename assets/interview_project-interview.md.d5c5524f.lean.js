@@ -1,1 +1,0 @@
-import{_ as e,o as t,c as r}from"./app.c2ea0a85.js";const m=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"interview/project-interview.md"}'),n={name:"interview/project-interview.md"};function o(a,c,i,s,p,_){return t(),r("div")}const f=e(n,[["render",o]]);export{m as __pageData,f as default};

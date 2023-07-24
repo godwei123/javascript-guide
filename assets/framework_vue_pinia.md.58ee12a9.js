@@ -1,0 +1,1 @@
+import{_ as e,o as a,c as t}from"./chunks/framework.c99fcb40.js";const _=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"framework/vue/pinia.md","filePath":"framework/vue/pinia.md"}'),r={name:"framework/vue/pinia.md"};function o(n,i,s,c,p,m){return a(),t("div")}const d=e(r,[["render",o]]);export{_ as __pageData,d as default};
