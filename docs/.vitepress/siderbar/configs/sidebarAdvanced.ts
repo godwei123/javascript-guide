@@ -1,6 +1,6 @@
 const sidebarAdvanced = [
   {
-    text: "浏览器 Browser",
+    text: "浏览器原理",
     items: [
       { text: "Introduction", link: "/advanced/browser/introduction" },
       { text: "浏览器存储", link: "/advanced/browser/浏览器存储" },
@@ -12,16 +12,8 @@ const sidebarAdvanced = [
     ],
   },
   {
-    text: "网络 network",
+    text: "计算机网络",
     items: [{ text: "Introduction", link: "/advanced/browser/introduction" }],
-  },
-  {
-    text: "项目优化",
-    items: [{ text: "Introduction", link: "/advanced/browser/introduction" }],
-  },
-  {
-    text: "场景题",
-    items: [{ text: "Introduction", link: "/advanced/scene/" }],
   },
 ];
 

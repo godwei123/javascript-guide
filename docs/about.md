@@ -28,7 +28,7 @@ const members = [
     </template>
     <template #lead>
       <br>
-      version: V0.0.1 <Badge type="warning" text="alpha"></Badge>
+      version: V0.0.1 <Badge type="warning" text="develop"></Badge>
      </template>
   </VPTeamPageTitle>
   <VPTeamMembers

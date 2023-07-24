@@ -7,7 +7,6 @@ const sidebarBase = [
       { text: "HTML属性", link: "/basic/html/attribute" },
       { text: "Input元素", link: "/basic/html/input" },
       { text: "Canvas元素", link: "/basic/html/canvas" },
-      { text: "Interview", link: "/basic/html/interview" },
     ],
   },
   {
@@ -23,7 +22,13 @@ const sidebarBase = [
       { text: "过渡与动画", link: "/basic/css/transition-animation" },
       { text: "伪类与伪元素", link: "/basic/css/pseudo-classes-element" },
       { text: "CSS选择器", link: "/basic/css/selectors" },
-      { text: "Interview", link: "/basic/css/interview" },
+      { text: "@font-face", link: "/basic/css/@font-face" },
+      { text: "basic-shape", link: "/basic/css/basic-shape" },
+      { text: "blend-mode", link: "/basic/css/blend-mode" },
+      { text: "clip-path", link: "/basic/css/clip-path" },
+      { text: "filter", link: "/basic/css/filter" },
+      { text: "masking", link: "/basic/css/masking" },
+      { text: "shapes", link: "/basic/css/shapes" },
     ],
   },
   {
@@ -47,7 +52,6 @@ const sidebarBase = [
       { text: "DOM", link: "/basic/javascript/DOM" },
       { text: "BOM", link: "/basic/javascript/BOM" },
       { text: "其他", link: "/basic/javascript/other" },
-      { text: "Interview", link: "/basic/javascript/interview" },
     ],
   },
 ];

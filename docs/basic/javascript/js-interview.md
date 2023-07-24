@@ -1,7 +1,5 @@
 # JavaScript Interview part-1
 
-> 前端面试核心内容，这是第一部分，每一部分包括 40-50 道面试题。部分面试内容知识点可以参考其他相关文档。
-
 ## 函数柯里化
 
 柯里化，可以理解为提前接收部分参数，延迟执行，不立即输出结果，而是返回一个接受剩余参数的函数。因为这样的特性，也被称为部分计算函数。柯里化，是一个逐步接收参数的过程。
@@ -122,7 +120,7 @@ const obj = {
 
 ## softbind
 
-bind 函数多次调用会已第一次绑定的 this 为准，softbind 已最后一次绑定传入的 this 为准；
+bind 函数多次调用会已第一次绑定的 this 为准，softbind 以最后一次绑定传入的 this 为准；
 
 ```js
 Function.prototype.softBind = function (obj, ...rest) {
@@ -752,7 +750,7 @@ test(2, 3);
 5. 会忽略 symbol
 6. 会忽略 undefined
 
-![图片](../public/640-67gd67832dhq89323.jpeg)
+![图片](../../public/640-67gd67832dhq89323.jpeg)
 
 ## Worker 线程之间如何通信？
 

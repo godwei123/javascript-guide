@@ -832,7 +832,7 @@ url 地址显示：query 更加类似于 ajax 中 get 传参，params 则类似�
 
 ## Vuex
 
-![vuex](../public/160958caf932f8d6.jpeg)
+![vuex](../../public/160958caf932f8d6.jpeg)
 
 Vuex 实现了一个单向数据流，在全局拥有一个 State 存放数据，当组件要更改 State 中的数据时，必须通过 Mutation 提交修改信息，
 Mutation 同时提供了订阅者模式供外部插件调用获取 State 数据的更新。而当所有异步操作(常见于调用后端接口异步获取更新数据)

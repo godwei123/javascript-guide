@@ -9,7 +9,7 @@ HTML 语义化是根据内容的结构化（内容语义化），选择合适的
 - 为了在没有 CSS 的情况下，页面也能呈现出很好的内容结构、代码结构
 - 有利于 SEO，和搜索引擎建立良好沟通，有助于爬虫抓取更多的有效信息
 - 方便其他设备解析以意义的方式来渲染网页；
-- 便于团队开发和维护，语义化更具可读性，是下一步网页的重要动向，遵循 W3C 标准的团队都遵循这个标准，可以减少差异化。
+- 便于团队开发和维护，语义化更具可读性，是下一步网页的重要动向，团队可以减少差异化。
 
 **常见语义化标签:**
 
@@ -20,20 +20,20 @@ HTML 语义化是根据内容的结构化（内容语义化），选择合适的
 - section：定义文档中的节（section、区段）；
 - aside：定义其所处内容之外的内容（侧边）；
 
-## 2、script - defer、async
+## 2、defer & async
 
 ```html
 <script defer src=""></script>
 <script async src=""></script>
 ```
 
-使用 async 属性和 defer 属性都是去异步加载外部的 JS 文件，不会阻塞 DOM 的解析。
+使用 async 属性和 defer 属性都可以异步加载外部的 JS 文件，不会阻塞 DOM 的解析。
 
 **async** 表示应该立即开始下载脚本，但不能阻止其他页面动作。**加载好后立即执行**。多个带 async 属性的标签，**不能保证加载的顺序**。
 
 **defer** 表示在文档解析和显示完成后再执行脚本是没有问题的。**html 解析完成之后才会立即执行代码**。多个带 defer 属性的标签，**按照顺序执行**。
 
-## 3、DOCTYPE(文档类型) 的作用
+## 3、DOCTYPE 的作用
 
 DOCTYPE 是 HTML5 中一种标准通用标记语言的文档类型声明，它的目的是告诉浏览器（解析器）应该以什么样（html 或 xhtml）的文档类型定义来解析文档。
 
@@ -57,7 +57,7 @@ href 用于在当前文档和引用资源之间确立联系。指向网络资源
 
 那么浏览器会识别该文档为 css 文件，就会并行下载资源并且不会停止对当前文档的处理。 这也是为什么建议使用 link 方式来加载 css，而不是使用@import 方式。
 
-## iframe
+## 5、iframe
 
 iframe 元素会创建包含另外一个文档的内联框架（即行内框架）。
 
@@ -73,17 +73,17 @@ iframe 元素会创建包含另外一个文档的内联框架（即行内框架�
 - 无法被一些搜索引擎索识别
 - 会产生很多页面，不容易管理
 
-## target
+## 6、target 属性
 
-\_self: 当前页面加载，即当前的响应到同一 HTML 4 frame（或 HTML5 浏览上下文）。此值是默认的，如果没有指定属性的话。
+\_self: **当前页面加载**，即当前的响应到同一 HTML 4 frame（或 HTML5 浏览上下文）。此值是默认的，如果没有指定属性的话。
 
-\_blank: 新窗口打开，即到一个新的未命名的 HTML4 窗口或 HTML5 浏览器上下文
+\_blank: **新窗口打开**，即到一个新的未命名的 HTML4 窗口或 HTML5 浏览器上下文
 
-\_parent: 加载响应到当前框架的 HTML4 父框架或当前的 HTML5 浏览上下文的父浏览上下文。如果没有 parent 框架或者浏览上下文，此选项的行为方式与 \_self 相同。
+\_parent: 加载响应到当前框架的 HTML4 父框架或当前的 HTML5 浏览上下文的**父浏览上下文**。如果没有 parent 框架或者浏览上下文，此选项的行为方式与 \_self 相同。
 
 \_top: HTML4 中：加载的响应成完整的，原来的窗口，取消所有其它 frame。 HTML5 中：加载响应进入顶层浏览上下文（即，浏览上下文，它是当前的一个的祖先，并且没有 parent）。如果没有 parent 框架或者浏览上下文，此选项的行为方式相同\_self
 
-## HTML5 drag API
+## 7、HTML5 drag API
 
 Drag Source 被拖放元素 / Drag Target 目标元素
 
@@ -99,104 +99,7 @@ Drag Source 被拖放元素 / Drag Target 目标元素
 
 给需要拖拽的对象设置属性 draggable=“true”
 
-```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <style>
-      body {
-        display: flex;
-        justify-content: center;
-      }
-      #left,
-      #right {
-        width: 300px;
-        border: 1px solid #aaa;
-        box-sizing: border-box;
-        padding: 10px;
-      }
-      #left {
-        margin-right: 40px;
-      }
-      .item {
-        width: 100%;
-        border-radius: 10px;
-        padding: 5px 10px;
-        box-sizing: border-box;
-        box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
-        margin-bottom: 10px;
-        background: #6ca4f7;
-      }
-      .item div {
-        font-size: 18px;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="left"></div>
-    <div id="right">
-      <div class="item" draggable="true">
-        <div>item</div>
-        <p>cdscdcjdbcdjj</p>
-      </div>
-      <div class="item" draggable="true">
-        <div>item</div>
-        <p>cdscdcjdbcdjj</p>
-      </div>
-      <div class="item" draggable="true">
-        <div>item</div>
-        <p>cdscdcjdbcdjj</p>
-      </div>
-      <div class="item" draggable="true">
-        <div>item</div>
-        <p>cdscdcjdbcdjj</p>
-      </div>
-      <div class="item" draggable="true">
-        <div>item</div>
-        <p>cdscdcjdbcdjj</p>
-      </div>
-    </div>
-  </body>
-  <script>
-    let dragged;
-    let enterLeft = false;
-    const left = document.getElementById("left");
-    const right = document.getElementById("right");
-    left.addEventListener("dragenter", (e) => {
-      e.preventDefault();
-      console.log("dragenter");
-      enterLeft = true;
-      left.appendChild(dragged);
-    });
-    left.addEventListener("dragleave", (e) => {
-      console.log("dragleave");
-    });
-    right.addEventListener("drag", (e) => {
-      e.preventDefault();
-    });
-    right.addEventListener("dragend", (e) => {
-      e.preventDefault();
-    });
-
-    left.addEventListener("dragstart", (e) => {
-      dragged = e.target;
-    });
-    right.addEventListener("dragstart", (e) => {
-      dragged = e.target;
-    });
-    right.addEventListener("dragenter", (e) => {
-      e.preventDefault();
-      right.appendChild(dragged);
-    });
-  </script>
-</html>
-```
-
-## 可替换元素/空（void）元素
+## 8、可替换元素/空（void）元素
 
 可替换元素 : 可替换元素是指元素内容的展现不是由 CSS 来控制的，而是外观渲染独立于 CSS 的外部对象。
 
@@ -204,22 +107,18 @@ Drag Source 被拖放元素 / Drag Target 目标元素
 
 空元素：没有内容的 HTML 元素。常见的有：br、meta、hr、link、input、img
 
-## link @import 导入 css
+## 9、link 和 @import
 
 1. link 是 XHTML 标签，除了加载 CSS 外，还可以定义 RSS 等其他事务；@import 属于 CSS 范畴，只能加载 CSS。
 2. link 引用 CSS 时，在页面载入时同时加载；@import 需要页面网页完全载入以后加载。
 3. link 无兼容问题；@import 是在 CSS2.1 提出的，低版本的浏览器不支持。
 4. link 支持使用 Javascript 控制 DOM 去改变样式；而@import 不支持。
 
-## html5 更新
+## 10、html5 更新
 
-1、语义化标签
+1、新增语义化标签：nav、header、footer、aside、section、article
 
-新增语义化标签：nav、header、footer、aside、section、article
-
-2、媒体标签
-
-音频、视频标签：audio、video
+2、媒体标签，音频、视频标签：audio、video
 
 3、表单
 
@@ -281,7 +180,7 @@ history API：go、forward、back、pushstate
 - 纯表现的元素：basefont，big，center，font, s，strike，tt，u;
 - 对可用性产生负面影响的元素：frame，frameset，noframes；
 
-## 渐进增强和优雅降级
+## 11、渐进增强和优雅降级
 
 渐进增强：针对低版本浏览器进行构建页面，保证最基本的功能，然后再针对高级浏览器进行效果、交互等改进和追加功能达到更好的用户体验。
 
