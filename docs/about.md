@@ -6,17 +6,16 @@ layout: page
 import {
   VPTeamPage,
   VPTeamPageTitle,
-  VPTeamMembers
+  VPTeamMembers,
+VPTeamPageSection
 } from 'vitepress/theme';
 
 const members = [
   {
-    avatar: 'https://avatars.githubusercontent.com/u/40879937?s=400&u=6c587520f828c4d4d9bf329bc1647caee0b42704&v=4',
+    avatar: './avatar.png',
     name: 'God wei',
     title: 'All I need is you!',
-    links: [
-      { icon: 'github', link: 'https://github.com/godwei123' },
-    ]
+    desc: 'developer'
   }
 ]
 </script>
@@ -28,10 +27,11 @@ const members = [
     </template>
     <template #lead>
       <br>
-      version: V0.0.1 <Badge type="warning" text="develop"></Badge>
+      version: 0.0.1 <Badge type="warning" text="alpha"></Badge>
      </template>
   </VPTeamPageTitle>
   <VPTeamMembers
+    size="small"
     :members="members"
   />
 </VPTeamPage>

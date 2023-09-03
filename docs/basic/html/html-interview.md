@@ -14,7 +14,7 @@ HTML 语义化是根据内容的结构化（内容语义化），选择合适的
 **常见语义化标签:**
 
 - header：定义文档的页眉（头部）；
-- nav：定义导航链接的部分；
+- index：定义导航链接的部分；
 - footer：定义文档或节的页脚（底部）；
 - article：定义文章内容；
 - section：定义文档中的节（section、区段）；
@@ -116,7 +116,7 @@ Drag Source 被拖放元素 / Drag Target 目标元素
 
 ## 10、html5 更新
 
-1、新增语义化标签：nav、header、footer、aside、section、article
+1、新增语义化标签：index、header、footer、aside、section、article
 
 2、媒体标签，音频、视频标签：audio、video
 

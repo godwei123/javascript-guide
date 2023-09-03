@@ -4,7 +4,7 @@ CSS 属性 filter 将模糊或颜色偏移等图形效果应用于元素。滤�
 
 CSS 标准里包含了一些已实现预定义效果的函数。你也可以参考一个 SVG 滤镜，通过一个 URL 链接到 SVG 滤镜元素。
 
-```text
+```txt
 filter: <filter-function> [<filter-function>]* | none
 
 filter: url(file.svg#filter-element-id)
@@ -20,7 +20,7 @@ filter: url(file.svg#filter-element-id)
 
 获取指向 SVG 滤镜的 URI，该 SVG filter 可以嵌入到外部 XML 文件中。
 
-```text
+```txt
 filter: url(resources.svg#c1)
 ```
 

@@ -2,7 +2,7 @@
 
 ## 全局属性
 
-```text
+```txt
 accesskey
 autocapitalize
 autofocus
@@ -36,7 +36,7 @@ translate
 
 ## 其他属性
 
-```text
+```txt
 accept
 autocomplete
 capture
