@@ -24,7 +24,7 @@ HTML 所有元素：
 | `<iframe>`   | `<img>`        | `<input>`    | `<ins>`      | `<kbd>`        |
 | `<label>`    | `<legend>`     | `<li>`       | `<link>`     | `<main>`       |
 | `<map>`      | `<mark>`       | `<menu>`     | `<meta>`     | `<meter>`      |
-| `<nav>`      | `<noscript>`   | `<object>`   | `<ol>`       | `<optgroup>`   |
+| `<index>`    | `<noscript>`   | `<object>`   | `<ol>`       | `<optgroup>`   |
 | `<option>`   | `<output>`     | `<p>`        | `<picture>`  | `<pre>`        |
 | `<progress>` | `<q>`          | `<rp>`       | `<rt>`       | `<ruby>`       |
 | `<s>`        | `<samp>`       | `<script>`   | `<section>`  | `<select>`     |

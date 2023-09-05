@@ -10,7 +10,7 @@
 
 定义了一个长方形。
 
-```text
+```txt
 inset( <shape-arg>{1,4} [round <border-radius>]? )
 ```
 
@@ -22,7 +22,7 @@ inset( <shape-arg>{1,4} [round <border-radius>]? )
 
   使用一个半径和一个位置定义一个圆形。
 
-```text
+```txt
 circle( [<shape-radius>]? [at <position>]? )
 ```
 
@@ -34,7 +34,7 @@ position 参数定义了圆心的位置。省缺值为盒模型的中心。
 
   使用两个半径和一个位置定义一个椭圆。
 
-```text
+```txt
 ellipse( [<shape-radius>{2}]? [at <position>]? )
 ```
 
@@ -46,7 +46,7 @@ ellipse( [<shape-radius>{2}]? [at <position>]? )
 
   使用一个 SVG `fill-rule` 和一组顶点定义一个多边形.
 
-```text
+```txt
 polygon( [<fill-rule>,]? [<shape-arg> <shape-arg>]# )
 ```
 
@@ -58,7 +58,7 @@ polygon( [<fill-rule>,]? [<shape-arg> <shape-arg>]# )
 
   使用一个 SVG `fill-rule` 和 SVG 路径定义来定义一个形状。
 
-```text
+```txt
 path( [<fill-rule>,]? <string>)
 ```
 
@@ -66,7 +66,7 @@ path( [<fill-rule>,]? <string>)
 
 参数 `<string>` 是用引号包含的 SVG Path 字符串
 
-```text
+```txt
 <shape-arg> = <length> | <percentage>
 <shape-radius> = <length> | <percentage> | closest-side | farthest-side
 ```

@@ -1,5 +1,9 @@
 # Input types
 
+<script setup lang="ts">
+import Input from '../../../components/basic/html/Input.vue'
+</script>
+
 ```html
 <input type="button" />
 <input type="checkbox" />
@@ -25,7 +29,7 @@
 <input type="week" />
 ```
 
-![image-20221123155655815](../../public/image-20221123155655815.png)
+<Input/>
 
 ## button
 
