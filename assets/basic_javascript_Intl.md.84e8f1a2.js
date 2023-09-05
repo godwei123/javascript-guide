@@ -1,1 +1,0 @@
-import{_ as t,o as a,c as e}from"./chunks/framework.c99fcb40.js";const d=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"basic/javascript/Intl.md","filePath":"basic/javascript/Intl.md"}'),s={name:"basic/javascript/Intl.md"};function c(r,n,o,i,p,l){return a(),e("div")}const m=t(s,[["render",c]]);export{d as __pageData,m as default};

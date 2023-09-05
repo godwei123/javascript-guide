@@ -1,0 +1,1 @@
+import{_ as s,c as n,o as a,V as l}from"./chunks/framework.25f281e8.js";const i=JSON.parse('{"title":"异步编程、事件循环","description":"","frontmatter":{},"headers":[],"relativePath":"code/异步.md","filePath":"code/异步.md"}'),p={name:"code/异步.md"},o=l("",19),e=[o];function t(c,r,y,F,D,A){return a(),n("div",null,e)}const d=s(p,[["render",t]]);export{i as __pageData,d as default};

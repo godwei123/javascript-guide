@@ -1,1 +1,0 @@
-import{_ as t,o as a,c as e}from"./chunks/framework.c99fcb40.js";const d=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"basic/css/clip-path.md","filePath":"basic/css/clip-path.md"}'),c={name:"basic/css/clip-path.md"};function s(p,r,i,o,n,l){return a(),e("div")}const m=t(c,[["render",s]]);export{d as __pageData,m as default};

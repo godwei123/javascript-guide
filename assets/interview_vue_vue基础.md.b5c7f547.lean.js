@@ -1,0 +1,1 @@
+import{_ as e,c as t,o as r}from"./chunks/framework.25f281e8.js";const u=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"interview/vue/vue基础.md","filePath":"interview/vue/vue基础.md"}'),a={name:"interview/vue/vue基础.md"};function n(o,i,s,c,_,v){return r(),t("div")}const d=e(a,[["render",n]]);export{u as __pageData,d as default};

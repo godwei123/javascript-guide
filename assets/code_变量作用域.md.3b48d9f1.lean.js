@@ -1,0 +1,1 @@
+import{_ as s,c as a,o as n,V as l}from"./chunks/framework.25f281e8.js";const i=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"code/变量作用域.md","filePath":"code/变量作用域.md"}'),o={name:"code/变量作用域.md"},p=l("",22),e=[p];function t(c,r,y,D,F,C){return n(),a("div",null,e)}const d=s(o,[["render",t]]);export{i as __pageData,d as default};

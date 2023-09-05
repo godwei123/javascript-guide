@@ -1,0 +1,1 @@
+import{_ as e,c as t,o as a}from"./chunks/framework.25f281e8.js";const m=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"interview/vue/pinia.md","filePath":"interview/vue/pinia.md"}'),i={name:"interview/vue/pinia.md"};function n(r,o,s,c,p,_){return a(),t("div")}const f=e(i,[["render",n]]);export{m as __pageData,f as default};
