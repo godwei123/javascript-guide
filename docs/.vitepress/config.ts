@@ -5,7 +5,7 @@ import { defineConfig } from "vitepress";
 
 export default defineConfig({
   title: "JavaScriptGuide",
-  base: "/javascript-guide/",
+  base: "/javascript-guide",
   description:
     "front-end study and interview, include html,css,javascript,network...",
   lang: "zh-CN",
