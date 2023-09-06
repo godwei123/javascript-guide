@@ -189,4 +189,9 @@ flex: none 可以把 flex 元素设置为不可伸缩。它和设置为 flex: 0 
 
 ## 可视化
 
-www.baidu.com
+<script setup>
+import FlexVisual from '../../../components/basic/flex-visual.vue'
+</script>
+<n-message-provider>
+<flex-visual/>
+</n-message-provider>

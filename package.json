@@ -21,5 +21,8 @@
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
+  },
+  "dependencies": {
+    "naive-ui": "^2.34.4"
   }
 }
