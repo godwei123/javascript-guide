@@ -1,7 +1,7 @@
 # Introduction
 
 ::: tip
-CSS 在笔试中占比较少，面试中主要问题包括定位与布局，实现居中方式等
+CSS 问题包括定位与布局，实现居中方式等
 :::
 
 ![tshirt4的副本](../../public/tshirt4的副本.png)

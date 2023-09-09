@@ -1,8 +1,9 @@
 # blend-mode
 
-<script setup>
-import CustomComponent from '../../../components/CustomComponent.vue'
+<script setup lang="ts">
+import BlendModeVisual from "../../../components/basic/blend-mode-visual.vue";
 </script>
+<BlendModeVisual/>
 
 ## MDN：
 

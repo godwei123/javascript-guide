@@ -1,5 +1,11 @@
 # flex
 
+<script setup>
+import FlexVisual from '../../../components/basic/flex-visual.vue'
+</script>
+
+<flex-visual/>
+
 ## 容器属性
 
 首先，实现 flex 布局需要先指定一个容器，任何一个容器都可以被指定为 flex 布局，这样容器内部的元素就可以使用 flex 来进行布局。
@@ -186,12 +192,3 @@ flex:auto 在父元素尺寸不足的时候,会优先最大化内容尺寸.
 flex: none 可以把 flex 元素设置为不可伸缩。它和设置为 flex: 0 0 auto 是一样的。
 
 元素既不能拉伸或者收缩，但是元素会按具有 flex-basis: auto 属性的 flexbox 进行布局。
-
-## 可视化
-
-<script setup>
-import FlexVisual from '../../../components/basic/flex-visual.vue'
-</script>
-<n-message-provider>
-<flex-visual/>
-</n-message-provider>

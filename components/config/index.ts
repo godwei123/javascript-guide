@@ -1,5 +1,5 @@
-import * as flexConfig from "../Flexbox/flexConfig";
+import * as flexConfig from "../basic/flexConfig";
 
-import * as shapeConfig from "../ShapesGraphics/shapeConfig";
+import * as shapeConfig from "../basic/shapeConfig";
 
 export { flexConfig, shapeConfig };

@@ -1,7 +1,7 @@
 import nav from "./nav";
 import sidebar from "./sidebar";
 
-import { defineConfig } from "vitepress";
+import { DefaultTheme, defineConfig } from "vitepress";
 
 export default defineConfig({
   title: "JavaScriptGuide",
