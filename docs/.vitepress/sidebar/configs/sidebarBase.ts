@@ -10,8 +10,8 @@ export const sidebarBaseHTML: DefaultTheme.SidebarItem[] = [
 export const sidebarBaseCSS: DefaultTheme.SidebarItem[] = [
   { text: "Introduction", link: "/basic/css/introduction" },
   { text: "flex布局", link: "/basic/css/flex" },
-  // { text: "grid布局", link: "/basic/css/grid" },
-  // { text: "居中", link: "/basic/css/center" },
+  { text: "grid布局", link: "/basic/css/grid" },
+  { text: "居中", link: "/basic/css/center" },
   // { text: "常见布局", link: "/basic/css/layout" },
   // { text: "BFC", link: "/basic/css/bfc" },
   // { text: "层叠与定位", link: "/basic/css/position" },

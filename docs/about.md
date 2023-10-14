@@ -12,7 +12,7 @@ VPTeamPageSection
 
 const members = [
   {
-    avatar: './avatar.png',
+    avatar: '/avatar.png',
     name: 'God wei',
     title: 'All I need is you!',
     desc: 'developer'

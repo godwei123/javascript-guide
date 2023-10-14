@@ -17,9 +17,3 @@ body {
 .components-container {
   padding: 20px 0;
 }
-
-#VPContent {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
