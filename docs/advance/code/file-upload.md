@@ -246,7 +246,7 @@ let data = await instance.post('/upload_single_base64', {
 
 File.prototype.slice() / Blob.prototype.slice()
 
-参考文章： https://juejin.cn/post/7080527713399750692
-git 地址： https://github.com/mtt3366/large-file-upload-breakpoint-continuation
+## 参考文章
 
-##
+https://juejin.cn/post/7080527713399750692
+https://github.com/mtt3366/large-file-upload-breakpoint-continuation

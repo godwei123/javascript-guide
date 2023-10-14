@@ -11,6 +11,7 @@ const theme = ref();
 watch(isDark, (val) => {
   theme.value = val ? darkTheme : null;
 });
+const showWatermark = ref(false);
 </script>
 
 <template>
@@ -27,6 +28,21 @@ watch(isDark, (val) => {
       </n-message-provider>
     </n-notification-provider>
   </n-config-provider>
+  <n-watermark
+    v-show="showWatermark"
+    content="javascript guide"
+    cross
+    fullscreen
+    :font-size="20"
+    :line-height="16"
+    :width="384"
+    :height="284"
+    :x-offset="12"
+    :y-offset="60"
+    :rotate="-15"
+    :z-index="99"
+    :font-family="'IBM Plex Mono'"
+  />
 </template>
 
 <style></style>

@@ -1,3 +1,7 @@
+# git
+
+## git 常见操作
+
 ```
 git add .
 
@@ -22,3 +26,9 @@ git merge 分支名称
 //当前在master分支执行命令，git merge dev  ==> master = master + dev
 
 ```
+
+## git rebase & git merge
+
+## git stash
+
+## git 可视化工具

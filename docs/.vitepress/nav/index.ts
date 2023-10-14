@@ -1,5 +1,4 @@
 import { DefaultTheme } from "vitepress";
-import { text } from "stream/consumers";
 
 const nav: DefaultTheme.NavItem[] = [
   {
@@ -29,11 +28,20 @@ const nav: DefaultTheme.NavItem[] = [
   },
   {
     text: "Coding",
-    link: "/code/introduction",
+    link: "/advance/code/introduction",
   },
   {
-    text: "Interview",
-    link: "/interview/introduction",
+    text: "学习",
+    items: [
+      {
+        text: "kotlin",
+        link: "/study/kotlin/introduction",
+      },
+      {
+        text: "rust",
+        link: "/study/rust/introduction",
+      },
+    ],
   },
   {
     text: "About",

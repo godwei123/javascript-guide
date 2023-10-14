@@ -17,3 +17,12 @@ body {
 .components-container {
   padding: 20px 0;
 }
+
+.VPContent {
+  position: relative;
+}
+
+table {
+  width: 100%;
+  display: table !important;
+}

@@ -32,10 +32,38 @@
 
 ### Flux 架构
 
-![image-20220605221227062](../../public/20220605221227062.png)
+![image-20220605221227062](../public/20220605221227062.png)
 
 这种模式的主⻆是 dispatcher 。它担当系统中所有事件的枢纽。它的⼯作就是接收我们称之为 actions (动作) 的通知并将其传给所有的 stores 。store 决定了是否对传⼊的动作感兴趣，如果感兴趣则通过改变⾃⼰的内部状态/数据来进⾏响应。改变会触发 views (视图，这⾥指 React 组件) 的重新渲染。
 
 ### ⾼阶组件
 
 ⾼阶组件模式它创建⼀个包装组件并返回原始的输⼊组件。使⽤⾼阶组件的话，就有机会来传递属性或应⽤附加逻辑。
+
+## React Hooks，常用的有哪些
+
+react hooks 常见的有 useState、useEffect、useContext、useReducer、useCallback、useMemo、useRef、useImperativeHandle、useLayoutEffect、useDebugValue
+
+## React hooks 的使用，useEffect 的第二个参数
+
+useEffect 第二个参数是一个数组，数组中的值是依赖的变量，当依赖的变量发生变化时，useEffect 才会执行，如果没有第二个参数，useEffect 会在每次渲染后都执行
+
+## setState hook 如何修改超长列表中的某一项（要求性能优化）
+
+## react 底层的 commit 中断后是重新开始还是继续
+
+## Redux
+
+## this.setState 是同步还是异步
+
+## useMemo() 和 useCallback() 有什么区别
+
+## 了解 React 的那些？
+
+## React hooks 用到了那些？
+
+## useCallback 用来干什么？
+
+## 用过哪些自定义 hooks，第三方 hooks ？
+
+## React 用 hook 封装实现异步请求？

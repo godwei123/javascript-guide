@@ -3,9 +3,9 @@ import { DefaultTheme } from "vitepress";
 export const sidebarBaseHTML: DefaultTheme.SidebarItem[] = [
   { text: "Introduction", link: "/basic/html/introduction" },
   { text: "HTML元素", link: "/basic/html/element" },
-  // { text: "HTML属性", link: "/basic/html/attribute" },
-  // { text: "Input元素", link: "/basic/html/input" },
-  // { text: "Canvas元素", link: "/basic/html/canvas" },
+  { text: "HTML属性", link: "/basic/html/attribute" },
+  { text: "Input元素", link: "/basic/html/input" },
+  { text: "Canvas元素", link: "/basic/html/canvas" },
 ];
 export const sidebarBaseCSS: DefaultTheme.SidebarItem[] = [
   { text: "Introduction", link: "/basic/css/introduction" },
