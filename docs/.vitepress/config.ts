@@ -15,7 +15,6 @@ export default defineConfig({
     logo: "/favicon.svg",
     nav,
     sidebar,
-    socialLinks: [{ icon: "github", link: "https://github.com/godwei123" }],
     footer: {
       message: "Released under the MIT License.",
       copyright: "Copyright © 2021-present God Wei",
