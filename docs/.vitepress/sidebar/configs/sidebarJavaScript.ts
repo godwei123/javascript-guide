@@ -1,7 +1,6 @@
 export default [
   {
     text: "JavaScript",
-    collapsed: true,
     items: [
       { text: "Introduction", link: "/javascript/introduction" },
       { text: "类型和语法", link: "/javascript/类型和语法" },

@@ -5,4 +5,5 @@ export const sidebarKotlin: DefaultTheme.SidebarItem[] = [
 ];
 export const sidebarRust: DefaultTheme.SidebarItem[] = [
   { text: "Introduction", link: "/study/rust/introduction" },
+  { text: "笔记", link: "/study/rust/notes" },
 ];
