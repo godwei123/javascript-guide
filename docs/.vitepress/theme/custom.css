@@ -26,7 +26,3 @@ table {
   width: 100%;
   display: table !important;
 }
-
-.vp-doc p {
-  text-align: justify;
-}
