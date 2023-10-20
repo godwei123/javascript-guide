@@ -1,1 +1,0 @@
-import{_ as s,c as n,o as a,V as l}from"./chunks/framework.25f281e8.js";const i=JSON.parse('{"title":"闭包","description":"","frontmatter":{},"headers":[],"relativePath":"javascript/闭包.md","filePath":"javascript/闭包.md"}'),p={name:"javascript/闭包.md"},o=l("",50),e=[o];function t(c,r,F,y,D,A){return a(),n("div",null,e)}const u=s(p,[["render",t]]);export{i as __pageData,u as default};

@@ -1,0 +1,1 @@
+import{_ as e,c as t,o as c}from"./chunks/framework.00751356.js";const _=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"basic/css/box-reflect.md","filePath":"basic/css/box-reflect.md"}'),s={name:"basic/css/box-reflect.md"};function a(o,r,n,i,f,l){return c(),t("div")}const d=e(s,[["render",a]]);export{_ as __pageData,d as default};

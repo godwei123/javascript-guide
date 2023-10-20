@@ -1,0 +1,1 @@
+import{_ as s,c as l,o,Q as a}from"./chunks/framework.00751356.js";const b=JSON.parse('{"title":"BFC","description":"","frontmatter":{},"headers":[],"relativePath":"basic/css/BFC.md","filePath":"basic/css/BFC.md"}'),n={name:"basic/css/BFC.md"},p=a("",61),e=[p];function c(t,i,r,d,E,y){return o(),l("div",null,e)}const u=s(n,[["render",c]]);export{b as __pageData,u as default};
