@@ -1,7 +1,5 @@
 import { DefaultTheme } from "vitepress";
 
-const sidebarBase: DefaultTheme.SidebarItem[] = [];
-
 export const sidebarBaseHTML: DefaultTheme.SidebarItem[] = [
   { text: "Introduction", link: "/basic/html/introduction" },
   { text: "HTML元素", link: "/basic/html/element" },
@@ -27,16 +25,22 @@ export const sidebarBaseCSS: DefaultTheme.SidebarItem[] = [
   { text: "filter", link: "/basic/css/filter" },
   { text: "masking", link: "/basic/css/masking" },
   { text: "shapes", link: "/basic/css/shapes" },
+  { text: "color", link: "/basic/css/color-var-fun" },
+  { text: "text-hidden-overflow", link: "/basic/css/text-hidden-overflow" },
 ];
 export const sidebarBaseNetwork: DefaultTheme.SidebarItem[] = [
-  { text: "Introduction", link: "/advanced/browser/introduction" },
+  { text: "Introduction", link: "/basic/network/introduction" },
+  { text: "TCP/UDP", link: "/basic/network/tcp" },
+  { text: "HTTP", link: "/basic/network/http" },
 ];
 export const sidebarBaseBrowser: DefaultTheme.SidebarItem[] = [
-  { text: "Introduction", link: "/advanced/browser/introduction" },
-  { text: "浏览器存储", link: "/advanced/browser/浏览器存储" },
-  { text: "浏览器跨域", link: "/advanced/browser/浏览器跨域" },
-  { text: "浏览器缓存", link: "/advanced/browser/浏览器缓存" },
-  { text: "浏览器安全", link: "/advanced/browser/浏览器安全" },
-  { text: "浏览器渲染", link: "/advanced/browser/浏览器渲染" },
-  { text: "浏览器性能", link: "/advanced/browser/浏览器性能" },
+  { text: "Introduction", link: "/basic/browser/introduction" },
+  { text: "浏览器存储", link: "/basic/browser/浏览器存储" },
+  { text: "浏览器跨域", link: "/basic/browser/浏览器跨域" },
+  { text: "浏览器缓存", link: "/basic/browser/浏览器缓存" },
+  { text: "浏览器安全", link: "/basic/browser/浏览器安全" },
+  { text: "浏览器渲染", link: "/basic/browser/浏览器渲染" },
+  { text: "浏览器性能", link: "/basic/browser/浏览器性能" },
+  { text: "浏览器插件", link: "/basic/browser/浏览器插件" },
+  { text: "移动端适配", link: "/basic/browser/移动端适配" },
 ];

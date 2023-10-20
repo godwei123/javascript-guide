@@ -1,11 +1,11 @@
 import nav from "./nav";
 import sidebar from "./sidebar";
 
-import { defineConfig } from "vitepress";
+import { DefaultTheme, defineConfig } from "vitepress";
 
 export default defineConfig({
   title: "JavaScriptGuide",
-  base: "/javascript-guide/",
+  base: "/javascript-guide",
   description:
     "front-end study and interview, include html,css,javascript,network...",
   lang: "zh-CN",
@@ -15,7 +15,6 @@ export default defineConfig({
     logo: "/favicon.svg",
     nav,
     sidebar,
-    socialLinks: [{ icon: "github", link: "https://github.com/godwei123" }],
     footer: {
       message: "Released under the MIT License.",
       copyright: "Copyright © 2021-present God Wei",

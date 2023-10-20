@@ -1,44 +1,24 @@
 # JavaScriptGuide dev
 
-「JavaScript 学习+面试指南」一份涵盖大部分 前端 程序员所需要掌握的核心知识。
+> **vitepress 使用学习, 网站用于存放个人学习资料，开发进行中，文件整理中**
 
-> 项目思路来源于 JavaGuide 网站，后续将逐步完善内容，目前整个文档处于开发中，文档还没有整理完成。
->
-> **文章内容来源于网络与个人理解，仅用于学习用途**
-
-### TODO
-
-- [ ] html
-
-- [ ] css
-
-- [ ] javascript
-
-- [ ] Vue
-
-- [ ] react
-
-- [ ] 浏览器
-
-- [ ] 网络
-
-### 参考网站链接：
-
-- https://fe.ecool.fun/
-
-- https://lgwebdream.github.io/FE-Interview/daily/
-
-- https://www.1024nav.com/front-junior/
-
-- https://www.yuque.com/cuggz/interview
-
-- https://www.yuque.com/cuggz/feplus/oewdt3 🌟🌟
-
-- https://q.shanyue.tech/
-
-- https://juejin.cn/post/6948227795059212318#heading-0
-
-- https://juejin.cn/post/6993141036600000548
-
-- https://juejin.cn/post/6992767550543265829
-- https://www.nowcoder.com/
+[//]: # "### 参考网站链接："
+[//]: #
+[//]: # "- https://fe.ecool.fun/"
+[//]: # "- https://lgwebdream.github.io/FE-Interview/daily/"
+[//]: # "- https://www.1024nav.com/front-junior/"
+[//]: # "- https://www.yuque.com/cuggz/interview"
+[//]: # "- https://www.yuque.com/cuggz/feplus/oewdt3 🌟🌟"
+[//]: # "- https://q.shanyue.tech/"
+[//]: # "- https://juejin.cn/post/6948227795059212318#heading-0"
+[//]: # "- https://juejin.cn/post/6993141036600000548"
+[//]: # "- https://juejin.cn/post/6992767550543265829"
+[//]: # "- https://www.nowcoder.com/"
+[//]: # "- https://juejin.cn/post/7075332630417244173"
+[//]: # "- https://blog.csdn.net/z1832729975/article/details/123431083"
+[//]: # "- https://juejin.cn/post/6989422484722286600"
+[//]: # "- https://juejin.cn/post/6844904116339261447"
+[//]: # "- https://zhuanlan.zhihu.com/p/74817089"
+[//]: # "- https://github.com/cttin/cttin.github.io/issues/2"
+[//]: # "- https://zhuanlan.zhihu.com/p/41604775"
+[//]: # "- https://www.ruanyifeng.com/blog/2015/07/flex-grammar.html"

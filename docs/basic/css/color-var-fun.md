@@ -1,10 +1,12 @@
-# CSS
+# CSS Color
 
-## CSS 常见颜色格式
+<script setup>
+import ColorVisual from '../../../components/basic/color-visual.vue'
+</script>
 
-::: tip 案例链接
-// todo
-:::
+<color-visual/>
+
+## 常见颜色格式
 
 > 设置元素的文本或装饰的颜色。
 > CSS 基本数据类型 `<color>`

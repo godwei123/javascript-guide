@@ -8,16 +8,19 @@ import {
   VPTeamPageTitle,
   VPTeamMembers,
 VPTeamPageSection
-} from 'vitepress/theme';
+} from 'vitepress/theme'; 
+import { ref } from "vue"; 
 
 const members = [
   {
-    avatar: './avatar.png',
+    avatar: 'avatar.png',
     name: 'God wei',
     title: 'All I need is you!',
     desc: 'developer'
   }
-]
+];
+
+const version = ref('0.0.2');
 </script>
 
 <VPTeamPage>
@@ -27,7 +30,8 @@ const members = [
     </template>
     <template #lead>
       <br>
-      version: 0.0.1 <Badge type="warning" text="alpha"></Badge>
+        version: {{version}} 
+        <Badge type="warning" text="alpha"></Badge>
      </template>
   </VPTeamPageTitle>
   <VPTeamMembers

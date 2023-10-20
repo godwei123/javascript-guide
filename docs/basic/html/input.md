@@ -1,9 +1,5 @@
 # Input types
 
-<script setup lang="ts">
-import Input from '../../../components/basic/html/Input.vue'
-</script>
-
 ```html
 <input type="button" />
 <input type="checkbox" />
@@ -28,8 +24,6 @@ import Input from '../../../components/basic/html/Input.vue'
 <input type="url" />
 <input type="week" />
 ```
-
-<Input/>
 
 ## button
 

@@ -13,3 +13,16 @@
 html,
 body {
 }
+
+.components-container {
+  margin: 20px 0;
+}
+
+.VPContent {
+  position: relative;
+}
+
+table {
+  width: 100%;
+  display: table !important;
+}
