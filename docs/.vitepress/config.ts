@@ -1,13 +1,12 @@
 import nav from "./nav";
 import sidebar from "./sidebar";
 
-import { DefaultTheme, defineConfig } from "vitepress";
+import { defineConfig } from "vitepress";
 
 export default defineConfig({
   title: "JavaScriptGuide",
   base: "/javascript-guide",
-  description:
-    "front-end study and interview, include html,css,javascript,network...",
+  description: "front-end study and interview, include html,css,javascript,network...",
   lang: "zh-CN",
   head: [["link", { rel: "icon", href: "/javascript-guide/favicon.ico" }]],
   themeConfig: {

@@ -21,11 +21,7 @@ const handleChange = (val, option) => {
           <n-color-picker v-model:value="bgValue" />
         </n-form-item-gi>
         <n-form-item-gi :span="12" label="mixBlendMode">
-          <n-select
-            v-model:value="value"
-            :options="blendModeLists"
-            @update:value="handleChange"
-          />
+          <n-select v-model:value="value" :options="blendModeLists" @update:value="handleChange" />
         </n-form-item-gi>
         <n-form-item-gi :span="8" label="color1">
           <n-color-picker v-model:value="color1" />
@@ -36,18 +32,8 @@ const handleChange = (val, option) => {
       </n-grid>
     </n-form>
     <div class="visual-box" :style="{ background: bgValue }">
-      <div
-        class="item one"
-        :style="{ mixBlendMode: value, background: color1 }"
-      >
-        1
-      </div>
-      <div
-        class="item two"
-        :style="{ mixBlendMode: value, background: color2 }"
-      >
-        2
-      </div>
+      <div :style="{ mixBlendMode: value, background: color1 }" class="item one">1</div>
+      <div :style="{ mixBlendMode: value, background: color2 }" class="item two">2</div>
     </div>
     <p>
       {{ description?.description }}

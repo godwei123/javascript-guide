@@ -258,8 +258,7 @@ PC 端浏览器的最小识别像素为 `1px`。
 
 ```javascript
 // 以750设计稿为例，计算rem font-size
-let clientWidth =
-  document.documentElement.clientWidth || document.body.clientWidth;
+let clientWidth = document.documentElement.clientWidth || document.body.clientWidth;
 let ft = (clientWidth / 7.5).toFixed(2);
 // 设置页面根字号大小
 document.documentElement.style.fontSize = ft + "px";
