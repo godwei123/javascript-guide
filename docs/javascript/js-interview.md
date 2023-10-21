@@ -767,8 +767,6 @@ test(2, 3);
 
 ## isNaN 和 Number.isNaN 函数的区别？
 
-## CSS：background 的属性
-
 ## Class 和 new
 
 ## Promise 的理解
