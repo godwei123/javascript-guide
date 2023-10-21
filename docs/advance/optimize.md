@@ -262,11 +262,9 @@ let judgeScroll = function () {
   let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
 
   //变量windowHeight是可视区的高度
-  let windowHeight =
-    document.documentElement.clientHeight || document.body.clientHeight;
+  let windowHeight = document.documentElement.clientHeight || document.body.clientHeight;
   //变量scrollHeight是滚动条的总高度
-  let scrollHeight =
-    document.documentElement.scrollHeight || document.body.scrollHeight;
+  let scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
   //滚动条到底部的条件
   console.log("====");
   if (scrollTop + windowHeight >= scrollHeight) {
@@ -640,8 +638,8 @@ Object.defineProperty(a, "name", {
   </body>
 </html>
 
-// flex // position // 圣杯布局的核心是浮动、负边距、相对定位、不添加额外标签 //
-左、中、右 三栏都使用float进行浮动，然后通过负值margin进行调整
+// flex // position // 圣杯布局的核心是浮动、负边距、相对定位、不添加额外标签 // 左、中、右
+三栏都使用float进行浮动，然后通过负值margin进行调整
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -696,9 +694,7 @@ Object.defineProperty(a, "name", {
   </body>
 </html>
 
-//
-双飞翼布局前两步和圣杯布局一样，只是处理中间栏部分内容被遮挡的问题解决方案不同：
-//
+// 双飞翼布局前两步和圣杯布局一样，只是处理中间栏部分内容被遮挡的问题解决方案不同： //
 在main内部添加一个content，通过设置左右margin（左右两栏的宽度+间距margin）来避开遮挡
 
 <!DOCTYPE html>
@@ -764,10 +760,7 @@ Object.defineProperty(a, "name", {
 <img src="1.jpg" style="width:480px!important; max-width: 300px" />
 <img src="1.jpg" style="width:480px!important; transform: scale(0.625, 1);" />
 <img src="1.jpg" style="width:480px!important; width:300px!important;" />
-<img
-  src="1.jpg"
-  style="width:480px!important; box-sizing:border-box;padding:0 90px"
-/>
+<img src="1.jpg" style="width:480px!important; box-sizing:border-box;padding:0 90px" />
 
 JS 实现
 ```

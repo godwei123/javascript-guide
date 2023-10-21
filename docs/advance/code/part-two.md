@@ -22,9 +22,7 @@ Array.prototype.myFlat = (arr) => {
 function getFlatArr(list, deepNum = 1) {
   return deepNum > 0
     ? list.reduce((pre, item) => {
-        return pre.concat(
-          Array.isArray(item) ? getFlatArr(item, deepNum - 1) : item
-        );
+        return pre.concat(Array.isArray(item) ? getFlatArr(item, deepNum - 1) : item);
       }, [])
     : list.slice();
 }
