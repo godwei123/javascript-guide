@@ -16,5 +16,3 @@ const goBack = () => {
     </n-result>
   </div>
 </template>
-
-<style scoped></style>
