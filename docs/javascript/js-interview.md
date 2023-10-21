@@ -162,8 +162,7 @@ Object.seal()方法封闭一个对象，阻止添加新属性并将所有现有�
 
 ```js
 [].forEach.call($$("*"), function (a) {
-  a.style.outline =
-    "1px solid #" + (~~(Math.random() * (1 << 24))).toString(16);
+  a.style.outline = "1px solid #" + (~~(Math.random() * (1 << 24))).toString(16);
 });
 ```
 

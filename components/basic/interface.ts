@@ -9,12 +9,7 @@ export type JustifyContent =
   | "space-between"
   | "space-around";
 
-export type AlignItems =
-  | "stretch"
-  | "flex-start"
-  | "flex-end"
-  | "center"
-  | "baseline";
+export type AlignItems = "stretch" | "flex-start" | "flex-end" | "center" | "baseline";
 
 export type AlignContent = JustifyContent;
 

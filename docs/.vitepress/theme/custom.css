@@ -1,17 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
 
 :root {
-  --vp-font-family-base: "IBM Plex Mono", JetBrainsMono, NotoSansSC,
-    -apple-system, system-ui, BlinkMacSystemFont, Helvetica Neue, PingFang SC,
-    Hiragino Sans GB, Arial, sans-serif, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
-    "Helvetica Neue", sans-serif;
-  --vp-font-family-mono: "IBM Plex Mono", JetBrainsMono, source-code-pro, Menlo,
-    Monaco, Consolas, "Courier New", monospace;
+  --vp-font-family-base: "IBM Plex Mono", JetBrainsMono, NotoSansSC, -apple-system, system-ui,
+    BlinkMacSystemFont, Helvetica Neue, PingFang SC, Hiragino Sans GB, Arial, sans-serif,
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+  --vp-font-family-mono: "IBM Plex Mono", JetBrainsMono, source-code-pro, Menlo, Monaco, Consolas,
+    "Courier New", monospace;
 }
 
 html,
 body {
+  /*font-size: 14px !important;*/
 }
 
 .components-container {
