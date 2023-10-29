@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>CSS Glowing Text Hover Effects</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap");
+
+      * {
+        padding: 0;
+        margin: 0;
+        font-family: "Share Tech Mono", monospace;
+        box-sizing: border-box;
+      }
+
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        overflow: hidden;
+        background: #000;
+      }
+
+      .text {
+        color: #222;
+        font-size: 6rem;
+        font-weight: 600;
+        letter-spacing: 5px;
+        cursor: pointer;
+      }
+
+      .text span {
+        transition: all 0.3s ease-in-out;
+      }
+
+      .text:hover span:nth-child(1) {
+        margin-right: 10px;
+      }
+
+      .text:hover span:nth-child(1)::after {
+        content: "'";
+      }
+
+      .text:hover span:nth-child(2) {
+        margin-left: 40px;
+      }
+
+      .text:hover span {
+        color: #fff;
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #fff, 0 0 80px #fff, 0 0 120px #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="text"><span>Everything</span><span>Will Be OK</span></div>
+  </body>
+</html>

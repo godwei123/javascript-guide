@@ -18,6 +18,7 @@ export default [
       { text: "ES6", link: "/javascript/ES6" },
       { text: "DOM", link: "/javascript/DOM" },
       { text: "BOM", link: "/javascript/BOM" },
+      { text: "Broadcast Channel API", link: "/javascript/Broadcast Channel API.md" },
       { text: "其他", link: "/javascript/other" },
     ],
   },

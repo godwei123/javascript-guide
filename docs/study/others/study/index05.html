@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Document</title>
+    <link href="css/style05.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="payment">
+      <div class="bg"></div>
+      <div class="card">
+        <img alt="" class="chip" src="./images/chip.png" />
+        <img class="logo" src="./images/china-bank.png" />
+        <h2 class="bankname" contenteditable="true">Bank of China</h2>
+        <form action="">
+          <div class="input-box">
+            <span>Card No.</span>
+            <input maxlength="19" placeholder="0123 4567 8901 2345" type="text" />
+          </div>
+          <div class="input-box">
+            <span>Card Holder</span>
+            <input maxlength="19" placeholder="God Wei" type="text" />
+          </div>
+          <div class="group">
+            <div class="input-box">
+              <span>Valid Thru</span>
+              <input maxlength="5" placeholder="MM/YY" type="text" />
+            </div>
+            <div class="input-box">
+              <span>ccv</span>
+              <input maxlength="6" placeholder="******" type="password" />
+            </div>
+          </div>
+        </form>
+      </div>
+      <button class="btn">Confirm and Pay</button>
+    </div>
+  </body>
+</html>
