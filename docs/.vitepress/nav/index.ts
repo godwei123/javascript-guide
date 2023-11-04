@@ -45,6 +45,10 @@ const nav: DefaultTheme.NavItem[] = [
         text: "其他",
         link: "/study/others/git",
       },
+      {
+        text: "😯",
+        link: "/study/others/main",
+      },
     ],
   },
   {
