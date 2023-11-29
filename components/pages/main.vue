@@ -4,8 +4,13 @@
       <n-menu v-model:value="activeKey" :options="menuOptions" />
     </n-layout-sider>
     <n-layout-content content-style="padding: 24px;">
-      <p>https://neumorphism.io/#ff0000</p>
-      <p>https://hype4.academy/tools/glassmorphism-generator</p>
+      <iframe
+        :src="`/javascript-guide/html/index${activeKey}.html`"
+        frameborder="0"
+        height="100%"
+        scrolling="no"
+        width="100%"
+      ></iframe>
     </n-layout-content>
   </n-layout>
 </template>
@@ -14,22 +19,14 @@
 import { ref } from "vue";
 import type { MenuOption } from "naive-ui";
 
-const activeKey = ref<string>("");
+const activeKey = ref<string>("01");
 
-const menuOptions: MenuOption[] = [
-  {
-    label: "1973年的弹珠玩具",
-    key: "pinball-1973",
-  },
-  {
-    label: "寻羊冒险记",
-    key: "a-wild-sheep-chase",
-  },
-  {
-    label: "舞，舞，舞",
-    key: "dance-dance-dance",
-  },
-];
+const menuOptions: MenuOption[] = Array(24)
+  .fill(0)
+  .map((_, i) => {
+    const key = (i + 1).toString().padStart(2, "0");
+    return { label: `页面${key}`, key };
+  });
 </script>
 
 <style scoped>
