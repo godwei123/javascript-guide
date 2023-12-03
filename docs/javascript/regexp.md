@@ -1,6 +1,6 @@
 # 正则表达式
 
-正则表达式是用于匹配字符串中字符组合的模式。在 JavaScript 中，正则表达式也是对象。这些模式被用于 [`RegExp`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/RegExp) 的 [`exec`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec) 和 [`test`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/RegExp/test) 方法, 以及 [`String`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String) 的 [`match`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/match)、[`matchAll`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/matchAll)、[`replace`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/replace)、[`search`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/search) 和 [`split`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/split) 方法。
+正则表达式是用于匹配字符串中字符组合的模式。在 JavaScript 中，正则表达式也是对象。这些模式被用于 `RegExp` 的 `exec` 和 `test` 方法, 以及 `String` 的 `match`、`matchAll`、`replace`、`search` 和 `split` 方法。
 
 ## 创建正则表达式
 
@@ -46,15 +46,15 @@ var re = new RegExp("ab+c");
 
 ### 5、使用
 
-| 方法                                                                                                           | 描述                                                                                                   |
-| :------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------- |
-| [`exec`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec)         | 一个在字符串中执行查找匹配的 RegExp 方法，它返回一个数组（未匹配到则返回 null）。                      |
-| [`test`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/RegExp/test)         | 一个在字符串中测试是否匹配的 RegExp 方法，它返回 true 或 false。                                       |
-| [`match`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/match)       | 一个在字符串中执行查找匹配的 String 方法，它返回一个数组，在未匹配到时会返回 null。                    |
-| [`matchAll`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/matchAll) | 一个在字符串中执行查找所有匹配的 String 方法，它返回一个迭代器（iterator）。                           |
-| [`search`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/search)     | 一个在字符串中测试匹配的 String 方法，它返回匹配到的位置索引，或者在失败时返回-1。                     |
-| [`replace`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/replace)   | 一个在字符串中执行查找匹配的 String 方法，并且使用替换字符串替换掉匹配到的子字符串。                   |
-| [`split`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/split)       | 一个使用正则表达式或者一个固定字符串分隔一个字符串，并将分隔后的子字符串存储到数组中的 `String` 方法。 |
+| 方法       | 描述                                                                                                   |
+| :--------- | :----------------------------------------------------------------------------------------------------- |
+| `exec`     | 一个在字符串中执行查找匹配的 RegExp 方法，它返回一个数组（未匹配到则返回 null）。                      |
+| `test`     | 一个在字符串中测试是否匹配的 RegExp 方法，它返回 true 或 false。                                       |
+| `match`    | 一个在字符串中执行查找匹配的 String 方法，它返回一个数组，在未匹配到时会返回 null。                    |
+| `matchAll` | 一个在字符串中执行查找所有匹配的 String 方法，它返回一个迭代器（iterator）。                           |
+| `search`   | 一个在字符串中测试匹配的 String 方法，它返回匹配到的位置索引，或者在失败时返回-1。                     |
+| `replace`  | 一个在字符串中执行查找匹配的 String 方法，并且使用替换字符串替换掉匹配到的子字符串。                   |
+| `split`    | 一个使用正则表达式或者一个固定字符串分隔一个字符串，并将分隔后的子字符串存储到数组中的 `String` 方法。 |
 
 当你想要知道在一个字符串中的一个匹配是否被找到，你可以使用 test 或 search 方法；想得到更多的信息（但是比较慢）则可以使用 exec 或 match 方法。如果你使用 exec 或 match 方法并且匹配成功了，那么这些方法将返回一个数组并且更新相关的正则表达式对象的属性和预定义的正则表达式对象（详见下）。如果匹配失败，那么 exec 方法返回 null（也就是 false）
 
@@ -65,17 +65,6 @@ var myArray = /d(b+)d/g.exec("cdbbdbsbz");
 // 而 /d(b+)d/g.exec('cdbbdbsbz') 输出数组 [ "dbbd", "bb", index: 1, input: "cdbbdbsbz" ].
 ```
 
-#### 正则表达式执行后的返回信息
-
-| 对象      |         | 属性或索引                                     | 描述                                                                                                                                                                                                                                                                                    | 在例子中对应的值 |
-| :-------- | ------- | :--------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------- |
-| `myArray` |         |                                                | 匹配到的字符串和所有被记住的子字符串。                                                                                                                                                                                                                                                  | `["dbbd", "bb"]` |
-|           | `index` | 在输入的字符串中匹配到的以 0 开始的索引值。    | `1`                                                                                                                                                                                                                                                                                     |                  |
-|           | `input` | 初始字符串。                                   | `"cdbbdbsbz"`                                                                                                                                                                                                                                                                           |                  |
-|           | `[0]`   | 最近一个匹配到的字符串。                       | `"dbbd"`                                                                                                                                                                                                                                                                                |                  |
-| `myRe`    |         | `lastIndex`                                    | 开始下一个匹配的起始索引值。（这个属性只有在使用 g 参数时可用在 [通过参数进行高级搜索](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions#.E9.80.9A.E8.BF.87.E5.8F.82.E6.95.B0.E8.BF.9B.E8.A1.8C.E9.AB.98.E7.BA.A7.E6.90.9C.E7.B4.A2) 一节有详细的描述.) | `5`              |
-| `source`  |         | 模式字面文本。在正则表达式创建时更新，不执行。 | `"d(b+)d"`                                                                                                                                                                                                                                                                              |                  |
-
 #### 使用括号的子字符串匹配
 
 一个正则表达式模式使用括号，将导致相应的子匹配被记住。例如，/a(b)c /可以匹配字符串“abc”，并且记得“b”。回调这些括号中匹配的子串，使用数组元素[1],……[n]。
@@ -84,7 +73,7 @@ var myArray = /d(b+)d/g.exec("cdbbdbsbz");
 
 下面的脚本使用 replace()方法来转换字符串中的单词。在匹配到的替换文本中，脚本使用替代的$ 1,$ 2 表示第一个和第二个括号的子字符串匹配。
 
-```
+```js
 var re = /(\w+)\s(\w+)/;
 var str = "John Smith";
 var newstr = str.replace(re, "$2, $1");
@@ -108,13 +97,13 @@ console.log(newstr);
 
 为了在正则表达式中包含标志，请使用以下语法：
 
-```
+```javascript
 var re = /pattern/flags;
 ```
 
 或者
 
-```
+```javascript
 var re = new RegExp("pattern", "flags");
 ```
 
@@ -122,7 +111,7 @@ var re = new RegExp("pattern", "flags");
 
 例如，re = /\w+\s/g 将创建一个查找一个或多个字符后有一个空格的正则表达式，或者组合起来像此要求的字符串。
 
-```
+```javascript
 var re = /\w+\s/g;
 var str = "fee fi fo fum";
 var myArray = str.match(re);
@@ -133,13 +122,13 @@ console.log(myArray);
 
 这段代码将输出 ["fee ", "fi ", "fo "]。在这个例子中，你可以将：
 
-```
+```javascript
 var re = /\w+\s/g;
 ```
 
 替换成：
 
-```
+```javascript
 var re = new RegExp("\\w+\\s", "g");
 ```
 
@@ -147,8 +136,9 @@ var re = new RegExp("\\w+\\s", "g");
 
 使用`.exec()`方法时，与'`g`'标志关联的行为是不同的。 （“class”和“argument”的作用相反：在`.match()`的情况下，字符串类（或数据类型）拥有该方法，而正则表达式只是一个参数，而在`.exec()`的情况下，它是拥有该方法的正则表达式，其中字符串是参数。对比*`str.match(re)`*与*`re.exec(str)`* ), '`g`'标志与`.exec()`方法一起使用获得迭代进展。
 
-```
-var xArray; while(xArray = re.exec(str)) console.log(xArray);
+```javascript
+var xArray;
+while ((xArray = re.exec(str))) console.log(xArray);
 // produces:
 // ["fee ", index: 0, input: "fee fi fo fum"]
 // ["fi ", index: 4, input: "fee fi fo fum"]
