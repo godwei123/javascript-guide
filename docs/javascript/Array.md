@@ -28,3 +28,24 @@
 26. `Array.prototype.sort()`
 27. `Array.prototype.splice()`
 28. `Array.prototype.unshift()`
+
+### Array.from() & Array.of()
+
+`Array.from()` 和 `Array.of()` 是 JavaScript 中的两个数组方法，它们的主要区别在于它们的用途和参数。
+
+`Array.from()` 方法从类数组对象或可迭代对象创建一个新的数组实例。类数组对象包括具有 length 属性和可索引元素的对象，或者可迭代对象如 Set 和 Map。例如：
+
+```javascript
+let set = new Set(["a", "b", "c"]);
+let arrFromSet = Array.from(set);
+console.log(arrFromSet); // Output: ['a', 'b', 'c']
+```
+
+`Array.of()` 方法创建一个具有可变数量参数的新数组实例，而不考虑参数的数量或类型。例如：
+
+```javascript
+let arrOfNumbers = Array.of(1, 2, 3);
+console.log(arrOfNumbers); // Output: [1, 2, 3]
+```
+
+所以，`Array.from()` 主要用于将类数组对象或可迭代对象转换为数组，而 `Array.of()` 主要用于创建一个新的数组实例。

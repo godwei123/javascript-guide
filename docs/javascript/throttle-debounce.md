@@ -12,17 +12,17 @@
 
 ### 非立即执行版
 
-```
+```javascript
 // 防抖动函数
-function debounce(func,delay) {
-    let timer;
-    return function() {
-    	let context = this;
-        if(timer) clearTimeout(timer) // 每次执行的时候把前一个 setTimeout clear 掉
-        timer = setTimeout(()=> {
-            func.apply(context,arguments)
-        },delay)
-    }
+function debounce(func, delay) {
+  let timer;
+  return function () {
+    let context = this;
+    if (timer) clearTimeout(timer); // 每次执行的时候把前一个 setTimeout clear 掉
+    timer = setTimeout(() => {
+      func.apply(context, arguments);
+    }, delay);
+  };
 }
 ```
 
@@ -30,28 +30,28 @@ function debounce(func,delay) {
 
 立即执行版的意思是触发事件后函数会立即执行，然后 n 秒内不触发事件才能继续执行函数的效果。
 
-```
+```javascript
 // 防抖动函数-立即执行版
 function debounce(func, delay) {
-    let timer;
-    return function () {
-        let context = this;
+  let timer;
+  return function () {
+    let context = this;
 
-        if (timer) clearTimeout(timer); // 每次执行的时候把前一个 setTimeout clear 掉
+    if (timer) clearTimeout(timer); // 每次执行的时候把前一个 setTimeout clear 掉
 
-        let callNow = !timer;
-        timer = setTimeout(() => {
-            timer = null;
-        }, delay)
+    let callNow = !timer;
+    timer = setTimeout(() => {
+      timer = null;
+    }, delay);
 
-        if (callNow) func.apply(context, arguments);
-    }
+    if (callNow) func.apply(context, arguments);
+  };
 }
 ```
 
 ### 综合版
 
-```js
+```javascript
 /**
  * @desc 函数防抖
  * @param func 函数
@@ -110,7 +110,7 @@ function throttle(func, wait) {
 
 ### 定时器版
 
-```js
+```javascript
 function throttle(func, wait) {
   // 定时器版
   let timer;

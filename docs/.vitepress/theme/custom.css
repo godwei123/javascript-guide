@@ -2,9 +2,9 @@
 
 :root {
   --vp-font-family-base: "IBM Plex Mono", JetBrainsMono, NotoSansSC, -apple-system, system-ui,
-    BlinkMacSystemFont, Helvetica Neue, PingFang SC, Hiragino Sans GB, Arial, sans-serif,
-    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans",
-    "Droid Sans", "Helvetica Neue", sans-serif;
+    BlinkMacSystemFont, Helvetica Neue, PingFang SC, Hiragino Sans GB, Arial, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
   --vp-font-family-mono: "IBM Plex Mono", JetBrainsMono, source-code-pro, Menlo, Monaco, Consolas,
     "Courier New", monospace;
 }
