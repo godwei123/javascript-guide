@@ -8,7 +8,7 @@ export default defineConfig({
   base: "/javascript-guide",
   description: "front-end study and interview, include html,css,javascript,network...",
   lang: "zh-CN",
-  head: [["link", { rel: "icon", href: "/javascript-guide/favicon.ico" }]],
+  head: [["link", { rel: "icon", href: "/javascript-guide/favicon.svg" }]],
   themeConfig: {
     siteTitle: "JavaScriptGuide",
     logo: "/favicon.svg",
