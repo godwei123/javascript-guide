@@ -1,1 +1,0 @@
-import{_ as e,c as t,o as a}from"./chunks/framework.00751356.js";const m=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"javascript/event.md","filePath":"javascript/event.md"}'),r={name:"javascript/event.md"};function n(s,c,o,p,i,_){return a(),t("div")}const v=e(r,[["render",n]]);export{m as __pageData,v as default};

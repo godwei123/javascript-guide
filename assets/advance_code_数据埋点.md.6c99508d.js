@@ -1,1 +1,0 @@
-import{_ as e,c as a,o as t}from"./chunks/framework.00751356.js";const m=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"advance/code/数据埋点.md","filePath":"advance/code/数据埋点.md"}'),c={name:"advance/code/数据埋点.md"};function o(n,r,d,s,_,p){return t(),a("div")}const f=e(c,[["render",o]]);export{m as __pageData,f as default};
