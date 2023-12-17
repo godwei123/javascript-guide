@@ -1,9 +1,9 @@
 # HTML
 
-超文本标记语言 —— HyperText Markup Language
+HTML 是用来描述网页的一种语言。
 
 ::: tip
-HTML 知识简单，细节较多
+超文本标记语言 —— HyperText Markup Language
 :::
 
 ### 参考链接

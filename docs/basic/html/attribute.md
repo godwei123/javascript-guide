@@ -2,12 +2,12 @@
 
 ## defer & async
 
+使用 async 属性和 defer 属性都可以异步加载外部的 JS 文件，不会阻塞 DOM 的解析。
+
 ```html
 <script defer src=""></script>
 <script async src=""></script>
 ```
-
-使用 async 属性和 defer 属性都可以异步加载外部的 JS 文件，不会阻塞 DOM 的解析。
 
 **async** 表示应该立即开始下载脚本，但不能阻止其他页面动作。**加载好后立即执行**。多个带 async 属性的标签，**不能保证加载的顺序**。
 
@@ -29,21 +29,21 @@ href 用于在当前文档和引用资源之间确立联系。指向网络资源
 <link href="index.css" rel="stylesheet" />
 ```
 
-那么浏览器会识别该文档为 css 文件，就会并行下载资源并且不会停止对当前文档的处理。 这也是为什么建议使用 link 方式来加载 css，而不是使用@import 方式。
+浏览器会识别该文档为 css 文件，就会并行下载资源并且不会停止对当前文档的处理。 这也是为什么建议使用 link 方式来加载 css，而不是使用@import 方式。
 
 ## target 属性
 
-\_self: **当前页面加载**，即当前的响应到同一 HTML 4 frame（或 HTML5 浏览上下文）。此值是默认的，如果没有指定属性的话。
+`_self`: **当前页面加载**，即当前的响应到同一 HTML 4 frame（或 HTML5 浏览上下文）。此值是默认的，如果没有指定属性的话。
 
-\_blank: **新窗口打开**，即到一个新的未命名的 HTML4 窗口或 HTML5 浏览器上下文
+`_blank`: **新窗口打开**，即到一个新的未命名的 HTML4 窗口或 HTML5 浏览器上下文
 
-\_parent: 加载响应到当前框架的 HTML4 父框架或当前的 HTML5 浏览上下文的**父浏览上下文**。如果没有 parent 框架或者浏览上下文，此选项的行为方式与 \_self 相同。
+`_parent`: 加载响应到当前框架的 HTML4 父框架或当前的 HTML5 浏览上下文的**父浏览上下文**。如果没有 parent 框架或者浏览上下文，此选项的行为方式与 `_self` 相同。
 
-\_top: HTML4 中：加载的响应成完整的，原来的窗口，取消所有其它 frame。 HTML5 中：加载响应进入顶层浏览上下文（即，浏览上下文，它是当前的一个的祖先，并且没有 parent）。如果没有 parent 框架或者浏览上下文，此选项的行为方式相同\_self
+`_top`: HTML4 中：加载的响应成完整的，原来的窗口，取消所有其它 frame。 HTML5 中：加载响应进入顶层浏览上下文（即，浏览上下文，它是当前的一个的祖先，并且没有 parent）。如果没有 parent 框架或者浏览上下文，此选项的行为方式相同 `_self`
 
 ## HTML5 drag API
 
-Drag Source 被拖放元素 / Drag Target 目标元素
+给需要拖拽的对象设置属性 `draggable="true"`，然后在拖拽的过程中会触发以下事件：
 
 - dragstart：事件主体是**被拖放元素**，在开始拖放被拖放元素时触发。🤔
 - drag：事件主体是**被拖放元素**，在正在拖放被拖放元素时触发。
@@ -55,15 +55,13 @@ Drag Source 被拖放元素 / Drag Target 目标元素
 
 > 记得要针对 `dragover` 取消预设行为（preventDefault），否則可能无法正确触发 drop 事件。
 
-给需要拖拽的对象设置属性 draggable=“true”
-
 ## 可替换元素/空（void）元素
 
 可替换元素 : 可替换元素是指元素内容的展现不是由 CSS 来控制的，而是外观渲染独立于 CSS 的外部对象。
 
 **典型的可替换元素有**: `<img>、<iframe>、<video>、<embed>`
 
-空元素：没有内容的 HTML 元素。常见的有：br、meta、hr、link、input、img
+空元素：没有内容的 HTML 元素。常见的有：`br、meta、hr、link、input、img`
 
 ## link 和 @import
 
