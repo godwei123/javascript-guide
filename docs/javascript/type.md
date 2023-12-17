@@ -2,111 +2,102 @@
 
 ## JS 数据类型
 
-基本类型：Number、Boolean、String、null、undefined、symbol（ES6 新增的），BigInt（ES2020）
+**基本类型:** Number、Boolean、String、Null、Undefined、Symbol、BigInt
 
-引用类型：Object，对象子类型（Array，Function）
+**引用类型:** Object
 
-《你不知道的 Javascript》
+## typeof
 
-typeof null =〉“object”
+typeof 运算符返回一个字符串，表示未经计算的操作数的类型。
 
-typeof function(){} => “function” 函数是 object 的一个子类型
-
-函数对象的 length 属性是其声明的参数的个数.
-
-typeof 运算符总是会返回一个字符串
-
-变量未持有值时为 undefined ，此时 typeof 返回 undefined
-
-注意：”undefined“ 和 “is not defined” 是两回事。
-
-对于 undeclared（或者 not defined）变量，typeof 照样返回"undefined"。请注意虽然是一个 undeclared 变量，但 typeof b 并没有报错。这是因为
-typeof 有一个特殊的安全防范机制。
-
-如何在程序中检查全局变量 DEBUG 才不会出现 ReferenceError 错误。这时 typeof 的安全防范机制就成了我们的好帮手。
-
-```javascript
-if (DEBUG) {
-  // 会抛出错误
-  console.log("===");
-}
-
-if (typeof DEBUG !== "undefined") {
-  console.log("===");
-}
-```
-
-在我们试图访问"undeclared"变量时这样报错：ReferenceError: a is not defined，并且 typeof 对 undefined 和 undeclared
-变量都返回"undefined"。
-
-## 数组
-
-使用 delete 运算符可以将单元从数组中删除，但是请注意，单元删除后，数组的 length 属性并不会发生变化。删除的位置变为 <1 empty
-item>
+变量未持有值时为 undefined ，此时 typeof 返回 undefined.
 
 ```js
-let nums = [];
-nums[0] = 1;
-nums[2] = 3;
-console.log(nums[1]); //undefined
+typeof undefined === "undefined"; // true
+typeof true === "boolean"; // true
+typeof 42 === "number"; // true
+typeof "42" === "string"; // true
+typeof { life: 42 } === "object"; // true
+typeof Symbol() === "symbol"; // true
+typeof null === "object"; // true
+typeof function a() {} === "function"; // true
+typeof NaN === "number"; // true
 ```
 
-其中的“空白单元”（empty slot）可能会导致出人意料的结果。a[1]的值为 undefined，但这与将其显式赋值为 undefined（a[1]
-=undefined）还是有所区别。
+## instanceof
 
-如果字符串键值能够被强制类型转换为十进制数字的话，它就会被当作数字索引来处理。a[“13”]=2; a.length => 14
+instanceof 运算符用来测试一个对象在其原型链中是否存在一个构造函数的 prototype 属性。
 
-类数组 => 数组
+```js
+function Car(make, model, year) {
+  this.make = make;
+  this.model = model;
+  this.year = year;
+}
+const auto = new Car("Honda", "Accord", 1998);
+console.log(auto instanceof Car); // true
+console.log(auto instanceof Object); // true
 
-Array.from(arguments)
+let date = new Date();
+date instanceof Date; // true
+date instanceof Object; // true
+date instanceof Array; // false
+```
 
-Array.prototype.slice.call(arguments)
+## Object.prototype.toString.call()
 
-## 字符串
+Object.prototype.toString.call() 方法：这是一种更准确的类型判断方法，可以判断出更多类型的数据，但是使用起来不太方便，需要借助 call 或者 apply 来调用。
 
-JavaScript 中字符串是不可变的，而数组是可变的。
+```js
+Object.prototype.toString.call(2); // "[object Number]"
+Object.prototype.toString.call("2"); // "[object String]"
+Object.prototype.toString.call(true); // "[object Boolean]"
+Object.prototype.toString.call(undefined); // "[object Undefined]"
+Object.prototype.toString.call(null); // "[object Null]"
+Object.prototype.toString.call({}); // "[object Object]"
+Object.prototype.toString.call([]); // "[object Array]"
+Object.prototype.toString.call(function () {}); // "[object Function]"
+Object.prototype.toString.call(new Date()); // "[object Date]"
+Object.prototype.toString.call(Math); // "[object Math]"
+Object.prototype.toString.call(/abc/); // "[object RegExp]"
+Object.prototype.toString.call(new Error()); // "[object Error]"
+```
 
-字符串不可变是指字符串的成员函数不会改变其原始值，而是创建并返回一个新的字符串。
+## Array.isArray()
+
+Array.isArray() 方法：用于确定传递的值是否是一个 Array。
+
+```js
+Array.isArray([1, 2, 3]); // true
+Array.isArray({ foo: 123 }); // false
+Array.isArray("foobar"); // false
+Array.isArray(undefined); // false
+```
+
+## constructor
+
+constructor 属性：返回对创建此对象的数组函数的引用。
+
+```js
+let arr = [1, 2, 3];
+arr.constructor === Array; // true
+
+let num = 1;
+num.constructor === Number; // true
+
+let str = "Hello";
+str.constructor === String; // true
+```
+
+## other
+
+JavaScript 中字符串是不可变的，而数组是可变的。字符串不可变是指字符串的成员函数不会改变其原始值，而是创建并返回一个新的字符串。
 
 数组有一个字符串没有的可变更成员函数 reverse()
 
-## 数字
-
-tofixed(..)方法可指定小数部分的显示位数
-
-toPrecision(..)方法用来指定有效数位的显示位数
-
-注意：“.” 运算符需要给予特别注意，因为它是一个有效的数字字符，会被优先识别为数字字面量的一部分，然后才是对象属性访问运算符。
-
-```js
-42;
-toFixed(2)(
-  // SyntaxError
-  42
-).toFixed(2); // √
-(0.42).toFixed(2); // √
-(42).toFixed(2); // √
-(42).toFixed(2); // √ 注意空格
-```
-
-0.1+0.2===0.3 最常见的方法是设置一个误差范围值，通常称为“机器精度”（machineepsilon），对 JavaScript 的数字来说，这个值通常是
-2^-52(2.220446049250313e-16)。从 ES6 开始，该值定义在 Number.EPSILON 中。
-
-能够呈现的最大浮点数大约是 1.798e+308（这是一个相当大的数字），它定义在 Number.MAX_VALUE 中。最小浮点数定义在
-Number.MIN_VALUE 中，大约是 5e-324，它不是负数，但无限接近于 0！
-
-能够被“安全”呈现的最大整数是 2^53-1，即 9007199254740991，在 ES6 中被定义为
-Number.MAX_SAFE_INTEGER。最小整数是-9007199254740991，在 ES6 中被定义为 Number.MIN_SAFE_INTEGER。
-
-要检测一个值是否是整数，可以使用 ES6 中的 Number.isInteger(..)方法
-
-要检测一个值是否是安全的整数，可以使用 ES6 中的 Number.isSafeInteger(..)方法
-
 ## Null & Undefined
 
-undefined 类型只有一个值，即 undefined。null 类型也只有一个值，即 null。
-
-它们的名称既是类型也是值。undefined 和 null 常被用来表示“空的”值或“不是值”的值。二者之间有一些细微的差别。
+undefined 类型只有一个值，即 undefined。null 类型也只有一个值，即 null。 它们的名称既是类型也是值。undefined 和 null 常被用来表示“空的”值或“不是值”的值。二者之间有一些细微的差别。
 
 例如：
 
@@ -124,479 +115,40 @@ null 是一个特殊关键字，不是标识符，我们不能将其当作变量
 
 然而 undefined 却是一个标识符，可以被当作变量来使用和赋值。
 
-var a = 2/“foo” // NaN
-
-typeof a => “number”
+## NaN
 
 NaN 非自反 NaN !== NaN => true
 
-全局工具函数 isNaN(...) 判断一个值是否是 NaN. (不建议使用)
-
-isNaN(a) //true
-
-isNaN(“foo”) //true
-
-从 ES6 开始我们可以使用工具函数 Number.isNaN(..)。
-
-Number.isNaN(a) //true
-
-Number.isNaN(“foo”) //false
-
-**很多 JavaScript 程序都可能存在 NaN 方面的问题，所以我们应该尽量使用 Number.isNaN(..)这样可靠的方法**
-
-var a = 1 / 0 // Infinity Number.POSITIVE_INfINITY
-
-var a = -1 / 0 // -Infinity Number.NEGATIVE_INfINITY
-
-Infinity/Infinity 是一个未定义操作，结果为 NaN。
-
-有穷正数除以 Infinity 呢？结果是 0。
-
-有穷负数除以 Infinity 呢？结果是-0。
-
-负零在开发调试控制台中通常显示为-0，但在一些老版本的浏览器中仍然会显示为 0。
-
-根据规范，对负零进行字符串化会返回"0”
-
-JSON.stringify(“-0”) => “0”
-
-有意思的是，如果反过来将其从字符串转换为数字，得到的结果是准确的.
-
-+“-0” => -0
-
-Number(“-0”) => -0
-
-JSON.parse(“-0”) => -0
-
-0 === -0 // true
-
-Object.is(0,-0) // false
+全局工具函数 isNaN(...) 判断一个值是否是 NaN. (不建议使用),从 ES6 开始我们可以使用工具函数 Number.isNaN(..)。
 
 ```js
-Object.is = function (v1, v2) {
-  if (v1 === 0 && v2 === 0) {
-    // -0
-    return 1 / v1 === 1 / v2;
-  }
-  if (v1 !== v1) {
-    // NaN
-    return v2 !== v2;
-  }
-  return v1 === v2;
-};
+isNaN(a); //true
+isNaN("foo"); //true
+Number.isNaN(a); //true
+Number.isNaN("foo"); //false
+
+Infinity / Infinity; //  NaN
 ```
 
-能使用\==和===时就尽量不要使用 Object.is(..)，因为前者效率更高、更为通用。Object.is(..)主要用来处理那些特殊的相等比较。
+**我们应该尽量使用 Number.isNaN(..)这样可靠的方法**
 
 ## 原生函数
 
-String()
-
-Number()
-
-Boolean()
-
-Array()
-
-Object()
-
-Function()
-
-RegExp()
-
-Date()
-
-Error()
-
-Symbol()
-
-原生函数可以被当作构造函数来使用.
-
-## 强制类型转换
-
-将值从一种类型转换为另一种类型通常称为类型转换（type casting），这是显式的情况；隐式的情况称为强制类型转换（coercion）。
-
-类型转换发生在静态类型语言的编译阶段，而强制类型转换则发生在动态类型语言的运行时（runtime）。
-
-### ToString
-
-基本类型值的字符串化规则为：null 转换为"null", undefined 转换为"undefined",true 转换为"true"。
-
-数字的字符串化则遵循通用规则，不过那些极小和极大的数字使用指数形式。
-
-对普通对象来说，除非自行定义，否则 toString()（Object.prototype.toString()）返回内部属性[[Class]]的值，如"[object Object]"。
-
-数组的默认 toString()方法经过了重新定义，将所有单元字符串化以后再用", "连接起来。
-
-```javascript
-let nums = [1, 2, 3, 4];
-console.log(nums.toString()); // "1,2,3,4"
-```
-
-工具函数 JSON.stringify(..)在将 JSON 对象序列化为字符串时也用到了 ToString。请注意，JSON 字符串化并非严格意义上的强制类型转换，因为其中也涉及
-ToString 的相关规则。
-
-所有安全的 JSON 值（JSON-safe）都可以使用 JSON.stringify(..)字符串化。
-
-安全的 JSON 值是指能够呈现为有效 JSON 格式的值。为了简单起见，我们来看看什么是不安全的 JSON
-值。undefined、function、symbol（ES6+）和包含循环引用（对象之间相互引用，形成一个无限循环）的对象都不符合 JSON 结构标准，其他支持
-JSON 的语言无法处理它们。
-
-JSON.stringify(..)在对象中遇到 undefined、function 和 symbol 时会自动将其忽略，在数组中则会返回 null（以保证单元位置不变）。
-
-对包含循环引用的对象执行 JSON.stringify(..)会出错。
-
-toJSON()应该“返回一个能够被字符串化的安全的 JSON 值”，而不是“返回一个 JSON 字符串”。
-
-我们可以向 JSON.stringify(..)传递一个可选参数 replacer，它可以是数组或者函数，用来指定对象序列化过程中哪些属性应该被处理，哪些应该被排除，和
-toJSON()很像。
-
-如果 replacer 是一个函数，它会对对象本身调用一次，然后对对象中的每个属性各调用一次，每次传递两个参数，键和值。如果要忽略某个键就返回
-undefined，否则返回指定的值。
-
-JSON.stringify 还有一个可选参数 space，用来指定输出的缩进格式。space 为正整数时是指定每一级缩进的字符数，它还可以是字符串，此时最前面的十个字符被用于每一级的缩进。
-
-请记住，JSON.stringify(..)并不是强制类型转换。在这里介绍是因为它涉及 ToString 强制类型转换，具体表现在以下两点。
-
-(1) 字符串、数字、布尔值和 null 的 JSON.stringify(..)规则与 ToString 基本相同。
-
-(2) 如果传递给 JSON.stringify(..)的对象中定义了 toJSON()方法，那么该方法会在字符串化前调用，以便将对象转换为安全的 JSON 值。
-
-[] ===> “”
-
-{} ===> “[onject Object]”
-
-### ToNumber
-
-其中 true 转换为 1, false 转换为 0。undefined 转换为 NaN, null 转换为 0。
-
-ToNumber 对字符串的处理基本遵循数字常量的相关规则/语法。处理失败时返回 NaN（处理数字常量失败时会产生语法错误）。
-
-不同之处是 ToNumber 对以 0 开头的十六进制数并不按十六进制处理（而是按十进制）。
-
-对象（包括数组）会首先被转换为相应的基本类型值，如果返回的是非数字的基本类型值，则再遵循以上规则将其强制转换为数字。
-
-为了将值转换为相应的基本类型值，抽象操作 ToPrimitive，会首先（通过内部操作 DefaultValue）检查该值是否有 valueOf()
-方法。如果有并且返回基本类型值，就使用该值进行强制类型转换。如果没有就使用 toString()的返回值（如果存在）来进行强制类型转换。如果
-valueOf()和 toString()均不返回基本类型值，会产生 TypeError 错误。
-
-从 ES5 开始，使用 Object.create(null)创建的对象[[Prototype]]属性为 null，并且没有 valueOf()和 toString()方法，因此无法进行强制类型转换。
-
-Number([]) // 0
-
-Number([“abc”]) // NaN
-
-### ToBoolean
-
-undefined
-
-null
-
-false
-
-+0、-0
-
-NaN
-
-""
-
-|运算符（字位操作“或”）的空操作（no-op）0 | x，它仅执行 ToInt32 转换
-
-~首先将值强制类型转换为 32 位数字，然后执行字位操作“非”（对每一个字位进行反转）
-
-在-(x+1)中唯一能够得到 0（或者严格说是-0）的 x 值是-1。也就是说如果 x 为-1 时，~和一些数字值在一起会返回假值 0，其他情况则返回真值。
-
-```javascript
-let a = "hello world";
-if (~a.indexOf("lo")) {
-  //找到了
-}
-```
-
-~~x 能将值截除为一个 32 位整数，x | 0 也可以，而且看起来还更简洁。
-
-从 ES5 开始 parseInt(..)默认转换为十进制数，除非另外指定。如果你的代码需要在 ES5 之前的环境运行，请记得将第二个参数设置为
-10。
-
-console.log(parseInt("0x12")) // 18
-
-`parseInt(1/0,19)` => 18
-
-- parseInt(..)先将参数强制类型转换为字符串再进行解析，这样做没有任何问题。因为传递错误的参数而得到错误的结果，并不能归咎于函数本身。
-- parseInt(1/0, 19)实际上是 parseInt("Infinity", 19)
-- 19 有效数字为 0-9，a-i
-- “Infinity” 有效字符为“i”，第二个字符不是有效字符，解析停止
-- 最终结果为 18
-
-建议使用 Boolean(..)和！！来进行显式转换以便让代码更清晰易读。
-
-### ToPrimitive
-
-[] + {}和{} + []，它们返回不同的结果，分别是"[object Object]"和 0。
-
-相对布尔值，数字和字符串操作中的隐式强制类型转换还算比较明显。
-
-下面的情况会发生布尔值隐式强制类型转换。
-
-(1) if (..)语句中的条件判断表达式。
-
-(2) for ( .. ; .. ; .. )语句中的条件判断表达式（第二个）。
-
-(3) while (..)和 do..while(..)循环中的条件判断表达式。
-
-(4) ? ：中的条件判断表达式。
-
-(5) 逻辑运算符||（逻辑或）和&&（逻辑与）左边的操作数（作为条件判断表达式）。
-
-以上情况中，非布尔值会被隐式强制类型转换为布尔值，遵循前面介绍过的 ToBoolean 抽象操作规则。
-
-&&和||运算符的返回值并不一定是布尔类型，而是两个操作数其中一个的值。
-
-ES6 允许从 symbol 到字符串的显式强制类型转换，然而隐式强制类型转换会产生错误。
-
-symbol 不能够被强制类型转换为数字（显式和隐式都会产生错误），但可以被强制类型转换为布尔值（显式和隐式结果都是 true）。
-
-“\==允许在相等比较中进行强制类型转换，而===不允许。”
-
-### x == y
-
-#### 1、字符串和数字
-
-(1) 如果 Type(x)是数字，Type(y)是字符串，则返回 x == ToNumber(y)的结果。
-
-(2) 如果 Type(x)是字符串，Type(y)是数字，则返回 ToNumber(x) == y 的结果。
-
-#### 2、其他类型和布尔类型之间的相等比较
-
-(1) 如果 Type(x)是布尔类型，则返回 ToNumber(x) == y 的结果；
-
-(2) 如果 Type(y)是布尔类型，则返回 x == ToNumber(y)的结果。
-
-#### 3、null 和 undefined
-
-(1) 如果 x 为 null, y 为 undefined，则结果为 true。
-
-(2) 如果 x 为 undefined, y 为 null，则结果为 true。
-
-(3) null == null , undefined == undefined , null == undefined， 其余为 false
-
-#### 4．对象和非对象之间的相等比较
-
-(1) 如果 Type(x)是字符串或数字，Type(y)是对象，则返回 x == ToPrimitive(y)的结果；
-
-(2) 如果 Type(x)是对象，Type(y)是字符串或数字，则返回 ToPrimitive(x) == y 的结果。
-
-因为没有对应的封装对象，所以 null 和 undefined 不能够被封装（boxed）,Object(null)和 Object()均返回一个常规对象。
-
-NaN 能够被封装为数字封装对象，但拆封之后 NaN == NaN 返回 false，因为 NaN 不等于 NaN。
-
-```javascript
-let a = null;
-let b = Object(a);
-a == b; //false
-
-let a = undefined;
-let b = Object(a);
-a == b; //false
-```
-
-#### 5、部分特殊比较结果
-
-```javascript
-console.log("0" == null); // false
-console.log("0" == undefined); // false
-console.log("0" == false); // true
-console.log("0" == NaN); // false
-console.log("0" == 0);
-console.log("0" == ""); // false
-
-console.log(false == null); // false
-console.log(false == undefined); // false
-console.log(false == NaN); // false
-console.log(false == 0); // true
-console.log(false == ""); // true
-console.log(false == []); // true
-console.log(false == {}); // false
-
-console.log("" == null); // false
-console.log("" == undefined); // false
-console.log("" == NaN); // false
-console.log("" == 0); // true
-console.log("" == []); // true
-console.log("" == {}); // false
-
-console.log(0 == null); // false
-console.log(0 == undefined); // false
-console.log(0 == NaN); // false
-console.log(0 == []); // true
-console.log(0 == {}); // false
-```
-
-#### 6、极端情况
-
-**[] == ![] => true**
-
-- 进行布尔值的显式强制类型转换 ![] 转换为 false, [] == false. ==> true
-
-true == [] ==> false
-
-true == ![] ==> true == false ==> false
-
-**2 == [2] => true**
-
-**“” == [null] => true**
-
-- ==右边的值[2]和[null]会进行 ToPrimitive 强制类型转换，以便能够和左边的基本类型值（2 和""）进行比较。
-- 因为数组的 valueOf()返回数组本身，所以强制类型转换过程中数组会进行字符串化。
-- 第一行中的[2]会转换为"2"，然后通过 ToNumber 转换为 2。第二行中的[null]会直接转换为""。
-- [null].toString() ===> “”
-
-**0 == “\n”**
-
-- ""、"\n"（或者" "等其他空格组合）等空字符串被 ToNumber 强制类型转换为 0。
-
-#### 7、小结
-
-##### “0” == false ==> true
-
-##### false == 0 ==> true
-
-##### false == “” ==> true
-
-##### false == [] ==> true
-
-##### “” == 0 ==> true
-
-##### “” == [] ==> true
-
-##### 0 == [] ==> true
-
-如果两边的值中有 true 或者 false，千万不要使用\==。
-
-如果两边的值中有[]、""或者 0，尽量不要使用==。
-
-### 抽象比较
-
-#### 比较双方都是字符串
-
-#### 其他情况
-
-该算法仅针对 a < b, **a <= b 会被处理为 b < a**
-
-比较双方首先调用 ToPrimitive，如果结果出现非字符串，就根据 ToNumber 规则将双方强制类型转换为数字来进行比较。
-
-```javascript
-let a = { x: 42 };
-let b = { x: 43 };
-
-console.log(a < b); // false
-console.log(a == b); // false
-console.log(a > b); // false
-console.log(a <= b); // true
-console.log(a >= b); // true
-```
-
-因为根据规范 a <= b 被处理为 b < a，然后将结果反转。因为 b < a 的结果是 false，所以 a <= b 的结果是 true。
-
-这可能与我们设想的大相径庭，即<=应该是“小于或者等于”。实际上 JavaScript 中<=是“不大于”的意思（即！(a > b)，处理为！(b < a)
-）。同理，a >= b 处理为 b<= a。
-
-相等比较有严格相等，关系比较却没有“严格关系比较”（strict relationalcomparison）。也就是说如果要避免 a < b 中发生隐式强制类型转换，我们只能确保
-a 和 b 为相同的类型，除此之外别无他法。
-
-## 隐式类型转换
-
-### 数学运算符中类型转换
-
-#### 1、减/乘/除
-
-**我们在对各种非`Number`类型运用数学运算符(`- * /`)时，会先将非`Number`类型转换为`Number`类型。**
-
-> null 转换为数字 0，undefined 转换为 NaN
-
-#### 2、加法的特殊性
-
-- 当一侧为`String`类型，被识别为字符串拼接，并会优先将另一侧转换为字符串类型。
-- 当一侧为`Number`类型，另一侧为**原始类型**，则将原始类型转换为`Number`类型。
-- 当一侧为`Number`类型，另一侧为**引用类型**，将引用类型和`Number`类型转换成字符串后拼接。
-
-### 逻辑语句中的类型转换
-
-当我们使用 `if` `while` `for` 语句时，我们期望表达式是一个`Boolean`，所以一定伴随着隐式类型转换。而这里面又分为两种情况：
-
-#### 1、单个变量
-
-只有 `null` 、`undefined`、 `''` 、`NaN、` `0` 、`false` 这几个是 `false`，其他的情况都是 `true`，比如 `{}` , `[]`。
-
-#### 2、使用`==`比较中的规则
-
-- 规则 1：`NaN`和其他任何类型比较永远返回`false`，包括和他自己。
-
-- 规则 2：Boolean 和其他任何类型比较，Boolean 首先被转换为 Number 类型。
-
-- 规则 3：`String`和`Number`比较，先将`String`转换为`Number`类型。
-
-- 规则 4：`null == undefined`比较结果是`true`，除此之外，`null`、`undefined`和其他任何结果的比较值都为`false`。
-
-- 规则 5：`原始类型`和`引用类型`做比较时，引用类型会依照`ToPrimitive`规则转换为原始类型。
-
-⭐️`ToPrimitive`规则，是引用类型向原始类型转变的规则，它遵循先`valueOf`后`toString`
-的模式期望得到一个原始类型。如果还是没法得到一个原始类型，就会抛出 `TypeError`。
-
-### **练习**
-
-**1.** `[] == ![]`
-
-```
-	- 第一步，![] 会变成 false
-	- 第二步，应用 规则2 ，题目变成： [] == 0
-	- 第三步，应用 规则5 ，[]的valueOf是0，题目变成： 0 == 0
-	- 所以， 答案是 true ！//
-```
-
-**2.** `[undefined] == false`
-
-```
--第一步，应用
-规则5 ，[undefined]
-通过toString变成
-'',
-  题目变成
-'' == false
-- 第二步，应用
-规则2 ，题目变成
-'' == 0
-- 第三步，应用
-规则3 ，题目变成
-0 == 0
-- 所以， 答案是
-true ！
-// 但是 if([undefined]) 又是个true！
-```
-
-3. other
-
-```js
-[undefined]
-  .toString() // ''
-  [null].toString(); // ''
-```
-
-对象 `===` 比较的是内存地址，而 `>=` 将比较转换后的值
-
-```
-{} === {} // false
-
-// 隐式转换 toString()
-{} >= {} // true
-```
-
-### 附录
-
-![convert-table](../public/5s5e7w6dfwq77qwf.png)
-
-## 运算符优先级
-
-- &&运算符先于||执行
-
-https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Operator_Precedence
+原生函数可以被当作构造函数来使用. 例如: new Array(1, 2, 3) 会构造出 [1, 2, 3] 数组.
+
+原生函数有很多种, 例如:
+
+- String()
+- Number()
+- Boolean()
+- Array()
+- Object()
+- Function()
+- RegExp()
+- Date()
+- Error()
+- Symbol()
+
+## 类型转换
+
+[类型转换](./type-conversion.md)

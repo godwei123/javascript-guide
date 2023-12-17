@@ -49,3 +49,26 @@ console.log(arrOfNumbers); // Output: [1, 2, 3]
 ```
 
 所以，`Array.from()` 主要用于将类数组对象或可迭代对象转换为数组，而 `Array.of()` 主要用于创建一个新的数组实例。
+
+### other
+
+使用 delete 运算符可以将单元从数组中删除，但是请注意，单元删除后，数组的 length 属性并不会发生变化。删除的位置变为 <1 empty
+item>
+
+```js
+let nums = [];
+nums[0] = 1;
+nums[2] = 3;
+console.log(nums[1]); //undefined
+```
+
+其中的“空白单元”（empty slot）可能会导致出人意料的结果。a[1]的值为 undefined，但这与将其显式赋值为 undefined（a[1]
+=undefined）还是有所区别。
+
+如果字符串键值能够被强制类型转换为十进制数字的话，它就会被当作数字索引来处理。a[“13”]=2; a.length => 14
+
+类数组 => 数组
+
+Array.from(arguments)
+
+Array.prototype.slice.call(arguments)
