@@ -75,3 +75,5 @@ Another.cool();
 console.log(Another.greeting); // "hello world"
 console.log(Another.count); // 1
 ```
+
+## 继承

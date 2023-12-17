@@ -30,9 +30,9 @@ ISO-8601
 ## 使用
 
 ```js
-npm install --save proposal-temporal
+// npm install --save proposal-temporal
 
-const { Temporal } = require('proposal-temporal');
+const { Temporal } = require("proposal-temporal");
 ```
 
 ## API

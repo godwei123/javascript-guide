@@ -1177,12 +1177,7 @@ export default {
 
 ```js
 // src/core/components/keep-alive.js
-function pruneCacheEntry(
-  cache: VNodeCache,
-  key: string,
-  keys: Array<string>,
-  current?: VNode
-) {
+function pruneCacheEntry(cache: VNodeCache, key: string, keys: Array<string>, current?: VNode) {
   const cached = cache[key];
   if (cached && (!current || cached.tag !== current.tag)) {
     cached.componentInstance.$destroy(); // 执行组件的 destory 钩子函数

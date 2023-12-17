@@ -146,10 +146,7 @@ user-scalable ：是否允许用户缩放(yes/no）
   <meta name="keywords" content="" />
   页面关键词
   <meta http-equiv="refresh" content="0;url=" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, maximum-scale=1"
-  />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="name," email@gmail.com />
   网页作者
@@ -167,8 +164,7 @@ user-scalable ：是否允许用户缩放(yes/no）
   <meta name="apple-mobile-web-app-title" content="标题" />
   iOS 设备 begin
   <meta name="apple-mobile-web-app-capable" content="yes" />
-  添加到主屏后的标题（iOS 6 新增） 是否启用 WebApp
-  全屏模式，删除苹果默认的工具栏和菜单栏
+  添加到主屏后的标题（iOS 6 新增） 是否启用 WebApp 全屏模式，删除苹果默认的工具栏和菜单栏
   <meta
     name="apple-itunes-app"
     content="app-id"

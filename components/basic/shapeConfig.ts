@@ -33,15 +33,13 @@ const blendModeLists: Array<ListOption> = [
     id: 5,
     label: "darken  --变暗",
     value: "darken",
-    description:
-      "最终颜色是由每个颜色通道下，顶底两层颜色中的最暗值所组成的颜色。",
+    description: "最终颜色是由每个颜色通道下，顶底两层颜色中的最暗值所组成的颜色。",
   },
   {
     id: 6,
     label: "lighten  --变亮",
     value: "lighten",
-    description:
-      "最终颜色是每个颜色通道下，顶底两层颜色中的最亮值所组成的颜色。",
+    description: "最终颜色是每个颜色通道下，顶底两层颜色中的最亮值所组成的颜色。",
   },
   {
     id: 7,
@@ -119,8 +117,7 @@ const filterLists: Array<ListOption> = [
     id: 1,
     label: "url",
     filterValue: "#change",
-    description:
-      "获取指向 SVG 滤镜的 URI，该 SVG filter 可以嵌入到外部 XML 文件中。",
+    description: "获取指向 SVG 滤镜的 URI，该 SVG filter 可以嵌入到外部 XML 文件中。",
   },
   {
     id: 2,
@@ -199,8 +196,7 @@ const backdropFilterLists: Array<ListOption> = [
     id: 1,
     label: "url",
     backdropFilterValue: "#change",
-    description:
-      "获取指向 SVG 滤镜的 URI，该 SVG filter 可以嵌入到外部 XML 文件中。",
+    description: "获取指向 SVG 滤镜的 URI，该 SVG filter 可以嵌入到外部 XML 文件中。",
   },
   {
     id: 2,

@@ -1,7 +1,6 @@
 # flex
 
 <script setup>
-import FlexVisual from '../../../components/basic/flex-visual.vue'
 </script>
 
 <flex-visual/>
@@ -126,8 +125,7 @@ baseline:   项目的第一行文字的基线对齐
 
 ```css
 .container {
-  align-content: flex-start | flex-end | center | space-between | space-around |
-    stretch;
+  align-content: flex-start | flex-end | center | space-between | space-around | stretch;
 }
 ```
 

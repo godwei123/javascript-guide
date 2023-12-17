@@ -162,8 +162,7 @@ Object.seal()方法封闭一个对象，阻止添加新属性并将所有现有�
 
 ```js
 [].forEach.call($$("*"), function (a) {
-  a.style.outline =
-    "1px solid #" + (~~(Math.random() * (1 << 24))).toString(16);
+  a.style.outline = "1px solid #" + (~~(Math.random() * (1 << 24))).toString(16);
 });
 ```
 
@@ -767,8 +766,6 @@ test(2, 3);
 ## typeof(NaN) 返回什么
 
 ## isNaN 和 Number.isNaN 函数的区别？
-
-## CSS：background 的属性
 
 ## Class 和 new
 

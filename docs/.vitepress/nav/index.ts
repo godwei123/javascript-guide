@@ -6,44 +6,36 @@ const nav: DefaultTheme.NavItem[] = [
     link: "/javascript/introduction",
   },
   {
-    text: "基础",
+    text: "前端",
     items: [
       {
-        text: "html",
+        text: "html & css",
         link: "/basic/html/introduction",
       },
       {
-        text: "css",
-        link: "/basic/css/introduction",
-      },
-      {
-        text: "浏览器",
+        text: "浏览器 & 网络",
         link: "/basic/browser/introduction",
       },
       {
-        text: "网络",
-        link: "/basic/network/introduction",
+        text: "Coding",
+        link: "/basic/code/introduction",
       },
     ],
   },
   {
-    text: "Coding",
-    link: "/advance/code/introduction",
-  },
-  {
-    text: "学习",
+    text: "其他",
     items: [
       {
-        text: "kotlin",
+        text: "kotlin & rust",
         link: "/study/kotlin/introduction",
-      },
-      {
-        text: "rust",
-        link: "/study/rust/introduction",
       },
       {
         text: "其他",
         link: "/study/others/git",
+      },
+      {
+        text: "iframe",
+        link: "/study/others/main",
       },
     ],
   },

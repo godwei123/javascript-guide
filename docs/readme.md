@@ -1,6 +1,6 @@
 # JavaScriptGuide dev
 
-> **vitepress 使用学习, 网站用于存放个人学习资料，开发进行中，文件整理中**
+![img.png](img.png)
 
 [//]: # "### 参考网站链接："
 [//]: #

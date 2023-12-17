@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+    <meta charset="utf-8" />
+    <style>
+      *,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #view {
+        width: 500px;
+        height: 400px;
+        background-color: #000;
+        overflow: hidden;
+      }
+      #view_box {
+        width: 500px;
+        height: 400px;
+        background-color: #ddd;
+      }
+      #cont {
+        color: #fff;
+        width: 496px;
+        height: 50px;
+        line-height: 50px;
+        position: relative;
+        border: 2px solid #191970;
+        top: 50px;
+        font-size: 20px;
+        font-weight: bold;
+      }
+      #content {
+        display: block;
+        position: relative;
+        top: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="view">
+      <div id="view_box">
+        <div id="cont"><span id="content">文字横向移动效果，简单漂亮！！！</span></div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      var left = 0; // content的左边距
+      function move() {
+        // 补全代码，使文字向右移动
+        document.getElementById("content").style.left = left + "px";
+        left += 2;
+        if (left >= 1000) {
+          left = -300;
+        }
+        window.requestAnimationFrame(move);
+      }
+      // move();
+      window.requestAnimationFrame(move);
+    </script>
+  </body>
+</html>

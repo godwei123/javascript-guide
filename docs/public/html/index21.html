@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>CSS Clip-Path Text Hover Effects</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        overflow: hidden;
+        background: #f3f3f3;
+      }
+
+      .box {
+        position: relative;
+        width: 800px;
+      }
+
+      .box h1 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 0;
+        margin: 0;
+        text-align: center;
+        font-size: 10rem;
+        width: 100%;
+        text-shadow: 0 5px 15px rgba(00, 0, 0, 0.2);
+        text-transform: uppercase;
+      }
+
+      .box h1:nth-child(1):hover ~ h1 {
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+      }
+
+      .box h1:nth-child(2) {
+        background: #f3f3f3;
+        color: #fff;
+        overflow: hidden;
+        z-index: 2;
+        transition: 0.5s;
+        clip-path: polygon(0 0, 100% 0, 0 100%, 0% 100%);
+      }
+
+      .box h1:nth-child(2):hover {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <h1>godwei</h1>
+      <h1>韦朝亚</h1>
+    </div>
+  </body>
+</html>

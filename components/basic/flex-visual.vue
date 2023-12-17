@@ -3,37 +3,22 @@
     <n-form ref="formRef" :label-width="80" :model="flexForm">
       <n-grid :cols="24" :x-gap="12">
         <n-form-item-gi :span="6" label="flex-direction">
-          <n-select
-            v-model:value="flexForm.flexDirection"
-            :options="flexDirectionOptions"
-          />
+          <n-select v-model:value="flexForm.flexDirection" :options="flexDirectionOptions" />
         </n-form-item-gi>
         <n-form-item-gi :span="6" label="flex-wrap" path="flexWrap">
-          <n-select
-            v-model:value="flexForm.flexWrap"
-            :options="flexWrapOptions"
-          />
+          <n-select v-model:value="flexForm.flexWrap" :options="flexWrapOptions" />
         </n-form-item-gi>
         <n-form-item-gi :span="6" label="flex-flow">
           <n-input v-model:value="flexFlow" readonly disabled />
         </n-form-item-gi>
         <n-form-item-gi :span="6" label="justify-content" path="justifyContent">
-          <n-select
-            v-model:value="flexForm.justifyContent"
-            :options="justifyContentOptions"
-          />
+          <n-select v-model:value="flexForm.justifyContent" :options="justifyContentOptions" />
         </n-form-item-gi>
         <n-form-item-gi :span="6" label="align-items" path="alignItems">
-          <n-select
-            v-model:value="flexForm.alignItems"
-            :options="alignItemsOptions"
-          />
+          <n-select v-model:value="flexForm.alignItems" :options="alignItemsOptions" />
         </n-form-item-gi>
         <n-form-item-gi :span="6" label="align-content">
-          <n-select
-            v-model:value="flexForm.alignContent"
-            :options="alignContentOptions"
-          />
+          <n-select v-model:value="flexForm.alignContent" :options="alignContentOptions" />
         </n-form-item-gi>
         <n-form-item-gi :span="6">
           <n-space>
@@ -60,12 +45,7 @@
         </div>
       </div>
     </div>
-    <n-drawer
-      v-model:show="active"
-      :default-width="502"
-      placement="right"
-      resizable
-    >
+    <n-drawer v-model:show="active" :default-width="502" placement="right" resizable>
       <n-drawer-content title="子容器属性">
         <n-form label-placement="left" label-width="auto" :model="flexItem">
           <n-form-item label="width">
@@ -87,10 +67,7 @@
             <n-input v-model:value="flexItem.flexBasis" />
           </n-form-item>
           <n-form-item label="align-self" path="alignSelf">
-            <n-select
-              v-model:value="flexItem.alignSelf"
-              :options="justifyContentOptions"
-            />
+            <n-select v-model:value="flexItem.alignSelf" :options="justifyContentOptions" />
           </n-form-item>
           <n-form-item label="flex" path="selectValue">
             <n-input v-model:value="flex" disabled />
@@ -108,13 +85,13 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed, onMounted } from "vue";
+import { computed, onMounted, ref } from "vue";
 import {
+  alignContentOptions,
+  alignItemsOptions,
   flexDirectionOptions,
   flexWrapOptions,
   justifyContentOptions,
-  alignContentOptions,
-  alignItemsOptions,
 } from "./flexConfig";
 import { colors } from "../common/constant";
 import { uid } from "uid";
