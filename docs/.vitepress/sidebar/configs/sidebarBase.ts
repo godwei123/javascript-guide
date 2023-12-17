@@ -61,7 +61,7 @@ export const sidebarBaseBrowserAndNetwork: DefaultTheme.SidebarItem[] = [
 
 export const sidebarCode = [
   {
-    text: "手写代码",
+    text: "代码",
     items: [
       { text: "Introduction", link: "/basic/code/introduction" },
       { text: "代码 1", link: "/basic/code/part-one" },
@@ -72,12 +72,10 @@ export const sidebarCode = [
   {
     text: "代码执行结果",
     items: [
-      { text: "Introduction", link: "/basic/code/introduction" },
       { text: "作用域", link: "/basic/code/变量作用域" },
       { text: "this", link: "/basic/code/this" },
-      { text: "EventLoop", link: "/basic/code/introduction" },
+      // { text: "EventLoop", link: "/basic/code/introduction" },
       { text: "隐式类型转换", link: "/basic/code/类型转换" },
-      { text: "执行结果", link: "/basic/code/introduction" },
     ],
   },
 ];

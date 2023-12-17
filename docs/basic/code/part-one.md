@@ -1,6 +1,6 @@
 # 手写代码题 part-1
 
-## 1、手写 浅拷贝
+## 1、浅拷贝
 
 ```js
 // 方法一
@@ -25,7 +25,7 @@ let ans = Object.assign({}, target);
 let ans = { ...target };
 ```
 
-## 2、手写 深拷贝
+## 2、深拷贝
 
 ```javascript
 // 方法一
@@ -59,7 +59,7 @@ function deepClone(val, map = new WeakMap()) {
 }
 ```
 
-## 3、手写 防抖
+## 3、防抖
 
 ```js
 function debounce(fn, wait) {
@@ -99,7 +99,7 @@ function debounce(fn, wait) {
 }
 ```
 
-## 4、手写 节流
+## 4、节流
 
 ```js
 // 时间戳版
@@ -133,7 +133,7 @@ function throttle(fun, wait) {
 }
 ```
 
-## 5、手写 Promise
+## 5、Promise
 
 ```js
 class MyPromise {
@@ -201,7 +201,7 @@ class MyPromise {
 }
 ```
 
-## 6、手写 Promise.all
+## 6、Promise.all
 
 ```js
 function promiseAll(promises) {
@@ -257,7 +257,7 @@ const promiseAll = (promiseLists = [], limit = Infinity) => {
 };
 ```
 
-## 7、手写 Promise.race
+## 7、Promise.race
 
 ```js
 Promise.race = function (args) {
@@ -332,7 +332,7 @@ function _flat(arr, depth) {
 }
 ```
 
-## 12、手写 new
+## 12、new
 
 ```js
 const _new = function (constructor, ...args) {
@@ -377,19 +377,68 @@ function objectFactory() {
 objectFactory(构造函数, 初始化参数);
 ```
 
-## 13、手写 原型式继承
+## 13、原型式继承
 
-```js
+原型式继承是一种实现对象之间继承的方法，其基本思想是通过复制一个现有的对象来创建一个新的对象。这种方法的主要实现是通过 Object.create()方法。
 
+以下是一个简单的原型式继承的例子：
+
+```javascript
+// 父对象
+const parent = {
+  name: "Parent",
+  hobbies: ["reading", "coding"],
+  sayName: function () {
+    return this.name;
+  },
+};
+
+// 创建一个新对象，这个对象的原型是parent
+const child = Object.create(parent);
+
+// 测试
+console.log(child.name); // 输出: Parent
+console.log(child.hobbies); // 输出: ['reading', 'coding']
+console.log(child.sayName()); // 输出: Parent
 ```
 
-## 14、手写 寄生式继承
+在这个例子中，我们首先定义了一个父对象`parent`，然后使用`Object.create(parent)`创建了一个新的对象`child`，这个新对象的原型就是`parent`，因此它可以访问`parent`的所有属性和方法。
 
-```js
+需要注意的是，原型式继承的一个问题是，由于继承的是引用类型的值，所以如果父对象的某个属性是数组或者对象，那么所有实例都会共享这个属性，一个实例修改这个属性，其他实例的这个属性也会被修改。
 
+## 14、寄生式继承
+
+寄生式继承是一种实现对象之间继承的方法，其基本思想是创建一个用于封装继承过程的函数，该函数在内部以某种方式增强对象，最后返回这个对象。
+
+以下是一个简单的寄生式继承的例子：
+
+```javascript
+function createAnother(original) {
+  var clone = Object.create(original); // 通过调用函数创建一个新对象
+  clone.sayHi = function () {
+    // 以某种方式来增强这个对象
+    console.log("Hi!");
+  };
+  return clone; // 返回这个对象
+}
+
+var person = {
+  name: "Person",
+  hobbies: ["reading", "coding"],
+};
+
+var anotherPerson = createAnother(person);
+
+console.log(anotherPerson.name); // 输出: Person
+console.log(anotherPerson.hobbies); // 输出: ['reading', 'coding']
+anotherPerson.sayHi(); // 输出: Hi!
 ```
 
-## 15、手写 instanceof
+在这个例子中，我们首先定义了一个`person`对象，然后使用`createAnother(person)`创建了一个新的对象`anotherPerson`，这个新对象继承了`person`的所有属性，并且增加了一个新的方法`sayHi`。
+
+需要注意的是，寄生式继承同样存在原型式继承的问题，即如果父对象的某个属性是数组或者对象，那么所有实例都会共享这个属性，一个实例修改这个属性，其他实例的这个属性也会被修改。
+
+## 15、instanceof
 
 ```js
 const myInstanceof = (left, right) => {
@@ -407,7 +456,7 @@ const myInstanceof = (left, right) => {
 };
 ```
 
-## 16、手写 bind
+## 16、bind
 
 ```js
 Function.prototype._bind = function (context, ...args) {
@@ -424,7 +473,7 @@ Function.prototype._bind = function (context, ...args) {
 };
 ```
 
-## 17、手写 apply
+## 17、apply
 
 ```js
 Function.prototype._apply = function (context, argsArr) {
@@ -438,7 +487,7 @@ Function.prototype._apply = function (context, argsArr) {
 };
 ```
 
-## 18、手写 call
+## 18、call
 
 ```js
 Function.prototype._call = function (context, ...args) {
@@ -463,7 +512,7 @@ const _objectCreate = (proto) => {
 };
 ```
 
-## 20、手写 数组去重
+## 20、数组去重
 
 ```js
 // 1. Set

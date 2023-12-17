@@ -1,6 +1,6 @@
 # 手写代码题 part-3
 
-## 手写 浅拷贝
+## 浅拷贝
 
 ```js
 const _shallowClone = (target) => {
@@ -22,39 +22,38 @@ let ans = Object.assign({}, target);
 let ans = { ...target };
 ```
 
-## 手写 深拷贝
+## 深拷贝
 
 ```javascript
-const _deepClone = target =>{
-  let cloneObj = {}
-	for(let key in target){
-    if(typeof target[key] === "object"){
-    	cloneObj[key] = _deepClone(target[key])
-  	}else{
-      cloneObj[key] = target[key]
+const _deepClone = (target) => {
+  let cloneObj = {};
+  for (let key in target) {
+    if (typeof target[key] === "object") {
+      cloneObj[key] = _deepClone(target[key]);
+    } else {
+      cloneObj[key] = target[key];
     }
   }
-  return cloneObj
-}
+  return cloneObj;
+};
 
-
-function deepClone(val,map = new WeakMap()){
-    if(val === null || typeof val !=='object') return val;
-    //循环引用
-    if(map.has(val)) return map.get(val);
-    let clone = Array.isArray(val) ? [] : {};
-    map.set(val,clone);
-    // 获取对象中所有的属性名（包含Symbol值）
-    let keys = Reflect.ownKeys(val);（可换为：Object.keys(val).concat(Object.ownPropertySymbols(val))）
-    let len = keys.length;
-    while(len--){
-        clone[keys[len]] = deepClone(val[keys[len]],map);
-    }
-    return clone;
+function deepClone(val, map = new WeakMap()) {
+  if (val === null || typeof val !== "object") return val;
+  //循环引用
+  if (map.has(val)) return map.get(val);
+  let clone = Array.isArray(val) ? [] : {};
+  map.set(val, clone);
+  // 获取对象中所有的属性名（包含Symbol值）
+  let keys = Reflect.ownKeys(val); //（可换为：Object.keys(val).concat(Object.ownPropertySymbols(val))）
+  let len = keys.length;
+  while (len--) {
+    clone[keys[len]] = deepClone(val[keys[len]], map);
+  }
+  return clone;
 }
 ```
 
-## 手写 防抖
+## 防抖
 
 ```js
 function debounce(fn, wait) {
@@ -78,7 +77,7 @@ function debounce(fn, wait) {
 }
 ```
 
-## 手写 节流
+## 节流
 
 ```js
 // 时间戳版
@@ -114,13 +113,46 @@ function throttle(fun, wait) {
 }
 ```
 
-## 手写 发布订阅模式
+## 发布订阅模式
 
 ```js
-class EmitEvent {}
+class EmitEvent {
+  constructor() {
+    this.eventMap = {};
+  }
+
+  on(event, fn) {
+    const listeners = this.eventMap[event] || (this.eventMap[event] = []);
+    listeners.push(fn);
+  }
+
+  emit(event, ...args) {
+    this.eventMap[event]?.forEach((fn) => {
+      fn.call(null, args);
+    });
+  }
+
+  off(event, fn) {
+    if (!this.eventMap[event]) return;
+    this.eventMap[event] = this.eventMap[event].filter((cn) => fn !== cb);
+  }
+
+  once(event, fn) {
+    this.on(event, (...args) => {
+      fn.call(null, args);
+      this.off(event, fn);
+    });
+  }
+}
+
+const event = new EmitEvent();
+event.on("click", () => {
+  console.log("click");
+});
+event.emit("click");
 ```
 
-## 手写 `Promise.all`
+## `Promise.all`
 
 ```js
 function promiseAll(promises) {
@@ -144,7 +176,7 @@ function promiseAll(promises) {
 }
 ```
 
-## 手写 `Promise.race`
+## `Promise.race`
 
 ```js
 Promise.race = function (args) {
@@ -156,7 +188,7 @@ Promise.race = function (args) {
 };
 ```
 
-## 手写 Array.prototype.reduce()
+## Array.prototype.reduce()
 
 ```js
 Array.prototype._reduce = function (fn, prev) {
@@ -172,7 +204,7 @@ Array.prototype._reduce = function (fn, prev) {
 };
 ```
 
-## 手写 Array.prototype.filter()
+## Array.prototype.filter()
 
 ```js
 Array.prototype._filter = function (Fn) {
@@ -187,7 +219,7 @@ Array.prototype._filter = function (Fn) {
 };
 ```
 
-## 手写 Array.prototype.map()
+## Array.prototype.map()
 
 ```js
 Array.prototype._map = function (Fn) {
@@ -202,7 +234,7 @@ Array.prototype._map = function (Fn) {
 };
 ```
 
-## 手写 Array.prototype.flat()
+## Array.prototype.flat()
 
 ```js
 function _flat(arr, depth) {
@@ -219,7 +251,7 @@ function _flat(arr, depth) {
 }
 ```
 
-## 手写 new
+## new
 
 ```js
 const _new = function (constructor, ...args) {
@@ -264,11 +296,11 @@ function objectFactory() {
 objectFactory(构造函数, 初始化参数);
 ```
 
-## 手写 原型式继承
+## 原型式继承
 
-## 手写 寄生式继承
+## 寄生式继承
 
-## 手写 instanceof
+## instanceof
 
 ```js
 const myInstanceof = (left, right) => {
@@ -286,7 +318,7 @@ const myInstanceof = (left, right) => {
 };
 ```
 
-## 手写 bind
+## bind
 
 ```js
 Function.prototype._bind = function (target, ...arguments1) {
@@ -312,7 +344,7 @@ Function.prototype.bind = function (context, ...args) {
 };
 ```
 
-## 手写 apply
+## apply
 
 ```js
 // apply
@@ -328,7 +360,7 @@ Function.prototype.apply = function (context, argsArr) {
 };
 ```
 
-## 手写 call
+## call
 
 ```js
 Function.prototype._call = function (target = window) {
@@ -362,7 +394,7 @@ const _objectCreate = (proto) => {
 };
 ```
 
-## 手写 数组去重
+## 数组去重
 
 ```js
 // 1. Set
