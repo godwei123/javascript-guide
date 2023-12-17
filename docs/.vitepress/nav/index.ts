@@ -26,12 +26,8 @@ const nav: DefaultTheme.NavItem[] = [
     text: "其他",
     items: [
       {
-        text: "kotlin",
+        text: "kotlin & rust",
         link: "/study/kotlin/introduction",
-      },
-      {
-        text: "rust",
-        link: "/study/rust/introduction",
       },
       {
         text: "其他",
