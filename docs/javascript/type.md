@@ -89,12 +89,6 @@ let str = "Hello";
 str.constructor === String; // true
 ```
 
-## other
-
-JavaScript 中字符串是不可变的，而数组是可变的。字符串不可变是指字符串的成员函数不会改变其原始值，而是创建并返回一个新的字符串。
-
-数组有一个字符串没有的可变更成员函数 reverse()
-
 ## Null & Undefined
 
 undefined 类型只有一个值，即 undefined。null 类型也只有一个值，即 null。 它们的名称既是类型也是值。undefined 和 null 常被用来表示“空的”值或“不是值”的值。二者之间有一些细微的差别。

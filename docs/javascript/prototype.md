@@ -1,13 +1,49 @@
 # 原型与原型链
 
+## 原型
+
+每个函数都有一个 prototype 属性，除了 Function.prototype.bind()，该属性指向原型。
+
+每个对象都有一个 `__proto__` 属性，指向了创建该对象的构造函数的原型。其实这个属性指向了 `[[prototype]]`，但是 `[[prototype]]` 是内部属性，我们并不能访问到，所以使用 `_proto_` 来访问。
+
+对象可以通过 `__proto__` 来寻找不属于该对象的属性，`__proto__` 将对象连接起来组成了原型链。
+
+## 原型链
+
+原型链的作用是：当访问一个对象的属性时，如果这个对象本身没有这个属性，那么就会去它的 `__proto__`（即它的构造函数的 prototype）中去寻找。
+
+## 继承
+
+继承是 OO 语言中的一个重要特性，它可以使子类具有父类的属性和方法。
+
+JavaScript 中的继承是通过原型链来体现的，其实现原理如下：
+
+```js
+function Parent() {
+  this.name = "kevin";
+}
+
+Parent.prototype.getName = function () {
+  console.log(this.name);
+};
+
+function Child() {}
+
+Child.prototype = new Parent();
+
+var child1 = new Child();
+
+console.log(child1.getName()); // kevin
+```
+
 JavaScript 中的对象有一个特殊的[[Prototype]]内置属性，其实就是对于其他对象的引用。几乎所有的对象在创建时[[Prototype]]
 属性都会被赋予一个非空的值。
 
-Object.create(..)的原理，它会创建一个对象并把这个对象的[[Prototype]]关联到指定的对象。
+## Object.create(..)的原理，它会创建一个对象并把这个对象的[[Prototype]]关联到指定的对象。
 
-使用 for..in 遍历对象时原理和查找[[Prototype]]链类似，任何可以通过原型链访问到（并且是 enumerable）的属性都会被枚举。
+## 使用 for..in 遍历对象时原理和查找[[Prototype]]链类似，任何可以通过原型链访问到（并且是 enumerable）的属性都会被枚举。
 
-使用 in 操作符来检查属性在对象中是否存在时，同样会查找对象的整条原型链**（无论属性是否可枚举）**
+## 使用 in 操作符来检查属性在对象中是否存在时，同样会查找对象的整条原型链**（无论属性是否可枚举）**
 
 对原型链上层属性赋值存在 3 种情况：
 

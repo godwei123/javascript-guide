@@ -5,7 +5,7 @@ import BlendModeVisual from "../../../components/basic/blend-mode-visual.vue";
 </script>
 <BlendModeVisual/>
 
-## MDN：
+## MDN
 
 **`<blend-mode>`** 是一种 CSS 数据类型，用于描述当元素重叠时，颜色应当如何呈现。它被用于 `background-blend-mode ` 和 `mix-blend-mode` 属性。
 

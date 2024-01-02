@@ -1,4 +1,4 @@
-## Array 常见方法
+# Array 常见方法
 
 1. `Array.prototype.concat()`
 2. `Array.prototype.every()`
@@ -65,10 +65,12 @@ console.log(nums[1]); //undefined
 其中的“空白单元”（empty slot）可能会导致出人意料的结果。a[1]的值为 undefined，但这与将其显式赋值为 undefined（a[1]
 =undefined）还是有所区别。
 
-如果字符串键值能够被强制类型转换为十进制数字的话，它就会被当作数字索引来处理。a[“13”]=2; a.length => 14
+如果字符串键值能够被强制类型转换为十进制数字的话，它就会被当作数字索引来处理。`a['13']=2; a.length => 14`
 
 类数组 => 数组
 
-Array.from(arguments)
+```js
+Array.from(arguments);
 
-Array.prototype.slice.call(arguments)
+Array.prototype.slice.call(arguments);
+```
