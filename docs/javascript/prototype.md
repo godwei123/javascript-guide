@@ -24,13 +24,11 @@ JavaScript 中的对象有一个特殊的`[[Prototype]]`内置属性，其实就
 
 ## 关系图
 
-![img.png](../public/16154757484208d724d.png)
+![img.png](../20190616104616832.jpeg)
 
 ## 继承
 
-继承是 OO 语言中的一个重要特性，它可以使子类具有父类的属性和方法。
-
-JavaScript 中的继承是通过原型链来体现的，其实现原理如下：
+继承是 OO 语言中的一个重要特性，它可以使子类具有父类的属性和方法。JavaScript 中的继承是通过原型链来体现的，其实现原理如下：
 
 ```js
 function Parent() {
@@ -60,11 +58,7 @@ console.log(child1.getName()); // kevin
 
 ## instanceof
 
-Foo.prototype.isPrototypeOf(a) // a 的整条[[Prototype]]是否出现过 Foo.prototype
-
-Object.getPrototypeOf(obj) 获取一个对象的[[Prototype]]链
-
-Object.setPrototypeOf(obj1,obj2) 设置属性
+## isPrototypeOf
 
 ## Object.create(..)
 
@@ -137,14 +131,3 @@ c(); // Function
 ```
 
 当然，如果设置 `var CC = 123` ，加声明关键词是可以覆盖的。
-
-# 继承
-
-```
-Object.setPrototypeOf(Bar.prototype,Foo.prototype)
-
-Bar.prototype = Object.create(Foo.prototype)
-
-```
-
-如果使用内置的．bind(..)函数来生成一个硬绑定函数的话，该函数是没有 prototype 属性的
