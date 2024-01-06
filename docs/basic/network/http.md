@@ -188,3 +188,43 @@ HTTPS 的通信过程如下：
 ## 非对称加密和对称加密
 
 ## HTTPS 怎么保证数据安全
+
+## 对 post 和 get 请求的理解
+
+## 问：http 知道嘛？哪一层的协议？（应用层）
+
+- 灵活可扩展，除了规定空格分隔单词，换行分隔字段以外，其他都没有限制，不仅仅可以传输文本，还可以传输图片、视频等任意资源
+- 可靠传输，基于 TCP/IP 所以继承了这一特性
+- 请求-应答，有来有回
+- 无状态，每次 HTTP 请求都是独立的，无关的、默认不需要保存上下文信息
+
+缺点：
+
+- 明文传输不安全
+- 复用一个 TCP 链接，会发生对头拥塞
+- 无状态在长连接场景中，需要保存大量上下文，以避免传输大量重复的信息
+
+## （3）问：TCP 协议怎么保证可靠的，UDP 为什么不可靠？
+
+## 主动方为什么会等待 2MSL
+
+## HTTP 如何实现长连接？在什么时候会超时？
+
+通过在头部（请求和响应头）设置 Connection: keep-alive，HTTP1.0 协议支持，但是默认关闭，从 HTTP1.1 协议以后，连接默认都是长连接
+
+- HTTP 一般会有 httpd 守护进程，里面可以设置 keep-alive timeout，当 tcp 链接闲置超过这个时间就会关闭，也可以在 HTTP 的 header 里面设置超时时间
+
+- TCP 的 keep-alive 包含三个参数，支持在系统内核的 net.ipv4 里面设置：当 TCP 链接之后，闲置了 tcp_keepalive_time，则会发生侦测包，如果没有收到对方的 ACK，那么会每隔 tcp_keepalive_intvl 再发一次，直到发送了 tcp_keepalive_probes，就会丢弃该链接。
+
+- - tcp_keepalive_intvl = 15
+- tcp_keepalive_probes = 5
+- tcp_keepalive_time = 1800
+
+实际上 HTTP 没有长短链接，只有 TCP 有，TCP 长连接可以复用一个 TCP 链接来发起多次 HTTP 请求，这样可以减少资源消耗，比如一次请求 HTML，可能还需要请求后续的 JS/CSS/图片等
+
+### 参考链接
+
+- https://blog.csdn.net/weixin_37672169/article/details/80283935
+- https://www.jianshu.com/p/3fc3646fad80
+
+## 问：OPTION 是干啥的？举个用到 OPTION 的例子？
