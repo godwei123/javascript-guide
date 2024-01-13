@@ -50,7 +50,8 @@ import CenterVisual from "../../../components/basic/center-visual.vue";
 ### 4.grid
 
 <ClientOnly>
-<CenterVisual  :parentStyle="{display: 'grid','justify-content': 'center'}" :childStyle="{}"/></ClientOnly>
+<CenterVisual  :parentStyle="{display: 'grid','justify-content': 'center'}" :childStyle="{}"/>
+</ClientOnly>
 
 ```css
 .parent {
