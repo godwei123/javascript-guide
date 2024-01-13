@@ -30,12 +30,12 @@ const nav: DefaultTheme.NavItem[] = [
         link: "/study/kotlin/introduction",
       },
       {
-        text: "其他",
-        link: "/study/others/git",
-      },
-      {
         text: "iframe",
         link: "/study/others/main",
+      },
+      {
+        text: "blog",
+        link: "/study/blog/introduction",
       },
     ],
   },

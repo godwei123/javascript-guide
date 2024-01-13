@@ -5,6 +5,7 @@ import {
 } from "./configs/sidebarBase";
 import sidebarJavaScript from "./configs/sidebarJavaScript";
 import { sidebarStudy } from "./configs/sidebarStudy";
+import { sidebarBlog } from "./configs/sidebarBlog";
 import { DefaultTheme } from "vitepress";
 
 const sidebar: DefaultTheme.SidebarMulti = {
@@ -16,5 +17,6 @@ const sidebar: DefaultTheme.SidebarMulti = {
   "/basic/code": sidebarCode,
   "/study/kotlin": sidebarStudy,
   "/study/rust": sidebarStudy,
+  "/study/blog": sidebarBlog,
 };
 export default sidebar;
