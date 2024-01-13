@@ -1,6 +1,7 @@
 # flex
 
 <script setup>
+import FlexVisual from '../../../components/basic/flex-visual.vue'
 </script>
 
 <flex-visual/>
@@ -17,21 +18,16 @@
 }
 ```
 
-> 需要注意的是:当时设置 flex 布局之后,子元素的 float、clear、vertical-align 的属性将会失效.
+> **需要注意的是**: 当时设置 flex 布局之后,子元素的 float、clear、vertical-align 的属性将会失效.
 
-有下面六种属性可以设置在容器上,它们分别是:
+下面六种属性可以设置在容器上,它们分别是:
 
-1、flex-direction
-
-2、flex-wrap
-
-3、flex-flow
-
-4、justify-content
-
-5、align-items
-
-6、align-content
+1. flex-direction
+2. flex-wrap
+3. flex-flow
+4. justify-content
+5. align-items
+6. align-content
 
 ### flex-direction
 
@@ -147,46 +143,34 @@ baseline:   项目的第一行文字的基线对齐
 
 ## flex 简写
 
-第一个数值是 flex-grow。赋值为正数的话是让元素增加所占空间。第二个数值是 flex-shrink 正数可以让它缩小所占空间，但是只有在 flex 元素总和超出主轴才会生效。最后一个数值是 flex-basis；flex 元素是在这个基准值的基础上缩放的。
+第一个数值是 flex-grow。赋值为正数的话是让元素增加所占空间。
+
+第二个数值是 flex-shrink 正数可以让它缩小所占空间，但是只有在 flex 元素总和超出主轴才会生效。
+
+最后一个数值是 flex-basis；flex 元素是在这个基准值的基础上缩放的。
 
 flex 简写属性在下面有三个值的定义 默认值为 0 1 auto;
 
 - flex-grow : 定义项目的放大比例,默认为 0
-
 - flex-shrink : 定义项目的缩小比例,默认为 1
-
 - flex-basis : 定义项目在分配多余的空间之前,项目占据的主轴空间。默认为 auto（item 本来大小）,如果设置为具体值，**优先级大于元素本身设置的宽度**。
 
 ### flex: initial
 
-flex: initial 是把 flex 元素重置为 Flexbox 的初始值，它相当于 flex: 0 1 auto。
+flex: initial 是把 flex 元素重置为的初始值，它相当于 flex: 0 1 auto。
 
-在这里 flex-grow 的值为 0，所以 flex 元素不会超过它们 flex-basis 的尺寸。flex-shrink 的值为 1, 所以可以缩小 flex 元素来防止它们溢出。flex-basis 的值为 auto. flex 元素尺寸可以是在主维度上设置的，也可以是根据内容自动得到的。
+### flex: positive-number
 
-### flex:\<positive-number>
+完整形式: `flex:1` 相当于 `flex: positive-number 1 0;`
 
-完整形式:
+flex:1 在父元素尺寸不足的时候,会优先最小化内容尺寸. 使用场景:当我们希望元素可以充分的利用剩余的空间,同时不会很多的占用其他同级元素的空间的时候使用.
 
-`flex:1` 相当于 `flex: positive-number 1 0;`
-
-flex:1 在父元素尺寸不足的时候,会优先最小化内容尺寸.
-
-使用场景:当我们希望元素可以充分的利用剩余的空间,同时不会很多的占用其他同级元素的空间的时候使用.
-
-flex:0 通常表现为内容最小化宽度
-
-使用场景:当希望元素 item 占用最小化的内容宽度的时候
+flex:0 通常表现为内容最小化宽度 使用场景:当希望元素 item 占用最小化的内容宽度的时候
 
 ### flex:auto
 
-flex: auto 等同于 flex: 1 1 auto，flex 元素在需要的时候既可以拉伸也可以收缩。
-
-flex:auto 在父元素尺寸不足的时候,会优先最大化内容尺寸.
-
-使用场景:当我们希望元素充分的使用剩余的空间,各自元素按照各自内容进行分配的时候使用.
+flex: auto 等同于 flex: 1 1 auto，flex 元素在需要的时候既可以拉伸也可以收缩。 在父元素尺寸不足的时候,会优先最大化内容尺寸. 使用场景:当我们希望元素充分的使用剩余的空间,各自元素按照各自内容进行分配的时候使用.
 
 ### flex: none
 
-flex: none 可以把 flex 元素设置为不可伸缩。它和设置为 flex: 0 0 auto 是一样的。
-
-元素既不能拉伸或者收缩，但是元素会按具有 flex-basis: auto 属性的 flexbox 进行布局。
+flex: none 可以把 flex 元素设置为不可伸缩。它和设置为 flex: 0 0 auto 是一样的。 元素既不能拉伸或者收缩，但是元素会按具有 flex-basis: auto 属性的 flexbox 进行布局。

@@ -2,7 +2,10 @@ import {
   BaseTransition,
   BaseTransitionPropsValidators,
   Comment,
+  DeprecationTypes,
   EffectScope,
+  ErrorCodes,
+  ErrorTypeStrings,
   Fragment,
   KeepAlive,
   ReactiveEffect,
@@ -10,8 +13,10 @@ import {
   Suspense,
   Teleport,
   Text,
+  TrackOpTypes,
   Transition,
   TransitionGroup,
+  TriggerOpTypes,
   VueElement,
   assertNumber,
   callWithAsyncErrorHandling,
@@ -152,14 +157,17 @@ import {
   withKeys,
   withMemo,
   withModifiers,
-  withScopeId,
-} from "./chunk-V634PGSD.js";
-import "./chunk-5WWUZCGV.js";
+  withScopeId
+} from "./chunk-HL7EECYQ.js";
+import "./chunk-ZS7NZCD4.js";
 export {
   BaseTransition,
   BaseTransitionPropsValidators,
   Comment,
+  DeprecationTypes,
   EffectScope,
+  ErrorCodes,
+  ErrorTypeStrings,
   Fragment,
   KeepAlive,
   ReactiveEffect,
@@ -167,8 +175,10 @@ export {
   Suspense,
   Teleport,
   Text,
+  TrackOpTypes,
   Transition,
   TransitionGroup,
+  TriggerOpTypes,
   VueElement,
   assertNumber,
   callWithAsyncErrorHandling,
@@ -309,6 +319,6 @@ export {
   withKeys,
   withMemo,
   withModifiers,
-  withScopeId,
+  withScopeId
 };
 //# sourceMappingURL=vue.js.map

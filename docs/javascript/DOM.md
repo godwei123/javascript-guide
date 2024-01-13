@@ -1,22 +1,80 @@
 # DOM
 
-1、clientWidth：目标元素的 width+padding(左右两侧)
+## 元素的宽高
 
-2、offsetWidth：目标元素的 width+padding(左右两侧)+border(左右两侧)
+### offsetWidth
 
-3、clientLeft：目标元素左边框 border 的宽度
+- offsetWidth = width + padding + border
+- offsetWidth 是一个只读属性，它返回元素的布局宽度。通常这个值是以像素为单位的，但是对于根元素，它是一个与视口宽度相关的值。offsetWidth 的值包括元素的边框（border），水平线上的内边距（padding），垂直方向滚动条（如果存在且渲染的话），以及 CSS 设置的宽度（width）。
 
-4、offsetLeft：目标元素左边框离其具有定位的父元素之间的距离
+### clientWidth
 
-5、clientX：鼠标相对于浏览器窗口可视区域的 X 坐标（横向）
+- clientWidth = width + padding
+- clientWidth 是一个只读属性，它返回元素的内部宽度（单位像素），包含内边距，但不包括垂直滚动条（如果存在）、边框和外边距。
+- 如果元素的 overflow 为 scroll，clientWidth 也包括被滚动内容的宽度。
+- 如果元素的 direction 为 rtl（从右向左阅读），clientWidth 从元素的右边缘开始，到左边缘结束。
+- clientWidth 的值是一个浮点数，因此可能存在小数点后的不确定数字。
+- clientWidth 的值是只读的，但是可以通过更改元素的 CSS 的 width 属性来改变它。
+- clientWidth 的值不包括滚动条占用的空间。如果你需要包括滚动条占用的空间，那么可以使用 element.offsetWidth。
+- clientWidth 的值不包括元素的边框和外边距。
+- clientWidth 的值会被四舍五入为一个整数。
+- clientWidth 的值会随着窗口滚动条的出现和消失而改变。
+- clientWidth 的值会随着 CSS 的 width 属性的改变而改变。
+- clientWidth 的值不包括伪元素的宽度。
+- clientWidth 的值不包括伪元素的边框和外边距。
+- clientWidth 的值不包括伪元素的滚动条占用的空间。
 
-6、offsetX：鼠标相对于绑定事件元素的 X 坐标
+### scrollWidth
 
-7、pageX：鼠标相对于文档的 X 坐标，会计算滚动距离；如果没有滚动距离，值与 clientX 一样
+- scrollWidth = width + padding + border + 溢出内容的宽度
+- scrollWidth 是一个只读属性，它返回元素的内容的总宽度，包括由于溢出导致的视图中不可见内容。
+- scrollWidth 的值与元素的实际宽度是一样的，除非有溢出的内容，这时 scrollWidth 的值等于元素的实际宽度加上溢出内容的宽度。
+- scrollWidth 的值是一个浮点数，因此可能存在小数点后的不确定数字。
 
-8、screenX：鼠标相对于**显示器**屏幕左侧的 X 坐标
+### clientLeft
 
-9、getBoundingClientRect().left：目标元素左边框相对于浏览器可视区域的距离，可能为负值
+- clientLeft = border-left-width
+- clientLeft 是一个只读属性，它返回元素的左边框的宽度，以像素表示。如果元素的 direction 为 rtl（从右向左阅读），那么 clientLeft 返回元素右边框的宽度。
+- clientLeft 的值是一个浮点数，因此可能存在小数点后的不确定数字。
+- clientLeft 的值是只读的，但是可以通过更改元素的 CSS 的 border-left-width 属性来改变它。
+- clientLeft 的值不包括滚动条占用的空间。如果你需要包括滚动条占用的空间，那么可以使用 element.offsetWidth。
+- clientLeft 的值不包括元素的内边距和外边距。
+- clientLeft 的值会被四舍五入为一个整数。
+
+### offsetLeft
+
+- offsetLeft = border-left-width + 父元素的 offsetLeft
+- offsetLeft 是一个只读属性，它返回当前元素相对于其 offsetParent 元素的左边界偏移的像素值。
+
+### clientX
+
+- clientX 是一个只读属性，它返回当事件被触发时，鼠标指针相对于浏览器页面（或客户区）的水平坐标。
+- clientX 的值是一个浮点数，因此可能存在小数点后的不确定数字。
+- clientX 的值是只读的，但是可以通过更改鼠标事件的返回值来改变它。
+- clientX 的值不包括滚动条占用的空间。如果你需要包括滚动条占用的空间，那么可以使用 event.pageX。
+- clientX 的值不包括元素的内边距和外边距。
+- clientX 的值会被四舍五入为一个整数。
+- clientX 的值会随着窗口滚动条的出现和消失而改变。
+
+### offsetX
+
+- offsetX 是一个只读属性，它返回当事件被触发时，鼠标指针相对于目标节点的 X 坐标。
+- offsetX 的值是一个浮点数，因此可能存在小数点后的不确定数字。
+- offsetX 的值是只读的，但是可以通过更改鼠标事件的返回值来改变它。
+- offsetX 的值不包括滚动条占用的空间。如果你需要包括滚动条占用的空间，那么可以使用 event.pageX。
+- offsetX 的值不包括元素的内边距和外边距。
+
+### pageX
+
+- pageX 是一个只读属性，它返回当事件被触发时，鼠标指针相对于整个文档的 X 坐标。
+- pageX 的值是一个浮点数，因此可能存在小数点后的不确定数字。
+- pageX 的值是只读的，但是可以通过更改鼠标事件的返回值来改变它。
+
+### screenX
+
+- screenX 是一个只读属性，它返回当事件被触发时，鼠标指针相对于屏幕的 X 坐标。
+- screenX 的值是一个浮点数，因此可能存在小数点后的不确定数字。
+- screenX 的值是只读的，但是可以通过更改鼠标事件的返回值来改变它。
 
 ## 几种获得宽高的方式
 

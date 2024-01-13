@@ -1,10 +1,14 @@
 # CSS 布局
 
-## 常见布局实现
+<script setup>
+import LayoutVisual from '../../../components/basic/layout-visual.vue'
+</script>
 
 ## 两栏布局
 
 ### float+margin
+
+<LayoutVisual :boxStyle="{}" :leftStyle="{float:'left',width:'200px',height:'100%'}" :rightStyle="{width:'auto',height:'100%',marginLeft:'200px'}"/>
 
 ```html
 <style>
@@ -36,6 +40,8 @@
 
 ### float+overflow
 
+<LayoutVisual :boxStyle="{}" :leftStyle="{float:'left',width:'200px',height:'100%'}" :rightStyle="{overflow:'hidden',height:'100%'}"/>
+
 ```html
 <style>
   .box {
@@ -65,6 +71,8 @@
 
 ### flex
 
+<LayoutVisual :boxStyle="{display:'flex'}" :leftStyle="{width:'200px'}" :rightStyle="{flex:1}"/>
+
 ```html
 <style>
   .box {
@@ -92,20 +100,31 @@
 
 ## 三栏布局
 
-::: warning
+<LayoutVisual type="2" :boxStyle="{display:'flex',flexDirection:'column'}" :topStyle="{flex:'0 0 auto',height:'50px'}" :middleStyle="{flex:'1 1 auto'}" :bottomStyle="{flex:'0 0 auto',height:'50px'}" />
 
-见场景题部分
+```html
+<style>
+  .box {
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    background: #ccc;
+  }
 
-:::
+  .top {
+    flex: 0 0 auto;
+    height: 50px;
+    background: tomato;
+  }
 
-## 九宫格布局
+  .middle {
+    flex: 1 1 auto;
+    background: gold;
+  }
 
-## 15、响应式布局
-
-## 16、px rem em vw vh
-
-- px 是固定像素,一旦设置了就无法因为适应页面大小而改变.
-- em 和 rem 相对于 px 更具有灵活性,他们是相对长度单位,其长度不是固定的,更适用于响应式布局.
-- em 是相对于根据自身元素的 font-size 来设置字体大小.而 rem 是相对于根元素(即 html),这样就意味着,只需要在根元素确定一个参考值.
-- vw/vh 是与视图窗口有关的单位,vw 表示相对于视图窗口的宽度,vh 表示相对于视图窗口高度,除了 vw 和 vh 外,还有 vmin 和 vmax
-  两个相关的单位.
+  .bottom {
+    flex: 0 0 auto;
+    height: 50px;
+    background: tomato;
+  }
+```

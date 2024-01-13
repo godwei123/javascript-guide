@@ -24,7 +24,7 @@ import textOverflowVisual from '../../../components/basic/text-overflow-visual.v
 .text-ellipsis-n {
   text-overflow: ellipsis;
   overflow: hidden;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 2; /* 行数 */
   display: -webkit-box;
   -webkit-box-orient: vertical;
   word-wrap: break-word;

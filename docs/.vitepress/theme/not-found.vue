@@ -3,7 +3,7 @@ import { useRouter } from "vitepress";
 
 const router = useRouter();
 const goBack = () => {
-  router.go("/");
+  router.go("/javascript-guide/");
 };
 </script>
 

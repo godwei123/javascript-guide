@@ -1,8 +1,14 @@
 # 居中
 
+<script setup>
+import CenterVisual from '../../../components/basic/center-visual.vue'
+</script>
+
 ## 水平居中
 
 ### 1.text-align
+
+<CenterVisual  :parentStyle="{textAlign: 'center'}" :childStyle="{display: 'inline-block'}"/>
 
 ```css
 .parent {
@@ -16,6 +22,8 @@
 
 ### 2.margin
 
+<CenterVisual  :parentStyle="{}" :childStyle="{margin: '0 auto'}"/>
+
 ```css
 .son {
   margin: 0 auto;
@@ -23,6 +31,8 @@
 ```
 
 ### 3.flex
+
+<CenterVisual  :parentStyle="{display: 'flex','justify-content': 'center'}" :childStyle="{}"/>
 
 ```css
 .parent {
@@ -32,6 +42,8 @@
 ```
 
 ### 4.grid
+
+<CenterVisual  :parentStyle="{display: 'grid','justify-content': 'center'}" :childStyle="{}"/>
 
 ```css
 .parent {
@@ -51,6 +63,8 @@
 
 ### 5.绝对定位
 
+<CenterVisual  :parentStyle="{position: 'relative'}" :childStyle="{position: 'absolute', left: '50%', transform: 'translate(-50%, 0)'}"/>
+
 ```css
 .parent {
   position: relative;
@@ -61,28 +75,15 @@
   left: 50%;
   transform: translate(-50%, 0);
 }
-
-.son {
-  position: absolute;
-  width: "宽度";
-  left: 50%;
-  margin-left: -0.5 * "宽度";
-}
-
-.son {
-  position: absolute;
-  width: 宽度;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-}
 ```
 
 ### 6.table
 
+<CenterVisual  :parentStyle="{display: 'table','text-align':'center'}" :childStyle="{display: 'inline-block'}"/>
+
 ```css
 .parent {
-  display: table-cell;
+  display: table;
   text-align: center;
 }
 
@@ -95,6 +96,8 @@
 
 ### 1.flex 布局
 
+<CenterVisual  :parentStyle="{display: 'flex', 'align-items': 'center'}" :childStyle="{}"/>
+
 ```css
 .parent {
   display: flex;
@@ -104,23 +107,18 @@
 
 ### 2.gird 布局
 
+<CenterVisual  :parentStyle="{display: 'grid', 'align-items': 'center'}" :childStyle="{}"/>
+
 ```css
 .parent {
   display: grid;
   align-items: center;
 }
-
-/* OR */
-.parent {
-  display: grid;
-}
-
-.son {
-  align-self: center;
-}
 ```
 
 ### 3.绝对定位
+
+<CenterVisual  :parentStyle="{position: 'relative'}" :childStyle="{position: 'absolute', top: '50%', transform: 'translate(0, -50%)'}"/>
 
 ```css
 .parent {
@@ -143,33 +141,24 @@
 
 ### 4.vertical-align + line-height
 
+<CenterVisual  :parentStyle="{lineHeight: '200px'}" :childStyle="{display: 'inline-block', verticalAlign: 'middle'}"/>
+
 ```css
 .parent {
-  line-height: 600px;
+  line-height: 200px;
 }
 
 .son {
   display: inline-block;
   vertical-align: middle;
-}
-```
-
-### 5.table 布局
-
-```css
-.parent {
-  display: table-cell;
-  vertical-align: middle;
-}
-
-.son {
-  display: inline-block;
 }
 ```
 
 ## 水平垂直居中
 
 ### 1.flex
+
+<CenterVisual  :parentStyle="{display: 'flex', 'justify-content': 'center', 'align-items': 'center'}" :childStyle="{}"/>
 
 ```css
 .parent {
@@ -180,6 +169,8 @@
 ```
 
 ### 2.grid
+
+<CenterVisual  :parentStyle="{display: 'grid', 'justify-content': 'center', 'align-items': 'center'}" :childStyle="{}"/>
 
 ```css
 .parent {
@@ -202,6 +193,8 @@
 
 ### 3.绝对定位
 
+<CenterVisual  :parentStyle="{position: 'relative'}" :childStyle="{position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}"/>
+
 ```css
 .parent {
   position: relative;
@@ -221,19 +214,5 @@
   right: 0;
   bottom: 0;
   margin: auto;
-}
-```
-
-### 4.table 布局
-
-```css
-.parent {
-  display: table-cell;
-  vertical-align: middle;
-  text-align: center;
-}
-
-.son {
-  display: inline-block;
 }
 ```
