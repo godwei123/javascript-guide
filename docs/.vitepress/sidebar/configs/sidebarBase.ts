@@ -64,18 +64,11 @@ export const sidebarCode = [
     text: "代码",
     items: [
       { text: "Introduction", link: "/basic/code/introduction" },
-      { text: "代码 1", link: "/basic/code/part-one" },
-      { text: "代码 2", link: "/basic/code/part-two" },
-      { text: "代码 3", link: "/basic/code/part-three" },
-    ],
-  },
-  {
-    text: "代码执行结果",
-    items: [
-      { text: "作用域", link: "/basic/code/变量作用域" },
-      { text: "this", link: "/basic/code/this" },
-      // { text: "EventLoop", link: "/basic/code/introduction" },
-      { text: "隐式类型转换", link: "/basic/code/类型转换" },
+      { text: "手写代码", link: "/basic/code/Code" },
+      { text: "代码输出", link: "/basic/code/output" },
+      { text: "文件上传", link: "/basic/code/file-upload" },
+      { text: "文件下载", link: "/basic/code/file-download" },
+      { text: "懒加载", link: "/basic/code/lazy-load" },
     ],
   },
 ];

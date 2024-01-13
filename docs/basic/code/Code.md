@@ -1,6 +1,6 @@
-# 手写代码题 part-1
+# 手写代码题
 
-## 1、浅拷贝
+## 浅拷贝
 
 ```js
 // 方法一
@@ -25,7 +25,7 @@ let ans = Object.assign({}, target);
 let ans = { ...target };
 ```
 
-## 2、深拷贝
+## 深拷贝
 
 ```javascript
 // 方法一
@@ -59,7 +59,7 @@ function deepClone(val, map = new WeakMap()) {
 }
 ```
 
-## 3、防抖
+## 防抖
 
 ```js
 function debounce(fn, wait) {
@@ -99,7 +99,7 @@ function debounce(fn, wait) {
 }
 ```
 
-## 4、节流
+## 节流
 
 ```js
 // 时间戳版
@@ -133,7 +133,7 @@ function throttle(fun, wait) {
 }
 ```
 
-## 5、Promise
+## Promise
 
 ```js
 class MyPromise {
@@ -201,7 +201,7 @@ class MyPromise {
 }
 ```
 
-## 6、Promise.all
+## Promise.all
 
 ```js
 function promiseAll(promises) {
@@ -257,7 +257,7 @@ const promiseAll = (promiseLists = [], limit = Infinity) => {
 };
 ```
 
-## 7、Promise.race
+## Promise.race
 
 ```js
 Promise.race = function (args) {
@@ -269,7 +269,7 @@ Promise.race = function (args) {
 };
 ```
 
-## 8、Array.prototype.reduce
+## Array.prototype.reduce
 
 ```js
 Array.prototype._reduce = function (fn, prev) {
@@ -285,7 +285,7 @@ Array.prototype._reduce = function (fn, prev) {
 };
 ```
 
-## 9、Array.prototype.filter
+## Array.prototype.filter
 
 ```js
 Array.prototype._filter = function (Fn) {
@@ -300,7 +300,7 @@ Array.prototype._filter = function (Fn) {
 };
 ```
 
-## 10、Array.prototype.map
+## Array.prototype.map
 
 ```js
 Array.prototype._map = function (Fn) {
@@ -315,7 +315,7 @@ Array.prototype._map = function (Fn) {
 };
 ```
 
-## 11、Array.prototype.flat
+## Array.prototype.flat
 
 ```js
 function _flat(arr, depth) {
@@ -332,7 +332,7 @@ function _flat(arr, depth) {
 }
 ```
 
-## 12、new
+## new
 
 ```js
 const _new = function (constructor, ...args) {
@@ -377,68 +377,7 @@ function objectFactory() {
 objectFactory(构造函数, 初始化参数);
 ```
 
-## 13、原型式继承
-
-原型式继承是一种实现对象之间继承的方法，其基本思想是通过复制一个现有的对象来创建一个新的对象。这种方法的主要实现是通过 Object.create()方法。
-
-以下是一个简单的原型式继承的例子：
-
-```javascript
-// 父对象
-const parent = {
-  name: "Parent",
-  hobbies: ["reading", "coding"],
-  sayName: function () {
-    return this.name;
-  },
-};
-
-// 创建一个新对象，这个对象的原型是parent
-const child = Object.create(parent);
-
-// 测试
-console.log(child.name); // 输出: Parent
-console.log(child.hobbies); // 输出: ['reading', 'coding']
-console.log(child.sayName()); // 输出: Parent
-```
-
-在这个例子中，我们首先定义了一个父对象`parent`，然后使用`Object.create(parent)`创建了一个新的对象`child`，这个新对象的原型就是`parent`，因此它可以访问`parent`的所有属性和方法。
-
-需要注意的是，原型式继承的一个问题是，由于继承的是引用类型的值，所以如果父对象的某个属性是数组或者对象，那么所有实例都会共享这个属性，一个实例修改这个属性，其他实例的这个属性也会被修改。
-
-## 14、寄生式继承
-
-寄生式继承是一种实现对象之间继承的方法，其基本思想是创建一个用于封装继承过程的函数，该函数在内部以某种方式增强对象，最后返回这个对象。
-
-以下是一个简单的寄生式继承的例子：
-
-```javascript
-function createAnother(original) {
-  var clone = Object.create(original); // 通过调用函数创建一个新对象
-  clone.sayHi = function () {
-    // 以某种方式来增强这个对象
-    console.log("Hi!");
-  };
-  return clone; // 返回这个对象
-}
-
-var person = {
-  name: "Person",
-  hobbies: ["reading", "coding"],
-};
-
-var anotherPerson = createAnother(person);
-
-console.log(anotherPerson.name); // 输出: Person
-console.log(anotherPerson.hobbies); // 输出: ['reading', 'coding']
-anotherPerson.sayHi(); // 输出: Hi!
-```
-
-在这个例子中，我们首先定义了一个`person`对象，然后使用`createAnother(person)`创建了一个新的对象`anotherPerson`，这个新对象继承了`person`的所有属性，并且增加了一个新的方法`sayHi`。
-
-需要注意的是，寄生式继承同样存在原型式继承的问题，即如果父对象的某个属性是数组或者对象，那么所有实例都会共享这个属性，一个实例修改这个属性，其他实例的这个属性也会被修改。
-
-## 15、instanceof
+## instanceof
 
 ```js
 const myInstanceof = (left, right) => {
@@ -456,7 +395,7 @@ const myInstanceof = (left, right) => {
 };
 ```
 
-## 16、bind
+## bind
 
 ```js
 Function.prototype._bind = function (context, ...args) {
@@ -473,7 +412,7 @@ Function.prototype._bind = function (context, ...args) {
 };
 ```
 
-## 17、apply
+## apply
 
 ```js
 Function.prototype._apply = function (context, argsArr) {
@@ -487,7 +426,7 @@ Function.prototype._apply = function (context, argsArr) {
 };
 ```
 
-## 18、call
+## call
 
 ```js
 Function.prototype._call = function (context, ...args) {
@@ -501,7 +440,7 @@ Function.prototype._call = function (context, ...args) {
 };
 ```
 
-## 19、Object.create()
+## Object.create()
 
 ```js
 const _objectCreate = (proto) => {
@@ -512,7 +451,7 @@ const _objectCreate = (proto) => {
 };
 ```
 
-## 20、数组去重
+## 数组去重
 
 ```js
 // 1. Set
@@ -540,4 +479,338 @@ let newArr = [];
 array.filter((item) => {
   return !newArr.includes(item) && (newArr[newArr.length] = item);
 });
+```
+
+## 数组扁平化
+
+```js
+// 方法一
+Array.prototype.myFlat = (arr) => {
+  return [].concat(
+    ...arr.map((item) => {
+      return Array.isArray(item) ? myFlat(item) : item;
+    })
+  );
+};
+
+// 方法二
+Array.prototype.myFlat = (arr) => {
+  return arr.reduce((a, b) => {
+    return a.concat(Array.isArray(b) ? myFlat(b) : b);
+  }, []);
+};
+
+function getFlatArr(list, deepNum = 1) {
+  return deepNum > 0
+    ? list.reduce((pre, item) => {
+        return pre.concat(Array.isArray(item) ? getFlatArr(item, deepNum - 1) : item);
+      }, [])
+    : list.slice();
+}
+```
+
+## sleep()
+
+```js
+// 方法一
+const sleep = (time) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(resolve, time);
+  });
+};
+sleep(1000).then(() => {
+  console.log(1);
+});
+
+// 方法二
+function sleep(callback, time) {
+  if (typeof callback === "function") setTimeout(callback, time);
+}
+function output() {
+  console.log(1);
+}
+sleep(output, 1000);
+```
+
+## List To Tree
+
+```js
+const convert = (list) => {
+  let res = [];
+  let map = list.reduce((pre, cur) => {
+    pre[cur.id] = cur;
+    return pre;
+  }, {});
+  for (const item of list) {
+    if (item.parentId === 0) {
+      res.push(item);
+    } else {
+      if (item.parentId in map) {
+        const parent = map[item.parentId];
+        parent.children = parent.children || [];
+        parent.children.push(item);
+      }
+    }
+  }
+  return res;
+};
+
+// 原始 list 如下
+let list = [
+  { id: 1, name: "部门A", parentId: 0 },
+  { id: 2, name: "部门B", parentId: 0 },
+  { id: 3, name: "部门C", parentId: 1 },
+  { id: 4, name: "部门D", parentId: 1 },
+  { id: 5, name: "部门E", parentId: 2 },
+  { id: 6, name: "部门F", parentId: 3 },
+  { id: 7, name: "部门G", parentId: 2 },
+  { id: 8, name: "部门H", parentId: 4 },
+];
+const result = convert(list);
+console.log(result);
+```
+
+## compose 函数
+
+```js
+const add10 = (x) => x + 10;
+const mul10 = (x) => x * 10;
+const add100 = (x) => x + 100;
+
+// (10 + 100) * 10 + 10 = 1110
+compose(add10, mul10, add100)(10);
+
+function compose(...fns) {
+  return fns.reduce((a, b) => (...args) => {
+    return a(b(...args));
+  });
+}
+
+const composeAsync = (...fns) => {
+  return (x) => {
+    return fns.reduceRight((prev, cur) => {
+      return prev.then(cur);
+    }, Promise.resolve(x));
+  };
+};
+
+composeAsync(
+  add10,
+  mul10,
+  add100
+)(10).then((res) => {
+  console.log(res);
+});
+```
+
+## (5).add(3).minus(2) = 6
+
+```js
+Number.prototype.add = function (x) {
+  return this + x;
+};
+Number.prototype.minus = function (x) {
+  return this - x;
+};
+console.log((5).add(3).minus(2)); // 6
+```
+
+## 控制并发数
+
+```javascript
+function imageLoad(urls, fetchImage, limit) {
+  //先创建长度为limit的池子
+  let pool = urls.splice(0, limit).map((item, index) => {
+    return fetchImage(item).then((res) => {
+      return index; //将当前加载完图片的 index返回
+    });
+  });
+  let p = Promise.race(pool); //将第一个执行成功的 先返回
+  for (let i = 0; i < urls.length; i++) {
+    p = p.then((index) => {
+      //形成链式调用.then .then
+      pool[index] = fetchImage(urls[i]).then(() => {
+        //将已经加载完成的图片重新替换成新的 未加载的图片
+        return index;
+      });
+      return Promise.race(pool);
+    });
+  }
+}
+// 执行
+imageLoad(imageUrls, fetchImage, 3);
+
+function imageLoad1(urls, limit) {
+  function run() {
+    if (urls.length > 0) {
+      const url = urls.shift();
+      return fetchImage(url).then((res) => {
+        return run(); //当图片请求成功之后继续递归调用run
+      });
+    }
+  }
+  // 当imageUrls.length < limit的时候，我们也没有必要去创建多余的Promise
+  const promiseList = Array(Math.min(limit, urls.length))
+    .fill(Promise.resolve())
+    .map((promise) => promise.then(run));
+
+  Promise.all(promiseList).then(() => {
+    //全部加载完成后的操作
+  });
+}
+imageLoad1(imageUrls, 3);
+```
+
+## 发布订阅模式
+
+```js
+class EmitEvent {
+  constructor() {
+    this.eventMap = {};
+  }
+
+  on(event, fn) {
+    const listeners = this.eventMap[event] || (this.eventMap[event] = []);
+    listeners.push(fn);
+  }
+
+  emit(event, ...args) {
+    this.eventMap[event]?.forEach((fn) => {
+      fn.call(null, args);
+    });
+  }
+
+  off(event, fn) {
+    if (!this.eventMap[event]) return;
+    this.eventMap[event] = this.eventMap[event].filter((cn) => fn !== cb);
+  }
+
+  once(event, fn) {
+    this.on(event, (...args) => {
+      fn.call(null, args);
+      this.off(event, fn);
+    });
+  }
+}
+
+const event = new EmitEvent();
+event.on("click", () => {
+  console.log("click");
+});
+event.emit("click");
+```
+
+## EventBus
+
+```js
+class EventBus {
+  events = new Map();
+  constructor() {}
+  on(type, fn) {
+    const callbacks = this.events.get(type);
+    if (callbacks) {
+      callbacks.push(fn);
+    } else {
+      this.events.set(type, [fn]);
+    }
+  }
+  emit(type, ...args) {
+    const context = this;
+    const callbacks = this.events.get(type);
+    if (!callbacks) return;
+    callbacks.forEach((fn) => {
+      fn.apply(context, [...args]);
+    });
+  }
+}
+```
+
+## mergePromise
+
+```js
+const timeout = (ms) =>
+  new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve();
+    }, ms);
+  });
+const ajax1 = () =>
+  timeout(2000).then(() => {
+    console.log("1");
+    return 1;
+  });
+const ajax2 = () =>
+  timeout(1000).then(() => {
+    console.log("2");
+    return 2;
+  });
+const ajax3 = () =>
+  timeout(2000).then(() => {
+    console.log("3");
+    return 3;
+  });
+// --------- 1 --------
+const mergePromise = (ajaxArray) => {
+  // 1,2,3 done [1,2,3] 此处写代码 请写出ES6、ES3 2中解法
+  var data = [];
+  var sequence = Promise.resolve();
+  ajaxArray.forEach((item) => {
+    sequence = sequence.then(item).then((res) => {
+      data.push(res);
+      return data;
+    });
+  });
+  return sequence;
+};
+// ---------- 2 -------
+const mergePromise = (ajaxArray) => {
+  let data = [];
+  return ajaxArray.reduce((prev, curr) => {
+    return prev.then(curr).then((res) => {
+      data.push(res);
+      return data;
+    });
+  }, Promise.resolve());
+};
+
+mergePromise([ajax1, ajax2, ajax3]).then((data) => {
+  console.log("done");
+  console.log(data); // data 为[1,2,3]
+});
+// 执行结果为：1 2 3 done [1,2,3]
+```
+
+## EventEmitter
+
+```typescript
+type FnCallback = (...args) => any;
+
+class EventEmitter {
+  eventMap: { [key in string]?: FnCallback[] } = {};
+
+  constructor() {}
+
+  on(event: string, fn: FnCallback) {
+    const listeners = this.eventMap[event] || (this.eventMap[event] = []);
+    listeners.push(fn);
+  }
+
+  emit(event: string, ...args: any) {
+    this.eventMap[event]?.forEach((fn) => {
+      fn.call(null, args);
+    });
+  }
+
+  off(event: string, fn: FnCallback): void {
+    if (!this.eventMap[event]) return;
+    this.eventMap[event] = this.eventMap[event].filter((cn) => fn !== cb);
+  }
+
+  once(event, fn: FnCallback) {
+    this.on(event, (...args: any) => {
+      fn.call(null, args);
+      this.off(event, fn);
+    });
+  }
+}
 ```

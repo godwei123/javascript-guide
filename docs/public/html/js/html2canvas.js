@@ -46,9 +46,11 @@
     if (typeof b !== "function" && b !== null)
       throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
     extendStatics(d, b);
+
     function __() {
       this.constructor = d;
     }
+
     d.prototype = b === null ? Object.create(b) : ((__.prototype = b.prototype), new __());
   }
 
@@ -73,6 +75,7 @@
             resolve(value);
           });
     }
+
     return new (P || (P = Promise))(function (resolve, reject) {
       function fulfilled(value) {
         try {
@@ -81,6 +84,7 @@
           reject(e);
         }
       }
+
       function rejected(value) {
         try {
           step(generator["throw"](value));
@@ -88,9 +92,11 @@
           reject(e);
         }
       }
+
       function step(result) {
         result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
       }
+
       step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
   }
@@ -117,11 +123,13 @@
         }),
       g
     );
+
     function verb(n) {
       return function (v) {
         return step([n, v]);
       };
     }
+
     function step(op) {
       if (f) throw new TypeError("Generator is already executing.");
       while (_)
@@ -212,6 +220,7 @@
       this.width = w;
       this.height = h;
     }
+
     Bounds.prototype.add = function (x, y, w, h) {
       return new Bounds(this.left + x, this.top + y, this.width + w, this.height + h);
     };
@@ -445,6 +454,7 @@
       this.index = index;
       this.data = data;
     }
+
     /**
      * Get the value for a code point as stored in the Trie.
      *
@@ -917,6 +927,7 @@
       this.start = start;
       this.end = end;
     }
+
     Break.prototype.slice = function () {
       return fromCodePoint.apply(void 0, this.codePoints.slice(this.start, this.end));
     };
@@ -1196,6 +1207,7 @@
     function Tokenizer() {
       this._value = [];
     }
+
     Tokenizer.prototype.write = function (chunk) {
       this._value = this._value.concat(toCodePoints(chunk));
     };
@@ -1651,6 +1663,7 @@
     function Parser(tokens) {
       this._tokens = tokens;
     }
+
     Parser.create = function (value) {
       var tokenizer = new Tokenizer();
       tokenizer.write(value);
@@ -2024,6 +2037,7 @@
     }
     return 0;
   };
+
   function hue2rgb(t1, t2, hue) {
     if (hue < 0) {
       hue += 1;
@@ -2041,6 +2055,7 @@
       return t1;
     }
   }
+
   var hsl = function (args) {
     var tokens = args.filter(nonFunctionArgSeparator);
     var hue = tokens[0],
@@ -2650,6 +2665,7 @@
       this.enabled = enabled;
       this.start = Date.now();
     }
+
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     Logger.prototype.debug = function () {
       var args = [];
@@ -2726,6 +2742,7 @@
 
   var CacheStorage = /** @class */ (function () {
     function CacheStorage() {}
+
     CacheStorage.create = function (name, options) {
       return (CacheStorage._caches[name] = new Cache(name, options));
     };
@@ -2779,6 +2796,7 @@
       this._options = options;
       this._cache = {};
     }
+
     Cache.prototype.addImage = function (src) {
       var result = Promise.resolve();
       if (this.has(src)) {
@@ -3215,9 +3233,11 @@
       throw new Error("Unsupported image type");
     },
   };
+
   function isSupportedImage(value) {
     return value.type !== TokenType.FUNCTION || !!SUPPORTED_IMAGE_FUNCTIONS[value.name];
   }
+
   var SUPPORTED_IMAGE_FUNCTIONS = {
     "linear-gradient": linearGradient,
     "-moz-linear-gradient": prefixLinearGradient,
@@ -4594,6 +4614,7 @@
       this.wordBreak = parse(wordBreak, declaration.wordBreak);
       this.zIndex = parse(zIndex, declaration.zIndex);
     }
+
     CSSParsedDeclaration.prototype.isVisible = function () {
       return this.display > 0 && this.opacity > 0 && this.visibility === VISIBILITY.VISIBLE;
     };
@@ -4629,6 +4650,7 @@
       this.content = parse(content, declaration.content);
       this.quotes = parse(quotes, declaration.quotes);
     }
+
     return CSSParsedPseudoDeclaration;
   })();
   var CSSParsedCounterDeclaration = /** @class */ (function () {
@@ -4636,6 +4658,7 @@
       this.counterIncrement = parse(counterIncrement, declaration.counterIncrement);
       this.counterReset = parse(counterReset, declaration.counterReset);
     }
+
     return CSSParsedCounterDeclaration;
   })();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -4686,6 +4709,7 @@
       this.bounds = parseBounds(element);
       this.flags = 0;
     }
+
     return ElementContainer;
   })();
 
@@ -4694,6 +4718,7 @@
       this.text = text;
       this.bounds = bounds;
     }
+
     return TextBounds;
   })();
   var parseTextBounds = function (value, styles, node) {
@@ -4791,6 +4816,7 @@
       this.text = transform(node.data, styles.textTransform);
       this.textBounds = parseTextBounds(this.text, styles, node);
     }
+
     return TextContainer;
   })();
   var transform = function (text, transform) {
@@ -4815,6 +4841,7 @@
 
   var ImageElementContainer = /** @class */ (function (_super) {
     __extends(ImageElementContainer, _super);
+
     function ImageElementContainer(img) {
       var _this = _super.call(this, img) || this;
       _this.src = img.currentSrc || img.src;
@@ -4823,11 +4850,13 @@
       CacheStorage.getInstance().addImage(_this.src);
       return _this;
     }
+
     return ImageElementContainer;
   })(ElementContainer);
 
   var CanvasElementContainer = /** @class */ (function (_super) {
     __extends(CanvasElementContainer, _super);
+
     function CanvasElementContainer(canvas) {
       var _this = _super.call(this, canvas) || this;
       _this.canvas = canvas;
@@ -4835,11 +4864,13 @@
       _this.intrinsicHeight = canvas.height;
       return _this;
     }
+
     return CanvasElementContainer;
   })(ElementContainer);
 
   var SVGElementContainer = /** @class */ (function (_super) {
     __extends(SVGElementContainer, _super);
+
     function SVGElementContainer(img) {
       var _this = _super.call(this, img) || this;
       var s = new XMLSerializer();
@@ -4852,27 +4883,32 @@
       CacheStorage.getInstance().addImage(_this.svg);
       return _this;
     }
+
     return SVGElementContainer;
   })(ElementContainer);
 
   var LIElementContainer = /** @class */ (function (_super) {
     __extends(LIElementContainer, _super);
+
     function LIElementContainer(element) {
       var _this = _super.call(this, element) || this;
       _this.value = element.value;
       return _this;
     }
+
     return LIElementContainer;
   })(ElementContainer);
 
   var OLElementContainer = /** @class */ (function (_super) {
     __extends(OLElementContainer, _super);
+
     function OLElementContainer(element) {
       var _this = _super.call(this, element) || this;
       _this.start = element.start;
       _this.reversed = typeof element.reversed === "boolean" && element.reversed === true;
       return _this;
     }
+
     return OLElementContainer;
   })(ElementContainer);
 
@@ -4920,6 +4956,7 @@
   var INPUT_COLOR = 0x2a2a2aff;
   var InputElementContainer = /** @class */ (function (_super) {
     __extends(InputElementContainer, _super);
+
     function InputElementContainer(input) {
       var _this = _super.call(this, input) || this;
       _this.type = input.type.toLowerCase();
@@ -4964,27 +5001,32 @@
       }
       return _this;
     }
+
     return InputElementContainer;
   })(ElementContainer);
 
   var SelectElementContainer = /** @class */ (function (_super) {
     __extends(SelectElementContainer, _super);
+
     function SelectElementContainer(element) {
       var _this = _super.call(this, element) || this;
       var option = element.options[element.selectedIndex || 0];
       _this.value = option ? option.text || "" : "";
       return _this;
     }
+
     return SelectElementContainer;
   })(ElementContainer);
 
   var TextareaElementContainer = /** @class */ (function (_super) {
     __extends(TextareaElementContainer, _super);
+
     function TextareaElementContainer(element) {
       var _this = _super.call(this, element) || this;
       _this.value = element.value;
       return _this;
     }
+
     return TextareaElementContainer;
   })(ElementContainer);
 
@@ -4993,6 +5035,7 @@
   };
   var IFrameElementContainer = /** @class */ (function (_super) {
     __extends(IFrameElementContainer, _super);
+
     function IFrameElementContainer(iframe) {
       var _this = _super.call(this, iframe) || this;
       _this.src = iframe.src;
@@ -5024,6 +5067,7 @@
       } catch (e) {}
       return _this;
     }
+
     return IFrameElementContainer;
   })(ElementContainer);
 
@@ -5171,6 +5215,7 @@
     function CounterState() {
       this.counters = {};
     }
+
     CounterState.prototype.getCounterValue = function (name) {
       var counter = this.counters[name];
       if (counter && counter.length) {
@@ -5699,6 +5744,7 @@
       }
       this.documentElement = this.cloneNode(element.ownerDocument.documentElement);
     }
+
     DocumentCloner.prototype.toIFrame = function (ownerDocument, windowSize) {
       var _this = this;
       var iframe = createIFrameContainer(ownerDocument, windowSize);
@@ -6189,6 +6235,7 @@
       this.x = x;
       this.y = y;
     }
+
     Vector.prototype.add = function (deltaX, deltaY) {
       return new Vector(this.x + deltaX, this.y + deltaY);
     };
@@ -6206,6 +6253,7 @@
       this.endControl = endControl;
       this.end = end;
     }
+
     BezierCurve.prototype.subdivide = function (t, firstHalf) {
       var ab = lerp(this.start, this.startControl, t);
       var bc = lerp(this.startControl, this.endControl, t);
@@ -6555,6 +6603,7 @@
               bounds.top + bounds.height - (borderBottomWidth + paddingBottom)
             );
     }
+
     return BoundCurves;
   })();
   var CORNER;
@@ -6635,6 +6684,7 @@
       this.offsetY = offsetY;
       this.matrix = matrix;
     }
+
     return TransformEffect;
   })();
   var ClipEffect = /** @class */ (function () {
@@ -6643,6 +6693,7 @@
       this.target = target;
       this.path = path;
     }
+
     return ClipEffect;
   })();
   var OpacityEffect = /** @class */ (function () {
@@ -6651,6 +6702,7 @@
       this.target = 2 /* BACKGROUND_BORDERS */ | 4 /* CONTENT */;
       this.opacity = opacity;
     }
+
     return OpacityEffect;
   })();
   var isTransformEffect = function (effect) {
@@ -6674,6 +6726,7 @@
       this.nonPositionedFloats = [];
       this.nonPositionedInlineLevel = [];
     }
+
     return StackingContext;
   })();
   var ElementPaint = /** @class */ (function () {
@@ -6703,6 +6756,7 @@
         }
       }
     }
+
     ElementPaint.prototype.getParentEffects = function () {
       var effects = this.effects.slice(0);
       if (this.container.styles.overflowX !== OVERFLOW.VISIBLE) {
@@ -7261,6 +7315,7 @@
       this._data = {};
       this._document = document;
     }
+
     FontMetrics.prototype.parseMetrics = function (fontFamily, fontSize) {
       var container = this._document.createElement("div");
       var img = this._document.createElement("img");
@@ -7335,6 +7390,7 @@
           options.scale
       );
     }
+
     CanvasRenderer.prototype.applyEffects = function (effects, target) {
       var _this = this;
       while (this._activeEffects.length) {
@@ -8606,6 +8662,7 @@
           options.scale
       );
     }
+
     ForeignObjectRenderer.prototype.render = function (element) {
       return __awaiter(this, void 0, void 0, function () {
         var svg, img;
