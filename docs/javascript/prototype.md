@@ -24,7 +24,7 @@ JavaScript 中的对象有一个特殊的`[[Prototype]]`内置属性，其实就
 
 ## 关系图
 
-![img.png](../20190616104616832.jpeg)
+![img.png](../public/16154757484208d724d.png)
 
 ## 继承
 
