@@ -47,4 +47,11 @@ export default defineConfig({
   markdown: {
     lineNumbers: false,
   },
+  vite: {
+    resolve: {
+      alias: {
+        "@": "../../components",
+      },
+    },
+  },
 });

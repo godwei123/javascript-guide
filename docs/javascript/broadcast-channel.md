@@ -31,7 +31,7 @@ myChannel.onmessageerror = function (error) {
 myChannel.close();
 ```
 
-## Broadcast Channel API 优缺点
+## 优缺点
 
 其优点有以下几个：
 
@@ -51,12 +51,12 @@ myChannel.close();
 > 打开多个 tab 页，输入内容并发送，多个 tab 页内容将同步
 
 <script setup>
-import broadcastChannelVisual from '../../components/basic/broadcast-channel-visual.vue'
+import broadcastChannelVisual from '@/basic/broadcast-channel-visual.vue'
 
 </script>
 <broadcast-channel-visual/>
 
 ## 附录
 
-- broadcast-channel ，该项目是一个简单易用的 Broadcast Channel API 封装。
-- react-broadcast-channel ，该项目是一个 React 应用程序的 Broadcast Channel API 封装。
+- broadcast-channel，该项目是一个简单易用的 Broadcast Channel API 封装。
+- react-broadcast-channel，该项目是一个 React 应用程序的 Broadcast Channel API 封装。
