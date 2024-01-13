@@ -1,49 +1,55 @@
 {
-  "hash": "8c7a3147",
-  "configHash": "9a669b4a",
+  "hash": "3ceea40e",
+  "configHash": "d3597bf3",
   "lockfileHash": "d14a798e",
-  "browserHash": "f20a2cdc",
+  "browserHash": "c3617589",
   "optimized": {
     "vue": {
       "src": "../../../../node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "712e7d3f",
+      "fileHash": "897efd9a",
       "needsInterop": false
     },
     "vitepress > @vue/devtools-api": {
       "src": "../../../../node_modules/@vue/devtools-api/lib/esm/index.js",
       "file": "vitepress___@vue_devtools-api.js",
-      "fileHash": "fdb7c434",
+      "fileHash": "32cb1a72",
       "needsInterop": false
     },
     "vitepress > @vueuse/core": {
       "src": "../../../../node_modules/@vueuse/core/index.mjs",
       "file": "vitepress___@vueuse_core.js",
-      "fileHash": "6ba707f3",
+      "fileHash": "377b8580",
       "needsInterop": false
     },
     "vitepress > @vueuse/integrations/useFocusTrap": {
       "src": "../../../../node_modules/@vueuse/integrations/useFocusTrap.mjs",
       "file": "vitepress___@vueuse_integrations_useFocusTrap.js",
-      "fileHash": "0cda2b32",
+      "fileHash": "7f170bd5",
       "needsInterop": false
     },
     "vitepress > mark.js/src/vanilla.js": {
       "src": "../../../../node_modules/mark.js/src/vanilla.js",
       "file": "vitepress___mark__js_src_vanilla__js.js",
-      "fileHash": "1c30b719",
+      "fileHash": "7592b5dc",
       "needsInterop": false
     },
     "vitepress > minisearch": {
       "src": "../../../../node_modules/minisearch/dist/es/index.js",
       "file": "vitepress___minisearch.js",
-      "fileHash": "10d4d3a1",
+      "fileHash": "78cd7c89",
       "needsInterop": false
     },
     "naive-ui": {
       "src": "../../../../node_modules/naive-ui/es/index.js",
       "file": "naive-ui.js",
-      "fileHash": "f4b7021f",
+      "fileHash": "6999af1b",
+      "needsInterop": false
+    },
+    "tinycolor2": {
+      "src": "../../../../node_modules/tinycolor2/esm/tinycolor.js",
+      "file": "tinycolor2.js",
+      "fileHash": "eaad500e",
       "needsInterop": false
     }
   },

@@ -10,12 +10,9 @@
 import { defineProps } from "vue";
 
 const props = defineProps<{
-  mode?: "horizontal" | "vertical" | "center";
   parentStyle?: Record<string, any>;
   childStyle?: Record<string, any>;
 }>();
-
-console.log(props);
 </script>
 
 <style scoped>

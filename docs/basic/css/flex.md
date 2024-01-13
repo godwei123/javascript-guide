@@ -4,8 +4,9 @@
 import FlexVisual from '../../../components/basic/flex-visual.vue'
 </script>
 
+<ClientOnly>
 <flex-visual/>
-
+</ClientOnly>
 ## 容器属性
 
 首先，实现 flex 布局需要先指定一个容器，任何一个容器都可以被指定为 flex 布局，这样容器内部的元素就可以使用 flex 来进行布局。

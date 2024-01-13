@@ -3,7 +3,10 @@
 <script setup lang="ts">
 import BlendModeVisual from "../../../components/basic/blend-mode-visual.vue";
 </script>
+
+<ClientOnly>
 <BlendModeVisual/>
+</ClientOnly>
 
 ## MDN
 
