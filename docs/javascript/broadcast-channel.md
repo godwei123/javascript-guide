@@ -50,11 +50,13 @@ myChannel.close();
 
 > 打开多个 tab 页，输入内容并发送，多个 tab 页内容将同步
 
-<script setup>
+<script setup lang="ts">
 import broadcastChannelVisual from '../../components/basic/broadcast-channel-visual.vue'
 
 </script>
+<ClientOnly>
 <broadcast-channel-visual/>
+</ClientOnly>
 
 ## 附录
 

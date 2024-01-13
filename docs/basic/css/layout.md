@@ -8,7 +8,9 @@ import LayoutVisual from '../../../components/basic/layout-visual.vue'
 
 ### float+margin
 
+<ClientOnly>
 <LayoutVisual :boxStyle="{}" :leftStyle="{float:'left',width:'200px',height:'100%'}" :rightStyle="{width:'auto',height:'100%',marginLeft:'200px'}"/>
+</ClientOnly>
 
 ```html
 <style>
@@ -40,7 +42,9 @@ import LayoutVisual from '../../../components/basic/layout-visual.vue'
 
 ### float+overflow
 
+<ClientOnly>
 <LayoutVisual :boxStyle="{}" :leftStyle="{float:'left',width:'200px',height:'100%'}" :rightStyle="{overflow:'hidden',height:'100%'}"/>
+</ClientOnly>
 
 ```html
 <style>
@@ -71,7 +75,8 @@ import LayoutVisual from '../../../components/basic/layout-visual.vue'
 
 ### flex
 
-<LayoutVisual :boxStyle="{display:'flex'}" :leftStyle="{width:'200px'}" :rightStyle="{flex:1}"/>
+<ClientOnly>
+<LayoutVisual :boxStyle="{display:'flex'}" :leftStyle="{width:'200px'}" :rightStyle="{flex:1}"/></ClientOnly>
 
 ```html
 <style>
@@ -100,7 +105,8 @@ import LayoutVisual from '../../../components/basic/layout-visual.vue'
 
 ## 三栏布局
 
-<LayoutVisual type="2" :boxStyle="{display:'flex',flexDirection:'column'}" :topStyle="{flex:'0 0 auto',height:'50px'}" :middleStyle="{flex:'1 1 auto'}" :bottomStyle="{flex:'0 0 auto',height:'50px'}" />
+<ClientOnly>
+<LayoutVisual type="2" :boxStyle="{display:'flex',flexDirection:'column'}" :topStyle="{flex:'0 0 auto',height:'50px'}" :middleStyle="{flex:'1 1 auto'}" :bottomStyle="{flex:'0 0 auto',height:'50px'}" /></ClientOnly>
 
 ```html
 <style>
