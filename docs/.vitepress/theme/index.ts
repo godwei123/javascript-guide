@@ -8,14 +8,14 @@ export default {
   ...DefaultTheme,
   Layout: Layout,
   enhanceApp(ctx) {
-    console.log(ctx);
+    // console.log(ctx);
     const { app, router } = ctx;
-    router.onBeforeRouteChange = (to: string) => {
-      console.log(to);
-    };
-    router.onAfterRouteChanged = (to: string) => {
-      console.log("11", to);
-    };
+    // router.onBeforeRouteChange = (to: string) => {
+    //   console.log(to);
+    // };
+    // router.onAfterRouteChanged = (to: string) => {
+    //   console.log("11", to);
+    // };
     app.use(naive);
   },
 };
