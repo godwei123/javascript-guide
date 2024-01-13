@@ -15,8 +15,6 @@ const sidebar: DefaultTheme.SidebarMulti = {
   "/basic/network": sidebarBaseBrowserAndNetwork,
   "/basic/browser": sidebarBaseBrowserAndNetwork,
   "/basic/code": sidebarCode,
-  "/study/kotlin": sidebarStudy,
-  "/study/rust": sidebarStudy,
   "/study/blog": sidebarBlog,
 };
 export default sidebar;

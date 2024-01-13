@@ -15,7 +15,7 @@ export default defineConfig({
     nav,
     sidebar,
     footer: {
-      message: "Released under the MIT License.",
+      // message: "Released under the MIT License.",
       copyright: "Copyright © 2021-present God Wei",
     },
     search: {
