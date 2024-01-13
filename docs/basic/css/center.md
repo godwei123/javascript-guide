@@ -1,14 +1,16 @@
 # 居中
 
 <script setup>
-import CenterVisual from '../../../components/basic/center-visual.vue'
+import CenterVisual from "../../../components/basic/center-visual.vue";
 </script>
 
 ## 水平居中
 
 ### 1.text-align
 
+<ClientOnly>
 <CenterVisual  :parentStyle="{textAlign: 'center'}" :childStyle="{display: 'inline-block'}"/>
+</ClientOnly>
 
 ```css
 .parent {
@@ -22,7 +24,9 @@ import CenterVisual from '../../../components/basic/center-visual.vue'
 
 ### 2.margin
 
+<ClientOnly>
 <CenterVisual  :parentStyle="{}" :childStyle="{margin: '0 auto'}"/>
+</ClientOnly>
 
 ```css
 .son {
@@ -32,7 +36,9 @@ import CenterVisual from '../../../components/basic/center-visual.vue'
 
 ### 3.flex
 
+<ClientOnly>
 <CenterVisual  :parentStyle="{display: 'flex','justify-content': 'center'}" :childStyle="{}"/>
+</ClientOnly>
 
 ```css
 .parent {
@@ -43,7 +49,8 @@ import CenterVisual from '../../../components/basic/center-visual.vue'
 
 ### 4.grid
 
-<CenterVisual  :parentStyle="{display: 'grid','justify-content': 'center'}" :childStyle="{}"/>
+<ClientOnly>
+<CenterVisual  :parentStyle="{display: 'grid','justify-content': 'center'}" :childStyle="{}"/></ClientOnly>
 
 ```css
 .parent {
@@ -63,7 +70,8 @@ import CenterVisual from '../../../components/basic/center-visual.vue'
 
 ### 5.绝对定位
 
-<CenterVisual  :parentStyle="{position: 'relative'}" :childStyle="{position: 'absolute', left: '50%', transform: 'translate(-50%, 0)'}"/>
+<ClientOnly>
+<CenterVisual  :parentStyle="{position: 'relative'}" :childStyle="{position: 'absolute', left: '50%', transform: 'translate(-50%, 0)'}"/></ClientOnly>
 
 ```css
 .parent {
@@ -79,7 +87,8 @@ import CenterVisual from '../../../components/basic/center-visual.vue'
 
 ### 6.table
 
-<CenterVisual  :parentStyle="{display: 'table','text-align':'center'}" :childStyle="{display: 'inline-block'}"/>
+<ClientOnly>
+<CenterVisual  :parentStyle="{display: 'table','text-align':'center'}" :childStyle="{display: 'inline-block'}"/></ClientOnly>
 
 ```css
 .parent {
@@ -96,7 +105,8 @@ import CenterVisual from '../../../components/basic/center-visual.vue'
 
 ### 1.flex 布局
 
-<CenterVisual  :parentStyle="{display: 'flex', 'align-items': 'center'}" :childStyle="{}"/>
+<ClientOnly>
+<CenterVisual  :parentStyle="{display: 'flex', 'align-items': 'center'}" :childStyle="{}"/></ClientOnly>
 
 ```css
 .parent {
@@ -107,7 +117,8 @@ import CenterVisual from '../../../components/basic/center-visual.vue'
 
 ### 2.gird 布局
 
-<CenterVisual  :parentStyle="{display: 'grid', 'align-items': 'center'}" :childStyle="{}"/>
+<ClientOnly>
+<CenterVisual  :parentStyle="{display: 'grid', 'align-items': 'center'}" :childStyle="{}"/></ClientOnly>
 
 ```css
 .parent {
@@ -118,7 +129,9 @@ import CenterVisual from '../../../components/basic/center-visual.vue'
 
 ### 3.绝对定位
 
+<ClientOnly>
 <CenterVisual  :parentStyle="{position: 'relative'}" :childStyle="{position: 'absolute', top: '50%', transform: 'translate(0, -50%)'}"/>
+</ClientOnly>
 
 ```css
 .parent {
@@ -141,7 +154,9 @@ import CenterVisual from '../../../components/basic/center-visual.vue'
 
 ### 4.vertical-align + line-height
 
+<ClientOnly>
 <CenterVisual  :parentStyle="{lineHeight: '200px'}" :childStyle="{display: 'inline-block', verticalAlign: 'middle'}"/>
+</ClientOnly>
 
 ```css
 .parent {
@@ -158,7 +173,9 @@ import CenterVisual from '../../../components/basic/center-visual.vue'
 
 ### 1.flex
 
+<ClientOnly>
 <CenterVisual  :parentStyle="{display: 'flex', 'justify-content': 'center', 'align-items': 'center'}" :childStyle="{}"/>
+</ClientOnly>
 
 ```css
 .parent {
@@ -170,7 +187,9 @@ import CenterVisual from '../../../components/basic/center-visual.vue'
 
 ### 2.grid
 
+<ClientOnly>
 <CenterVisual  :parentStyle="{display: 'grid', 'justify-content': 'center', 'align-items': 'center'}" :childStyle="{}"/>
+</ClientOnly>
 
 ```css
 .parent {
@@ -193,7 +212,9 @@ import CenterVisual from '../../../components/basic/center-visual.vue'
 
 ### 3.绝对定位
 
+<ClientOnly>
 <CenterVisual  :parentStyle="{position: 'relative'}" :childStyle="{position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}"/>
+</ClientOnly>
 
 ```css
 .parent {
