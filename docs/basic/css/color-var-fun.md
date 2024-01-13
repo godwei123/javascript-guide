@@ -4,7 +4,9 @@
 import ColorVisual from '../../../components/basic/color-visual.vue'
 </script>
 
+<ClientOnly>
 <color-visual/>
+</ClientOnly>
 
 ## `Hex`
 

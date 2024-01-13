@@ -6,7 +6,9 @@ import textOverflowVisual from '../../../components/basic/text-overflow-visual.v
 
 ## 文字在一行显示，超出部分加省略号
 
+<ClientOnly>
 <textOverflowVisual className="text-ellipsis"/>
+</ClientOnly>
 
 ```css
 .text-ellipsis {
@@ -18,7 +20,9 @@ import textOverflowVisual from '../../../components/basic/text-overflow-visual.v
 
 ## 文字在 n 行显示，超出部分加省略号
 
+<ClientOnly>
 <textOverflowVisual className="text-ellipsis-n"/>
+</ClientOnly>
 
 ```css
 .text-ellipsis-n {
