@@ -134,3 +134,75 @@ javascript 事件循环既然 js 是单线程，那就像只有一个窗口的�
 （3）一旦"执行栈"中的所有同步任务执行完毕，系统就会读取"任务队列（event Queue）"的异步任务,如果有就推入主线程中。
 
 （4）主线程不断重复上面的步骤。
+
+## 问：事件流
+
+事件流是网页元素接收事件的顺序，"DOM2 级事件"规定的事件流包括三个阶段：事件捕获阶段、处于目标阶段、事件冒泡阶段。首先发生的事件捕获，为截获事件提供机会。然后是实际的目标接受事件。最后一个阶段是时间冒泡阶段，可以在这个阶段对事件做出响应。虽然捕获阶段在规范中规定不允许响应事件，但是实际上还是会执行，所以有两次机会获取到目标对象。
+
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件冒泡</title>
+</head>
+<body>
+    <div>
+        <p id="parEle">我是父元素    <span id="sonEle">我是子元素</span></p>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+var sonEle = document.getElementById('sonEle');
+var parEle = document.getElementById('parEle');
+
+parEle.addEventListener('click', function () {
+    alert('父级 冒泡');
+}, false);
+parEle.addEventListener('click', function () {
+    alert('父级 捕获');
+}, true);
+
+sonEle.addEventListener('click', function () {
+    alert('子级冒泡');
+}, false);
+sonEle.addEventListener('click', function () {
+    alert('子级捕获');
+}, true);
+
+</script>
+```
+
+当容器元素及嵌套元素，即在`捕获阶段`又在`冒泡阶段`调用事件处理程序时：**事件按 DOM 事件流的顺序**执行事件处理程序：
+
+- 父级捕获
+- 子级冒泡
+- 子级捕获
+- 父级冒泡
+
+且当事件处于目标阶段时，事件调用顺序决定于绑定事件的**书写顺序**，按上面的例子为，先调用冒泡阶段的事件处理程序，再调用捕获阶段的事件处理程序。依次 alert 出“子集冒泡”，“子集捕获”。
+
+### 参考链接
+
+- https://juejin.im/entry/5826ba9d0ce4630056f85e07
+
+## 问：事件是如何实现的？
+
+基于发布订阅模式，就是在浏览器加载的时候会读取事件相关的代码，但是只有实际等到具体的事件触发的时候才会执行。
+
+比如点击按钮，这是个事件（Event），而负责处理事件的代码段通常被称为事件处理程序（Event Handler），也就是「启动对话框的显示」这个动作。
+
+在 Web 端，我们常见的就是 DOM 事件：
+
+- DOM0 级事件，直接在 html 元素上绑定 on-event，比如 onclick，取消的话，dom.onclick = null，同一个事件只能有一个处理程序，后面的会覆盖前面的。
+- DOM2 级事件，通过 addEventListener 注册事件，通过 removeEventListener 来删除事件，一个事件可以有多个事件处理程序，按顺序执行，捕获事件和冒泡事件
+- DOM3 级事件，增加了事件类型，比如 UI 事件，焦点事件，鼠标事件
+
+### 参考链接
+
+- https://zhuanlan.zhihu.com/p/73091706
+
+## script — defer 和 async
+
+- `async` 立即开始下载脚本，但不会阻止其他页面的动作，加载期间不应该修改 DOM（异步执行）
+- `defer` 立即开始下载脚本，在文档解析和显示完成后再执行脚本（推迟执行）

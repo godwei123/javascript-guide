@@ -131,3 +131,5 @@ c(); // Function
 ```
 
 当然，如果设置 `var CC = 123` ，加声明关键词是可以覆盖的。
+
+- https://zhuanlan.zhihu.com/p/35790971

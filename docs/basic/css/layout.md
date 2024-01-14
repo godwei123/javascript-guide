@@ -106,7 +106,8 @@ import LayoutVisual from '../../../components/basic/layout-visual.vue'
 ## 三栏布局
 
 <ClientOnly>
-<LayoutVisual type="2" :boxStyle="{display:'flex',flexDirection:'column'}" :topStyle="{flex:'0 0 auto',height:'50px'}" :middleStyle="{flex:'1 1 auto'}" :bottomStyle="{flex:'0 0 auto',height:'50px'}" /></ClientOnly>
+<LayoutVisual type="2" :boxStyle="{display:'flex',flexDirection:'column'}" :topStyle="{flex:'0 0 auto',height:'50px'}" :middleStyle="{flex:'1 1 auto'}" :bottomStyle="{flex:'0 0 auto',height:'50px'}" />
+</ClientOnly>
 
 ```html
 <style>
