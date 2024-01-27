@@ -93,7 +93,7 @@ import {
   flexWrapOptions,
   justifyContentOptions,
 } from "./flexConfig";
-import { colors } from "../common/constant";
+import { colors } from "../../common/constant";
 import { uid } from "uid";
 import { FlexItem } from "./interface";
 import { useMessage } from "naive-ui";

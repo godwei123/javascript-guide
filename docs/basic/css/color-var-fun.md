@@ -1,7 +1,7 @@
 # CSS Color
 
 <script setup>
-import ColorVisual from '../../../components/basic/color-visual.vue'
+import ColorVisual from '../../../packages/pages/basic/color-visual.vue'
 </script>
 
 <ClientOnly>

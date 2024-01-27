@@ -1,7 +1,7 @@
 # flex
 
 <script setup>
-import FlexVisual from '../../../components/basic/flex-visual.vue'
+import FlexVisual from '../../../packages/pages/basic/flex-visual.vue'
 </script>
 
 <ClientOnly>

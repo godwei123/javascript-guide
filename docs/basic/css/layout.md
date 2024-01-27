@@ -1,7 +1,7 @@
 # CSS 布局
 
 <script setup>
-import LayoutVisual from '../../../components/basic/layout-visual.vue'
+import LayoutVisual from '../../../packages/pages/basic/layout-visual.vue'
 </script>
 
 ## 两栏布局
