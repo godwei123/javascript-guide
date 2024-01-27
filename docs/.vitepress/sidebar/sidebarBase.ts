@@ -1,4 +1,5 @@
 import { DefaultTheme } from "vitepress";
+import { generateCSSSidebar } from "../scripts/sidebar";
 
 export const sidebarBaseHTMLAndCSS: DefaultTheme.SidebarItem[] = [
   {
@@ -11,27 +12,7 @@ export const sidebarBaseHTMLAndCSS: DefaultTheme.SidebarItem[] = [
   },
   {
     text: "CSS",
-    items: [
-      { text: "Introduction", link: "/basic/css/introduction" },
-      { text: "flex布局", link: "/basic/css/flex" },
-      { text: "grid布局", link: "/basic/css/grid" },
-      { text: "居中", link: "/basic/css/center" },
-      { text: "常见布局", link: "/basic/css/layout" },
-      { text: "BFC", link: "/basic/css/bfc" },
-      { text: "层叠与定位", link: "/basic/css/position" },
-      { text: "过渡与动画", link: "/basic/css/transition-animation" },
-      { text: "伪类与伪元素", link: "/basic/css/pseudo-classes-element" },
-      { text: "CSS选择器", link: "/basic/css/selectors" },
-      { text: "@font-face", link: "/basic/css/@font-face" },
-      { text: "basic-shape", link: "/basic/css/basic-shape" },
-      { text: "blend-mode", link: "/basic/css/blend-mode" },
-      { text: "clip-path", link: "/basic/css/clip-path" },
-      { text: "filter", link: "/basic/css/filter" },
-      { text: "masking", link: "/basic/css/masking" },
-      { text: "shapes", link: "/basic/css/shapes" },
-      { text: "color", link: "/basic/css/color-var-fun" },
-      { text: "text-hidden-overflow", link: "/basic/css/text-hidden-overflow" },
-    ],
+    items: generateCSSSidebar(),
   },
 ];
 export const sidebarBaseBrowserAndNetwork: DefaultTheme.SidebarItem[] = [
