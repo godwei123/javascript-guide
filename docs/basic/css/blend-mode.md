@@ -1,7 +1,7 @@
 # blend-mode
 
 <script setup lang="ts">
-import BlendModeVisual from "../../../components/basic/blend-mode-visual.vue";
+import BlendModeVisual from "../../../packages/pages/basic/blend-mode-visual.vue";
 </script>
 
 <ClientOnly>

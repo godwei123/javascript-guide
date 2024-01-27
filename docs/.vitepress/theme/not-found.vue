@@ -1,18 +1,37 @@
 <script setup lang="ts">
+import lottie from "lottie-web";
+import { onMounted } from "vue";
 import { useRouter } from "vitepress";
+import animationData from "./animation-404.json";
+import { baseURL } from "../project.config";
 
 const router = useRouter();
+
+onMounted(() => {
+  lottie.loadAnimation({
+    container: document.getElementById("lottie"),
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+  });
+});
+
 const goBack = () => {
-  router.go("/javascript-guide/");
+  router.go(baseURL);
 };
 </script>
 
 <template>
-  <div style="position: absolute; top: 50%; left: 50%; translate: -50% -50%">
-    <n-result description="生活总归带点荒谬" size="huge" status="404" title="404 资源不存在">
-      <template #footer>
-        <n-button @click="goBack">回到首页</n-button>
-      </template>
-    </n-result>
-  </div>
+  <div id="lottie" @click="goBack"></div>
 </template>
+
+<style scoped>
+#lottie {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+</style>

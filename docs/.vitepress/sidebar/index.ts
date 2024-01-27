@@ -1,19 +1,14 @@
-import {
-  sidebarBaseBrowserAndNetwork,
-  sidebarBaseHTMLAndCSS,
-  sidebarCode,
-} from "./configs/sidebarBase";
-import sidebarJavaScript from "./configs/sidebarJavaScript";
+import { sidebarBaseBrowserAndNetwork, sidebarBaseHTMLAndCSS, sidebarCode } from "./sidebarBase";
 import { DefaultTheme } from "vitepress";
-import { sidebarBlog } from "./configs/sidebarBlog";
+import { generateJavaScriptSidebar, generateBlogSidebar } from "../scripts/sidebar";
 
 const sidebar: DefaultTheme.SidebarMulti = {
-  "/javascript": sidebarJavaScript,
+  "/javascript": generateJavaScriptSidebar(),
   "/basic/html": sidebarBaseHTMLAndCSS,
   "/basic/css": sidebarBaseHTMLAndCSS,
   "/basic/network": sidebarBaseBrowserAndNetwork,
   "/basic/browser": sidebarBaseBrowserAndNetwork,
   "/basic/code": sidebarCode,
-  "/blog": sidebarBlog,
+  "/blog": generateBlogSidebar(),
 };
 export default sidebar;

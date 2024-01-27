@@ -1,7 +1,7 @@
 # CSS 布局
 
 <script setup>
-import LayoutVisual from '../../../components/basic/layout-visual.vue'
+import LayoutVisual from '../../../packages/pages/basic/layout-visual.vue'
 </script>
 
 ## 两栏布局
@@ -106,7 +106,8 @@ import LayoutVisual from '../../../components/basic/layout-visual.vue'
 ## 三栏布局
 
 <ClientOnly>
-<LayoutVisual type="2" :boxStyle="{display:'flex',flexDirection:'column'}" :topStyle="{flex:'0 0 auto',height:'50px'}" :middleStyle="{flex:'1 1 auto'}" :bottomStyle="{flex:'0 0 auto',height:'50px'}" /></ClientOnly>
+<LayoutVisual type="2" :boxStyle="{display:'flex',flexDirection:'column'}" :topStyle="{flex:'0 0 auto',height:'50px'}" :middleStyle="{flex:'1 1 auto'}" :bottomStyle="{flex:'0 0 auto',height:'50px'}" />
+</ClientOnly>
 
 ```html
 <style>

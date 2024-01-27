@@ -1122,7 +1122,7 @@ export function set(target: Array<any> | Object, key: any, val: any): any {
 原理：
 
 ```js
-// 源码位置：src/core/components/keep-alive.js
+// 源码位置：src/core/packages/keep-alive.js
 export default {
   name: "keep-alive",
   abstract: true, // 判断当前组件虚拟dom是否渲染成真是dom的关键
@@ -1176,7 +1176,7 @@ export default {
 删除 this.cache 中缓存的 VNode 实例。不是简单地将 this.cache 置为 null，而是遍历调用 pruneCacheEntry 函数删除。
 
 ```js
-// src/core/components/keep-alive.js
+// src/core/packages/keep-alive.js
 function pruneCacheEntry(cache: VNodeCache, key: string, keys: Array<string>, current?: VNode) {
   const cached = cache[key];
   if (cached && (!current || cached.tag !== current.tag)) {
@@ -1194,7 +1194,7 @@ function pruneCacheEntry(cache: VNodeCache, key: string, keys: Array<string>, cu
 **render**
 
 ```js
-// src/core/components/keep-alive.js
+// src/core/packages/keep-alive.js
 render () {
 const slot = this.$slots.default
 const vnode: VNode = getFirstComponentChild(slot) // 找到第一个子组件对象
@@ -1214,7 +1214,7 @@ if (componentOptions) { // 存在组件参数
 
     const { cache, keys } = this
     const key: ?string = vnode.key == null // 定义组件的缓存key
-    // same constructor may get registered as different local components
+    // same constructor may get registered as different local packages
     // so cid alone is not enough (#3269)
     ? componentOptions.Ctor.cid + (componentOptions.tag ? `::${componentOptions.tag}` : '')
     : vnode.key
