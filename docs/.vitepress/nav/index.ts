@@ -6,10 +6,14 @@ const nav: DefaultTheme.NavItem[] = [
     link: "/javascript/introduction",
   },
   {
+    text: "CSS",
+    link: "/css/introduction",
+  },
+  {
     text: "前端",
     items: [
       {
-        text: "html & css",
+        text: "html",
         link: "/basic/html/introduction",
       },
       {

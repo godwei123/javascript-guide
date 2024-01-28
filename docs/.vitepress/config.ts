@@ -2,6 +2,7 @@ import nav from "./nav";
 import sidebar from "./sidebar";
 
 import { defineConfig } from "vitepress";
+import { resolve } from "node:url";
 
 export default defineConfig({
   title: "JavaScriptGuide",
@@ -46,5 +47,12 @@ export default defineConfig({
 
   markdown: {
     lineNumbers: false,
+  },
+  vite: {
+    resolve: {
+      alias: {
+        "~": resolve(__dirname, "../packages"),
+      },
+    },
   },
 });

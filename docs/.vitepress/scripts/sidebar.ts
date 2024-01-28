@@ -1,6 +1,9 @@
 import fg from "fast-glob";
 
 const javaScriptIntroduction = { text: "Introduction", link: "/javascript/introduction" };
+const blogIntroduction = { text: "Introduction", link: "/blog/introduction" };
+const cssIntroduction = { text: "Introduction", link: "/css/introduction" };
+
 const javaScriptOptions: Record<string, string> = {
   type: "类型和语法",
   "array-string": "Array & String",
@@ -20,9 +23,6 @@ const javaScriptOptions: Record<string, string> = {
   other: "其他",
   eventloop: "Event Loop",
 };
-
-const blogIntroduction = { text: "Introduction", link: "/blog/introduction" };
-const cssIntroduction = { text: "Introduction", link: "/basic/css/introduction" };
 
 const CSSOptions = {
   "@font-face": "@font-face",
@@ -72,5 +72,5 @@ export const generateBlogSidebar = () => {
 
 export const generateCSSSidebar = () => {
   console.log("css sidebar generate");
-  return generateSidebar("./docs/basic/css", cssIntroduction, CSSOptions, "css");
+  return generateSidebar("./docs/css", cssIntroduction, CSSOptions, "css");
 };

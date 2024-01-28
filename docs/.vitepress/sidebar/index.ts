@@ -1,11 +1,15 @@
 import { sidebarBaseBrowserAndNetwork, sidebarBaseHTMLAndCSS, sidebarCode } from "./sidebarBase";
 import { DefaultTheme } from "vitepress";
-import { generateJavaScriptSidebar, generateBlogSidebar } from "../scripts/sidebar";
+import {
+  generateJavaScriptSidebar,
+  generateBlogSidebar,
+  generateCSSSidebar,
+} from "../scripts/sidebar";
 
 const sidebar: DefaultTheme.SidebarMulti = {
   "/javascript": generateJavaScriptSidebar(),
   "/basic/html": sidebarBaseHTMLAndCSS,
-  "/basic/css": sidebarBaseHTMLAndCSS,
+  "/css": generateCSSSidebar(),
   "/basic/network": sidebarBaseBrowserAndNetwork,
   "/basic/browser": sidebarBaseBrowserAndNetwork,
   "/basic/code": sidebarCode,

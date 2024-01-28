@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { blendModeLists } from "./shapeConfig";
+import { blendModeLists } from "../../common/shapeConfig";
 
 const value = ref("normal");
 const bgValue = ref("#ccc");
