@@ -38,6 +38,7 @@ const CSSOptions: Record<string, { text: string; order: number }> = {
 };
 /**
  * @description: 生成侧边栏
+ * todo: warning
  */
 const generateSidebar = (
   cwd: string,
