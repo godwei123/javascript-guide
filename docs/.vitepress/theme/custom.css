@@ -15,11 +15,6 @@
   --vp-home-hero-image-filter: blur(60px);
 }
 
-html,
-body {
-  /*font-size: 14px !important;*/
-}
-
 .components-container {
   margin: 20px 0;
 }
