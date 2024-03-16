@@ -13,6 +13,6 @@ const sidebar: DefaultTheme.SidebarMulti = {
   "/basic/network": sidebarBaseBrowserAndNetwork,
   "/basic/browser": sidebarBaseBrowserAndNetwork,
   "/basic/code": sidebarCode,
-  "/blog": generateBlogSidebar(),
+  // "/blog": generateBlogSidebar(),
 };
 export default sidebar;

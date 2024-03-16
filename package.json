@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "lottie-web": "^5.12.2",
-    "naive-ui": "^2.34.4",
+    "naive-ui": "^2.38.1",
     "tinycolor2": "^1.6.0",
     "uid": "^2.0.2"
   }
