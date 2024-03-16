@@ -53,7 +53,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 400px;
+  height: calc(100vh - 250px);
   background: #232840;
 }
 
