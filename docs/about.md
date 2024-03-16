@@ -1,5 +1,6 @@
 ---
 layout: page
+footer: false
 ---
 
 <script setup>
@@ -8,19 +9,18 @@ import {
   VPTeamPageTitle,
   VPTeamMembers,
 VPTeamPageSection
-} from 'vitepress/theme'; 
-import { ref } from "vue"; 
+} from 'vitepress/theme';
 
 const members = [
   {
-    avatar: 'avatar.png',
+    avatar: 'IMG_2235.jpg',
     name: 'God wei',
     title: 'All I need is you!',
     desc: 'developer'
   }
 ];
 
-const version = ref('0.0.2');
+const version = '0.0.2';
 </script>
 
 <VPTeamPage>
@@ -30,12 +30,9 @@ const version = ref('0.0.2');
     </template>
     <template #lead>
       <br>
-        version: {{version}} 
-        <Badge type="warning" text="alpha"></Badge>
+      version: {{version}}
      </template>
   </VPTeamPageTitle>
-  <VPTeamMembers
-    size="small"
-    :members="members"
+  <VPTeamMembers :members="members"
   />
 </VPTeamPage>

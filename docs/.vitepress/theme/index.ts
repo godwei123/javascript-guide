@@ -7,15 +7,15 @@ import Layout from "./Layout.vue";
 export default {
   ...DefaultTheme,
   Layout: Layout,
-  enhanceApp(ctx) {
+  enhanceApp(ctx: { app: any; router: any }) {
     // console.log(ctx);
     const { app, router } = ctx;
-    router.onBeforeRouteChange = (to: string) => {
-      console.log("before", to);
-    };
-    router.onAfterRouteChanged = (to: string) => {
-      console.log("after", to);
-    };
+    // router.onBeforeRouteChange = (to: string) => {
+    //   console.log("before", to);
+    // };
+    // router.onAfterRouteChanged = (to: string) => {
+    //   console.log("after", to);
+    // };
     app.use(naive);
   },
 };

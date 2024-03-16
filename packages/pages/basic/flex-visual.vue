@@ -92,10 +92,10 @@ import {
   flexDirectionOptions,
   flexWrapOptions,
   justifyContentOptions,
-} from "./flexConfig";
+} from "../../common/flexConfig";
 import { colors } from "../../common/constant";
 import { uid } from "uid";
-import { FlexItem } from "./interface";
+import { FlexItem } from "../../common/interface";
 import { useMessage } from "naive-ui";
 
 const formRef = ref(null);

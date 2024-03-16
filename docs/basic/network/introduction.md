@@ -1,3 +1,8 @@
+---
+next: false
+prev: false
+---
+
 ::: tip
 计算机网络
 :::

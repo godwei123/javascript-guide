@@ -6,28 +6,32 @@ const nav: DefaultTheme.NavItem[] = [
     link: "/javascript/introduction",
   },
   {
-    text: "前端",
-    items: [
-      {
-        text: "html & css",
-        link: "/basic/html/introduction",
-      },
-      {
-        text: "浏览器 & 网络",
-        link: "/basic/browser/introduction",
-      },
-      {
-        text: "Coding",
-        link: "/basic/code/introduction",
-      },
-    ],
+    text: "CSS",
+    link: "/css/introduction",
+  },
+  // {
+  //   text: "前端",
+  //   items: [
+  // {
+  //   text: "html",
+  //   link: "/basic/html/introduction",
+  // },
+  //   ],
+  // },
+  {
+    text: "network",
+    link: "/basic/browser/introduction",
+  },
+  {
+    text: "coding",
+    link: "/basic/code/introduction",
   },
   {
     text: "blog",
     link: "/blog/introduction",
   },
   {
-    text: "About",
+    text: "about",
     link: "/about",
   },
 ];

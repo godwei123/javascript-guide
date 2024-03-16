@@ -1,5 +1,4 @@
 import { DefaultTheme } from "vitepress";
-import { generateCSSSidebar } from "../scripts/sidebar";
 
 export const sidebarBaseHTMLAndCSS: DefaultTheme.SidebarItem[] = [
   {
@@ -9,10 +8,6 @@ export const sidebarBaseHTMLAndCSS: DefaultTheme.SidebarItem[] = [
       { text: "HTML元素", link: "/basic/html/element" },
       { text: "HTML属性", link: "/basic/html/attribute" },
     ],
-  },
-  {
-    text: "CSS",
-    items: generateCSSSidebar(),
   },
 ];
 export const sidebarBaseBrowserAndNetwork: DefaultTheme.SidebarItem[] = [
