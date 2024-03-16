@@ -38,7 +38,6 @@ const CSSOptions: Record<string, { text: string; order: number }> = {
 };
 /**
  * @description: 生成侧边栏
- * todo: warning
  */
 const generateSidebar = (
   cwd: string,
@@ -50,11 +49,15 @@ const generateSidebar = (
   const result = files.map((file) => {
     const path = file.replace(/(\/index)?\.md$/, "");
     const key = path.replace(/\/$/, "").split("/").pop();
-    return {
-      text: (options[key] && options[key].text) || key,
-      link: `/${prefix}/${path}`,
-      order: (options[key] && options[key].order) || 0,
-    };
+    if (options[key]) {
+      return {
+        text: options[key].text,
+        link: `/${prefix}/${path}`,
+        order: options[key].order,
+      };
+    } else {
+      console.warn(`warning: [sidebar.ts/${prefix}] ${key} not in options`);
+    }
   });
   return [introduction, ...result].sort((a, b) => a.order - b.order);
 };
