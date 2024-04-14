@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref } from "vue";
-import { useRouter, withBase } from "vitepress";
+import { useData, useRouter, withBase } from "vitepress";
 
 const router = useRouter();
 const list = ref([]);
@@ -8,7 +8,8 @@ const list = ref([]);
 const getBlogPages = async () => {
   const files = import.meta.glob("../../docs/blog/*.md", { eager: true });
   for (const key in files) {
-    const name = key.replace(/.*\/(\w+).md/, "$1");
+    const name = key.replace("../../docs/blog/", "").replace(".md", "");
+    if (name === "introduction") continue;
     list.value.push({ name, link: withBase(`/blog/${name}.html`) });
   }
 };

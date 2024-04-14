@@ -1,8 +1,8 @@
 import nav from "./nav";
 import sidebar from "./sidebar";
-
 import { defineConfig } from "vitepress";
 import { resolve } from "node:url";
+import markdownItCodeDemo from "./plugins/markdown-it-code-demo";
 
 export default defineConfig({
   title: "JavaScriptGuide",
@@ -47,6 +47,13 @@ export default defineConfig({
 
   markdown: {
     lineNumbers: false,
+    image: {
+      // 默认禁用图片懒加载
+      lazyLoading: true,
+    },
+    config: (md) => {
+      //  md.use(markdownItCodeDemo);
+    },
   },
   vite: {
     resolve: {

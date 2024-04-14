@@ -11,9 +11,9 @@ hero:
     - theme: brand
       text: 开   始
       link: /javascript/introduction
-    - theme: alt
-      text: View on GitHub
-      link: https://github.com/godwei123/javascript-guide
+#    - theme: alt
+#      text: View on GitHub
+#      link: https://github.com/godwei123/javascript-guide
 
 features:
   - title: HTML

@@ -27,3 +27,11 @@ table {
   width: 100%;
   display: table !important;
 }
+
+.content {
+  max-width: 100% !important;
+
+  .content-container {
+    max-width: 100% !important;
+  }
+}
