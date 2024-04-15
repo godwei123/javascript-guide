@@ -1,4 +1,7 @@
 import fg from "fast-glob";
+import chalk from "chalk";
+
+const warning = chalk.hex("#FFA500");
 
 const javaScriptIntroduction = { text: "Introduction", link: "/javascript/introduction", order: 0 };
 const blogIntroduction = { text: "Introduction", link: "/blog/introduction", order: 0 };
@@ -56,14 +59,14 @@ const generateSidebar = (
         order: options[key].order,
       };
     } else {
-      console.warn(`warning: [sidebar.ts/${prefix}] ${key} not in options`);
+      console.log(warning(`warning: [sidebar.ts/${prefix}] ${key} not in options`));
     }
   });
   return [introduction, ...result].sort((a, b) => a.order - b.order);
 };
 
 export const generateJavaScriptSidebar = () => {
-  console.log("javascript sidebar generate");
+  console.log(chalk.bold.blue("javascript sidebar generate"));
   return generateSidebar(
     "./docs/javascript",
     javaScriptIntroduction,
@@ -73,11 +76,11 @@ export const generateJavaScriptSidebar = () => {
 };
 
 export const generateBlogSidebar = () => {
-  console.log("blog sidebar generate");
+  console.log(chalk.bold.blue("blog sidebar generate"));
   return generateSidebar("./docs/blog", blogIntroduction, {}, "blog");
 };
 
 export const generateCSSSidebar = () => {
-  console.log("css sidebar generate");
+  console.log(chalk.bold.blue("css sidebar generate"));
   return generateSidebar("./docs/css", cssIntroduction, CSSOptions, "css");
 };

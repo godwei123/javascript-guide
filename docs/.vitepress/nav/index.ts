@@ -9,15 +9,7 @@ const nav: DefaultTheme.NavItem[] = [
     text: "CSS",
     link: "/css/introduction",
   },
-  // {
-  //   text: "前端",
-  //   items: [
-  // {
-  //   text: "html",
   //   link: "/basic/html/introduction",
-  // },
-  //   ],
-  // },
   {
     text: "network",
     link: "/basic/browser/introduction",

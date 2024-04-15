@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import DefaultTheme from "vitepress/theme";
 import { darkTheme } from "naive-ui";
-import { ref, watch } from "vue";
+import { ref, watchEffect } from "vue";
 import { useData } from "vitepress";
 import NotFound from "./not-found.vue";
 
 const { isDark } = useData();
 const theme = ref();
 
-watch(isDark, (val) => {
-  theme.value = val ? darkTheme : null;
+watchEffect(() => {
+  theme.value = isDark.value ? darkTheme : null;
 });
 </script>
 

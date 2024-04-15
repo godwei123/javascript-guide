@@ -8,8 +8,9 @@ footer: false
 :::tip 博客目录
 :::
 
-<script setup>
-import BlogToc from "../../packages/pages/blog-toc.vue";
-</script>
-
-<BlogToc />
+:::link-components
+src='packages/pages/blog-toc.vue',
+attrs={
+"title":"博客目录"
+}
+:::
