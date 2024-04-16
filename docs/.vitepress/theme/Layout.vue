@@ -1,16 +1,21 @@
 <script setup lang="ts">
 import DefaultTheme from "vitepress/theme";
 import { darkTheme } from "naive-ui";
-import { ref, watchEffect } from "vue";
+import { ref, watchEffect, inject, computed, watch } from "vue";
 import { useData } from "vitepress";
 import NotFound from "./not-found.vue";
 
 const { isDark } = useData();
 const theme = ref();
+const message = inject("newVersion");
 
 watchEffect(() => {
   theme.value = isDark.value ? darkTheme : null;
 });
+
+const refresh = () => {
+  window.location.reload();
+};
 </script>
 
 <template>
@@ -27,6 +32,22 @@ watchEffect(() => {
       </n-message-provider>
     </n-notification-provider>
   </n-config-provider>
+  <n-element v-if="message" class="fixed">
+    <n-button size="small" text @click="refresh"> 页面有更新，请点击刷新</n-button>
+  </n-element>
 </template>
 
-<style></style>
+<style>
+.fixed {
+  position: fixed;
+  z-index: 10;
+  bottom: 40px;
+  right: 40px;
+  background-color: #e1e4e8;
+  color: #232840;
+  padding: 10px 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px 0px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+}
+</style>

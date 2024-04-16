@@ -5,6 +5,7 @@ import naive from "naive-ui";
 import Layout from "./Layout.vue";
 
 import { currentVersion } from "../project.config";
+import { ref } from "vue";
 
 function judgeVersion(version: string) {
   return version !== currentVersion;
@@ -17,7 +18,9 @@ export default {
     const { app, router } = ctx;
     app.use(naive);
     console.log(process.env.NODE_ENV);
-
+    console.log(app);
+    const hasNewVersion = ref(false);
+    app.provide("newVersion", hasNewVersion);
     if (process.env.NODE_ENV !== "development") {
       let m = app.mount;
       app.mount = function () {
@@ -30,6 +33,7 @@ export default {
               console.log(
                 `Current version is ${currentVersion}, remote version is ${data.version}, New version is available`
               );
+              hasNewVersion.value = true;
             }
           }
         };
