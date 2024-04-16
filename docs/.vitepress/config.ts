@@ -61,5 +61,16 @@ export default defineConfig({
         "~": resolve(__dirname, "../packages"),
       },
     },
+    build: {
+      rollupOptions: {
+        output: {
+          assetFileNames: (assetInfo) => {
+            if (assetInfo.name === "webWorker.js") {
+              return assetInfo.name;
+            }
+          },
+        },
+      },
+    },
   },
 });

@@ -22,7 +22,7 @@ export default {
       let m = app.mount;
       app.mount = function () {
         m("#app");
-        const myWorker = new Worker("/javascript-guide/public/js/webWorker.js");
+        const myWorker = new Worker("/javascript-guide/js/webWorker.js");
         myWorker.onmessage = function (e) {
           const data = JSON.parse(e.data);
           if (data.version) {
