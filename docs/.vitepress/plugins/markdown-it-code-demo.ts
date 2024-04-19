@@ -2,12 +2,17 @@ import MarkdownIt from "markdown-it";
 import * as path from "node:path";
 import chalk from "chalk";
 import { it } from "node:test";
+import { parseNonStandardJSON } from "./utils";
 
 const basePath = path.resolve(process.cwd());
 
+function replaceLinkContent(linkLines: string[]) {
+  return parseNonStandardJSON(linkLines.join(""));
+}
+
 const markdownItCodeDemo = (md: MarkdownIt, options) => {
   md.core.ruler.before("normalize", "codeDemo", (state) => {
-    const codeDemoReg = /:::\s?link-components\s?([^]+?):::/g;
+    const codeDemoReg = /@link-components\s?([^]+?):::/g;
     if (!codeDemoReg.test(state.src)) return;
     const importPaths = [];
     state.src = state.src.replace(codeDemoReg, (match, code) => {

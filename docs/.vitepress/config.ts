@@ -54,7 +54,6 @@ export default defineConfig({
       lazyLoading: true,
     },
     config: (md) => {
-      md.use(markdownItCodeDemo);
       md.use(markdownItProTable);
     },
   },

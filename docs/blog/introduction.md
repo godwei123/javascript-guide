@@ -8,12 +8,19 @@ footer: false
 :::tip 博客目录
 :::
 
+@link-components
+{src:'packages/pages/blog-toc.vue',
+attrs:{
+"title":"博客目录"
+}}
+@end
+
 @pro-table
 {
 "columns":[
-{ "title": "No", "dataIndex": "no" },
-{ "title": "Title", "dataIndex": "title" },
-{ "title": "Length", "dataIndex": "length" }
+{ "title": "No", "key": "no" },
+{ "title": "Title", "key": "title", "resizable": true},
+{ "title": "Length", "key": "length" }
 ],
 "data":[
 { "no": 1, "title": "Introduction", "length": "1 min" },
@@ -21,6 +28,8 @@ footer: false
 { "no": 3, "title": "Basic Usage", "length": "3 min" },
 { "no": 4, "title": "Advanced Usage", "length": "4 min" },
 { "no": 5, "title": "API", "length": "5 min" }
-]
+],
+"bordered": false
 }
-@end-table
+
+@end
