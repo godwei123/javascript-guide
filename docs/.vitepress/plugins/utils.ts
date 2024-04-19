@@ -15,7 +15,6 @@ export const parseNonStandardJSON = (s: string) => {
     .replace(/:\s*,\s'/g, `:"",'`)
     .replace(/,\s*}/g, "}")
     .replace(/'/g, '"');
-  console.log(str);
   return JSON.parse(str);
 };
 

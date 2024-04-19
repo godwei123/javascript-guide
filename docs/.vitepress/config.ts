@@ -2,9 +2,7 @@ import nav from "./nav";
 import sidebar from "./sidebar";
 import { defineConfig } from "vitepress";
 import { resolve } from "node:url";
-import markdownItCodeDemo from "./plugins/markdown-it-code-demo";
-// @ts-ignore
-import markdownItProTable from "./plugins/markdown-it-pro-table";
+import markdownItCustomTag from "./plugins/markdown-it-custom-tag";
 
 export default defineConfig({
   title: "JavaScriptGuide",
@@ -54,7 +52,7 @@ export default defineConfig({
       lazyLoading: true,
     },
     config: (md) => {
-      md.use(markdownItProTable);
+      md.use(markdownItCustomTag);
     },
   },
   vite: {

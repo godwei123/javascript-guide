@@ -10,7 +10,7 @@ let importMap = {};
 
 function replaceTableContent(tableLines: string[]) {
   const attrs = parseNonStandardJSON(tableLines.join(""));
-  return `<ClientOnly><n-data-table v-bind='${JSON.stringify(attrs)}'></n-data-table></ClientOnly>`;
+  return `<ClientOnly><n-data-table v-bind="${JSON.stringify(attrs)}"></n-data-table></ClientOnly>`;
 }
 
 function replaceLinkContent(linkLines: string[]) {
@@ -20,7 +20,7 @@ function replaceLinkContent(linkLines: string[]) {
     props.src.replaceAll("-", "").split("/").pop().split(".")[0] +
     new Date().getTime().toString(16).toUpperCase();
   importMap[CmpName] = CmpPath;
-  return `<ClientOnly><${CmpName} v-bind='${JSON.stringify(props.attrs)}'/></ClientOnly>`;
+  return `<ClientOnly><${CmpName} v-bind="${JSON.stringify(props.attrs)}"/></ClientOnly>`;
 }
 
 function replaceContent(tableLines: string[], linkLines: string[]) {
@@ -37,7 +37,7 @@ function replaceContent(tableLines: string[], linkLines: string[]) {
   return "";
 }
 
-const markdownItProTable = (md: MarkdownIt, options) => {
+const markdownItCustomTag = (md: MarkdownIt, options) => {
   md.core.ruler.before("normalize", "codeDemo", (state) => {
     const reg = new RegExp(customPluginKeys.join("|"));
     if (!reg.test(state.src)) return;
@@ -81,8 +81,8 @@ const markdownItProTable = (md: MarkdownIt, options) => {
       result.unshift(start + imports + "\n" + end);
     }
     state.src = result.join("\n");
-    console.log(state.src);
     importMap = {};
   });
 };
-export default markdownItProTable;
+
+export default markdownItCustomTag;
