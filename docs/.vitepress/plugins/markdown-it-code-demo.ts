@@ -1,6 +1,7 @@
 import MarkdownIt from "markdown-it";
 import * as path from "node:path";
 import chalk from "chalk";
+import { it } from "node:test";
 
 const basePath = path.resolve(process.cwd());
 
@@ -8,6 +9,7 @@ const markdownItCodeDemo = (md: MarkdownIt, options) => {
   md.core.ruler.before("normalize", "codeDemo", (state) => {
     const codeDemoReg = /:::\s?link-components\s?([^]+?):::/g;
     if (!codeDemoReg.test(state.src)) return;
+    const importPaths = [];
     state.src = state.src.replace(codeDemoReg, (match, code) => {
       const srcReg = /src='([^']+)'/;
       const attrsReg = /attrs=({[^}]+})/;
@@ -23,12 +25,17 @@ const markdownItCodeDemo = (md: MarkdownIt, options) => {
       const eleAttrs = Object.entries(attrs).reduce((prev, cur) => {
         return prev + `${cur[0]}="${cur[1]}" `;
       }, "");
-
-      return `<script setup>\nimport Cmp from '${path.join(
-        basePath,
-        src
-      )}';\n</script>\n<ClientOnly><Cmp ${eleAttrs}/></ClientOnly>`;
+      const p = path.resolve(basePath, src);
+      const name = "Cmp" + importPaths.length;
+      importPaths.push({ path: p, name });
+      return `<ClientOnly><${name} ${eleAttrs}/></ClientOnly>`;
     });
+    const i = importPaths
+      .map((item) => {
+        return `import ${item.name} from "${item.path}";`;
+      })
+      .join("\n");
+    state.src = "<script setup>" + i + "</script>" + state.src;
   });
 };
 export default markdownItCodeDemo;

@@ -3,6 +3,8 @@ import sidebar from "./sidebar";
 import { defineConfig } from "vitepress";
 import { resolve } from "node:url";
 import markdownItCodeDemo from "./plugins/markdown-it-code-demo";
+// @ts-ignore
+import markdownItProTable from "./plugins/markdown-it-pro-table";
 
 export default defineConfig({
   title: "JavaScriptGuide",
@@ -53,6 +55,7 @@ export default defineConfig({
     },
     config: (md) => {
       md.use(markdownItCodeDemo);
+      md.use(markdownItProTable);
     },
   },
   vite: {
