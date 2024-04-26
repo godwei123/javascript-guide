@@ -1,9 +1,11 @@
 ## 图片懒加载
 
-- window.innerHeight 是浏览器可视区的高度
-- document.body.scrollTop || document.documentElement.scrollTop 是浏览器滚动的过的距离
-- imgs.offsetTop 是元素顶部距离文档顶部的高度（包括滚动条的距离）
-- 图片加载条件：img.offsetTop < window.innerHeight + document.body.scrollTop;
+## 计算高度
+
+`window.innerHeight`是浏览器可视区的高度，`document.body.scrollTop || document.documentElement.scrollTop`是浏览器滚动的过的距离
+, `imgs.offsetTop`是元素顶部距离文档顶部的高度（包括滚动条的距离）。图片加载条件：`img.offsetTop < window.innerHeight + document.body.scrollTop`
+
+**示例代码：**
 
 ```html
 <div class="container">
@@ -27,8 +29,11 @@
   }
   window.onscroll = lozyLoad();
 </script>
+```
 
-<!-- IntersectionObserver -->
+## IntersectionObserver
+
+```html
 <head>
   <style>
     .viewport {
@@ -55,7 +60,6 @@
     }
   </style>
 </head>
-
 <body>
   <div class="viewport" id="viewport">
     <div class="box1">
@@ -186,5 +190,3 @@
   }
 </script>
 ```
-
-##
