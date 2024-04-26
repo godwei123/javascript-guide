@@ -9,7 +9,8 @@
     "docs:build": "node ./scripts/version.js && vitepress build docs",
     "docs:serve": "vitepress serve docs",
     "prepare": "husky install",
-    "lint": "prettier --write ."
+    "lint": "prettier --write .",
+    "transformat": "node ./scripts/transformMd.js"
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.1",

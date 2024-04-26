@@ -1,19 +1,18 @@
-import MarkdownIt from "markdown-it";
-import chalk from "chalk";
-import { getAllLine, parseNonStandardJSON } from "./utils";
+import fs from "node:fs";
+import { glob } from "fast-glob";
+import { getAllLine, parseNonStandardJSON } from "../docs/.vitepress/plugins/utils.js";
 import path from "node:path";
+import chalk from "chalk";
 
 const basePath = path.resolve(process.cwd());
 const customPluginKeys = ["@pro-table", "@link-components"];
 
-let importMap = {};
-
-function replaceTableContent(tableLines: string[]) {
+function replaceTableContent(tableLines) {
   const attrs = parseNonStandardJSON(tableLines.join(""));
   return `<ClientOnly><n-data-table v-bind="${JSON.stringify(attrs)}"></n-data-table></ClientOnly>`;
 }
 
-function replaceLinkContent(linkLines: string[]) {
+function replaceLinkContent(linkLines) {
   const props = parseNonStandardJSON(linkLines.join(""));
   const CmpPath = path.resolve(basePath, props.src);
   const CmpName = props.src.replaceAll("-", "").split("/").pop().split(".")[0].toUpperCase();
@@ -21,7 +20,7 @@ function replaceLinkContent(linkLines: string[]) {
   return `<ClientOnly><${CmpName} v-bind="${JSON.stringify(props.attrs)}"/></ClientOnly>`;
 }
 
-function replaceContent(tableLines: string[], linkLines: string[]) {
+function replaceContent(tableLines, linkLines) {
   if (tableLines.length > 0 && linkLines.length > 0) {
     console.log(chalk.red.bold("解析出错，@pro-table和@link-components不能同时存在"));
     return;
@@ -35,11 +34,13 @@ function replaceContent(tableLines: string[], linkLines: string[]) {
   return "";
 }
 
-const markdownItCustomTag = (md: MarkdownIt, options) => {
-  md.core.ruler.before("normalize", "demo", (state) => {
+glob("docs/**/*.md").then((files) => {
+  let importMap = {};
+  files.forEach((file) => {
+    const data = fs.readFileSync(file, "utf8");
     const reg = new RegExp(customPluginKeys.join("|"));
-    if (!reg.test(state.src)) return;
-    const lines = getAllLine(state.src);
+    if (!reg.test(data)) return;
+    const lines = getAllLine(data);
     let tableLines = [];
     let linkLines = [];
     const result = [];
@@ -78,10 +79,8 @@ const markdownItCustomTag = (md: MarkdownIt, options) => {
       const end = "</script>";
       result.unshift(start + imports + "\n" + end);
     }
-    state.src = result.join("\n");
     importMap = {};
-    console.log("====", state.src);
+    const updatedData = result.join("\n");
+    fs.writeFileSync(file, updatedData);
   });
-};
-
-export default markdownItCustomTag;
+});

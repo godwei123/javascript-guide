@@ -9,10 +9,12 @@ footer: false
 :::
 
 @link-components
-{src:'packages/pages/blog-toc.vue',
+{
+src:'packages/pages/blog-toc.vue',
 attrs:{
 "title":"博客目录"
-}}
+}
+}
 @end
 
 @pro-table
@@ -31,5 +33,4 @@ attrs:{
 ],
 "bordered": false
 }
-
 @end

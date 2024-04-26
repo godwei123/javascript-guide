@@ -1,5 +1,5 @@
 export const parseNonStandardJSON = (s: string) => {
-  if (s.trim()) return {};
+  if (s.trim() === "") return {};
   const str = s
     .replace(/(['"])?(\d{4})-(\d{1,2})-(\d{1,2})?\s*,/g, '"$2-$3-$4",')
     // 通过@colon@替换“:”，防止日期格式报错

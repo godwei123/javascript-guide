@@ -43,3 +43,8 @@ table {
     border-bottom: 1px solid var(--n-merged-border-color);
   }
 }
+
+.vp-doc h2 {
+  border-top: none;
+  margin-top: 8px;
+}

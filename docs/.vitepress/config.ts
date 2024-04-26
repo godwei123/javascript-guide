@@ -2,7 +2,6 @@ import nav from "./nav";
 import sidebar from "./sidebar";
 import { defineConfig } from "vitepress";
 import { resolve } from "node:url";
-import markdownItCustomTag from "./plugins/markdown-it-custom-tag";
 
 export default defineConfig({
   title: "JavaScriptGuide",
@@ -52,7 +51,7 @@ export default defineConfig({
       lazyLoading: true,
     },
     config: (md) => {
-      md.use(markdownItCustomTag);
+      // md.use(markdownItCustomTag);
     },
   },
   vite: {
