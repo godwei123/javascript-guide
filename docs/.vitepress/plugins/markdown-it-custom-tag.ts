@@ -91,7 +91,6 @@ const markdownItCustomTag = (md: MarkdownIt, options) => {
     }
     state.src = result.join("\n");
     importMap = {};
-    console.log("====", state.src);
   });
 };
 

@@ -1,7 +1,9 @@
 ---
+prev: false
 next: false
+aside: false
 ---
 
-# Introduction
-
-> JavaScript 是前端的核心技术。
+::: tip
+This is a work in progress. The content is not yet complete.
+:::

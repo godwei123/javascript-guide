@@ -3,6 +3,8 @@ import "./custom.css";
 import naive from "naive-ui";
 // @ts-ignore
 import Layout from "./Layout.vue";
+import DemoBlock from "@ruabick/vitepress-demo-block";
+import "@ruabick/vitepress-demo-block/dist/style.css";
 
 import { currentVersion } from "../project.config";
 import { ref } from "vue";
@@ -17,8 +19,9 @@ export default {
   enhanceApp(ctx: { app: any; router: any }) {
     const { app, router } = ctx;
     app.use(naive);
-    console.log(process.env.NODE_ENV);
-    console.log(app);
+    app.component("demo", DemoBlock);
+    // console.log(process.env.NODE_ENV);
+    // console.log(app);
     const hasNewVersion = ref(false);
     app.provide("newVersion", hasNewVersion);
     if (process.env.NODE_ENV !== "development") {

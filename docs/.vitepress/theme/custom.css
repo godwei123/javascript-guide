@@ -48,3 +48,7 @@ table {
   border-top: none;
   margin-top: 8px;
 }
+
+.vitepress-demo .demo-platforms {
+  visibility: hidden;
+}
