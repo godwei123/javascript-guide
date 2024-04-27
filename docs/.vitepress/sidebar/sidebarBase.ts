@@ -40,7 +40,7 @@ export const sidebarCode = [
     text: "代码",
     items: [
       { text: "Introduction", link: "/basic/code/introduction" },
-      { text: "手写代码", link: "/basic/code/Code" },
+      { text: "手写代码", link: "/basic/code/coding" },
       { text: "代码输出", link: "/basic/code/output" },
       { text: "文件上传", link: "/basic/code/file-upload" },
       { text: "文件下载", link: "/basic/code/file-download" },
