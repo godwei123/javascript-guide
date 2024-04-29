@@ -3,10 +3,12 @@ import "./custom.css";
 import naive from "naive-ui";
 // @ts-ignore
 import Layout from "./Layout.vue";
+// @ts-ignore
+import DemoContainer from "./DemoContainer.vue";
 import DemoBlock from "@ruabick/vitepress-demo-block";
 import "@ruabick/vitepress-demo-block/dist/style.css";
-
 import { currentVersion } from "../project.config";
+
 import { ref } from "vue";
 
 function judgeVersion(version: string) {
@@ -20,6 +22,7 @@ export default {
     const { app, router } = ctx;
     app.use(naive);
     app.component("demo", DemoBlock);
+    app.component("Demos", DemoContainer);
     // console.log(process.env.NODE_ENV);
     // console.log(app);
     const hasNewVersion = ref(false);

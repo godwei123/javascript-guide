@@ -18,8 +18,8 @@ box-reflect: <direction> <offset> <mask-box-image>;
 <template>
 <div>
   <n-select v-model:value="value" :options="options" />
-  <div style="height:400px;display:flex;align-items:center;margin: 20px auto;justify-content: center;">
-    <div :class="['box',value]">The number is</div>
+  <div style="height:300px;display:flex;align-items:center;margin: 20px auto;justify-content: center;">
+    <div :class="['box',value]">文本</div>
   </div>
 </div>
 </template>
@@ -42,7 +42,7 @@ const value = ref('above')
     background-color: #f00;
 }
 .above {
-    -webkit-box-reflect: above 10px linear-gradient(transparent, rgba(0, 0, 0, 0.2));
+    -webkit-box-reflect: above 10px;
 }
 .below {
     -webkit-box-reflect: below 10px linear-gradient(transparent, rgba(0, 0, 0, 0.2));
@@ -56,3 +56,9 @@ const value = ref('above')
 </style>
 
 ```
+
+:::demos Attribute stripe accepts a Boolean. If true, table will be striped.
+
+test/striped
+
+:::

@@ -55,6 +55,7 @@ export default defineConfig({
     config: (md) => {
       md.use(markdownItCustomTag);
       applyPlugins(md);
+      // markdownItContainerDemos(md);
     },
   },
   vite: {
