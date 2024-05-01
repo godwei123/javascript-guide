@@ -2,11 +2,10 @@ import nav from "./nav";
 import sidebar from "./sidebar";
 import { defineConfig } from "vitepress";
 import { resolve } from "node:url";
-import markdownItCustomTag from "./plugins/markdown-it-custom-tag";
 import { applyPlugins } from "@ruabick/md-demo-plugins";
 import markdownItFootnote from "markdown-it-footnote";
-import { markdownItContainerDemos } from "./plugins/markdown-it-container-demos";
 import { containerPreview, componentPreview } from "./plugins";
+import mdContainer, { ContainerOpts } from "markdown-it-container";
 
 export default defineConfig({
   title: "JavaScriptGuide",
@@ -56,12 +55,36 @@ export default defineConfig({
       lazyLoading: true,
     },
     config: (md) => {
-      md.use(markdownItCustomTag);
       applyPlugins(md);
       md.use(markdownItFootnote);
-      // markdownItContainerDemos(md);
       md.use(containerPreview);
       md.use(componentPreview);
+      const defaultRender = md.renderer.rules.fence!;
+      md.renderer.rules.fence = (tokens, idx, options, env, self) => {
+        const isInProTableContainer =
+          tokens[idx - 1].info.trim() === "pro-table" &&
+          tokens[idx + 1].type === "container_pro-table_close";
+
+        if (tokens[idx].type === "fence" && isInProTableContainer) {
+          return "";
+        }
+        return defaultRender(tokens, idx, options, env, self);
+      };
+      md.use(mdContainer, "pro-table", {
+        validate(params) {
+          return !!params.trim().match(/^pro-table\s*(.*)$/);
+        },
+
+        render: function (tokens, idx) {
+          const m = tokens[idx].type.trim().match(/pro-table\s*(.*)$/);
+          if (tokens[idx].nesting === 1 /* means the tag is opening */) {
+            const content = tokens[idx + 1].type === "fence" ? tokens[idx + 1].content : "";
+            return "<n-data-table v-bind=" + "'" + JSON.stringify(JSON.parse(content)) + "'" + ">";
+          } else {
+            return "</n-data-table>";
+          }
+        },
+      } as ContainerOpts);
     },
   },
   vite: {
