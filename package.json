@@ -27,6 +27,7 @@
     "less": "^4.2.0",
     "lint-staged": "^13.0.2",
     "markdown-it-container": "^4.0.0",
+    "markdown-it-footnote": "^4.0.0",
     "prettier": "2.7.1",
     "sass": "^1.75.0",
     "vitepress": "^1.0.1"

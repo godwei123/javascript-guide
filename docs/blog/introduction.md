@@ -8,14 +8,11 @@ footer: false
 :::tip 博客目录
 :::
 
-@link-components
-{
-src:'packages/pages/blog-toc.vue',
-attrs:{
-"title":"博客目录"
-}
-}
-@end
+:::preview
+
+demo-preview=../../packages/pages/blog-toc.vue
+
+:::
 
 @pro-table
 {

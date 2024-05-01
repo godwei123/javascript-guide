@@ -4,6 +4,9 @@ import { defineConfig } from "vitepress";
 import { resolve } from "node:url";
 import markdownItCustomTag from "./plugins/markdown-it-custom-tag";
 import { applyPlugins } from "@ruabick/md-demo-plugins";
+import markdownItFootnote from "markdown-it-footnote";
+import { markdownItContainerDemos } from "./plugins/markdown-it-container-demos";
+import { containerPreview, componentPreview } from "./plugins";
 
 export default defineConfig({
   title: "JavaScriptGuide",
@@ -55,7 +58,10 @@ export default defineConfig({
     config: (md) => {
       md.use(markdownItCustomTag);
       applyPlugins(md);
+      md.use(markdownItFootnote);
       // markdownItContainerDemos(md);
+      md.use(containerPreview);
+      md.use(componentPreview);
     },
   },
   vite: {

@@ -4,7 +4,7 @@ import path from "node:path";
 import { docRoot } from "../project.config";
 
 export const markdownItContainerDemos = (md) => {
-  md.use(mdContainer, "demos", {
+  md.use(mdContainer, "preview", {
     validate(params) {
       return !!params.trim().match(/^demos\s*(.*)$/);
     },
