@@ -6,6 +6,7 @@ import { applyPlugins } from "@ruabick/md-demo-plugins";
 import markdownItFootnote from "markdown-it-footnote";
 import { containerPreview, componentPreview } from "./plugins";
 import mdContainer, { ContainerOpts } from "markdown-it-container";
+import JSON5 from "json5";
 
 export default defineConfig({
   title: "JavaScriptGuide",
@@ -79,7 +80,7 @@ export default defineConfig({
           const m = tokens[idx].type.trim().match(/pro-table\s*(.*)$/);
           if (tokens[idx].nesting === 1 /* means the tag is opening */) {
             const content = tokens[idx + 1].type === "fence" ? tokens[idx + 1].content : "";
-            return "<n-data-table v-bind=" + "'" + JSON.stringify(JSON.parse(content)) + "'" + ">";
+            return "<n-data-table v-bind=" + "'" + JSON.stringify(JSON5.parse(content)) + "'" + ">";
           } else {
             return "</n-data-table>";
           }

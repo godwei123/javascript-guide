@@ -24,6 +24,7 @@
     "fast-glob": "^3.3.2",
     "fs-extra": "^11.1.1",
     "husky": "^8.0.1",
+    "json5": "^2.2.3",
     "less": "^4.2.0",
     "lint-staged": "^13.0.2",
     "markdown-it-container": "^4.0.0",
