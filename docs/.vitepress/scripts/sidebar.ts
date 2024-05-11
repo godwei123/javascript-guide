@@ -38,6 +38,7 @@ const CSSOptions: Record<string, { text: string; order: number }> = {
   position: { text: "层叠与定位", order: 8 },
   "pseudo-classes-element": { text: "伪类与伪元素", order: 9 },
   selectors: { text: "CSS选择器", order: 10 },
+  "color-var-fun": { text: "color-var-fun", order: 11 },
 };
 /**
  * @description: 生成侧边栏

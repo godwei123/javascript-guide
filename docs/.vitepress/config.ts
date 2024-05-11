@@ -4,8 +4,8 @@ import { defineConfig } from "vitepress";
 import { resolve } from "node:url";
 import { applyPlugins } from "@ruabick/md-demo-plugins";
 import markdownItFootnote from "markdown-it-footnote";
-import { containerPreview, componentPreview } from "./plugins";
 import mdContainer, { ContainerOpts } from "markdown-it-container";
+import { containerPreview, componentPreview } from "./plugins";
 import JSON5 from "json5";
 
 export default defineConfig({

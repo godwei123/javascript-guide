@@ -13,11 +13,13 @@ import {
 const titleRegex = /title=['"](.*?)['"]/;
 const pathRegex = /path=['"](.*?)['"]/;
 const descriptionRegex = /description=['"](.*?)['"]/;
+const onlyRenderRegex = /onlyRender=['"](.*?)['"]/;
 
 export interface DefaultProps {
   path: string;
   title: string;
   description: string;
+  onlyRender?: boolean;
 }
 
 /**
@@ -32,12 +34,14 @@ export const transformPreview = (md: MarkdownIt, token: Token, env: any) => {
     path: "",
     title: "默认标题",
     description: "描述内容",
+    onlyRender: false,
   };
 
   // 获取Props相关参数
   const titleValue = token.content.match(titleRegex);
   const pathRegexValue = token.content.match(pathRegex);
   const descriptionRegexValue = token.content.match(descriptionRegex);
+  const onlyRenderRegexValue = token.content.match(onlyRenderRegex);
 
   if (!pathRegexValue)
     throw new Error("@vitepress-demo-preview/plugin: path is a required parameter");
@@ -45,6 +49,7 @@ export const transformPreview = (md: MarkdownIt, token: Token, env: any) => {
   componentProps.path = isCheckingRelativePath(pathRegexValue[1]);
   componentProps.title = titleValue ? titleValue[1] : "";
   componentProps.description = descriptionRegexValue ? descriptionRegexValue[1] : "";
+  componentProps.onlyRender = onlyRenderRegexValue ? onlyRenderRegexValue[1] === "true" : false;
 
   // 组件绝对路径
   const componentPath = resolve(dirname(env.path), componentProps.path || ".");
@@ -67,7 +72,7 @@ export const transformPreview = (md: MarkdownIt, token: Token, env: any) => {
   const code = encodeURI(componentSourceCode);
   const showCode = encodeURIComponent(compileHighlightCode);
 
-  const sourceCode = `<demo-preview title="${componentProps.title}" description="${componentProps.description}" code="${code}" showCode="${showCode}" suffixName="${suffixName}" absolutePath="${componentPath}" relativePath="${componentProps.path}">
+  const sourceCode = `<demo-preview :onlyRender="${componentProps.onlyRender}" title="${componentProps.title}" description="${componentProps.description}" code="${code}" showCode="${showCode}" suffixName="${suffixName}" absolutePath="${componentPath}" relativePath="${componentProps.path}">
     <${componentName}></${componentName}>
   </demo-preview>`;
 

@@ -9,8 +9,7 @@
     "docs:build": "node ./scripts/version.js && vitepress build docs",
     "docs:serve": "vitepress serve docs",
     "prepare": "husky install",
-    "lint": "prettier --write .",
-    "transformat": "node ./scripts/transformMd.js"
+    "lint": "prettier --write ."
   },
   "devDependencies": {
     "@ruabick/md-demo-plugins": "^0.3.3",
@@ -20,6 +19,7 @@
     "@types/markdown-it-container": "^2.0.10",
     "@types/node": "^20.4.4",
     "@types/tinycolor2": "^1.4.4",
+    "@vitepress-demo-preview/component": "^2.3.2",
     "chalk": "^5.3.0",
     "fast-glob": "^3.3.2",
     "fs-extra": "^11.1.1",

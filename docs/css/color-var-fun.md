@@ -1,12 +1,13 @@
 # CSS Color
 
-<script setup>
-import ColorVisual from '~/pages/basic/color-visual.vue'
-</script>
+:::preview  
+title=Color Visual
+description=cc
+onlyRender=true
+demo-preview=../../packages/pages/basic/color-visual.vue
+:::
 
-<ClientOnly>
-<color-visual/>
-</ClientOnly>
+onlyRender=123
 
 ## `Hex`
 
