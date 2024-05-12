@@ -98,9 +98,10 @@ export default defineConfig({
       rollupOptions: {
         output: {
           assetFileNames: (assetInfo) => {
-            if (assetInfo.name === "webWorker.js") {
+            if (assetInfo?.name === "webWorker.js") {
               return assetInfo.name;
             }
+            return `assets/[name]_[hash].[ext]`;
           },
         },
       },

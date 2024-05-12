@@ -26,7 +26,7 @@ const goBack = () => {
   <div id="lottie" @click="goBack"></div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 #lottie {
   position: absolute;
   top: 50%;

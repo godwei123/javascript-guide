@@ -8,7 +8,6 @@ const color1 = ref("rgb(255,0,0)");
 const color2 = ref("rgb(0,255,0)");
 const description = ref();
 const handleChange = (val, option) => {
-  console.log(val, option);
   description.value = option;
 };
 </script>

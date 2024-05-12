@@ -6,9 +6,8 @@ import Layout from "./Layout.vue";
 import DemoBlock from "@ruabick/vitepress-demo-block";
 import "@ruabick/vitepress-demo-block/dist/style.css";
 import { currentVersion } from "../project.config";
-import { NaiveUIContainer } from "@vitepress-demo-preview/component";
-import { CustomContainer } from "./demo-preview";
-import "@vitepress-demo-preview/component/dist/style.css";
+// @ts-ignore
+import CustomContainer from "./demo-preview/container/CustomUI.vue";
 
 import { ref } from "vue";
 
