@@ -248,5 +248,5 @@ File.prototype.slice() / Blob.prototype.slice()
 
 ## 参考文章
 
-https://juejin.cn/post/7080527713399750692
-https://github.com/mtt3366/large-file-upload-breakpoint-continuation
+- https://juejin.cn/post/7080527713399750692
+- https://github.com/mtt3366/large-file-upload-breakpoint-continuation

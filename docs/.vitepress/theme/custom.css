@@ -35,3 +35,20 @@ table {
     max-width: 100% !important;
   }
 }
+
+.vp-doc:has(.n-data-table) {
+  th {
+    border: none;
+    border-color: var(--n-merged-border-color);
+    border-bottom: 1px solid var(--n-merged-border-color);
+  }
+}
+
+.vp-doc h2 {
+  border-top: none;
+  margin-top: 8px;
+}
+
+.vitepress-demo .demo-platforms {
+  visibility: hidden;
+}

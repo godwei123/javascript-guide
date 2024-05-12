@@ -5,12 +5,10 @@ aside: false
 footer: false
 ---
 
-:::tip 博客目录
-:::
+:::preview
+title=博客
+description=博客目录
+onlyRender=true
+demo-preview=../../packages/pages/blog-toc.vue
 
-:::link-components
-src='packages/pages/blog-toc.vue',
-attrs={
-"title":"博客目录"
-}
 :::

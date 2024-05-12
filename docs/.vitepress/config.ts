@@ -2,7 +2,11 @@ import nav from "./nav";
 import sidebar from "./sidebar";
 import { defineConfig } from "vitepress";
 import { resolve } from "node:url";
-import markdownItCodeDemo from "./plugins/markdown-it-code-demo";
+import { applyPlugins } from "@ruabick/md-demo-plugins";
+import markdownItFootnote from "markdown-it-footnote";
+import mdContainer, { ContainerOpts } from "markdown-it-container";
+import { containerPreview, componentPreview } from "./plugins";
+import JSON5 from "json5";
 
 export default defineConfig({
   title: "JavaScriptGuide",
@@ -52,13 +56,54 @@ export default defineConfig({
       lazyLoading: true,
     },
     config: (md) => {
-      md.use(markdownItCodeDemo);
+      applyPlugins(md);
+      md.use(markdownItFootnote);
+      md.use(containerPreview);
+      md.use(componentPreview);
+      const defaultRender = md.renderer.rules.fence!;
+      md.renderer.rules.fence = (tokens, idx, options, env, self) => {
+        const isInProTableContainer =
+          tokens[idx - 1].info.trim() === "pro-table" &&
+          tokens[idx + 1].type === "container_pro-table_close";
+
+        if (tokens[idx].type === "fence" && isInProTableContainer) {
+          return "";
+        }
+        return defaultRender(tokens, idx, options, env, self);
+      };
+      md.use(mdContainer, "pro-table", {
+        validate(params) {
+          return !!params.trim().match(/^pro-table\s*(.*)$/);
+        },
+
+        render: function (tokens, idx) {
+          const m = tokens[idx].type.trim().match(/pro-table\s*(.*)$/);
+          if (tokens[idx].nesting === 1 /* means the tag is opening */) {
+            const content = tokens[idx + 1].type === "fence" ? tokens[idx + 1].content : "";
+            return "<n-data-table v-bind=" + "'" + JSON.stringify(JSON5.parse(content)) + "'" + ">";
+          } else {
+            return "</n-data-table>";
+          }
+        },
+      } as ContainerOpts);
     },
   },
   vite: {
     resolve: {
       alias: {
         "~": resolve(__dirname, "../packages"),
+      },
+    },
+    build: {
+      rollupOptions: {
+        output: {
+          assetFileNames: (assetInfo) => {
+            if (assetInfo?.name === "webWorker.js") {
+              return assetInfo.name;
+            }
+            return `assets/[name]_[hash].[ext]`;
+          },
+        },
       },
     },
   },

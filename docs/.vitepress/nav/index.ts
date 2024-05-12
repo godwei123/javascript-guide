@@ -9,7 +9,6 @@ const nav: DefaultTheme.NavItem[] = [
     text: "CSS",
     link: "/css/introduction",
   },
-  //   link: "/basic/html/introduction",
   {
     text: "network",
     link: "/basic/browser/introduction",
