@@ -531,7 +531,7 @@ plugins: [
 // 单独配置在一个文件中
 // webpack.dll.conf.js
 const path = require("path");
-const webpack = require("docs/advance/Webpack");
+const webpack = require("docs/draft/Webpack");
 module.exports = {
   entry: {
     // 想统一打包的类库
