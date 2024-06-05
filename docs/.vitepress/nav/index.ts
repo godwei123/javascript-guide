@@ -14,11 +14,11 @@ const nav: DefaultTheme.NavItem[] = [
     text: "Other",
     items: [
       {
-        text: "network",
+        text: "Network",
         link: "/network/introduction",
       },
       {
-        text: "coding",
+        text: "Coding",
         link: "/code/introduction",
       },
       {
@@ -26,26 +26,14 @@ const nav: DefaultTheme.NavItem[] = [
         link: "/html/introduction",
       },
       {
-        text: "browser",
+        text: "Browser",
         link: "/browser/introduction",
       },
     ],
   },
-  // {
-  //   text: "network",
-  //   link: "/browser/introduction",
-  // },
-  // {
-  //   text: "coding",
-  //   link: "/code/introduction",
-  // },
   {
-    text: "blog",
+    text: "Blog",
     link: "/blog/introduction",
-  },
-  {
-    text: "about",
-    link: "/about",
   },
 ];
 

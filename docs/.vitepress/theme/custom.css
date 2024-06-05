@@ -74,3 +74,14 @@ table {
 .vitepress-demo .demo-platforms {
   visibility: hidden;
 }
+
+@media (min-width: 768px) {
+  .VPTeamPage {
+    margin: 80px 0 !important;
+  }
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
