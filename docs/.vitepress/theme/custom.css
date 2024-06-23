@@ -71,6 +71,10 @@ table {
   margin-top: 8px;
 }
 
+.vp-doc table {
+  margin: 0 auto;
+}
+
 .vitepress-demo .demo-platforms {
   visibility: hidden;
 }

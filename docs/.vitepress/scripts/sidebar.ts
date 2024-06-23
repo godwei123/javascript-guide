@@ -58,6 +58,12 @@ const generateSidebar = (
         order: options[key].order,
       };
     } else {
+      if (process.env.NODE_ENV === "development") {
+        return {
+          text: path,
+          link: `/${prefix}/${path}`,
+        };
+      }
       console.log(warning(`warning: [sidebar.ts/${prefix}] ${key} not in options`));
     }
   });
