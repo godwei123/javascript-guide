@@ -14,6 +14,7 @@ const titleRegex = /title=['"](.*?)['"]/;
 const pathRegex = /path=['"](.*?)['"]/;
 const descriptionRegex = /description=['"](.*?)['"]/;
 const onlyRenderRegex = /onlyRender=['"](.*?)['"]/;
+const attrsRenderRegex = /attrs=['"](.*?)['"]/;
 
 export interface DefaultProps {
   path: string;

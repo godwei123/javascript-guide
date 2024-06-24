@@ -1,14 +1,11 @@
 # text-hidden-overflow
 
-<script setup>
-import textOverflowVisual from '~/pages/basic/text-overflow-visual.vue'
-</script>
-
 ## 文字在一行显示，超出部分加省略号
 
-<ClientOnly>
-<textOverflowVisual className="text-ellipsis"/>
-</ClientOnly>
+:::preview
+demo-preview=../../packages/pages/basic/text-overflow-visual.vue
+onlyRender=false
+:::
 
 ```css
 .text-ellipsis {

@@ -13,12 +13,14 @@ interface DemoBlockProps {
   title: string;
   description: string;
   onlyRender?: boolean;
+  attrs?: Record<string, any>;
 }
 
 const props = withDefaults(defineProps<DemoBlockProps>(), {
   title: "默认标题",
   description: "描述内容",
   onlyRender: false,
+  attrs: () => ({}),
 });
 
 const { isCodeFold, setCodeFold } = useCodeFold();
@@ -39,8 +41,11 @@ const sourceCodeContainerHeight = computed(() => {
   return 0;
 });
 const setContainerHeight = (value: number) => {
-  if (isCodeFold.value) sourceCodeArea.value.style.height = "0px";
-  else sourceCodeArea.value.style.height = `${value}px`;
+  if (isCodeFold.value) {
+    if (sourceCodeArea.value) {
+      sourceCodeArea.value.style.height = "0px";
+    }
+  } else sourceCodeArea.value.style.height = `${value}px`;
 };
 onMounted(() => {
   // 组件挂载时，先获取代码块容器为折叠前的容器高度

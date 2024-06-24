@@ -9,27 +9,9 @@ const nav: DefaultTheme.NavItem[] = [
     text: "CSS",
     link: "/css/introduction",
   },
-
   {
-    text: "Other",
-    items: [
-      {
-        text: "Network",
-        link: "/network/introduction",
-      },
-      {
-        text: "Coding",
-        link: "/code/introduction",
-      },
-      {
-        text: "HTML",
-        link: "/html/introduction",
-      },
-      {
-        text: "Browser",
-        link: "/browser/introduction",
-      },
-    ],
+    text: "Coding",
+    link: "/code/introduction",
   },
   {
     text: "Blog",
