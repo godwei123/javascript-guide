@@ -1,6 +1,9 @@
 <template>
   <ClientOnly>
     <div class="vitepress-demo-preview__custom-ui__container">
+      <section v-if="!onlyRender || props.title" class="vitepress-demo-preview-name_handle">
+        <div v-if="props.title" class="vitepress-demo-preview-component__name">{{ title }}</div>
+      </section>
       <section v-if="props.description" class="vitepress-demo-preview-description">
         <span>
           {{ description }}
@@ -11,7 +14,6 @@
       </section>
 
       <section v-if="!onlyRender || props.title" class="vitepress-demo-preview-name_handle">
-        <div v-if="props.title" class="vitepress-demo-preview-component__name">{{ title }}</div>
         <div v-if="!onlyRender" class="vitepress-demo-preview-description__btns">
           <CodeCopy @click="clickCodeCopy" />
           <CodeClose v-if="!isCodeFold" @click="isCodeFold = true" />

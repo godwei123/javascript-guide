@@ -12,18 +12,6 @@ npm install lottie-web
 
 :::
 
-## vue
-
-::: tip
-lottie-web 本身就是一个独立的库，可以直接使用，具体的使用方法可以参考官方文档。此处给出一个 vue 封装和使用示例。
-:::
-
-::: code-group
-
-<<< ../../packages/pages/lottie.vue
-
-:::
-
 ## 参考 & 资源
 
 - LottieFiles https://lottiefiles.com/

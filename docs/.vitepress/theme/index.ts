@@ -18,7 +18,7 @@ function judgeVersion(version: string) {
 export default {
   ...DefaultTheme,
   Layout: Layout,
-  enhanceApp(ctx: { app: any; router: any }) {
+  async enhanceApp(ctx: { app: any; router: any }) {
     const { app, router } = ctx;
     app.use(naive);
     app.component("demo", DemoBlock);
