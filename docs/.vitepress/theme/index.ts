@@ -7,7 +7,7 @@ import DemoBlock from "@ruabick/vitepress-demo-block";
 import "@ruabick/vitepress-demo-block/dist/style.css";
 import { currentVersion } from "../project.config";
 // @ts-ignore
-import CustomContainer from "./demo-preview/container/CustomUI.vue";
+import CustomContainer from "./demo-preview/CustomUI.vue";
 
 import { ref } from "vue";
 
@@ -18,12 +18,11 @@ function judgeVersion(version: string) {
 export default {
   ...DefaultTheme,
   Layout: Layout,
-  enhanceApp(ctx: { app: any; router: any }) {
+  async enhanceApp(ctx: { app: any; router: any }) {
     const { app, router } = ctx;
     app.use(naive);
     app.component("demo", DemoBlock);
     app.component("demo-preview", CustomContainer);
-    // console.log(app);
     const hasNewVersion = ref(false);
     app.provide("newVersion", hasNewVersion);
     if (process.env.NODE_ENV !== "development") {

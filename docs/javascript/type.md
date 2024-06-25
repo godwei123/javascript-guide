@@ -198,13 +198,9 @@ bar.call(obj2);
 
 - https://segmentfault.com/a/1190000015162781
 
-## 问：知道 ES6 的 Class 嘛？Static 关键字有了解嘛
-
-为这个类的函数对象直接添加方法，而不是加在这个函数对象的原型对象上
-
 ## isNaN 和 Number.isNaN 函数的区别？
 
-# var、let、const
+## var、let、const
 
 - var 声明的范围是函数作用域，let 声明的范围是块作用域
 - var 存在变量提升
@@ -213,3 +209,115 @@ bar.call(obj2);
 - var 全局作用域中声明的变量会成为 window 对象属性
 - let 不能够条件声明
 - const 声明必须初始化，不能够修改
+
+## Array 常见方法
+
+| 方法        | 方法          | 方法         | 方法             | 方法         |
+| ----------- | ------------- | ------------ | ---------------- | ------------ |
+| concat()    | every()       | fill()       | filter()         | find()       |
+| findIndex() | flat()        | flatMap()    | forEach()        | Array.from() |
+| Array.of()  | includes()    | indexOf()    | isArray()        | join()       |
+| keys()      | lastIndexOf() | map()        | pop()            | push()       |
+| reduce()    | reduceRight() | reverse()    | shift()          | slice()      |
+| some()      | sort()        | splice()     | toLocaleString() | toString()   |
+| unshift()   | values()      | copyWithin() | lastIndexOf()    | fill()       |
+
+### Array.from() & Array.of()
+
+`Array.from()` 和 `Array.of()` 是 JavaScript 中的两个数组方法，它们的主要区别在于它们的用途和参数。
+
+`Array.from()` 方法从类数组对象或可迭代对象创建一个新的数组实例。类数组对象包括具有 length 属性和可索引元素的对象，或者可迭代对象如 Set 和 Map。例如：
+
+```javascript
+let set = new Set(["a", "b", "c"]);
+let arrFromSet = Array.from(set);
+console.log(arrFromSet); // Output: ['a', 'b', 'c']
+```
+
+`Array.of()` 方法创建一个具有可变数量参数的新数组实例，而不考虑参数的数量或类型。例如：
+
+```javascript
+let arrOfNumbers = Array.of(1, 2, 3);
+console.log(arrOfNumbers); // Output: [1, 2, 3]
+```
+
+所以，`Array.from()` 主要用于将类数组对象或可迭代对象转换为数组，而 `Array.of()` 主要用于创建一个新的数组实例。
+
+### other
+
+使用 delete 运算符可以将单元从数组中删除，但是请注意，单元删除后，数组的 length 属性并不会发生变化。删除的位置变为 <1 empty
+item>
+
+```js
+let nums = [];
+nums[0] = 1;
+nums[2] = 3;
+console.log(nums[1]); //undefined
+```
+
+其中的“空白单元”（empty slot）可能会导致出人意料的结果。a[1]的值为 undefined，但这与将其显式赋值为 undefined（a[1]
+=undefined）还是有所区别。
+
+如果字符串键值能够被强制类型转换为十进制数字的话，它就会被当作数字索引来处理。`a['13']=2; a.length => 14`
+
+类数组 => 数组
+
+```js
+Array.from(arguments);
+
+Array.prototype.slice.call(arguments);
+```
+
+## String 常见方法
+
+| 方法                  | 方法                   | 方法          | 方法          |
+| --------------------- | ---------------------- | ------------- | ------------- |
+| charAt()              | charCodeAt()           | codePointAt() | concat()      |
+| String.fromCharCode() | String.fromCodePoint() | includes()    | indexOf()     |
+| localeCompare()       | match()                | matchAll()    | normalize()   |
+| padStart()            | String.raw()           | repeat()      | replace()     |
+| search()              | slice()                | split()       | startsWith()  |
+| toLocaleLowerCase()   | toLocaleUpperCase()    | toLowerCase() | toString()    |
+| trim()                | trimEnd()              | trimStart()   | valueOf()     |
+| endsWith()            | endsWith()             | lastIndexOf() | padEnd()      |
+| padEnd()              | replaceAll()           | substring()   | toUpperCase() |
+
+## Object.defineProperty()
+
+**要注意有一个小小的例外：即便属性是 configurable:false，我们还是可以把 writable 的状态由 true 改为 false，但是无法由 false 改为 true。**
+
+configurable:false 会禁止删除这个属性
+
+writable:false,configurable:false 可以创建一个常量属性。
+
+如果你想禁止一个对象添加新属性并且保留已有属性，可以使用 Object.preventExtensions(obj)
+
+## Object.seal(..)
+
+会创建一个“密封”的对象，这个方法实际上会在一个现有对象上调用 Object.preventExtensions(..)并把所有现有属性标记为 configurable:false。（不能添加新属性，不能重新配置或删除属性，**但可以修改属性值**）
+
+## Object.freeze(..)
+
+会创建一个冻结对象，这个方法实际上会在一个现有对象上调用 Object.seal(..)并把所有“数据访问”属性标记为 writable:false，这样就无法修改它们的值。（浅层）
+
+obj.hasOwnProperty("ab")判断对象是否存在这个属性。（只检查当前对像）
+
+## in 操作符
+
+注意：看起来 in 操作符可以检查容器内是否有某个值，但是它实际上检查的是某个属性名是否存在。对于数组来说这个区别非常重要，4 in [2, 4, 6]的结果并不是你期待的 True，因为[2, 4, 6]这个数组中包含的属性名是 0、1、2，没有 4。
+
+## obj.propertyIsEnumerable("ab")
+
+会检查给定的属性名是否直接存在于对象中（而不是在原型链上）并且满足 enumerable:true。
+
+## Object.keys(..)
+
+返回一个数组，包含所有可枚举属性
+
+## Object.getOwnPropertyNames(..)
+
+返回一个数组，包含所有属性，无论它们是否可枚举。
+
+对象不可以使用 for...of 遍历，但是可以自定义迭代器实现
+
+## 问：如何判断一个对象是不是空对象？

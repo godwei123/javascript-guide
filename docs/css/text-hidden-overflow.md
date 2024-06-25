@@ -1,14 +1,10 @@
 # text-hidden-overflow
 
-<script setup>
-import textOverflowVisual from '~/pages/basic/text-overflow-visual.vue'
-</script>
+:::tip
+文字在一行显示，超出部分加省略号
 
-## 文字在一行显示，超出部分加省略号
-
-<ClientOnly>
-<textOverflowVisual className="text-ellipsis"/>
-</ClientOnly>
+文字在 n 行显示，超出部分加省略号
+:::
 
 ```css
 .text-ellipsis {
@@ -16,15 +12,6 @@ import textOverflowVisual from '~/pages/basic/text-overflow-visual.vue'
   white-space: nowrap;
   overflow: hidden;
 }
-```
-
-## 文字在 n 行显示，超出部分加省略号
-
-<ClientOnly>
-<textOverflowVisual className="text-ellipsis-n"/>
-</ClientOnly>
-
-```css
 .text-ellipsis-n {
   text-overflow: ellipsis;
   overflow: hidden;
@@ -34,3 +21,10 @@ import textOverflowVisual from '~/pages/basic/text-overflow-visual.vue'
   word-wrap: break-word;
 }
 ```
+
+## 示例
+
+:::preview
+demo-preview=../../packages/pages/basic/text-overflow-visual.vue
+onlyRender=false
+:::

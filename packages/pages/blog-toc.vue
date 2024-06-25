@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref } from "vue";
-import { useData, useRouter, withBase } from "vitepress";
+import { useRouter, withBase } from "vitepress";
 
 const router = useRouter();
 const list = ref([]);
@@ -18,7 +18,7 @@ getBlogPages();
 </script>
 
 <template>
-  <n-list>
+  <n-list clickable hoverable>
     <n-list-item v-for="item in list" :key="item" class="n-list-item" @click="router.go(item.link)">
       <n-flex justify="space-between">
         <span>{{ item.name }}</span>

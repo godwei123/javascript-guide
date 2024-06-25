@@ -1,5 +1,5 @@
 function getVersion() {
-  fetch("/javascript-guide/public/js/version.json", {
+  fetch("/javascript-guide/js/version.json", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

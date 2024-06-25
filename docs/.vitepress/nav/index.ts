@@ -10,20 +10,12 @@ const nav: DefaultTheme.NavItem[] = [
     link: "/css/introduction",
   },
   {
-    text: "network",
-    link: "/basic/browser/introduction",
+    text: "Coding",
+    link: "/code/introduction",
   },
   {
-    text: "coding",
-    link: "/basic/code/introduction",
-  },
-  {
-    text: "blog",
+    text: "Blog",
     link: "/blog/introduction",
-  },
-  {
-    text: "about",
-    link: "/about",
   },
 ];
 

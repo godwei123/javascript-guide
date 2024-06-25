@@ -9,7 +9,6 @@ const cssIntroduction = { text: "Introduction", link: "/css/introduction", order
 
 const javaScriptOptions: Record<string, { text: string; order: number }> = {
   type: { text: "类型和语法", order: 1 },
-  "array-string": { text: "Array & String", order: 2 },
   object: { text: "Object", order: 3 },
   "type-conversion": { text: "类型转换", order: 4 },
   prototype: { text: "原型和原型链", order: 5 },
@@ -18,7 +17,6 @@ const javaScriptOptions: Record<string, { text: string; order: number }> = {
   "throttle-debounce": { text: "节流和防抖", order: 8 },
   async: { text: "同步和异步", order: 9 },
   regexp: { text: "正则", order: 10 },
-  "ES5+": { text: "ES6+", order: 11 },
   "proxy-reflect": { text: "代理和反射", order: 12 },
   "broadcast-channel": { text: "Broadcast Channel API", order: 13 },
   "web-speech-api": { text: "Web Speech API", order: 14 },
@@ -30,7 +28,6 @@ const javaScriptOptions: Record<string, { text: string; order: number }> = {
 const CSSOptions: Record<string, { text: string; order: number }> = {
   center: { text: "居中", order: 1 },
   flex: { text: "flex布局", order: 2 },
-  layout: { text: "常见布局", order: 3 },
   grid: { text: "grid布局", order: 4 },
   "@font-face": { text: "@font-face", order: 5 },
   "text-hidden-overflow": { text: "文本溢出", order: 6 },
@@ -60,6 +57,12 @@ const generateSidebar = (
         order: options[key].order,
       };
     } else {
+      if (process.env.NODE_ENV === "development") {
+        return {
+          text: path,
+          link: `/${prefix}/${path}`,
+        };
+      }
       console.log(warning(`warning: [sidebar.ts/${prefix}] ${key} not in options`));
     }
   });
