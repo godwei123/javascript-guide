@@ -1,10 +1,9 @@
 # text-hidden-overflow
 
-## 文字在一行显示，超出部分加省略号
+:::tip
+文字在一行显示，超出部分加省略号
 
-:::preview
-demo-preview=../../packages/pages/basic/text-overflow-visual.vue
-onlyRender=false
+文字在 n 行显示，超出部分加省略号
 :::
 
 ```css
@@ -13,15 +12,6 @@ onlyRender=false
   white-space: nowrap;
   overflow: hidden;
 }
-```
-
-## 文字在 n 行显示，超出部分加省略号
-
-<ClientOnly>
-<textOverflowVisual className="text-ellipsis-n"/>
-</ClientOnly>
-
-```css
 .text-ellipsis-n {
   text-overflow: ellipsis;
   overflow: hidden;
@@ -31,3 +21,10 @@ onlyRender=false
   word-wrap: break-word;
 }
 ```
+
+## 示例
+
+:::preview
+demo-preview=../../packages/pages/basic/text-overflow-visual.vue
+onlyRender=false
+:::

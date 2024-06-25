@@ -1,10 +1,34 @@
+<template>
+  <div class="vitepress-demo-preview__custom-ui__container">
+    <section v-if="props.description" class="vitepress-demo-preview-description">
+      <span>
+        {{ description }}
+      </span>
+    </section>
+    <section class="vitepress-demo-preview-preview">
+      <slot></slot>
+    </section>
+
+    <section v-if="!onlyRender || props.title" class="vitepress-demo-preview-name_handle">
+      <div v-if="props.title" class="vitepress-demo-preview-component__name">{{ title }}</div>
+      <div v-if="!onlyRender" class="vitepress-demo-preview-description__btns">
+        <CodeCopy @click="clickCodeCopy" />
+        <CodeClose v-if="!isCodeFold" @click="isCodeFold = true" />
+        <CodeOpen v-else @click="isCodeFold = false" />
+      </div>
+    </section>
+    <section v-if="!onlyRender" ref="sourceCodeArea" class="vitepress-demo-preview-source">
+      <div class="language-vue" v-html="showSourceCode"></div>
+    </section>
+  </div>
+</template>
+
 <script lang="ts" setup>
-import { ref, onMounted, watch, computed } from "vue";
-import CodeOpen from "../icons/code-open.vue";
-import CodeClose from "../icons/code-close.vue";
-import CodeCopy from "../icons/code-copy.vue";
-import { useCodeFold } from "../hooks/use-codefold";
-import { useCodeCopy } from "../hooks/use-codecopy";
+import { ref, onMounted, watch, computed, nextTick } from "vue";
+import CodeOpen from "./icons/code-open.vue";
+import CodeClose from "./icons/code-close.vue";
+import CodeCopy from "./icons/code-copy.vue";
+import { useCodeCopy } from "./use-codecopy";
 import { useMessage } from "naive-ui";
 
 interface DemoBlockProps {
@@ -13,22 +37,20 @@ interface DemoBlockProps {
   title: string;
   description: string;
   onlyRender?: boolean;
-  attrs?: Record<string, any>;
 }
 
 const props = withDefaults(defineProps<DemoBlockProps>(), {
   title: "默认标题",
   description: "描述内容",
   onlyRender: false,
-  attrs: () => ({}),
 });
 
-const { isCodeFold, setCodeFold } = useCodeFold();
+const isCodeFold = ref(true);
 const { clickCopy } = useCodeCopy();
 
 const sourceCode = ref(decodeURIComponent(props.code));
 const showSourceCode = ref(decodeURIComponent(props.showCode));
-const sourceCodeArea = ref<any>(null);
+const sourceCodeArea = ref();
 const message = useMessage();
 
 const clickCodeCopy = () => {
@@ -42,52 +64,22 @@ const sourceCodeContainerHeight = computed(() => {
 });
 const setContainerHeight = (value: number) => {
   if (isCodeFold.value) {
-    if (sourceCodeArea.value) {
-      sourceCodeArea.value.style.height = "0px";
-    }
+    sourceCodeArea.value.style.height = "0px";
   } else sourceCodeArea.value.style.height = `${value}px`;
 };
 onMounted(() => {
   // 组件挂载时，先获取代码块容器为折叠前的容器高度
   if (props.onlyRender) return;
   const currentContainerHeight = sourceCodeContainerHeight.value;
-  setContainerHeight(currentContainerHeight);
+  nextTick(() => {
+    setContainerHeight(currentContainerHeight);
+  });
 });
 watch(isCodeFold, () => {
   const container = sourceCodeContainerHeight.value;
   setContainerHeight(container);
 });
 </script>
-
-<template>
-  <ClientOnly>
-    <div class="vitepress-demo-preview__custom-ui__container">
-      <section v-if="!onlyRender || props.title" class="vitepress-demo-preview-name_handle">
-        <div v-if="props.title" class="vitepress-demo-preview-component__name">{{ title }}</div>
-        <div v-if="!onlyRender" class="vitepress-demo-preview-description__btns">
-          <CodeCopy @click="clickCodeCopy" />
-          <CodeClose v-if="!isCodeFold" @click="setCodeFold(true)" />
-          <CodeOpen v-else @click="setCodeFold(false)" />
-        </div>
-      </section>
-
-      <section v-if="props.description" class="vitepress-demo-preview-description">
-        <span>
-          {{ description }}
-        </span>
-      </section>
-
-      <section class="vitepress-demo-preview-preview">
-        <slot></slot>
-      </section>
-
-      <section v-if="!onlyRender" ref="sourceCodeArea" class="vitepress-demo-preview-source">
-        <n-divider />
-        <div class="language-vue" v-html="showSourceCode"></div>
-      </section>
-    </div>
-  </ClientOnly>
-</template>
 
 <style lang="scss" scoped>
 $defaultPrefix: "vitepress-demo-preview";
@@ -104,7 +96,6 @@ $containerPrefix: #{$defaultPrefix}__#{$componentPrefix};
     margin-top: 0;
     margin-bottom: 0;
     border-radius: 0;
-    background-color: var(--component-preview-bg);
   }
 }
 
@@ -112,7 +103,6 @@ $containerPrefix: #{$defaultPrefix}__#{$componentPrefix};
   width: 100%;
   border-radius: 4px;
   border: 1px solid var(--component-preview-border);
-  box-shadow: 0px 0px 10px var(--component-preview-border);
   margin: 10px 0;
   overflow: hidden;
 
@@ -124,7 +114,7 @@ $containerPrefix: #{$defaultPrefix}__#{$componentPrefix};
 }
 
 .#{$containerPrefix}__container > .#{$defaultPrefix}-name_handle {
-  padding: 20px 20px 20px 20px;
+  padding: 10px;
   display: flex;
   align-items: center;
 
@@ -152,11 +142,11 @@ $containerPrefix: #{$defaultPrefix}__#{$componentPrefix};
 }
 
 .#{$containerPrefix}__container > .#{$defaultPrefix}-description {
-  padding: 5px 20px 5px 20px;
+  padding: 5px 10px;
 }
 
 .#{$containerPrefix}__container > .#{$defaultPrefix}-preview {
-  padding: 10px 10px 10px 20px;
+  padding: 0 10px;
 
   & > p {
     margin: 0;
