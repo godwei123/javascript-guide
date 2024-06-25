@@ -1,26 +1,28 @@
 <template>
-  <div class="vitepress-demo-preview__custom-ui__container">
-    <section v-if="props.description" class="vitepress-demo-preview-description">
-      <span>
-        {{ description }}
-      </span>
-    </section>
-    <section class="vitepress-demo-preview-preview">
-      <slot></slot>
-    </section>
+  <ClientOnly>
+    <div class="vitepress-demo-preview__custom-ui__container">
+      <section v-if="props.description" class="vitepress-demo-preview-description">
+        <span>
+          {{ description }}
+        </span>
+      </section>
+      <section class="vitepress-demo-preview-preview">
+        <slot></slot>
+      </section>
 
-    <section v-if="!onlyRender || props.title" class="vitepress-demo-preview-name_handle">
-      <div v-if="props.title" class="vitepress-demo-preview-component__name">{{ title }}</div>
-      <div v-if="!onlyRender" class="vitepress-demo-preview-description__btns">
-        <CodeCopy @click="clickCodeCopy" />
-        <CodeClose v-if="!isCodeFold" @click="isCodeFold = true" />
-        <CodeOpen v-else @click="isCodeFold = false" />
-      </div>
-    </section>
-    <section v-if="!onlyRender" ref="sourceCodeArea" class="vitepress-demo-preview-source">
-      <div class="language-vue" v-html="showSourceCode"></div>
-    </section>
-  </div>
+      <section v-if="!onlyRender || props.title" class="vitepress-demo-preview-name_handle">
+        <div v-if="props.title" class="vitepress-demo-preview-component__name">{{ title }}</div>
+        <div v-if="!onlyRender" class="vitepress-demo-preview-description__btns">
+          <CodeCopy @click="clickCodeCopy" />
+          <CodeClose v-if="!isCodeFold" @click="isCodeFold = true" />
+          <CodeOpen v-else @click="isCodeFold = false" />
+        </div>
+      </section>
+      <section v-if="!onlyRender" ref="sourceCodeArea" class="vitepress-demo-preview-source">
+        <div class="language-vue" v-html="showSourceCode"></div>
+      </section>
+    </div>
+  </ClientOnly>
 </template>
 
 <script lang="ts" setup>

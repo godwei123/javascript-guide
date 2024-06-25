@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import lottie from "lottie-web";
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import { useRouter } from "vitepress";
 import animationData from "./animation-404.json";
 import { baseURL } from "../project.config";
 
 const router = useRouter();
-
+const lottieRef = ref<HTMLElement | null>(null);
 onMounted(() => {
   lottie.loadAnimation({
-    container: document.getElementById("lottie"),
+    container: lottieRef.value as HTMLElement,
     renderer: "svg",
     loop: true,
     autoplay: true,
@@ -23,7 +23,7 @@ const goBack = () => {
 </script>
 
 <template>
-  <div id="lottie" @click="goBack"></div>
+  <div ref="lottieRef" @click="goBack"></div>
 </template>
 
 <style lang="scss" scoped>
