@@ -28,7 +28,6 @@ const javaScriptOptions: Record<string, { text: string; order: number }> = {
 const CSSOptions: Record<string, { text: string; order: number }> = {
   center: { text: "居中", order: 1 },
   flex: { text: "flex布局", order: 2 },
-  layout: { text: "常见布局", order: 3 },
   grid: { text: "grid布局", order: 4 },
   "@font-face": { text: "@font-face", order: 5 },
   "text-hidden-overflow": { text: "文本溢出", order: 6 },

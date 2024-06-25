@@ -1,13 +1,10 @@
 # CSS Color
 
-:::preview  
-title=Color Visual
-description=cc
+:::preview
+description=CSS Color
 onlyRender=true
 demo-preview=../../packages/pages/basic/color-visual.vue
 :::
-
-onlyRender=123
 
 ## `Hex`
 
