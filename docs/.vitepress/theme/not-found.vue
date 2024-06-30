@@ -24,7 +24,7 @@ const goBack = () => {
 </script>
 
 <template>
-  <div ref="lottieRef" @click="goBack"></div>
+  <div id="lottie" ref="lottieRef" @click="goBack"></div>
 </template>
 
 <style lang="scss" scoped>
