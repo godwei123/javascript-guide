@@ -32,13 +32,13 @@ const refresh = () => {
       </n-message-provider>
     </n-notification-provider>
   </n-config-provider>
-  <n-element v-if="message" class="fixed">
+  <n-element v-if="message" class="fixed-element">
     <n-button size="small" text @click="refresh"> 页面有更新，请点击刷新</n-button>
   </n-element>
 </template>
 
 <style>
-.fixed {
+.fixed-element {
   position: fixed;
   z-index: 10;
   bottom: 40px;
