@@ -28,7 +28,6 @@ const generateSidebar = (
       link: `/${prefix}/${path}`,
     };
   });
-  console.log(result);
   return [introduction, ...result];
 };
 

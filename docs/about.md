@@ -17,10 +17,10 @@ const members = [
     name: 'God wei',
     title: 'All I need is you!',
     desc: 'developer'
-  }
+  },
 ];
 
-const version = '0.0.2';
+const version = '0.0.1';
 </script>
 
 <VPTeamPage>
