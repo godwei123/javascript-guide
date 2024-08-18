@@ -37,25 +37,14 @@ getBlogPages();
 
 <template>
   <n-input placeholder="搜索" round size="large" @update:value="handleSearch"></n-input>
-  <n-grid
-    :x-gap="20"
-    :y-gap="20"
-    class="w-100 list-box item-container"
-    cols="1 s:1 m:2 l:2 xl:2 2xl:2"
-    responsive="screen"
-  >
-    <n-grid-item v-for="item in list" :key="item" class="n-list-item" @click="router.go(item.link)">
-      <div class="flex-container">
-        <div class="icon">
-          <img :src="withBase(`/Theme=Flat-${item.random}.svg`)" />
-        </div>
-        <div class="w-100 flex-title">
-          <div class="title w-100">{{ item.title }}</div>
-          <n-ellipsis :line-clamp="1" :tooltip="false" class="w-100">
-            {{ item.description }}
-          </n-ellipsis>
-        </div>
-      </div>
+  <n-grid :y-gap="10" class="w-100 list-box item-container" cols="1" responsive="screen">
+    <n-grid-item
+      v-for="(item, index) in list"
+      :key="item"
+      class="n-list-item"
+      @click="router.go(item.link)"
+    >
+      <div class="title w-100">{{ index + 1 }}、{{ item.title }}</div>
     </n-grid-item>
   </n-grid>
 </template>
@@ -63,9 +52,7 @@ getBlogPages();
 <style lang="scss" scoped>
 .n-list-item {
   cursor: pointer;
-  width: calc(50% - 10px);
-  min-width: 500px;
-  padding: 10px;
+  padding: 20px;
   border: 1px solid #e0e5f4;
   border-radius: 10px;
   box-shadow: 0 2px 8px 0px rgba(0, 0, 0, 0.12);
@@ -78,13 +65,8 @@ getBlogPages();
 
   &:hover {
     background: #f5f7fa;
-    scale: 1.02;
+    scale: 1.01;
     transition: linear 0.2s all;
-
-    img {
-      transform: scale(2);
-      transition: linear 0.2s all;
-    }
 
     .flex-container {
       gap: 8px 24px;
