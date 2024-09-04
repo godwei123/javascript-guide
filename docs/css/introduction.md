@@ -5,7 +5,9 @@ aside: false
 ---
 
 <script setup>
-import CssIntroduction from '~/pages/css-introduction.vue'
+import { defineAsyncComponent } from "vue"; 
+
+const CssIntroduction = defineAsyncComponent(() => import('~/theme/css-introduction.vue'))
 </script>
 
 <css-introduction />

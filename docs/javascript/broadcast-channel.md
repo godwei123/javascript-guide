@@ -47,7 +47,7 @@ Broadcast Channel API 也存在以下缺点：
 title=Broadcast Channel API
 description=打开多个 tab 页，输入内容并发送，多个 tab 页内容将同步
 onlyRender=true
-demo-preview=../../packages/pages/basic/broadcast-channel-visual.vue
+demo-preview=../../packages/pages/css/broadcast-channel-visual.vue
 
 :::
 

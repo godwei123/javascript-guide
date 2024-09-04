@@ -12,7 +12,6 @@
       <div class="letter s2">
         <span>S</span>
       </div>
-      <!--      <div class="text t2">2019</div>-->
       <div class="triangle-box">
         <div class="triangle"></div>
       </div>

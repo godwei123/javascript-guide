@@ -1,5 +1,5 @@
 <script setup>
-import FlexVisual from '~/pages/basic/flex-visual.vue'
+import FlexVisual from '~/pages/css/flex-visual.vue'
 </script>
 
 # flex

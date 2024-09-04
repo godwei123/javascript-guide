@@ -9,7 +9,7 @@ This is a collection of CSS snippets that I have found useful.
 # blend-mode
 
 :::preview
-demo-preview=../../packages/pages/basic/blend-mode-visual.vue
+demo-preview=../../packages/pages/css/blend-mode-visual.vue
 :::
 
 ## MDN

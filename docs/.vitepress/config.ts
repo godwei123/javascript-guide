@@ -11,6 +11,7 @@ import JSON5 from "json5";
 export default defineConfig({
   title: "JavaScriptGuide",
   base: "/javascript-guide",
+  version: "v1.0.0",
   description: "front-end study and interview, include html,css,javascript,network...",
   lang: "zh-CN",
   head: [["link", { rel: "icon", href: "/javascript-guide/favicon.svg" }]],

@@ -25,6 +25,6 @@
 ## 示例
 
 :::preview
-demo-preview=../../packages/pages/basic/text-overflow-visual.vue
+demo-preview=../../packages/pages/css/text-overflow-visual.vue
 onlyRender=false
 :::

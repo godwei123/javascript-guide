@@ -1,7 +1,7 @@
 # 居中
 
 <script setup>
-import CenterVisual from "~/pages/basic/center-visual.vue";
+import CenterVisual from "~/pages/css/center-visual.vue";
 </script>
 
 ## 水平居中

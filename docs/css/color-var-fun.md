@@ -3,7 +3,7 @@
 :::preview
 description=CSS Color
 onlyRender=true
-demo-preview=../../packages/pages/basic/color-visual.vue
+demo-preview=../../packages/pages/css/color-visual.vue
 :::
 
 ## `Hex`
