@@ -5,7 +5,6 @@ import { resolve } from "node:url";
 import { applyPlugins } from "@ruabick/md-demo-plugins";
 import markdownItFootnote from "markdown-it-footnote";
 import mdContainer, { ContainerOpts } from "markdown-it-container";
-import { containerPreview, componentPreview } from "./plugins";
 import JSON5 from "json5";
 
 export default defineConfig({
@@ -59,8 +58,6 @@ export default defineConfig({
     config: (md) => {
       applyPlugins(md);
       md.use(markdownItFootnote);
-      md.use(containerPreview);
-      md.use(componentPreview);
       const defaultRender = md.renderer.rules.fence!;
       md.renderer.rules.fence = (tokens, idx, options, env, self) => {
         const isInProTableContainer =

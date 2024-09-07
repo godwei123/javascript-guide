@@ -1,3 +1,7 @@
+---
+create_time: 2024-08-10 14:59:01
+---
+
 # Rspress & Vitepress
 
 > Rspress 和 Vitepress 都是静态站点生成器，使用简单，能够快速的构建自己的网站。二者的文档站点生成器都是基于 Markdown 编写的内容，对其应用主题，并生成可以轻松部署到任何地方的静态 HTML 页面。

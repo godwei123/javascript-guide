@@ -1,3 +1,7 @@
+---
+create_time: 2024-08-10 22:14:20
+---
+
 # 如何开发一个 Icon 组件库
 
 ::: tip
@@ -101,9 +105,11 @@ export default async (ctx: any, target: any) => {
         generateExport(`default as ${mainIndexComponentName}`, `./${vueFileName}`)
       );
     }
-    promises.push(fs.writeFile(path.join(variantOutDir, "index.ts"), variantIndexContent.join("")));
+    promises.push(
+      fs.writeFile(path.join(variantOutDir, "sidebar.ts"), variantIndexContent.join(""))
+    );
   }
-  promises.push(fs.writeFile(path.join(outDir, "index.ts"), mainIndexContent.join("")));
+  promises.push(fs.writeFile(path.join(outDir, "sidebar.ts"), mainIndexContent.join("")));
   await Promise.all(promises);
 
   return build({
@@ -112,7 +118,7 @@ export default async (ctx: any, target: any) => {
     build: {
       outDir: "dist",
       lib: {
-        entry: path.join("src", "index.ts"),
+        entry: path.join("src", "sidebar.ts"),
         fileName: (format, name) => (format === "cjs" ? `${name}.js` : `esm/${name}.mjs`),
         formats: ["cjs", "es"],
       },

@@ -24,7 +24,8 @@
 
 ## 示例
 
-:::preview
-demo-preview=../../packages/pages/css/text-overflow-visual.vue
-onlyRender=false
-:::
+<script setup>
+import TextOverflowVisual from "../../packages/pages/css/text-overflow-visual.vue";
+</script>
+
+<TextOverflowVisual />

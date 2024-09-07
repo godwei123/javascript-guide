@@ -1,10 +1,10 @@
 # CSS Color
 
-:::preview
-description=CSS Color
-onlyRender=true
-demo-preview=../../packages/pages/css/color-visual.vue
-:::
+<script setup>
+import ColorVisual from "../../packages/pages/css/color-visual.vue";
+</script>
+
+<ColorVisual />
 
 ## `Hex`
 

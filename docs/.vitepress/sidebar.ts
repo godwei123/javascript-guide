@@ -1,5 +1,5 @@
 import { DefaultTheme } from "vitepress";
-import { generateJavaScriptSidebar, generateCSSSidebar } from "../scripts/sidebar";
+import { generateJavaScriptSidebar, generateCSSSidebar } from "./scripts/sidebar";
 
 const sidebar: DefaultTheme.SidebarMulti = {
   "/javascript": generateJavaScriptSidebar(),
