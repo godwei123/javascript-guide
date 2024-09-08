@@ -1,35 +1,39 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import { useRouter, withBase } from "vitepress";
+import dayjs from "dayjs";
 
 const router = useRouter();
 const list = ref([]);
-const list2 = ref([]);
-const random = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1) + min);
+const resultList = ref([]);
 const getBlogPages = async () => {
   // @ts-ignore
   const files = import.meta.glob("../../docs/blog/*.md", { eager: true });
   for (const key in files) {
     const module = files[key];
     const { title, frontmatter = {}, description, filePath } = module.__pageData;
-    const { timestamp = 0 } = frontmatter;
+    const { create_time = 0 } = frontmatter;
     if (!title) continue;
-    const r = random(1, 13);
     list.value.push({
       title,
       link: withBase(`/${filePath.replace(".md", "")}`),
       description,
-      random: r,
-      timestamp: timestamp === 0 ? 0 : new Date(timestamp).getTime(),
+      create_time: create_time,
     });
   }
-  list.value.sort((a, b) => b.timestamp - a.timestamp);
-  list2.value = list.value;
+  console.log(list.value);
+  list.value.sort((a, b) => {
+    return dayjs(b.create_time).unix() - dayjs(a.create_time).unix();
+  });
+  console.log(list.value);
+  resultList.value = list.value;
 };
 
 const handleSearch = (value: string) => {
-  if (!value) return (list.value = list2.value);
-  list.value = list2.value.filter((item) => item.title.toLowerCase().includes(value.toLowerCase()));
+  if (!value) return (list.value = resultList.value);
+  list.value = resultList.value.filter((item) =>
+    item.title.toLowerCase().includes(value.toLowerCase())
+  );
 };
 
 getBlogPages();
@@ -93,7 +97,7 @@ getBlogPages();
 }
 
 .list-box {
-  padding-left: 0px;
+  padding-left: 0;
 }
 
 .icon {

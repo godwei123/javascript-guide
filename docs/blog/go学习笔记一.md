@@ -2,7 +2,7 @@
 create_time: 2024-08-26 19:41:26
 ---
 
-# go
+# go 学习笔记一
 
 ::: tip
 本文是 go 学习基础一，主要为基本语法
@@ -591,14 +591,14 @@ for i := range ch {
 
 ## 参考
 
-https://awesome-go.com/
-https://gin-gonic.com/
-https://gofiber.io/
-https://go-zero.dev/
-https://www.iris-go.com/
-https://echo.labstack.com/
-https://github.com/golang-standards/project-layout
-https://gorm.io/
-https://traefik.io/
-https://cobra.dev/
-https://cli.github.com/
+- https://awesome-go.com/
+- https://gin-gonic.com/
+- https://gofiber.io/
+- https://go-zero.dev/
+- https://www.iris-go.com/
+- https://echo.labstack.com/
+- https://github.com/golang-standards/project-layout
+- https://gorm.io/
+- https://traefik.io/
+- https://cobra.dev/
+- https://cli.github.com/

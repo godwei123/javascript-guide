@@ -1,7 +1,5 @@
 # 闭包
 
-> https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Closures
-
 一个函数和对其周围状态（**lexical environment，词法环境**）的引用捆绑在一起（或者说函数被引用包围），这样的组合就是**闭包**（**closure**）。也就是说，闭包让你可以在一个内层函数中访问到其外层函数的作用域。在 JavaScript 中，每当创建一个函数，闭包就会在函数创建的同时被创建出来。
 
 词法作用域根据源代码中声明变量的位置来确定该变量在何处可用。**嵌套函数可访问声明于它们外部作用域的变量。**
@@ -29,7 +27,7 @@ myFunc();
 
 ## 例子 2
 
-下面是一个更有意思的示例 — 一个 `makeAdder` 函数：
+下面是一个更有意思的示例
 
 ```javascript
 function makeAdder(x) {

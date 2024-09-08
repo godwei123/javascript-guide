@@ -32,16 +32,16 @@ const generateSidebar = (
 };
 
 export const generateJavaScriptSidebar = () => {
-  console.log(chalk.bold.blue("javascript sidebar generate"));
+  console.log(chalk.bold.green("javascript sidebar generate"));
   return generateSidebar("./docs/javascript", javaScriptIntroduction, "javascript");
 };
 
 export const generateBlogSidebar = () => {
-  console.log(chalk.bold.blue("blog sidebar generate"));
+  console.log(chalk.bold.green("blog sidebar generate"));
   return generateSidebar("./docs/blog", blogIntroduction, "blog");
 };
 
 export const generateCSSSidebar = () => {
-  console.log(chalk.bold.blue("css sidebar generate"));
+  console.log(chalk.bold.green("css sidebar generate"));
   return generateSidebar("./docs/css", cssIntroduction, "css");
 };
