@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import DefaultTheme from "vitepress/theme";
-import { darkTheme } from "naive-ui";
+import { darkTheme, useNotification } from "naive-ui";
 import { ref, watchEffect, inject, computed, watch } from "vue";
 import { useData } from "vitepress";
 import NotFound from "./not-found.vue";
@@ -47,7 +47,7 @@ const refresh = () => {
   color: #232840;
   padding: 10px 10px;
   border-radius: 5px;
-  box-shadow: 0 2px 8px 0px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.12);
   cursor: pointer;
 }
 </style>

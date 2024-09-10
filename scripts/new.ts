@@ -38,7 +38,7 @@ inquirer.prompt(questions).then((answers) => {
   const filePath = path.join(__dirname, `../docs/${type}/${name}.md`);
   if (title) {
     content = content.replaceAll("{{name}}", title);
-    content = content.replaceAll("{{title}}", title);
+    content = content.replaceAll("{{title}}", `title: ${title}`);
   } else {
     content = content.replaceAll("{{name}}", name);
     content = content.replaceAll("{{title}}", "");
