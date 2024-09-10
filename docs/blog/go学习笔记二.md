@@ -1,5 +1,6 @@
 ---
 create_time: 2024-08-28 22:46:01
+sidebar: false
 ---
 
 # go 学习笔记二

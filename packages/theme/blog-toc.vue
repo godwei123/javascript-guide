@@ -29,19 +29,17 @@ const getBlogPages = async () => {
   resultList.value = list.value;
 };
 
-const handleSearch = (value: string) => {
-  if (!value) return (list.value = resultList.value);
-  list.value = resultList.value.filter((item) =>
-    item.title.toLowerCase().includes(value.toLowerCase())
-  );
-};
-
 getBlogPages();
 </script>
 
 <template>
-  <n-input placeholder="搜索" round size="large" @update:value="handleSearch"></n-input>
-  <n-grid :y-gap="10" class="w-100 list-box item-container" cols="1" responsive="screen">
+  <n-grid
+    :x-gap="20"
+    :y-gap="10"
+    class="w-100 list-box item-container"
+    cols="2"
+    responsive="screen"
+  >
     <n-grid-item
       v-for="(item, index) in list"
       :key="item"
