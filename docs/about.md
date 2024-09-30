@@ -9,18 +9,20 @@ import {
   VPTeamPageTitle,
   VPTeamMembers,
 VPTeamPageSection
-} from 'vitepress/theme';
+} from "vitepress/theme"; 
+import { useData } from "vitepress"; 
 
 const members = [
   {
-    avatar: 'IMG_2235.jpg',
-    name: 'God wei',
-    title: 'All I need is you!',
-    desc: 'developer'
-  }
+    avatar: "IMG_2235.jpg",
+    name: "God wei",
+    title: "All I need is you!",
+    desc: "developer"
+  },
 ];
 
-const version = '0.0.2';
+console.log(useData());
+const version = "0.0.1";
 </script>
 
 <VPTeamPage>

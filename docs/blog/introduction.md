@@ -1,4 +1,5 @@
 ---
+create_time: 2024-05-12 23:15:22
 prev: false
 next: false
 aside: false
@@ -6,9 +7,5 @@ footer: false
 ---
 
 :::preview
-title=博客
-description=博客目录
-onlyRender=true
-demo-preview=../../packages/pages/blog-toc.vue
-
+url=../../packages/theme/blog-toc.vue
 :::

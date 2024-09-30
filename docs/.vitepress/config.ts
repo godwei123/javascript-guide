@@ -4,21 +4,33 @@ import { defineConfig } from "vitepress";
 import { resolve } from "node:url";
 import { applyPlugins } from "@ruabick/md-demo-plugins";
 import markdownItFootnote from "markdown-it-footnote";
-import mdContainer, { ContainerOpts } from "markdown-it-container";
-import { containerPreview, componentPreview } from "./plugins";
-import JSON5 from "json5";
+import { proTableFence, preview, previewFence } from "./theme/markdown";
 
 export default defineConfig({
   title: "JavaScriptGuide",
   base: "/javascript-guide",
+  version: "v1.0.0",
   description: "front-end study and interview, include html,css,javascript,network...",
   lang: "zh-CN",
-  head: [["link", { rel: "icon", href: "/javascript-guide/favicon.svg" }]],
+  head: [
+    ["link", { rel: "icon", href: "/javascript-guide/favicon.svg" }],
+    [
+      "link",
+      {
+        rel: "preconnect",
+        href: "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap",
+      },
+    ],
+  ],
+  cleanUrls: true,
   themeConfig: {
     siteTitle: "JavaScriptGuide",
     logo: "/favicon.svg",
     nav,
     sidebar,
+    outline: {
+      level: [2, 3],
+    },
     footer: {
       message: "Released under the MIT License.",
       copyright: "Copyright © 2021-present God Wei",
@@ -58,34 +70,9 @@ export default defineConfig({
     config: (md) => {
       applyPlugins(md);
       md.use(markdownItFootnote);
-      md.use(containerPreview);
-      md.use(componentPreview);
-      const defaultRender = md.renderer.rules.fence!;
-      md.renderer.rules.fence = (tokens, idx, options, env, self) => {
-        const isInProTableContainer =
-          tokens[idx - 1].info.trim() === "pro-table" &&
-          tokens[idx + 1].type === "container_pro-table_close";
-
-        if (tokens[idx].type === "fence" && isInProTableContainer) {
-          return "";
-        }
-        return defaultRender(tokens, idx, options, env, self);
-      };
-      md.use(mdContainer, "pro-table", {
-        validate(params) {
-          return !!params.trim().match(/^pro-table\s*(.*)$/);
-        },
-
-        render: function (tokens, idx) {
-          const m = tokens[idx].type.trim().match(/pro-table\s*(.*)$/);
-          if (tokens[idx].nesting === 1 /* means the tag is opening */) {
-            const content = tokens[idx + 1].type === "fence" ? tokens[idx + 1].content : "";
-            return "<n-data-table v-bind=" + "'" + JSON.stringify(JSON5.parse(content)) + "'" + ">";
-          } else {
-            return "</n-data-table>";
-          }
-        },
-      } as ContainerOpts);
+      md.use(preview);
+      previewFence(md);
+      proTableFence(md);
     },
   },
   vite: {

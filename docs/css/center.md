@@ -1,7 +1,7 @@
 # 居中
 
 <script setup>
-import CenterVisual from "~/pages/basic/center-visual.vue";
+import CenterVisual from "~/pages/css/center-visual.vue";
 </script>
 
 ## 水平居中
@@ -9,7 +9,7 @@ import CenterVisual from "~/pages/basic/center-visual.vue";
 ### 1.text-align
 
 <ClientOnly>
-<CenterVisual  :parentStyle="{textAlign: 'center'}" :childStyle="{display: 'inline-block'}"/>
+<CenterVisual :parentStyle="{textAlign: 'center'}" :childStyle="{display: 'inline-block'}"/>
 </ClientOnly>
 
 ```css
@@ -89,7 +89,8 @@ import CenterVisual from "~/pages/basic/center-visual.vue";
 ### 6.table
 
 <ClientOnly>
-<CenterVisual  :parentStyle="{display: 'table','text-align':'center'}" :childStyle="{display: 'inline-block'}"/></ClientOnly>
+<CenterVisual  :parentStyle="{display: 'table','text-align':'center'}" :childStyle="{display: 'inline-block'}"/>
+</ClientOnly>
 
 ```css
 .parent {
@@ -107,7 +108,8 @@ import CenterVisual from "~/pages/basic/center-visual.vue";
 ### 1.flex 布局
 
 <ClientOnly>
-<CenterVisual  :parentStyle="{display: 'flex', 'align-items': 'center'}" :childStyle="{}"/></ClientOnly>
+<CenterVisual  :parentStyle="{display: 'flex', 'align-items': 'center'}" :childStyle="{}"/>
+</ClientOnly>
 
 ```css
 .parent {
@@ -119,7 +121,8 @@ import CenterVisual from "~/pages/basic/center-visual.vue";
 ### 2.gird 布局
 
 <ClientOnly>
-<CenterVisual  :parentStyle="{display: 'grid', 'align-items': 'center'}" :childStyle="{}"/></ClientOnly>
+<CenterVisual  :parentStyle="{display: 'grid', 'align-items': 'center'}" :childStyle="{}"/>
+</ClientOnly>
 
 ```css
 .parent {

@@ -263,10 +263,6 @@ BFC 是块级格式上下文，IFC 是行内格式上下文：
 
 - https://zhuanlan.zhihu.com/p/25321647
 
-## 9、什么是 BFC
-
-BFC（Block Formatting Context）格式化上下文，是 Web 页面中盒模型布局的 CSS 渲染模式，指一个独立的渲染区域或者说是一个隔离的独立容器。
-
 ### 形成 BFC 的条件
 
 五种：

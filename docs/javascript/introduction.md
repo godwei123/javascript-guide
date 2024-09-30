@@ -5,5 +5,5 @@ aside: false
 ---
 
 ::: tip
-This is a work in progress. The content is not yet complete.
+javascript 笔记
 :::

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import DefaultTheme from "vitepress/theme";
-import { darkTheme } from "naive-ui";
+import { darkTheme, useNotification } from "naive-ui";
 import { ref, watchEffect, inject, computed, watch } from "vue";
 import { useData } from "vitepress";
 import NotFound from "./not-found.vue";
@@ -32,13 +32,13 @@ const refresh = () => {
       </n-message-provider>
     </n-notification-provider>
   </n-config-provider>
-  <n-element v-if="message" class="fixed">
+  <n-element v-if="message" class="fixed-element">
     <n-button size="small" text @click="refresh"> 页面有更新，请点击刷新</n-button>
   </n-element>
 </template>
 
 <style>
-.fixed {
+.fixed-element {
   position: fixed;
   z-index: 10;
   bottom: 40px;
@@ -47,7 +47,7 @@ const refresh = () => {
   color: #232840;
   padding: 10px 10px;
   border-radius: 5px;
-  box-shadow: 0 2px 8px 0px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.12);
   cursor: pointer;
 }
 </style>

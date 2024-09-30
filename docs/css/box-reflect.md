@@ -12,6 +12,6 @@ box-reflect: <direction> <offset> <mask-box-image>;
 - `<offset>`：指定反射的偏移量，可以是长度值或百分比。
 - `<mask-box-image>`：指定反射的遮罩图片。
 
-示例：
-
-<demo src="../../packages/pages/box-reflect.vue"></demo>
+:::preview
+url=../../packages/pages/box-reflect.vue
+:::
